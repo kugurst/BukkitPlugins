@@ -1,3 +1,4 @@
-name: MC Random Battles
+name: RandomBattle
 main: me.merdril.RandomBattle.RandomBattle
 version: 0.0.1
+author: Mark Aligbe
