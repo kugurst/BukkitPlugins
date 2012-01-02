@@ -2,3 +2,20 @@ name: RandomBattle
 main: me.merdril.RandomBattle.RandomBattle
 version: 0.0.1
 author: Mark Aligbe
+commands:
+    regbattle:
+        description: Adds this player to the list of players subject to random battles.
+        permission: RandomBattle.regbattle
+        usage: /regbattle <player>
+    unregbattle:
+        description: Remove the player from the list of players subject to random battles.
+        permission: RandomBattle.regbattle.others
+        usage: /unregbattle <player>
+    stopbattles:
+        description: Stop any further random battles from occuring server wide.
+        permission: RandomBattle.stopbattles
+        usage: /stopbattles
+    resumebattles:
+        description: Resume RandomBattle, if it was stopped.
+        permission: RandomBattle.stopbattles
+        usage: /resumebattles

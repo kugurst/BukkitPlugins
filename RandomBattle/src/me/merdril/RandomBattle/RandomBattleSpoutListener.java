@@ -8,7 +8,6 @@ import java.util.HashMap;
 
 import org.getspout.spoutapi.event.spout.SpoutCraftEnableEvent;
 import org.getspout.spoutapi.event.spout.SpoutListener;
-import org.getspout.spoutapi.event.spout.SpoutcraftFailedEvent;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
@@ -17,8 +16,8 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class RandomBattleSpoutListener extends SpoutListener
 {
-	public RandomBattle						plugin;
-	private HashMap<String, SpoutPlayer>	spoutPlayers	= new HashMap<String, SpoutPlayer>();
+	public RandomBattle	                plugin;
+	static HashMap<String, SpoutPlayer>	spoutPlayers	= new HashMap<String, SpoutPlayer>();
 	
 	/**
 	 * 
@@ -33,12 +32,4 @@ public class RandomBattleSpoutListener extends SpoutListener
 	{
 		spoutPlayers.put(event.getPlayer().getDisplayName(), event.getPlayer());
 	}
-	
-	@Override
-	public void onSpoutcraftFailed(SpoutcraftFailedEvent event)
-	{
-		System.out.println("[RandomBattle] This player does not have Spout: "
-				+ event.getPlayer().getDisplayName());
-	}
-	
 }

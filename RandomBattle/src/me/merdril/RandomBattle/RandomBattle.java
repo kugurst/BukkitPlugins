@@ -16,10 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class RandomBattle extends JavaPlugin
 {
-	protected RandomBattle						plugin			= this;
-	Logger										log				= Logger.getLogger("Minecraft");
-	private final RandomBattlePlayerListener	playerListener	= new RandomBattlePlayerListener(
-																		this);
+	Logger	log	= Logger.getLogger("Minecraft");
 	
 	/**
 	 * @param args
@@ -32,10 +29,19 @@ public class RandomBattle extends JavaPlugin
 			log.info("[RandomBattle] Spout is not enabled and is required for this plugin. Disabling.");
 			onDisable();
 		}
-		RandomBattleSpoutListener spoutPlayerListener = new RandomBattleSpoutListener(this);
-		pm.registerEvent(Event.Type.PLAYER_LOGIN, playerListener, Event.Priority.Monitor, this);
-		pm.registerEvent(Event.Type.CUSTOM_EVENT, spoutPlayerListener, Event.Priority.Monitor, this);
-		log.info("[RandomBattle] Random Battle has started!");
+		else
+		{
+			RandomBattleCommandExecutor cExec = new RandomBattleCommandExecutor(this);
+			getCommand("regbattle").setExecutor(cExec);
+			getCommand("unregbattle").setExecutor(cExec);
+			getCommand("stopbattles").setExecutor(cExec);
+			getCommand("resumebattles").setExecutor(cExec);
+			
+			RandomBattleSpoutListener spoutPlayerListener = new RandomBattleSpoutListener(this);
+			pm.registerEvent(Event.Type.CUSTOM_EVENT, spoutPlayerListener, Event.Priority.Monitor,
+			        this);
+			log.info("[RandomBattle] Random Battle has started!");
+		}
 	}
 	
 	public void onDisable()
