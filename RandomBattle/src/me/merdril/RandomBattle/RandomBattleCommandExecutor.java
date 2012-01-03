@@ -68,7 +68,13 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 			}
 			else
 			{
-				if (sender.getName() == args[0])
+				if (args.length == 0)
+				{
+					registeredPlayers.put(sender.getName(), (SpoutPlayer) sender);
+					sender.sendMessage("[RandomBattle] " + sender.getName() + " is now registered!");
+					return true;
+				}
+				else if (sender.getName() == args[0])
 				{
 					registeredPlayers.put(sender.getName(), (SpoutPlayer) sender);
 					sender.sendMessage("[RandomBattle] " + sender.getName() + " is now registered!");
@@ -76,8 +82,9 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 				}
 				else
 				{
-					registeredPlayers.put(args[0],
-					        RandomBattleUtilities.getSpoutPlayerFromDisplayName(args[0]));
+					registeredPlayers
+					        .put(args[0], RandomBattleUtilities.getSpoutPlayerFromDisplayName(
+					                args[0], 0, sender));
 					sender.sendMessage("[RandomBattle] " + args[0] + " is now registered!");
 					registeredPlayers.get(args[0]).sendMessage(
 					        "[RandomBattle] You have been registered for Random Battles by "
@@ -107,7 +114,7 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 					return true;
 				}
 				registeredPlayers.put(args[0],
-				        RandomBattleUtilities.getSpoutPlayerFromDisplayName(args[0]));
+				        RandomBattleUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender));
 				sender.sendMessage("[RandomBattle] " + args[0] + " is now registered!");
 				registeredPlayers.get(args[0]).sendMessage(
 				        "[RandomBattle] You have been registered for Random Battles by console!");
@@ -118,8 +125,80 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 	
 	private boolean unRegister(CommandSender sender, Command cmd, String label, String[] args)
 	{
-		return false;
-		
+		if (sender instanceof Player)
+		{
+			boolean isRegisteredPlayer = false;
+			if (args.length == 0)
+				isRegisteredPlayer =
+				        registeredPlayers.containsKey(((Player) sender).getDisplayName());
+			else if (args.length == 1)
+				isRegisteredPlayer = registeredPlayers.containsKey(args[0]);
+			else if (args.length > 1)
+			{
+				sender.sendMessage("[RandomBattle] Too many arguments");
+				return false;
+			}
+			if (!isRegisteredPlayer)
+			{
+				sender.sendMessage("[RandomBattle] The player name does not refer to a registered player.");
+				return true;
+			}
+			else
+			{
+				if (args.length == 0)
+				{
+					registeredPlayers.remove((SpoutPlayer) sender);
+					sender.sendMessage("[RandomBattle] " + sender.getName()
+					        + " is no longer registered.");
+					return true;
+				}
+				else if (sender.getName() == args[0])
+				{
+					registeredPlayers.remove((SpoutPlayer) sender);
+					sender.sendMessage("[RandomBattle] " + sender.getName()
+					        + " is no longer registered.");
+					return true;
+				}
+				else
+				{
+					registeredPlayers.remove(args[0]);
+					sender.sendMessage("[RandomBattle] " + args[0] + " is no longer registered.");
+					RandomBattleSpoutListener.spoutPlayers.get(args[0]).sendMessage(
+					        "[RandomBattle] You have been unregistered from Random Battles by "
+					                + sender.getName() + ".");
+					return true;
+				}
+			}
+		}
+		else
+		{
+			if (args.length == 0)
+			{
+				sender.sendMessage("[RandomBattle] This command requires a player context.");
+				return true;
+			}
+			else if (args.length > 1)
+			{
+				sender.sendMessage("[RandomBattle] Too many arguments.");
+				return false;
+			}
+			else
+			{
+				boolean isRegisteredPlayer = registeredPlayers.containsKey(args[0]);
+				if (!isRegisteredPlayer)
+				{
+					sender.sendMessage("[RandomBattle] The player name does not refer to a registered player.");
+					return true;
+				}
+				registeredPlayers.remove(args[0]);
+				sender.sendMessage("[RandomBattle] " + args[0] + " is no longer registered.");
+				RandomBattleSpoutListener.spoutPlayers
+				        .get(args[0])
+				        .sendMessage(
+				                "[RandomBattle] You have been unregistered from Random Battles by console!");
+				return true;
+			}
+		}
 	}
 	
 	private boolean stop(CommandSender sender, Command cmd, String label, String[] args)
