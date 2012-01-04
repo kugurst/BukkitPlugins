@@ -19,3 +19,11 @@ commands:
         description: Resume RandomBattle, if it was stopped.
         permission: RandomBattle.stopbattles
         usage: /resumebattles
+    showregplayers:
+        description: Shows registered players.
+        permission: RandomBattle.debug.show
+        usage: /showregplayers
+    showspoutplayers:
+        description: Show spout players.
+        permission: RandomBattle.debug.show
+        usage: /showspoutplayers

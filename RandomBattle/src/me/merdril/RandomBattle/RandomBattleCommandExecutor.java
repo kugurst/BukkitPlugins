@@ -133,14 +133,52 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 		if (sender instanceof Player)
 		{
 			boolean isRegisteredPlayer = registeredPlayers.containsValue((SpoutPlayer) sender);
-			if(args.length == 0)
+			if (args.length == 1)
 			{
-				
+				isRegisteredPlayer = registeredPlayers.containsKey(args[0]);
+				if (!isRegisteredPlayer)
+				{
+					sender.sendMessage("[RandomBattle] " + args[0]
+					        + " is not registered for Random Battles.");
+					return true;
+				}
+				SpoutPlayer player = registeredPlayers.remove(args[0]);
+				sender.sendMessage("[RandomBattle] " + player.getDisplayName()
+				        + " has been unregistered from Random Battles.");
+				if (!sender.getName().equals(args[0]))
+					player.sendMessage("[RandomBattle] You have been unregistered from Random Battles by "
+					        + sender.getName() + ".");
+				return true;
 			}
+			else if (args.length > 1)
+			{
+				sender.sendMessage("[RandomBattle] Incorrect arguments. Usage:");
+				return false;
+			}
+			if (!isRegisteredPlayer)
+			{
+				sender.sendMessage("[RandomBattle] " + sender.getName()
+				        + " is not registered for Random Battles.");
+				return true;
+			}
+			// At this point, the player is registered.
+			SpoutPlayer player = registeredPlayers.remove(sender.getName());
+			sender.sendMessage("[RandomBattle] " + player.getDisplayName()
+			        + " has been unregistered from Random Battles.");
+			return true;
 		}
+		// Command line issued
 		if (args.length != 1)
 		{
-			sender.sendMessage("[RandomBattle] )
+			sender.sendMessage("[RandomBattle] This command takes one player as an argument. Usage:");
+			return false;
+		}
+		if (registeredPlayers.containsKey(args[0]))
+		{
+			SpoutPlayer player = registeredPlayers.remove(args[0]);
+			sender.sendMessage("[RandomBattle] " + player.getDisplayName()
+			        + " has been unregistered from Random Battles.");
+			player.sendMessage("[RandomBattle] You have been unregistered from Random Battles by console.");
 		}
 		return true;
 	}

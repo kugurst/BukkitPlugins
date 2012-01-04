@@ -27,7 +27,7 @@ public class RandomBattle extends JavaPlugin
 		if (!pm.isPluginEnabled("Spout"))
 		{
 			log.info("[RandomBattle] Spout is not enabled and is required for this plugin. Disabling.");
-			onDisable();
+			pm.disablePlugin(this);
 		}
 		else
 		{
