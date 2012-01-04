@@ -4,6 +4,7 @@
 
 package me.merdril.RandomBattle;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.command.Command;
@@ -42,6 +43,10 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 			return stop(sender, cmd, label, args);
 		else if (cmd.getName().equalsIgnoreCase("resumebattles"))
 			return start(sender, cmd, label, args);
+		else if (cmd.getName().equalsIgnoreCase("showregplayers"))
+			return debugRegPlayers(sender, cmd, label, args);
+		else if (cmd.getName().equalsIgnoreCase("showspoutplayers"))
+			return debugSpoutPlayers(sender, cmd, label, args);
 		return false;
 	}
 	
@@ -127,78 +132,35 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 	{
 		if (sender instanceof Player)
 		{
-			boolean isRegisteredPlayer = false;
-			if (args.length == 0)
-				isRegisteredPlayer =
-				        registeredPlayers.containsKey(((Player) sender).getDisplayName());
-			else if (args.length == 1)
-				isRegisteredPlayer = registeredPlayers.containsKey(args[0]);
-			else if (args.length > 1)
+			boolean isRegisteredPlayer = registeredPlayers.containsValue((SpoutPlayer) sender);
+			if(args.length == 0)
 			{
-				sender.sendMessage("[RandomBattle] Too many arguments");
-				return false;
-			}
-			if (!isRegisteredPlayer)
-			{
-				sender.sendMessage("[RandomBattle] The player name does not refer to a registered player.");
-				return true;
-			}
-			else
-			{
-				if (args.length == 0)
-				{
-					registeredPlayers.remove((SpoutPlayer) sender);
-					sender.sendMessage("[RandomBattle] " + sender.getName()
-					        + " is no longer registered.");
-					return true;
-				}
-				else if (sender.getName() == args[0])
-				{
-					registeredPlayers.remove((SpoutPlayer) sender);
-					sender.sendMessage("[RandomBattle] " + sender.getName()
-					        + " is no longer registered.");
-					return true;
-				}
-				else
-				{
-					registeredPlayers.remove(args[0]);
-					sender.sendMessage("[RandomBattle] " + args[0] + " is no longer registered.");
-					RandomBattleSpoutListener.spoutPlayers.get(args[0]).sendMessage(
-					        "[RandomBattle] You have been unregistered from Random Battles by "
-					                + sender.getName() + ".");
-					return true;
-				}
+				
 			}
 		}
-		else
+		if (args.length != 1)
 		{
-			if (args.length == 0)
-			{
-				sender.sendMessage("[RandomBattle] This command requires a player context.");
-				return true;
-			}
-			else if (args.length > 1)
-			{
-				sender.sendMessage("[RandomBattle] Too many arguments.");
-				return false;
-			}
-			else
-			{
-				boolean isRegisteredPlayer = registeredPlayers.containsKey(args[0]);
-				if (!isRegisteredPlayer)
-				{
-					sender.sendMessage("[RandomBattle] The player name does not refer to a registered player.");
-					return true;
-				}
-				registeredPlayers.remove(args[0]);
-				sender.sendMessage("[RandomBattle] " + args[0] + " is no longer registered.");
-				RandomBattleSpoutListener.spoutPlayers
-				        .get(args[0])
-				        .sendMessage(
-				                "[RandomBattle] You have been unregistered from Random Battles by console!");
-				return true;
-			}
+			sender.sendMessage("[RandomBattle] )
 		}
+		return true;
+	}
+	
+	private boolean debugRegPlayers(CommandSender sender, Command cmd, String label, String[] args)
+	{
+		ArrayList<SpoutPlayer> regPlayers = new ArrayList<SpoutPlayer>(registeredPlayers.values());
+		for (SpoutPlayer player : regPlayers)
+			sender.sendMessage("[RandomBattle] " + player.getDisplayName());
+		return true;
+	}
+	
+	private boolean
+	        debugSpoutPlayers(CommandSender sender, Command cmd, String label, String[] args)
+	{
+		ArrayList<SpoutPlayer> spoutPlayers =
+		        new ArrayList<SpoutPlayer>(RandomBattleSpoutListener.spoutPlayers.values());
+		for (SpoutPlayer player : spoutPlayers)
+			sender.sendMessage("[RandomBattle] " + player.getDisplayName());
+		return true;
 	}
 	
 	private boolean stop(CommandSender sender, Command cmd, String label, String[] args)

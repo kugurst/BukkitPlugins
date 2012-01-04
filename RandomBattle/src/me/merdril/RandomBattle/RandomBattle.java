@@ -33,9 +33,11 @@ public class RandomBattle extends JavaPlugin
 		{
 			RandomBattleCommandExecutor cExec = new RandomBattleCommandExecutor(this);
 			getCommand("regbattle").setExecutor(cExec);
-			getCommand("unregbattle").setExecutor(cExec);
 			getCommand("stopbattles").setExecutor(cExec);
+			getCommand("unregbattle").setExecutor(cExec);
 			getCommand("resumebattles").setExecutor(cExec);
+			getCommand("showregplayers").setExecutor(cExec);
+			getCommand("showspoutplayers").setExecutor(cExec);
 			
 			RandomBattleSpoutListener spoutPlayerListener = new RandomBattleSpoutListener(this);
 			pm.registerEvent(Event.Type.CUSTOM_EVENT, spoutPlayerListener, Event.Priority.Monitor,
