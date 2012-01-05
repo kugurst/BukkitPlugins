@@ -46,22 +46,77 @@ public class RandomBattleAttackListener extends EntityListener
 			Monster monster = null;
 			ComplexLivingEntity dragon = null;
 			ComplexEntityPart dragonPart = null;
+			int entityID = 0;
 			if (attackEvent.getDamager() instanceof Player)
 			{
 				player = (SpoutPlayer) attackEvent.getDamager();
-				
+				if (attackEvent.getEntity() instanceof Monster)
+				{
+					monster = (Monster) attackEvent.getEntity();
+					entityID = monster.getEntityId();
+				}
+				else if (attackEvent.getEntity() instanceof ComplexLivingEntity)
+				{
+					dragon = (ComplexLivingEntity) attackEvent.getEntity();
+					entityID = dragon.getEntityId();
+				}
+				else if (attackEvent.getEntity() instanceof ComplexEntityPart)
+				{
+					dragonPart = (ComplexEntityPart) attackEvent.getEntity();
+					entityID = dragonPart.getEntityId();
+				}
 			}
 			else if (attackEvent.getDamager() instanceof Arrow)
 			{
 				Arrow arrow = (Arrow) attackEvent.getDamager();
 				if (arrow.getShooter() instanceof Player)
+				{
 					player = (SpoutPlayer) arrow.getShooter();
+					if (attackEvent.getEntity() instanceof Monster)
+					{
+						monster = (Monster) attackEvent.getEntity();
+						entityID = monster.getEntityId();
+					}
+					else if (attackEvent.getEntity() instanceof ComplexLivingEntity)
+					{
+						dragon = (ComplexLivingEntity) attackEvent.getEntity();
+						entityID = dragon.getEntityId();
+					}
+					else if (attackEvent.getEntity() instanceof ComplexEntityPart)
+					{
+						dragonPart = (ComplexEntityPart) attackEvent.getEntity();
+						entityID = dragonPart.getEntityId();
+					}
+				}
 			}
 			else if (attackEvent.getEntity() instanceof Player)
-				player = (SpoutPlayer) attackEvent.getEntity();
-			if (randomChance > generator.nextInt(99) && player != null)
 			{
-				begin = new BattleSetter(plugin, player, monster);
+				player = (SpoutPlayer) attackEvent.getEntity();
+				if (attackEvent.getDamager() instanceof Monster)
+				{
+					monster = (Monster) attackEvent.getDamager();
+					entityID = monster.getEntityId();
+				}
+				else if (attackEvent.getDamager() instanceof ComplexLivingEntity)
+				{
+					dragon = (ComplexLivingEntity) attackEvent.getDamager();
+					entityID = dragon.getEntityId();
+				}
+				else if (attackEvent.getDamager() instanceof ComplexEntityPart)
+				{
+					dragonPart = (ComplexEntityPart) attackEvent.getDamager();
+					entityID = dragonPart.getEntityId();
+				}
+			}
+			if (randomChance > generator.nextInt(99) && player != null
+			        && (monster != null || dragon != null || dragonPart != null))
+			{
+				if (monster != null)
+					begin = new BattleSetter(plugin, player, monster);
+				else if (dragon != null)
+					begin = new BattleSetter(plugin, player, dragon);
+				else if (dragonPart != null)
+					begin = new BattleSetter(plugin, player, dragonPart);
 				player.sendMessage("[RandomBattle] " + attackEvent.getDamage());
 			}
 		}
