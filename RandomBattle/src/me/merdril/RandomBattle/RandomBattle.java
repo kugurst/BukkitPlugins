@@ -42,6 +42,9 @@ public class RandomBattle extends JavaPlugin
 			RandomBattleSpoutListener spoutPlayerListener = new RandomBattleSpoutListener(this);
 			pm.registerEvent(Event.Type.CUSTOM_EVENT, spoutPlayerListener, Event.Priority.Monitor,
 			        this);
+			
+			RandomBattleAttackListener attackListener = new RandomBattleAttackListener(this);
+			pm.registerEvent(Event.Type.ENTITY_DAMAGE, attackListener, Event.Priority.Highest, this);
 			log.info("[RandomBattle] Random Battle has started!");
 		}
 	}
