@@ -36,16 +36,22 @@ public class BattleSetter
 	
 	public static void stopEntities(LivingEntity entity1, LivingEntity entity2)
 	{
-		entity1.setVelocity(zeroVector);
-		entity2.setVelocity(zeroVector);
+		for (int i = 0; i < 10000; i++)
+		{
+			entity1.setVelocity(zeroVector);
+			entity2.setVelocity(zeroVector);
+		}
 		SpoutPlayer player = (SpoutPlayer) entity1;
 		player.sendMessage("[RandomBattle] Vector sent.");
 	}
 	
 	public static void stopEntities(LivingEntity entity1, Entity entity2)
 	{
-		entity1.setVelocity(zeroVector);
-		entity2.setVelocity(zeroVector);
+		for (int i = 0; i < 10000; i++)
+		{
+			entity1.setVelocity(zeroVector);
+			entity2.setVelocity(zeroVector);
+		}
 		SpoutPlayer player = (SpoutPlayer) entity1;
 		player.sendMessage("[RandomBattle] Vector sent.");
 	}
