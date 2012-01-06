@@ -16,7 +16,7 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class BattleSetter
 {
-	RandomBattle	      plugin;
+	static RandomBattle	  plugin;
 	private static Vector	zeroVector	= new Vector(0, 0, 0);
 	
 	/**
@@ -36,22 +36,13 @@ public class BattleSetter
 	
 	public static void stopEntities(LivingEntity entity1, LivingEntity entity2)
 	{
-		for (int i = 0; i < 10000; i++)
-		{
-			entity1.setVelocity(zeroVector);
-			entity2.setVelocity(zeroVector);
-		}
 		SpoutPlayer player = (SpoutPlayer) entity1;
 		player.sendMessage("[RandomBattle] Vector sent.");
 	}
 	
 	public static void stopEntities(LivingEntity entity1, Entity entity2)
 	{
-		for (int i = 0; i < 10000; i++)
-		{
-			entity1.setVelocity(zeroVector);
-			entity2.setVelocity(zeroVector);
-		}
+		
 		SpoutPlayer player = (SpoutPlayer) entity1;
 		player.sendMessage("[RandomBattle] Vector sent.");
 	}

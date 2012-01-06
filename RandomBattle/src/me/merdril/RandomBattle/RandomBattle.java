@@ -24,29 +24,20 @@ public class RandomBattle extends JavaPlugin
 	public void onEnable()
 	{
 		PluginManager pm = this.getServer().getPluginManager();
-		if (!pm.isPluginEnabled("Spout"))
-		{
-			log.info("[RandomBattle] Spout is not enabled and is required for this plugin. Disabling.");
-			pm.disablePlugin(this);
-		}
-		else
-		{
-			RandomBattleCommandExecutor cExec = new RandomBattleCommandExecutor(this);
-			getCommand("regbattle").setExecutor(cExec);
-			getCommand("stopbattles").setExecutor(cExec);
-			getCommand("unregbattle").setExecutor(cExec);
-			getCommand("resumebattles").setExecutor(cExec);
-			getCommand("showregplayers").setExecutor(cExec);
-			getCommand("showspoutplayers").setExecutor(cExec);
-			
-			RandomBattleSpoutListener spoutPlayerListener = new RandomBattleSpoutListener(this);
-			pm.registerEvent(Event.Type.CUSTOM_EVENT, spoutPlayerListener, Event.Priority.Monitor,
-			        this);
-			
-			RandomBattleAttackListener attackListener = new RandomBattleAttackListener(this);
-			pm.registerEvent(Event.Type.ENTITY_DAMAGE, attackListener, Event.Priority.Highest, this);
-			log.info("[RandomBattle] Random Battle has started!");
-		}
+		RandomBattleCommandExecutor cExec = new RandomBattleCommandExecutor(this);
+		getCommand("regbattle").setExecutor(cExec);
+		getCommand("stopbattles").setExecutor(cExec);
+		getCommand("unregbattle").setExecutor(cExec);
+		getCommand("resumebattles").setExecutor(cExec);
+		getCommand("showregplayers").setExecutor(cExec);
+		getCommand("showspoutplayers").setExecutor(cExec);
+		
+		RandomBattleSpoutListener spoutPlayerListener = new RandomBattleSpoutListener(this);
+		pm.registerEvent(Event.Type.CUSTOM_EVENT, spoutPlayerListener, Event.Priority.Monitor, this);
+		
+		RandomBattleAttackListener attackListener = new RandomBattleAttackListener(this);
+		pm.registerEvent(Event.Type.ENTITY_DAMAGE, attackListener, Event.Priority.Highest, this);
+		log.info("[RandomBattle] Random Battle has started!");
 	}
 	
 	public void onDisable()

@@ -1,7 +1,8 @@
 name: RandomBattle
 main: me.merdril.RandomBattle.RandomBattle
-version: 0.0.1
+version: 0.2.5
 author: Mark Aligbe
+depend: [Spout]
 commands:
     regbattle:
         description: Adds this player to the list of players subject to random battles.
