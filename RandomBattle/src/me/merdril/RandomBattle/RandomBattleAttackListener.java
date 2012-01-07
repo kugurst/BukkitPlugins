@@ -26,12 +26,12 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class RandomBattleAttackListener extends EntityListener
 {
-	RandomBattle	                         plugin;
-	protected BattleSetter	                 begin;
-	protected int	                         randomChance	       = 70;
-	private Random	                         generator	           = new Random();
-	protected HashMap<UUID, ArrayList<UUID>>	alreadyEncountered	=
-	                                                                       new HashMap<UUID, ArrayList<UUID>>();
+	RandomBattle	                                plugin;
+	protected BattleSetter	                        begin;
+	protected int	                                randomChance	   = 70;
+	private Random	                                generator	       = new Random();
+	protected static HashMap<UUID, ArrayList<UUID>>	alreadyEncountered	=
+	                                                                           new HashMap<UUID, ArrayList<UUID>>();
 	
 	/**
 	 * 

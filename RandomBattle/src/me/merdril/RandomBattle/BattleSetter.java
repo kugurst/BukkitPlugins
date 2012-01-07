@@ -16,7 +16,7 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class BattleSetter
 {
-	static RandomBattle	  plugin;
+	RandomBattle	      plugin;
 	private static Vector	zeroVector	= new Vector(0, 0, 0);
 	
 	/**
