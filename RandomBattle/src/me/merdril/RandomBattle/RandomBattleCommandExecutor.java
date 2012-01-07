@@ -19,8 +19,9 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class RandomBattleCommandExecutor implements CommandExecutor
 {
-	public RandomBattle	                plugin;
-	static HashMap<String, SpoutPlayer>	registeredPlayers	= new HashMap<String, SpoutPlayer>();
+	public RandomBattle	                         plugin;
+	static volatile HashMap<String, SpoutPlayer>	registeredPlayers	=
+	                                                                          new HashMap<String, SpoutPlayer>();
 	
 	/**
 	 * 
@@ -186,6 +187,8 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 	private boolean debugRegPlayers(CommandSender sender, Command cmd, String label, String[] args)
 	{
 		ArrayList<SpoutPlayer> regPlayers = new ArrayList<SpoutPlayer>(registeredPlayers.values());
+		if (regPlayers.size() == 0)
+			sender.sendMessage("[RandomBattle] No registered players!");
 		for (SpoutPlayer player : regPlayers)
 			sender.sendMessage("[RandomBattle] " + player.getDisplayName());
 		return true;
@@ -196,6 +199,8 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 	{
 		ArrayList<SpoutPlayer> spoutPlayers =
 		        new ArrayList<SpoutPlayer>(RandomBattleSpoutListener.spoutPlayers.values());
+		if (spoutPlayers.size() == 0)
+			sender.sendMessage("[RandomBattle] No Spout players!");
 		for (SpoutPlayer player : spoutPlayers)
 			sender.sendMessage("[RandomBattle] " + player.getDisplayName());
 		return true;

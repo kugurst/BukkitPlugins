@@ -16,7 +16,8 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class RandomBattle extends JavaPlugin
 {
-	Logger	log	= Logger.getLogger("Minecraft");
+	Logger	      log	           = Logger.getLogger("Minecraft");
+	protected int	numReqEntities	= 5;
 	
 	/**
 	 * @param args
@@ -24,6 +25,7 @@ public class RandomBattle extends JavaPlugin
 	public void onEnable()
 	{
 		PluginManager pm = this.getServer().getPluginManager();
+		
 		RandomBattleCommandExecutor cExec = new RandomBattleCommandExecutor(this);
 		getCommand("regbattle").setExecutor(cExec);
 		getCommand("stopbattles").setExecutor(cExec);
@@ -37,6 +39,14 @@ public class RandomBattle extends JavaPlugin
 		
 		RandomBattleAttackListener attackListener = new RandomBattleAttackListener(this);
 		pm.registerEvent(Event.Type.ENTITY_DAMAGE, attackListener, Event.Priority.Highest, this);
+		
+		RandomBattleAttackCleanerListener attackCleanerListener =
+		        new RandomBattleAttackCleanerListener(this, numReqEntities);
+		pm.registerEvent(Event.Type.ENTITY_DEATH, attackCleanerListener, Event.Priority.Monitor,
+		        this);
+		pm.registerEvent(Event.Type.ENTITY_EXPLODE, attackCleanerListener, Event.Priority.Monitor,
+		        this);
+		
 		log.info("[RandomBattle] Random Battle has started!");
 	}
 	

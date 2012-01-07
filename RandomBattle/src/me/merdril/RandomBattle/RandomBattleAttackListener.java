@@ -26,12 +26,12 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class RandomBattleAttackListener extends EntityListener
 {
-	RandomBattle	                                plugin;
-	protected BattleSetter	                        begin;
-	protected int	                                randomChance	   = 70;
-	private Random	                                generator	       = new Random();
-	protected static HashMap<UUID, ArrayList<UUID>>	alreadyEncountered	=
-	                                                                           new HashMap<UUID, ArrayList<UUID>>();
+	RandomBattle	                                         plugin;
+	protected BattleSetter	                                 begin;
+	protected int	                                         randomChance	       = 70;
+	private Random	                                         generator	           = new Random();
+	protected static volatile HashMap<UUID, ArrayList<UUID>>	alreadyEncountered	=
+	                                                                                       new HashMap<UUID, ArrayList<UUID>>();
 	
 	/**
 	 * 
@@ -127,9 +127,13 @@ public class RandomBattleAttackListener extends EntityListener
 				{
 					ArrayList<UUID> temp = new ArrayList<UUID>();
 					temp.add(entityID);
-					alreadyEncountered.put(playerID, temp);
-					player.sendMessage("[RandomBattle] "
-					        + SpoutManager.getEntityFromId(entityID).getClass().getName());
+					// Synchronized to prevent corruption from the cleaner listener.
+					synchronized (alreadyEncountered)
+					{
+						alreadyEncountered.put(playerID, temp);
+					}
+					player.sendMessage("[RandomBattle] " + SpoutManager.getEntityFromId(entityID)
+					        + " has been added.");
 				}
 				else
 				{
@@ -138,9 +142,12 @@ public class RandomBattleAttackListener extends EntityListener
 					else if (!checkList.contains(entityID))
 					{
 						checkList.add(entityID);
-						alreadyEncountered.put(playerID, checkList);
+						synchronized (alreadyEncountered)
+						{
+							alreadyEncountered.put(playerID, checkList);
+						}
 						player.sendMessage("[RandomBattle] "
-						        + SpoutManager.getEntityFromId(entityID).getClass().getName());
+						        + SpoutManager.getEntityFromId(entityID) + " has been added.");
 					}
 				}
 				if (randomChance > randomNumber)

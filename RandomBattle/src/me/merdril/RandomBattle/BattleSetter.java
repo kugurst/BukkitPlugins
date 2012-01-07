@@ -1,9 +1,9 @@
 
 package me.merdril.RandomBattle;
 
+import org.bukkit.entity.ComplexEntityPart;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.util.Vector;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
@@ -16,8 +16,7 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class BattleSetter
 {
-	RandomBattle	      plugin;
-	private static Vector	zeroVector	= new Vector(0, 0, 0);
+	RandomBattle	plugin;
 	
 	/**
 	 * 
@@ -25,25 +24,22 @@ public class BattleSetter
 	public BattleSetter(RandomBattle instance, SpoutPlayer player, LivingEntity monster)
 	{
 		plugin = instance;
-		stopEntities(player, monster);
+		setStage(player, monster);
 	}
 	
 	public BattleSetter(RandomBattle instance, SpoutPlayer player, Entity monster)
 	{
 		plugin = instance;
-		stopEntities(player, monster);
+		if (monster instanceof ComplexEntityPart)
+		{
+			ComplexEntityPart dragonPart = (ComplexEntityPart) monster;
+			LivingEntity dragon = dragonPart.getParent();
+			setStage(player, dragon);
+		}
 	}
 	
-	public static void stopEntities(LivingEntity entity1, LivingEntity entity2)
+	public static void setStage(SpoutPlayer player, LivingEntity monster)
 	{
-		SpoutPlayer player = (SpoutPlayer) entity1;
-		player.sendMessage("[RandomBattle] Vector sent.");
-	}
-	
-	public static void stopEntities(LivingEntity entity1, Entity entity2)
-	{
-		
-		SpoutPlayer player = (SpoutPlayer) entity1;
-		player.sendMessage("[RandomBattle] Vector sent.");
+		player.sendMessage("[RandomBattle] Stage set.");
 	}
 }

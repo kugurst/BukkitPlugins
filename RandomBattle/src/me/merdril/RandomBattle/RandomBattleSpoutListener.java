@@ -17,8 +17,9 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class RandomBattleSpoutListener extends SpoutListener
 {
-	public RandomBattle	                plugin;
-	static HashMap<String, SpoutPlayer>	spoutPlayers	= new HashMap<String, SpoutPlayer>();
+	public RandomBattle	                         plugin;
+	static volatile HashMap<String, SpoutPlayer>	spoutPlayers	=
+	                                                                     new HashMap<String, SpoutPlayer>();
 	
 	/**
 	 * 
@@ -33,6 +34,7 @@ public class RandomBattleSpoutListener extends SpoutListener
 	{
 		spoutPlayers.put(event.getPlayer().getDisplayName(), event.getPlayer());
 	}
+	
 	@Override
 	public void onSpoutcraftFailed(SpoutcraftFailedEvent event)
 	{
