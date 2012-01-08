@@ -153,11 +153,11 @@ public class RandomBattleAttackListener extends EntityListener
 				if (randomChance > randomNumber)
 				{
 					if (monster != null)
-						begin = new BattleSetter(plugin, player, monster);
+						begin = new BattleSetter(plugin, player, monster, 124, 15, 10);
 					else if (dragon != null)
 						begin = new BattleSetter(plugin, player, dragon);
 					else if (dragonPart != null)
-						begin = new BattleSetter(plugin, player, dragonPart);
+						begin = new BattleSetter(plugin, player, dragonPart.getParent());
 					player.sendMessage("[RandomBattle] " + attackEvent.getDamage()
 					        + " random number: " + randomNumber);
 				}
