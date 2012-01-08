@@ -62,6 +62,12 @@ public class BattleSetter
 		Location endPoint =
 		        new Location(startPoint.getWorld(), startPoint.getBlockX(), startPoint.getBlockY(),
 		                startPoint.getBlockZ());
+		endPoint = findSafeStage(endPoint);
+		player.sendMessage("[RandomBattle] Stage set.");
+	}
+	
+	private Location findSafeStage(Location startPoint)
+	{
 		for (int i = 0; i < stageWidth; i++)
 		{
 			for (int j = 0; j < stageLength; j++)
@@ -70,24 +76,12 @@ public class BattleSetter
 				for (int k = 0; k < 5; k++)
 				{
 					if (endPoint.getBlock().getType().compareTo(Material.AIR) != 0)
-						if (k == 0)
-						{	
-
-						}
-						else
-						{	
-
-						}
+					{}
+					if (k == 0)
+						endPoint.getBlock().setType(Material.GRASS);
 				}
 			}
 		}
-		player.sendMessage("[RandomBattle] Stage set.");
-	}
-	
-	private Location findSafeStage(Location startPoint)
-	{
-		startPoint.setY(stageHeight);
-		startPoint = startPoint.getBlock().getLocation();
-		return startPoint;
+		return endPoint;
 	}
 }
