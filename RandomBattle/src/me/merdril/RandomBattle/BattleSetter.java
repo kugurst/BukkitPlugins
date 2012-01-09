@@ -79,82 +79,8 @@ public class BattleSetter
 	}
 	
 	private void findSafeStage(Location loc)
-	{
-		outer:
-		for (int i = 0; i < stageWidth; i++)
-		{
-			for (int j = 0; j < stageLength; j++)
-			{
-				// 5 for the maximum height of the battle field
-				for (int k = 0; k < 5; k++)
-				{
-					if (!loc.getBlock().getType().equals(Material.AIR))
-					{
-						removeBlocks();
-						if (side == 1)
-						{
-							if (currentPoint.getBlockX() - startPoint.getBlockX() >= stageWidth)
-							{
-								side = 2;
-								currentPoint = startPoint.getBlock().getLocation();
-								findSafeStage(currentPoint);
-								break outer;
-							}
-							currentPoint.add(1, 0, 0);
-							findSafeStage(currentPoint);
-							break outer;
-						}
-						else if (side == 2)
-						{
-							if (startPoint.getBlockX() - currentPoint.getBlockX() >= stageWidth)
-							{
-								side = 3;
-								currentPoint = startPoint.getBlock().getLocation();
-								findSafeStage(currentPoint);
-								break outer;
-							}
-							currentPoint.subtract(1, 0, 0);
-							findSafeStage(currentPoint);
-							break outer;
-						}
-						else if (side == 3)
-						{
-							if (startPoint.getBlockZ() - currentPoint.getBlockZ() >= stageLength)
-							{
-								side = 4;
-								currentPoint = startPoint.getBlock().getLocation();
-								findSafeStage(currentPoint);
-								break outer;
-							}
-							currentPoint.add(0, 0, 1);
-							findSafeStage(currentPoint);
-							break outer;
-						}
-						else if (side == 4)
-						{
-							if (currentPoint.getBlockZ() - startPoint.getBlockZ() >= stageLength)
-							{
-								noGoodStage = true;
-								break outer;
-							}
-							currentPoint.subtract(0, 0, 1);
-							findSafeStage(currentPoint);
-							break outer;
-						}
-					}
-					if (k == 0)
-					{
-						editedBlocks.add(loc.getBlock());
-						loc.getBlock().setType(Material.GRASS);
-					}
-					loc = loc.add(0, 1, 0);
-				}
-				loc.setY(stageHeight);
-				loc.add(0, 0, 1);
-			}
-			loc.setZ(startPoint.getBlockZ() + i + 1);
-			loc.add(1, 0, 0);
-		}
+	{	
+
 	}
 	
 	public void removeBlocks()
@@ -166,3 +92,78 @@ public class BattleSetter
 		}
 	}
 }
+// outer:
+// for (int i = 0; i < stageWidth; i++)
+// {
+// for (int j = 0; j < stageLength; j++)
+// {
+// // 5 for the maximum height of the battle field
+// for (int k = 0; k < 5; k++)
+// {
+// if (!loc.getBlock().getType().equals(Material.AIR))
+// {
+// removeBlocks();
+// if (side == 1)
+// {
+// if (currentPoint.getBlockX() - startPoint.getBlockX() >= stageWidth)
+// {
+// side = 2;
+// currentPoint = startPoint.getBlock().getLocation();
+// findSafeStage(currentPoint);
+// break outer;
+// }
+// currentPoint.add(1, 0, 0);
+// findSafeStage(currentPoint);
+// break outer;
+// }
+// else if (side == 2)
+// {
+// if (startPoint.getBlockX() - currentPoint.getBlockX() >= stageWidth)
+// {
+// side = 3;
+// currentPoint = startPoint.getBlock().getLocation();
+// findSafeStage(currentPoint);
+// break outer;
+// }
+// currentPoint.subtract(1, 0, 0);
+// findSafeStage(currentPoint);
+// break outer;
+// }
+// else if (side == 3)
+// {
+// if (startPoint.getBlockZ() - currentPoint.getBlockZ() >= stageLength)
+// {
+// side = 4;
+// currentPoint = startPoint.getBlock().getLocation();
+// findSafeStage(currentPoint);
+// break outer;
+// }
+// currentPoint.add(0, 0, 1);
+// findSafeStage(currentPoint);
+// break outer;
+// }
+// else if (side == 4)
+// {
+// if (currentPoint.getBlockZ() - startPoint.getBlockZ() >= stageLength)
+// {
+// noGoodStage = true;
+// break outer;
+// }
+// currentPoint.subtract(0, 0, 1);
+// findSafeStage(currentPoint);
+// break outer;
+// }
+// }
+// if (k == 0)
+// {
+// editedBlocks.add(loc.getBlock());
+// loc.getBlock().setType(Material.GRASS);
+// }
+// loc = loc.add(0, 1, 0);
+// }
+// loc.setY(stageHeight);
+// loc.add(0, 0, 1);
+// }
+// loc.setZ(startPoint.getBlockZ() + i + 1);
+// loc.add(1, 0, 0);
+// }
