@@ -28,7 +28,7 @@ public class BattleSetter
 	private Location	            startPoint;
 	private Location	            currentPoint;
 	private int	                    side	     = 1;
-	private boolean	                noGoodStage	 = false;
+	private boolean	                goodStage	 = false;
 	private static ArrayList<Block>	editedBlocks	= new ArrayList<Block>();
 	
 	/**
@@ -69,7 +69,7 @@ public class BattleSetter
 		currentPoint = startPoint.getBlock().getLocation();
 		findSafeStage(currentPoint);
 		// Check that a stage was set
-		if (noGoodStage)
+		if (!goodStage)
 			plugin.getServer()
 			        .getConsoleSender()
 			        .sendMessage(
@@ -79,8 +79,52 @@ public class BattleSetter
 	}
 	
 	private void findSafeStage(Location loc)
-	{	
+	{
+		outer:
+		for (int i = 0; i < stageHeight; i++)
+		{
+			for (int j = 0; j < stageWidth; j++)
+			{
+				for (int k = 0; k < stageLength; k++)
+				{
+					if (loc.getBlock().getType().equals(Material.AIR))
+					{
+						if (i == 0)
+						{
+							editedBlocks.add(loc.getBlock());
+							loc.getBlock().setType(Material.GRASS);
+						}
+					}
+					else
+					{
+						i = j = k = 0;
+						if (side == 1)
+						{	
 
+						}
+						else if (side == 2)
+						{	
+
+						}
+						else if (side == 3)
+						{	
+
+						}
+						else if (side == 4)
+						{
+							break outer;
+						}
+						continue outer;
+					}
+					loc.add(0, 0, 1);
+					plugin.getServer().getPlayer("Merdril")
+					        .sendMessage("[RandomBattle] Location: " + currentPoint.toString());
+				}
+				loc.add(1, 0, 0);
+			}
+			loc.add(0, 1, 0);
+		}
+		goodStage = true;
 	}
 	
 	public void removeBlocks()
