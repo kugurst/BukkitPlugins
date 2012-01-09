@@ -28,3 +28,7 @@ commands:
         description: Show spout players.
         permission: RandomBattle.debug.show
         usage: /showspoutplayers
+    removeblocks:
+        description: Remove the blocks created by Random Battle.
+        permission: RandomBattle.remove
+        usage: /removeblocks

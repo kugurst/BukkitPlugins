@@ -27,7 +27,6 @@ import org.getspout.spoutapi.player.SpoutPlayer;
 public class RandomBattleAttackListener extends EntityListener
 {
 	RandomBattle	                                         plugin;
-	protected BattleSetter	                                 begin;
 	protected int	                                         randomChance	       = 70;
 	private Random	                                         generator	           = new Random();
 	protected static volatile HashMap<UUID, ArrayList<UUID>>	alreadyEncountered	=
@@ -152,6 +151,8 @@ public class RandomBattleAttackListener extends EntityListener
 				}
 				if (randomChance > randomNumber)
 				{
+					@SuppressWarnings("unused")
+					BattleSetter begin;
 					if (monster != null)
 						begin = new BattleSetter(plugin, player, monster, 124, 15, 10);
 					else if (dragon != null)

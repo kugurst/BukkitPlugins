@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ComplexLivingEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -21,15 +22,18 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class BattleSetter
 {
-	RandomBattle	                plugin;
-	protected static int	        stageHeight;
-	protected static int	        stageWidth;
-	protected static int	        stageLength;
-	private Location	            startPoint;
-	private Location	            currentPoint;
-	private int	                    side	     = 1;
-	private boolean	                goodStage	 = false;
-	private static ArrayList<Block>	editedBlocks	= new ArrayList<Block>();
+	RandomBattle	               plugin;
+	private int	                   stageHeight;
+	private int	                   stageWidth;
+	private int	                   stageLength;
+	private Location	           startPoint;
+	private Location	           currentPoint;
+	
+	private int	                   side	            = 1;
+	private boolean	               goodStage	    = true;
+	private ArrayList<Block>	   editedBlocks	    = new ArrayList<Block>();
+	public static ArrayList<Block>	allEditedBlocks	= new ArrayList<Block>();
+	private CommandSender	       console;
 	
 	/**
 	 * 
@@ -38,13 +42,14 @@ public class BattleSetter
 	        int stageHeight, int stageWidth, int stageLength)
 	{
 		plugin = instance;
-		setStage(player, monster);
-		if (stageHeight > 124)
-			BattleSetter.stageHeight = 124;
+		console = plugin.getServer().getConsoleSender();
+		if (stageHeight > 123)
+			this.stageHeight = 123;
 		else
-			BattleSetter.stageHeight = stageHeight;
-		BattleSetter.stageLength = stageLength;
-		BattleSetter.stageWidth = stageLength;
+			this.stageHeight = stageHeight;
+		this.stageLength = stageLength;
+		this.stageWidth = stageLength;
+		setStage(player, monster);
 	}
 	
 	public BattleSetter(RandomBattle instance, SpoutPlayer player, ComplexLivingEntity dragon)
@@ -66,148 +71,130 @@ public class BattleSetter
 		// Try to make a stage for the monsters
 		startPoint = playerLocation;
 		startPoint.setY(stageHeight);
+		startPoint = startPoint.getBlock().getLocation();
 		currentPoint = startPoint.getBlock().getLocation();
-		findSafeStage(currentPoint);
+		console.sendMessage("[RandomBattle] Starting point: " + currentPoint);
+		findSafeStage();
 		// Check that a stage was set
 		if (!goodStage)
-			plugin.getServer()
-			        .getConsoleSender()
-			        .sendMessage(
-			                "[RandomBattle] Failed to set stage for " + player.getDisplayName()
-			                        + " at location " + player.getLocation().toString() + ".");
-		player.sendMessage("[RandomBattle] Stage set.");
+			console.sendMessage("[RandomBattle] Failed to set stage for " + player.getDisplayName()
+			        + " at location " + player.getLocation().toString() + ".");
+		else
+			player.sendMessage("[RandomBattle] Stage set.");
 	}
 	
-	private void findSafeStage(Location loc)
+	private void findSafeStage()
 	{
+		// Initially the same as startPoint, and doesn't change until a block that isn't air is
+		// encountered
+		Location changePoint = currentPoint.getBlock().getLocation();
+		console.sendMessage("[RandomBattle] Mod location: " + changePoint);
+		// 5 for the max height of the boundingBox
 		outer:
-		for (int i = 0; i < stageHeight; i++)
+		for (int i = 0; i <= 4; i++)
 		{
-			for (int j = 0; j < stageWidth; j++)
+			for (int j = 0; j <= stageWidth; j++)
 			{
-				for (int k = 0; k < stageLength; k++)
+				for (int k = 0; k <= stageLength; k++)
 				{
-					if (loc.getBlock().getType().equals(Material.AIR))
+					if (!currentPoint.getBlock().getType().equals(Material.AIR))
 					{
-						if (i == 0)
+						removeBlocks(editedBlocks);
+						goodStage = false;
+						// console.sendMessage("[RandomBattle] Location: " + currentPoint
+						// + " is not air on side: " + side + ".");
+						// removeBlocks(editedBlocks);
+						// if (side == 1)
+						// {
+						// if (changePoint.getBlockX() - startPoint.getBlockX() > stageWidth)
+						// {
+						// changePoint = startPoint.getBlock().getLocation();
+						// changePoint.subtract(1, 0, 0);
+						// currentPoint = changePoint.getBlock().getLocation();
+						// side = 2;
+						// }
+						// else
+						// {
+						// changePoint.add(1, 0, 0);
+						// currentPoint = changePoint.getBlock().getLocation();
+						// }
+						// }
+						// else if (side == 2)
+						// {
+						// if (startPoint.getBlockX() - changePoint.getBlockX() > stageWidth)
+						// {
+						// changePoint = startPoint.getBlock().getLocation();
+						// changePoint.add(0, 0, 1);
+						// currentPoint = changePoint.getBlock().getLocation();
+						// side = 3;
+						// }
+						// else
+						// {
+						// changePoint.subtract(1, 0, 0);
+						// currentPoint = changePoint.getBlock().getLocation();
+						// }
+						// }
+						// else if (side == 3)
+						// {
+						// if (changePoint.getBlockZ() - startPoint.getBlockZ() > stageLength)
+						// {
+						// changePoint = startPoint.getBlock().getLocation();
+						// changePoint.subtract(0, 0, 1);
+						// currentPoint = changePoint.getBlock().getLocation();
+						// side = 4;
+						// }
+						// else
+						// {
+						// changePoint.add(0, 0, 1);
+						// currentPoint = changePoint.getBlock().getLocation();
+						// }
+						// }
+						// else if (side == 4)
+						// {
+						// if (startPoint.getBlockZ() - changePoint.getBlockZ() > stageLength)
+						// {
+						// goodStage = false;
+						// break outer;
+						// }
+						// else
+						// {
+						// changePoint.subtract(0, 0, 1);
+						// currentPoint = changePoint.getBlock().getLocation();
+						// }
+						// }
+						// i = j = k = 0;
+						// continue outer;
+					}
+					if (i == 0)
+					{
+						editedBlocks.add(currentPoint.getBlock());
+						currentPoint.getBlock().setType(Material.GRASS);
+					}
+					else if (i == 1)
+					{
+						if (j % 3 == 0 && k % 3 == 0)
 						{
-							editedBlocks.add(loc.getBlock());
-							loc.getBlock().setType(Material.GRASS);
+							editedBlocks.add(currentPoint.getBlock());
+							currentPoint.getBlock().setType(Material.GLOWSTONE);
 						}
 					}
-					else
-					{
-						i = j = k = 0;
-						if (side == 1)
-						{	
-
-						}
-						else if (side == 2)
-						{	
-
-						}
-						else if (side == 3)
-						{	
-
-						}
-						else if (side == 4)
-						{
-							break outer;
-						}
-						continue outer;
-					}
-					loc.add(0, 0, 1);
-					plugin.getServer().getPlayer("Merdril")
-					        .sendMessage("[RandomBattle] Location: " + currentPoint.toString());
+					currentPoint.add(0, 0, 1);
 				}
-				loc.add(1, 0, 0);
+				currentPoint.setZ(startPoint.getBlockZ());
+				currentPoint.add(1, 0, 0);
 			}
-			loc.add(0, 1, 0);
+			currentPoint.setX(startPoint.getBlockX());
+			currentPoint.add(0, 1, 0);
 		}
-		goodStage = true;
 	}
 	
-	public void removeBlocks()
+	public static void removeBlocks(ArrayList<Block> blockList)
 	{
-		for (Block block : editedBlocks)
+		while (blockList.size() > 0)
 		{
-			block.setType(Material.AIR);
-			editedBlocks.remove(block);
+			blockList.get(0).setType(Material.AIR);
+			allEditedBlocks.remove(blockList.get(0));
+			blockList.remove(0);
 		}
 	}
 }
-// outer:
-// for (int i = 0; i < stageWidth; i++)
-// {
-// for (int j = 0; j < stageLength; j++)
-// {
-// // 5 for the maximum height of the battle field
-// for (int k = 0; k < 5; k++)
-// {
-// if (!loc.getBlock().getType().equals(Material.AIR))
-// {
-// removeBlocks();
-// if (side == 1)
-// {
-// if (currentPoint.getBlockX() - startPoint.getBlockX() >= stageWidth)
-// {
-// side = 2;
-// currentPoint = startPoint.getBlock().getLocation();
-// findSafeStage(currentPoint);
-// break outer;
-// }
-// currentPoint.add(1, 0, 0);
-// findSafeStage(currentPoint);
-// break outer;
-// }
-// else if (side == 2)
-// {
-// if (startPoint.getBlockX() - currentPoint.getBlockX() >= stageWidth)
-// {
-// side = 3;
-// currentPoint = startPoint.getBlock().getLocation();
-// findSafeStage(currentPoint);
-// break outer;
-// }
-// currentPoint.subtract(1, 0, 0);
-// findSafeStage(currentPoint);
-// break outer;
-// }
-// else if (side == 3)
-// {
-// if (startPoint.getBlockZ() - currentPoint.getBlockZ() >= stageLength)
-// {
-// side = 4;
-// currentPoint = startPoint.getBlock().getLocation();
-// findSafeStage(currentPoint);
-// break outer;
-// }
-// currentPoint.add(0, 0, 1);
-// findSafeStage(currentPoint);
-// break outer;
-// }
-// else if (side == 4)
-// {
-// if (currentPoint.getBlockZ() - startPoint.getBlockZ() >= stageLength)
-// {
-// noGoodStage = true;
-// break outer;
-// }
-// currentPoint.subtract(0, 0, 1);
-// findSafeStage(currentPoint);
-// break outer;
-// }
-// }
-// if (k == 0)
-// {
-// editedBlocks.add(loc.getBlock());
-// loc.getBlock().setType(Material.GRASS);
-// }
-// loc = loc.add(0, 1, 0);
-// }
-// loc.setY(stageHeight);
-// loc.add(0, 0, 1);
-// }
-// loc.setZ(startPoint.getBlockZ() + i + 1);
-// loc.add(1, 0, 0);
-// }

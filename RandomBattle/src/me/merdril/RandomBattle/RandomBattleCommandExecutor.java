@@ -48,7 +48,17 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 			return debugRegPlayers(sender, cmd, label, args);
 		else if (cmd.getName().equalsIgnoreCase("showspoutplayers"))
 			return debugSpoutPlayers(sender, cmd, label, args);
+		else if (cmd.getName().equalsIgnoreCase("removeblocks"))
+			return removeEditedBlocks(sender, cmd, label, args);
 		return false;
+	}
+	
+	private boolean removeEditedBlocks(CommandSender sender, Command cmd, String label,
+	        String[] args)
+	{
+		BattleSetter.removeBlocks(BattleSetter.allEditedBlocks);
+		sender.sendMessage("[RandomBattle] Blocks removed.");
+		return true;
 	}
 	
 	private boolean register(CommandSender sender, Command cmd, String label, String[] args)
