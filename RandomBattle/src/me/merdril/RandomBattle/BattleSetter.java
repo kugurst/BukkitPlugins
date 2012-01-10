@@ -93,7 +93,7 @@ public class BattleSetter
 			return;
 		}
 		player.sendMessage("[RandomBattle] Stage set. Teleporting...");
-		field = makeBoundingBoxes(player, monster);
+		field = determineBoundingBoxes(player, monster);
 		teleportPlayer(player);
 		teleportMonster();
 	}
@@ -111,7 +111,8 @@ public class BattleSetter
 	 *            - The monster that attacked or was attacked by the player.
 	 * @return A mapping of monsters to their bounding boxes
 	 */
-	private HashMap<Monster, Location[]> makeBoundingBoxes(SpoutPlayer player, Monster monster)
+	private HashMap<Monster, Location[]>
+	        determineBoundingBoxes(SpoutPlayer player, Monster monster)
 	{
 		Location mLowerCorner = null;
 		Location mUpperCorner = null;
@@ -142,15 +143,21 @@ public class BattleSetter
 			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2 + 2),
 			                (stageHeight + 3), (startPoint.getBlockZ() + 5));
 		}
-		mLowerCorner.getBlock().setType(Material.GLASS);
-		mUpperCorner.getBlock().setType(Material.GLASS);
-		int length = Math.abs(mLowerCorner.getBlockX() - mUpperCorner.getBlockX()) + 1;
-		int width = Math.abs(mLowerCorner.getBlockZ() - mUpperCorner.getBlockZ()) + 1;
-		int height = Math.abs(mLowerCorner.getBlockY() - mUpperCorner.getBlockY()) + 1;
-		// In a bounding box, the coordinates of the inner boxes have nothing in common with the
-		// two corners that define it. In other words, the boxes on the edge of the box share
-		// the x, y, or z coordinate with one of the corners.
-		Location currentBlock = mLowerCorner.getBlock().getLocation();
+		makeBoundingBoxes(mLowerCorner, mUpperCorner);
+		HashMap<Monster, Location[]> mField = new HashMap<Monster, Location[]>();
+		mField.put(monster, new Location[] {mLowerCorner, mUpperCorner});
+		return mField;
+	}
+	
+	// In a bounding box, the coordinates of the inner boxes have nothing in common with the two
+	// corners that define it. In other words, the boxes on the edge of the box share the x, y, or z
+	// coordinate with one of the corners.
+	public void makeBoundingBoxes(Location lowerCorner, Location upperCorner)
+	{
+		int length = Math.abs(lowerCorner.getBlockX() - upperCorner.getBlockX()) + 1;
+		int width = Math.abs(lowerCorner.getBlockZ() - upperCorner.getBlockZ()) + 1;
+		int height = Math.abs(lowerCorner.getBlockY() - upperCorner.getBlockY()) + 1;
+		Location currentBlock = lowerCorner.getBlock().getLocation();
 		for (int x = 0; x < length; x++)
 		{
 			for (int y = 0; y < width; y++)
@@ -158,31 +165,29 @@ public class BattleSetter
 				for (int z = 0; z < height; z++)
 				{
 					// 6 conditions
-					if (currentBlock.getBlockX() == mLowerCorner.getBlockX()
-					        || currentBlock.getBlockY() == mLowerCorner.getBlockY()
-					        || currentBlock.getBlockZ() == mLowerCorner.getBlockZ()
-					        || currentBlock.getBlockX() == mUpperCorner.getBlockX()
-					        || currentBlock.getBlockY() == mUpperCorner.getBlockY()
-					        || currentBlock.getBlockZ() == mUpperCorner.getBlockZ())
+					if (z != 0
+					        && (currentBlock.getBlockX() == lowerCorner.getBlockX()
+					                || currentBlock.getBlockY() == lowerCorner.getBlockY()
+					                || currentBlock.getBlockZ() == lowerCorner.getBlockZ()
+					                || currentBlock.getBlockX() == upperCorner.getBlockX()
+					                || currentBlock.getBlockY() == upperCorner.getBlockY() || currentBlock
+					                .getBlockZ() == upperCorner.getBlockZ()))
 					{
 						editedBlocks.add(currentBlock.getBlock());
 						allEditedBlocks.add(currentBlock.getBlock());
 						currentBlock.getBlock().setType(Material.GLASS);
 					}
-					else
-						console.sendMessage("[RandomBattle] Inner box location: "
-						        + currentBlock.getBlock());
+					// else
+					// console.sendMessage("[RandomBattle] Inner box location: "
+					// + currentBlock.getBlock());
 					currentBlock.add(0, 1, 0);
 				}
-				currentBlock.setY(mLowerCorner.getBlockY());
+				currentBlock.setY(lowerCorner.getBlockY());
 				currentBlock.add(0, 0, 1);
 			}
-			currentBlock.setZ(mLowerCorner.getBlockZ());
+			currentBlock.setZ(lowerCorner.getBlockZ());
 			currentBlock.add(1, 0, 0);
 		}
-		HashMap<Monster, Location[]> mField = new HashMap<Monster, Location[]>();
-		mField.put(monster, new Location[] {mLowerCorner, mUpperCorner});
-		return mField;
 	}
 	
 	private void teleportMonster()
@@ -195,7 +200,10 @@ public class BattleSetter
 			console.sendMessage("[RandomBattle] Teleporting monster: " + monster.getKey() + " at: "
 			        + monster.getKey().getLocation());
 			teleportLocation = monster.getValue()[0].getBlock().getLocation();
-			teleportLocation.add(1, 1, 1);
+			if (monster.getKey() instanceof Spider)
+				teleportLocation.add(2, 1, 2);
+			else
+				teleportLocation.add(1.5, 2, 1.5);
 			monster.getKey().teleport(teleportLocation);
 			console.sendMessage("[RandomBattle] to: " + teleportLocation);
 		}

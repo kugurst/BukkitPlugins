@@ -5,6 +5,7 @@
 package me.merdril.RandomBattle;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import org.bukkit.command.CommandSender;
 import org.getspout.spoutapi.SpoutManager;
@@ -60,10 +61,67 @@ public final class RandomBattleUtilities
 		}
 		if (possiblePlayers.size() == 1)
 			return possiblePlayers.get(0);
+		else if (possiblePlayers.size() == 0)
+		{
+			sender.sendMessage("[RandomBattle] No match found.");
+			return null;
+		}
 		sender.sendMessage("[RandomBattle] Found the following matches: ");
 		for (SpoutPlayer player : possiblePlayers)
 			sender.sendMessage("[RandomBattle] " + player.getDisplayName());
-		sender.sendMessage("[RandomBattle] Please use an exact match on the player you want: ");
+		sender.sendMessage("[RandomBattle] Please use an exact match on the player you want.");
 		return null;
+	}
+	
+	/**
+	 * <code>public static boolean isRegisteredPlayer(String displayName, int searchType)</code> <br/>
+	 * <br/>
+	 * Finds out if a player is registered.
+	 * 
+	 * @param displayName
+	 *            - The name to search for.
+	 * @param searchType
+	 *            - The type of search to perform. 0 for exact match, 1 for case insensitive, 2 for
+	 *            soft search
+	 * @return True if the player is registered. False otherwise.
+	 */
+	public static boolean isRegisteredPlayer(String displayName, int searchType,
+	        CommandSender sender)
+	{
+		ArrayList<String> possiblePlayers = new ArrayList<String>();
+		Set<String> allPlayers = RandomBattleCommandExecutor.registeredPlayers.keySet();
+		if (searchType == 0)
+		{
+			for (String playerName : allPlayers)
+				if (playerName.equals(displayName))
+					return true;
+			return false;
+		}
+		else if (searchType == 1)
+		{
+			for (String playerName : allPlayers)
+				if (playerName.equalsIgnoreCase(displayName))
+					possiblePlayers.add(playerName);
+		}
+		else if (searchType == 2)
+		{
+			for (String playerName : allPlayers)
+				if (playerName.toLowerCase().startsWith(displayName.toLowerCase()))
+					possiblePlayers.add(playerName);
+		}
+		if (possiblePlayers.size() == 0)
+		{
+			sender.sendMessage("[RandomBattle] No match found.");
+			return false;
+		}
+		else if (possiblePlayers.size() == 1)
+			return true;
+		else
+		{
+			sender.sendMessage("[RandomBattle] The following matches were found: ");
+			for (String player : possiblePlayers)
+				sender.sendMessage("[RandomBattle] " + player);
+			return false;
+		}
 	}
 }

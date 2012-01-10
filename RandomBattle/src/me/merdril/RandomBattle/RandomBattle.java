@@ -6,6 +6,7 @@ package me.merdril.RandomBattle;
 
 import java.util.logging.Logger;
 
+import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -53,6 +54,11 @@ public class RandomBattle extends JavaPlugin
 	
 	public void onDisable()
 	{
+		while (BattleSetter.allEditedBlocks.size() > 0)
+		{
+			BattleSetter.allEditedBlocks.get(0).setType(Material.AIR);
+			BattleSetter.allEditedBlocks.remove(0);
+		}
 		log.info("[RandomBattle] Random Battle has shut down!");
 	}
 }

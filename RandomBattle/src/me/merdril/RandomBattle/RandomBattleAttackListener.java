@@ -118,6 +118,10 @@ public class RandomBattleAttackListener extends EntityListener
 					entityID = dragonPart.getUniqueId();
 				}
 			}
+			if (player != null
+			        && !RandomBattleUtilities.isRegisteredPlayer(player.getDisplayName(), 0, plugin
+			                .getServer().getConsoleSender()))
+				return;
 			int randomNumber = generator.nextInt(99);
 			if (player != null && (monster != null || dragon != null || dragonPart != null))
 			{
