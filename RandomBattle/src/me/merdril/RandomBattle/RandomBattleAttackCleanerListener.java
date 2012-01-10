@@ -61,20 +61,18 @@ public class RandomBattleAttackCleanerListener extends EntityListener
 		{
 			requiredEntities[requiredEntities.length - 1] = event.getEntity().getUniqueId();
 			deadEntites = 0;
-			ArrayList<UUID> playerKeys =
-			        new ArrayList<UUID>(RandomBattleAttackListener.alreadyEncountered.keySet());
-			if (playerKeys == null || playerKeys.size() == 0)
+			ArrayList<ArrayList<UUID>> allMonsters =
+			        new ArrayList<ArrayList<UUID>>(
+			                RandomBattleAttackListener.alreadyEncountered.values());
+			if (allMonsters == null || allMonsters.size() == 0)
 				return;
-			for (UUID player : playerKeys)
+			for (ArrayList<UUID> playerList : allMonsters)
 			{
-				ArrayList<UUID> monsterList =
-				        RandomBattleAttackListener.alreadyEncountered.get(player);
 				for (UUID entityID : requiredEntities)
-					monsterList.remove(entityID);
-				synchronized (RandomBattleAttackListener.alreadyEncountered)
-				{
-					RandomBattleAttackListener.alreadyEncountered.put(player, monsterList);
-				}
+					synchronized (RandomBattleAttackListener.alreadyEncountered)
+					{
+						playerList.remove(entityID);
+					}
 			}
 		}
 	}

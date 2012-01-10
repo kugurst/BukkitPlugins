@@ -7,6 +7,7 @@ package me.merdril.RandomBattle;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -56,7 +57,11 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 	private boolean removeEditedBlocks(CommandSender sender, Command cmd, String label,
 	        String[] args)
 	{
-		BattleSetter.removeBlocks(BattleSetter.allEditedBlocks);
+		while (BattleSetter.allEditedBlocks.size() > 0)
+		{
+			BattleSetter.allEditedBlocks.get(0).setType(Material.AIR);
+			BattleSetter.allEditedBlocks.remove(0);
+		}
 		sender.sendMessage("[RandomBattle] Blocks removed.");
 		return true;
 	}

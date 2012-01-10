@@ -154,7 +154,7 @@ public class RandomBattleAttackListener extends EntityListener
 					@SuppressWarnings("unused")
 					BattleSetter begin;
 					if (monster != null)
-						begin = new BattleSetter(plugin, player, monster, 124, 15, 10);
+						begin = new BattleSetter(plugin, player, monster, 123, 24, 16);
 					else if (dragon != null)
 						begin = new BattleSetter(plugin, player, dragon);
 					else if (dragonPart != null)
