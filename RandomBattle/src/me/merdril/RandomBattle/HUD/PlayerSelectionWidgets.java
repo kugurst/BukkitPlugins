@@ -18,11 +18,12 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class PlayerSelectionWidgets
 {
-	RandomBattle	     plugin;
-	private GenericPopup	screen;
-	private SpoutPlayer	 player;
-	private int	         screenHeight;
-	private int	         screenWidth;
+	RandomBattle	               plugin;
+	private GenericPopup	       screen;
+	private SpoutPlayer	           player;
+	private int	                   screenHeight;
+	private int	                   screenWidth;
+	private CommandButtonContainer	buttons;
 	
 	/**
 	 * 
@@ -31,14 +32,15 @@ public class PlayerSelectionWidgets
 	{
 		plugin = instance;
 		screen = new GenericPopup();
-		screen = (GenericPopup) screen.setTransparent(false);
+		screen.setTransparent(true);
 		player = sPlayer;
 		screenHeight = sPlayer.getMainScreen().getHeight();
 		screenWidth = sPlayer.getMainScreen().getWidth();
 		screen.setHeight(screenHeight);
 		screen.setWidth(screenWidth);
 		player.getMainScreen().closePopup();
-		screen.attachWidgets(plugin, new CommandButtonContainer());
+		buttons = new CommandButtonContainer();
+		screen.attachWidgets(plugin, buttons);
 		sPlayer.getMainScreen().attachPopupScreen(screen);
 	}
 	
@@ -46,44 +48,13 @@ public class PlayerSelectionWidgets
 	{
 		public CommandButtonContainer()
 		{
-			this.addChildren(new FightButton(), new MagicButton(), new ItemButton(),
-			        new RunButton());
+			this.addChildren(new GenericButton("Fight"), new GenericButton("Magic"),
+			        new GenericButton("Item"), new GenericButton("Run"));
 			this.setHeight(screenHeight / 5);
 			this.setWidth(screenWidth / 5);
-			this.setAuto(true);
 			this.setAnchor(WidgetAnchor.BOTTOM_RIGHT);
-		}
-	}
-	
-	class FightButton extends GenericButton
-	{
-		public FightButton()
-		{
-			this.setText("Fight");
-		}
-	}
-	
-	class MagicButton extends GenericButton
-	{
-		public MagicButton()
-		{
-			this.setText("Magic");
-		}
-	}
-	
-	class ItemButton extends GenericButton
-	{
-		public ItemButton()
-		{
-			this.setText("Items");
-		}
-	}
-	
-	class RunButton extends GenericButton
-	{
-		public RunButton()
-		{
-			this.setText("Run");
+			this.shiftXPos(-this.getWidth());
+			this.shiftYPos(-this.getHeight());
 		}
 	}
 }

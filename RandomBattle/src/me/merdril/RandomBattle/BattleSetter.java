@@ -8,7 +8,6 @@ import java.util.Set;
 
 import me.merdril.RandomBattle.HUD.RandomBattleHUD;
 
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -229,7 +228,10 @@ public class BattleSetter
 		        new Location(player.getWorld(), (startPoint.getBlockX() + stageWidth / 2 + 2),
 		                (stageHeight + 3), (startPoint.getBlockZ() + stageLength - 2));
 		makeBoundingBoxes(pLowerCorner, pUpperCorner);
-		player.teleport(startPoint.add(x + 0.5, 1, z + 0.5));
+		Location teleportLocation =
+		        new Location(player.getWorld(), startPoint.getBlockX() + x + 0.5,
+		                startPoint.getBlockY() + 1, startPoint.getBlockZ() + z + 0.5, -180, 0);
+		player.teleport(teleportLocation);
 	}
 	
 	private void findSafeStage()
