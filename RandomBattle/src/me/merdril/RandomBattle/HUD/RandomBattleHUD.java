@@ -27,7 +27,8 @@ public class RandomBattleHUD
 	{
 		this.plugin = instance;
 		playerScreen = (InGameScreen) player.getMainScreen();
-		actionButtons = new PlayerSelectionWidgets(plugin, player, playerScreen);
+		player.closeActiveWindow();
+		actionButtons = new PlayerSelectionWidgets(plugin, player);
 	}
 	
 }
