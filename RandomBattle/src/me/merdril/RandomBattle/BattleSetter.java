@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import me.merdril.RandomBattle.HUD.RandomBattleHUD;
+
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -65,7 +68,7 @@ public class BattleSetter
 			stageWidth = sW;
 		setStage(player, monster);
 		@SuppressWarnings("unused")
-		RandomBattleHUD overlay = new RandomBattleHUD(player);
+		RandomBattleHUD overlay = new RandomBattleHUD(plugin, player);
 	}
 	
 	public BattleSetter(RandomBattle instance, SpoutPlayer player, ComplexLivingEntity dragon)
