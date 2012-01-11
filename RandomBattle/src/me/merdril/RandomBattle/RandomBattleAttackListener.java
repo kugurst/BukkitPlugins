@@ -155,6 +155,7 @@ public class RandomBattleAttackListener extends EntityListener
 				}
 				if (randomChance > randomNumber)
 				{
+					event.setCancelled(true);
 					@SuppressWarnings("unused")
 					BattleSetter begin;
 					if (monster != null)

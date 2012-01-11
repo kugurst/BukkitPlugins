@@ -26,19 +26,22 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class BattleSetter
 {
-	RandomBattle	                     plugin;
-	private int	                         stageHeight;
-	private int	                         stageWidth;
-	private int	                         stageLength;
-	private Location	                 startPoint;
-	private Location	                 currentPoint;
+	RandomBattle	                              plugin;
+	private int	                                  stageHeight;
+	private int	                                  stageWidth;
+	private int	                                  stageLength;
+	private Location	                          startPoint;
+	private Location	                          currentPoint;
 	
 	// private int side = 1;
-	private boolean	                     goodStage	     = true;
-	private ArrayList<Block>	         editedBlocks	 = new ArrayList<Block>();
-	public static ArrayList<Block>	     allEditedBlocks	= new ArrayList<Block>();
-	private HashMap<Monster, Location[]>	field	     = new HashMap<Monster, Location[]>();
-	private CommandSender	             console;
+	private boolean	                              goodStage	       = true;
+	private ArrayList<Block>	                  editedBlocks	   = new ArrayList<Block>();
+	public static ArrayList<Block>	              allEditedBlocks	= new ArrayList<Block>();
+	public static HashMap<SpoutPlayer, Monster[]>	battleMonsters	=
+	                                                                       new HashMap<SpoutPlayer, Monster[]>();
+	private HashMap<Monster, Location[]>	      field	           =
+	                                                                       new HashMap<Monster, Location[]>();
+	private CommandSender	                      console;
 	
 	/**
 	 * 
@@ -61,6 +64,8 @@ public class BattleSetter
 		else
 			stageWidth = sW;
 		setStage(player, monster);
+		@SuppressWarnings("unused")
+		RandomBattleHUD overlay = new RandomBattleHUD(player);
 	}
 	
 	public BattleSetter(RandomBattle instance, SpoutPlayer player, ComplexLivingEntity dragon)
@@ -146,6 +151,7 @@ public class BattleSetter
 		makeBoundingBoxes(mLowerCorner, mUpperCorner);
 		HashMap<Monster, Location[]> mField = new HashMap<Monster, Location[]>();
 		mField.put(monster, new Location[] {mLowerCorner, mUpperCorner});
+		battleMonsters.put(player, new Monster[] {monster});
 		return mField;
 	}
 	
@@ -211,9 +217,16 @@ public class BattleSetter
 	
 	private void teleportPlayer(SpoutPlayer player)
 	{
-		int x = stageWidth / 2;
-		int z = stageLength - 2;
-		player.teleport(startPoint.add(x, 1, z));
+		int x = stageWidth / 2 + 1;
+		int z = stageLength - 3;
+		Location pLowerCorner =
+		        new Location(player.getWorld(), (startPoint.getBlockX() + stageWidth / 2),
+		                stageHeight, (startPoint.getBlockZ() + stageLength - 4));
+		Location pUpperCorner =
+		        new Location(player.getWorld(), (startPoint.getBlockX() + stageWidth / 2 + 2),
+		                (stageHeight + 3), (startPoint.getBlockZ() + stageLength - 2));
+		makeBoundingBoxes(pLowerCorner, pUpperCorner);
+		player.teleport(startPoint.add(x + 0.5, 1, z + 0.5));
 	}
 	
 	private void findSafeStage()

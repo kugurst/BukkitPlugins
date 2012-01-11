@@ -13,6 +13,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityListener;
 import org.bukkit.inventory.ItemStack;
+import org.getspout.spoutapi.SpoutManager;
 
 /**
  * @author mark
@@ -71,7 +72,8 @@ public class RandomBattleAttackCleanerListener extends EntityListener
 				for (UUID entityID : requiredEntities)
 					synchronized (RandomBattleAttackListener.alreadyEncountered)
 					{
-						playerList.remove(entityID);
+						if (SpoutManager.getEntityFromId(entityID).isDead())
+							playerList.remove(entityID);
 					}
 			}
 		}
