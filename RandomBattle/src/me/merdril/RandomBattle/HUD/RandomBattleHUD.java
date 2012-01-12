@@ -6,7 +6,7 @@ package me.merdril.RandomBattle.HUD;
 
 import me.merdril.RandomBattle.RandomBattle;
 
-import org.getspout.spoutapi.gui.InGameScreen;
+import org.getspout.spoutapi.gui.WidgetAnchor;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
@@ -15,9 +15,10 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class RandomBattleHUD
 {
-	RandomBattle	               plugin;
-	private InGameScreen	       playerScreen;
-	private PlayerSelectionWidgets	actionButtons;
+	RandomBattle	                plugin;
+	SpoutPlayer	                    player;
+	private RandomBattlePopupScreen	screen;
+	private CommandButtonContainer	buttons;
 	
 	/**
 	 * @param player
@@ -26,9 +27,13 @@ public class RandomBattleHUD
 	public RandomBattleHUD(RandomBattle instance, SpoutPlayer player)
 	{
 		this.plugin = instance;
-		playerScreen = (InGameScreen) player.getMainScreen();
 		player.closeActiveWindow();
-		actionButtons = new PlayerSelectionWidgets(plugin, player);
+		player.getMainScreen().closePopup();
+		screen = new RandomBattlePopupScreen(plugin, player);
+		buttons = new CommandButtonContainer(plugin, screen);
+		screen.attachWidgets(plugin, buttons);
+		buttons.setAnchor(WidgetAnchor.BOTTOM_RIGHT);
+		player.getMainScreen().attachPopupScreen(screen);
 	}
 	
 }
