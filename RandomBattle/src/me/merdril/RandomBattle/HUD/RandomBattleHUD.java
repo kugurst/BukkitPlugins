@@ -6,7 +6,6 @@ package me.merdril.RandomBattle.HUD;
 
 import me.merdril.RandomBattle.RandomBattle;
 
-import org.getspout.spoutapi.gui.WidgetAnchor;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
@@ -32,7 +31,10 @@ public class RandomBattleHUD
 		screen = new RandomBattlePopupScreen(plugin, player);
 		buttons = new CommandButtonContainer(plugin, screen);
 		screen.attachWidgets(plugin, buttons);
-		buttons.setAnchor(WidgetAnchor.BOTTOM_RIGHT);
+		buttons.setMarginBottom(buttons.getHeight());
+		buttons.setMarginRight(buttons.getWidth());
+		// buttons.shiftXPos(-buttons.getWidth());
+		// buttons.shiftYPos(-buttons.getHeight());
 		player.getMainScreen().attachPopupScreen(screen);
 	}
 	

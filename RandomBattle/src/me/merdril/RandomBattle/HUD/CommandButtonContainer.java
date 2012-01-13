@@ -6,7 +6,6 @@ package me.merdril.RandomBattle.HUD;
 
 import me.merdril.RandomBattle.RandomBattle;
 
-import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.gui.GenericContainer;
 
 /**
@@ -17,6 +16,10 @@ public class CommandButtonContainer extends GenericContainer
 {
 	RandomBattle	                plugin;
 	private RandomBattlePopupScreen	popup;
+	protected FightButton	        fight;
+	protected MagicButton	        magic;
+	protected ItemButton	        item;
+	protected RunButton	            run;
 	
 	/**
 	 * 
@@ -25,11 +28,13 @@ public class CommandButtonContainer extends GenericContainer
 	{
 		this.plugin = instance;
 		this.popup = popup;
+		fight = new FightButton(plugin);
+		magic = new MagicButton(plugin);
+		item = new ItemButton(plugin);
+		run = new RunButton(plugin);
 		this.setHeight(popup.getHeight() / 5);
 		this.setWidth(popup.getWidth() / 5);
-		this.addChildren(new GenericButton("Fight"), new GenericButton("Magic"), new GenericButton(
-		        "Item"), new GenericButton("Run"));
+		this.addChildren(fight, magic, item, run);
 		this.setAuto(true);
 	}
-	
 }
