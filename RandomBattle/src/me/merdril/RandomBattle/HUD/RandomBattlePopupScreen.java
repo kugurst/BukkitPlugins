@@ -36,13 +36,12 @@ public class RandomBattlePopupScreen extends GenericPopup
 	@Override
 	public void onTick()
 	{
-		this.setDirty(true);
-		if (player.getMainScreen().getHeight() != this.getHeight()
-		        || player.getMainScreen().getWidth() != this.getWidth())
+		player.sendMessage("[" + plugin + "] Screen Height: " + screen.getHeight()
+		        + ". Screen Width: " + screen.getWidth() + ". Popup Height: " + this.getHeight()
+		        + ". Popup Width: " + this.getWidth() + ".");
+		if (this.isDirty())
 		{
-			this.setWidth(player.getMainScreen().getWidth());
-			this.setHeight(player.getMainScreen().getHeight());
-			plugin.getServer().getConsoleSender().sendMessage("[RandomBattle] I've been true!");
+			player.sendMessage("[" + plugin + "] Is dirty.");
 		}
 		super.onTick();
 	}
