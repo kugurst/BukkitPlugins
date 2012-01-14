@@ -7,6 +7,8 @@ package me.merdril.RandomBattle;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import me.merdril.RandomBattle.listeners.RandomBattleSpoutListener;
+
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

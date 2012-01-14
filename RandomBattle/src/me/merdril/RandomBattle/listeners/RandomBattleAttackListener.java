@@ -2,12 +2,16 @@
  * 
  */
 
-package me.merdril.RandomBattle;
+package me.merdril.RandomBattle.listeners;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.UUID;
+
+import me.merdril.RandomBattle.BattleSetter;
+import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.RandomBattle.RandomBattleUtilities;
 
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.ComplexEntityPart;
@@ -26,11 +30,11 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class RandomBattleAttackListener extends EntityListener
 {
-	RandomBattle	                                         plugin;
-	protected int	                                         randomChance	       = 70;
-	private Random	                                         generator	           = new Random();
-	protected static volatile HashMap<UUID, ArrayList<UUID>>	alreadyEncountered	=
-	                                                                                       new HashMap<UUID, ArrayList<UUID>>();
+	RandomBattle	                                      plugin;
+	protected int	                                      randomChance	       = 70;
+	private Random	                                      generator	           = new Random();
+	public static volatile HashMap<UUID, ArrayList<UUID>>	alreadyEncountered	=
+	                                                                                   new HashMap<UUID, ArrayList<UUID>>();
 	
 	/**
 	 * 

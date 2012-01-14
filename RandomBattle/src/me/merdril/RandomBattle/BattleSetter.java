@@ -44,6 +44,7 @@ public class BattleSetter
 	private HashMap<Monster, Location[]>	      field	           =
 	                                                                       new HashMap<Monster, Location[]>();
 	private CommandSender	                      console;
+	private RandomBattleBlock	                  theBlock;
 	
 	/**
 	 * 
@@ -51,7 +52,8 @@ public class BattleSetter
 	public BattleSetter(RandomBattle instance, SpoutPlayer player, Monster monster, int sH, int sW,
 	        int sL)
 	{
-		plugin = instance;
+		this.plugin = instance;
+		this.theBlock = new RandomBattleBlock(plugin);
 		console = plugin.getServer().getConsoleSender();
 		if (sH > 122)
 			stageHeight = 122;
@@ -221,13 +223,6 @@ public class BattleSetter
 	{
 		int x = stageWidth / 2 + 1;
 		int z = stageLength - 3;
-		Location pLowerCorner =
-		        new Location(player.getWorld(), (startPoint.getBlockX() + stageWidth / 2),
-		                stageHeight, (startPoint.getBlockZ() + stageLength - 4));
-		Location pUpperCorner =
-		        new Location(player.getWorld(), (startPoint.getBlockX() + stageWidth / 2 + 2),
-		                (stageHeight + 3), (startPoint.getBlockZ() + stageLength - 2));
-		makeBoundingBoxes(pLowerCorner, pUpperCorner);
 		Location teleportLocation =
 		        new Location(player.getWorld(), startPoint.getBlockX() + x + 0.5,
 		                startPoint.getBlockY() + 1, startPoint.getBlockZ() + z + 0.5, -180, 0);

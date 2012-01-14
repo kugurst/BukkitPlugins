@@ -33,4 +33,17 @@ public class RandomBattlePopupScreen extends GenericPopup
 		this.setTransparent(true);
 	}
 	
+	@Override
+	public void onTick()
+	{
+		this.setDirty(true);
+		if (player.getMainScreen().getHeight() != this.getHeight()
+		        || player.getMainScreen().getWidth() != this.getWidth())
+		{
+			this.setWidth(player.getMainScreen().getWidth());
+			this.setHeight(player.getMainScreen().getHeight());
+			plugin.getServer().getConsoleSender().sendMessage("[RandomBattle] I've been true!");
+		}
+		super.onTick();
+	}
 }

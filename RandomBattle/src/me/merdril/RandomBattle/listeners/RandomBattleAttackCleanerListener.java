@@ -2,10 +2,12 @@
  * 
  */
 
-package me.merdril.RandomBattle;
+package me.merdril.RandomBattle.listeners;
 
 import java.util.ArrayList;
 import java.util.UUID;
+
+import me.merdril.RandomBattle.RandomBattle;
 
 import org.bukkit.entity.ComplexLivingEntity;
 import org.bukkit.entity.Monster;
