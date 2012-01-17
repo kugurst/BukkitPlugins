@@ -36,13 +36,14 @@ public class BattleSetter
 	private Location	                          currentPoint;
 	
 	// private int side = 1;
-	private boolean	                              goodStage	       = true;
-	private ArrayList<Block>	                  editedBlocks	   = new ArrayList<Block>();
-	public static ArrayList<Block>	              allEditedBlocks	= new ArrayList<Block>();
-	public static HashMap<SpoutPlayer, Monster[]>	battleMonsters	=
-	                                                                       new HashMap<SpoutPlayer, Monster[]>();
-	private HashMap<Monster, Location[]>	      field	           =
-	                                                                       new HashMap<Monster, Location[]>();
+	private boolean	                              goodStage	          = true;
+	private ArrayList<Block>	                  editedBlocks	      = new ArrayList<Block>();
+	public static ArrayList<Block>	              allEditedBlocks	  = new ArrayList<Block>();
+	public static HashMap<SpoutPlayer, Monster[]>	allBattleMonsters	=
+	                                                                          new HashMap<SpoutPlayer, Monster[]>();
+	public ArrayList<Monster>	                  battleMonsters	  = new ArrayList<Monster>();
+	private HashMap<Monster, Location[]>	      field	              =
+	                                                                          new HashMap<Monster, Location[]>();
 	private CommandSender	                      console;
 	private RandomBattleBlock	                  theBlock;
 	
@@ -68,8 +69,9 @@ public class BattleSetter
 		else
 			stageWidth = sW;
 		setStage(player, monster);
+		battleMonsters.add(monster);
 		@SuppressWarnings("unused")
-		RandomBattleHUD overlay = new RandomBattleHUD(plugin, player);
+		RandomBattleHUD overlay = new RandomBattleHUD(plugin, player, battleMonsters);
 	}
 	
 	public BattleSetter(RandomBattle instance, SpoutPlayer player, ComplexLivingEntity dragon)
@@ -155,7 +157,7 @@ public class BattleSetter
 		makeBoundingBoxes(mLowerCorner, mUpperCorner);
 		HashMap<Monster, Location[]> mField = new HashMap<Monster, Location[]>();
 		mField.put(monster, new Location[] {mLowerCorner, mUpperCorner});
-		battleMonsters.put(player, new Monster[] {monster});
+		allBattleMonsters.put(player, new Monster[] {monster});
 		return mField;
 	}
 	

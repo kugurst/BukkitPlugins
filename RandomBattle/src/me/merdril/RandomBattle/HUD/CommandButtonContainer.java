@@ -4,8 +4,11 @@
 
 package me.merdril.RandomBattle.HUD;
 
+import java.util.ArrayList;
+
 import me.merdril.RandomBattle.RandomBattle;
 
+import org.bukkit.entity.Monster;
 import org.getspout.spoutapi.gui.GenericContainer;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
@@ -23,16 +26,18 @@ public class CommandButtonContainer extends GenericContainer
 	protected RunButton	  run;
 	
 	/**
+	 * @param screen
 	 * 
 	 */
-	public CommandButtonContainer(RandomBattle instance, SpoutPlayer player)
+	public CommandButtonContainer(RandomBattle instance, RandomBattlePopupScreen screen,
+	        SpoutPlayer player, ArrayList<Monster> monsters)
 	{
 		super();
 		this.plugin = instance;
 		this.player = player;
-		fight = new FightButton(plugin, player);
-		magic = new MagicButton(plugin, player);
-		item = new ItemButton(plugin, player);
+		fight = new FightButton(plugin, screen, player, monsters);
+		magic = new MagicButton(plugin, player, monsters);
+		item = new ItemButton(plugin, player, monsters);
 		run = new RunButton(plugin, player);
 		this.addChildren(fight, magic, item, run).setHeight(player.getMainScreen().getHeight() / 5)
 		        .setWidth(player.getMainScreen().getWidth() / 7);
