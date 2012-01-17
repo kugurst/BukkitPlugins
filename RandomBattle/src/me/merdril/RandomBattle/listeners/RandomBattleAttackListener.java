@@ -31,7 +31,7 @@ import org.getspout.spoutapi.player.SpoutPlayer;
 public class RandomBattleAttackListener extends EntityListener
 {
 	RandomBattle	                                      plugin;
-	protected int	                                      randomChance	       = 70;
+	protected int	                                      randomChance	       = 100;
 	private Random	                                      generator	           = new Random();
 	public static volatile HashMap<UUID, ArrayList<UUID>>	alreadyEncountered	=
 	                                                                                   new HashMap<UUID, ArrayList<UUID>>();
@@ -126,7 +126,6 @@ public class RandomBattleAttackListener extends EntityListener
 			        && !RandomBattleUtilities.isRegisteredPlayer(player.getDisplayName(), 0, plugin
 			                .getServer().getConsoleSender()))
 				return;
-			int randomNumber = generator.nextInt(99);
 			if (player != null && (monster != null || dragon != null || dragonPart != null))
 			{
 				ArrayList<UUID> checkList = alreadyEncountered.get(playerID);
@@ -157,6 +156,7 @@ public class RandomBattleAttackListener extends EntityListener
 						        + SpoutManager.getEntityFromId(entityID) + " has been added.");
 					}
 				}
+				int randomNumber = generator.nextInt(98) + 1;
 				if (randomChance > randomNumber)
 				{
 					event.setCancelled(true);

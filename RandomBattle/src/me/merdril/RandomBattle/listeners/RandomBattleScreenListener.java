@@ -5,6 +5,7 @@
 package me.merdril.RandomBattle.listeners;
 
 import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.RandomBattle.HUD.RandomBattlePopupScreen;
 
 import org.getspout.spoutapi.event.screen.ScreenCloseEvent;
 import org.getspout.spoutapi.event.screen.ScreenListener;
@@ -28,6 +29,8 @@ public class RandomBattleScreenListener extends ScreenListener
 	@Override
 	public void onScreenClose(ScreenCloseEvent event)
 	{
-		plugin.getServer().getConsoleSender().sendMessage("[RandomBattle] Something was closed!");
+		if (event.getScreen() instanceof RandomBattlePopupScreen)
+			plugin.getServer().getConsoleSender()
+			        .sendMessage("[RandomBattle] Something was closed!");
 	}
 }

@@ -7,6 +7,7 @@ package me.merdril.RandomBattle.HUD;
 import me.merdril.RandomBattle.RandomBattle;
 
 import org.getspout.spoutapi.gui.GenericContainer;
+import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
  * @author mark
@@ -14,27 +15,27 @@ import org.getspout.spoutapi.gui.GenericContainer;
  */
 public class CommandButtonContainer extends GenericContainer
 {
-	RandomBattle	                plugin;
-	private RandomBattlePopupScreen	popup;
-	protected FightButton	        fight;
-	protected MagicButton	        magic;
-	protected ItemButton	        item;
-	protected RunButton	            run;
+	RandomBattle	      plugin;
+	private SpoutPlayer	  player;
+	protected FightButton	fight;
+	protected MagicButton	magic;
+	protected ItemButton	item;
+	protected RunButton	  run;
 	
 	/**
 	 * 
 	 */
-	public CommandButtonContainer(RandomBattle instance, RandomBattlePopupScreen popup)
+	public CommandButtonContainer(RandomBattle instance, SpoutPlayer player)
 	{
+		super();
 		this.plugin = instance;
-		this.popup = popup;
-		fight = new FightButton(plugin);
-		magic = new MagicButton(plugin);
-		item = new ItemButton(plugin);
-		run = new RunButton(plugin);
-		this.setHeight(popup.getHeight() / 5);
-		this.setWidth(popup.getWidth() / 5);
-		this.addChildren(fight, magic, item, run);
+		this.player = player;
+		fight = new FightButton(plugin, player);
+		magic = new MagicButton(plugin, player);
+		item = new ItemButton(plugin, player);
+		run = new RunButton(plugin, player);
+		this.addChildren(fight, magic, item, run).setHeight(player.getMainScreen().getHeight() / 5)
+		        .setWidth(player.getMainScreen().getWidth() / 7);
 		this.setAuto(true);
 	}
 }

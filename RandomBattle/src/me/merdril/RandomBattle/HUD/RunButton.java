@@ -8,6 +8,7 @@ import me.merdril.RandomBattle.RandomBattle;
 
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.gui.GenericButton;
+import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
  * @author Merdril
@@ -20,8 +21,9 @@ public class RunButton extends GenericButton
 	/**
 	 * 
 	 */
-	public RunButton(RandomBattle instance)
+	public RunButton(RandomBattle instance, SpoutPlayer player)
 	{
+		super();
 		this.plugin = instance;
 		this.setText("Run");
 	}
@@ -30,7 +32,7 @@ public class RunButton extends GenericButton
 	public void onButtonClick(ButtonClickEvent event)
 	{
 		plugin.getServer().getConsoleSender()
-		        .sendMessage("[RandomBattle] " + this.getText() + "was clicked");
+		        .sendMessage("[RandomBattle] " + this.getText() + " was clicked");
 	}
 	
 }
