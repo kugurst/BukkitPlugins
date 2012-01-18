@@ -53,9 +53,9 @@ public class FightButton extends GenericButton
 			monsterList.addItem(new ListWidgetItem(monsterName, "Health: "
 			        + Integer.toString(monster.getHealth())));
 		}
-		monsterList.setHeight(screen.getHeight() / 5);
-		monsterList.setWidth(4 * screen.getWidth() / 7);
+		monsterList.setHeight(screen.getHeight() / 5).setWidth(4 * screen.getWidth() / 7);
 		screen.attachWidget(plugin, monsterList);
-		monsterList.setAnchor(WidgetAnchor.BOTTOM_CENTER);
+		monsterList.setAnchor(WidgetAnchor.BOTTOM_CENTER).shiftYPos(-monsterList.getHeight() - 20)
+		        .shiftXPos(-monsterList.getWidth() / 2);
 	}
 }

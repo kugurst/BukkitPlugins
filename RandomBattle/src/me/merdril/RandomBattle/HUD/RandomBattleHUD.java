@@ -52,9 +52,10 @@ public class RandomBattleHUD
 		// Making the screen objects
 		screen = new RandomBattlePopupScreen(plugin, player);
 		buttons = new CommandButtonContainer(plugin, screen, player, battleMonsters);
+		topBar = new RandomBattleTopBar(plugin);
 		
 		// Setting the layout
-		screen.attachWidgets(plugin, buttons, topBar);
+		screen.attachWidgets(plugin, buttons);
 		buttons.setAnchor(WidgetAnchor.BOTTOM_LEFT).shiftYPos(-buttons.getHeight() - 20)
 		        .shiftXPos(20);
 		mainScreen.attachPopupScreen(screen);
