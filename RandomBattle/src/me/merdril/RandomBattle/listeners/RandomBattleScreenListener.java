@@ -30,6 +30,9 @@ public class RandomBattleScreenListener extends ScreenListener
 	public void onScreenClose(ScreenCloseEvent event)
 	{
 		if (event.getScreen() instanceof RandomBattlePopupScreen)
-			event.setCancelled(true);
+			event.getPlayer()
+			        .sendMessage(
+			                "[RandomBattle] Screen class: " + event.getScreen().getClass()
+			                        + " was closed.");
 	}
 }
