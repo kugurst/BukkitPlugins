@@ -11,8 +11,7 @@ import me.merdril.RandomBattle.RandomBattle;
 import org.bukkit.entity.Monster;
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.gui.GenericButton;
-import org.getspout.spoutapi.gui.GenericListWidget;
-import org.getspout.spoutapi.gui.ListWidgetItem;
+import org.getspout.spoutapi.gui.InGameHUD;
 import org.getspout.spoutapi.gui.WidgetAnchor;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
@@ -24,7 +23,10 @@ public class FightButton extends GenericButton
 {
 	RandomBattle	                plugin;
 	private RandomBattlePopupScreen	screen;
+	private SpoutPlayer	            player;
+	private InGameHUD	            mainScreen;
 	private ArrayList<Monster>	    monsters;
+	private RandomBattleMonsterList	monsterList;
 	
 	/**
 	 * @param screen
@@ -37,6 +39,8 @@ public class FightButton extends GenericButton
 		super();
 		this.plugin = instance;
 		this.screen = screen;
+		this.player = player;
+		this.mainScreen = player.getMainScreen();
 		this.monsters = monsters;
 		this.setText("Fight");
 	}
@@ -44,18 +48,12 @@ public class FightButton extends GenericButton
 	@Override
 	public void onButtonClick(ButtonClickEvent event)
 	{
-		GenericListWidget monsterList = new GenericListWidget();
-		for (Monster monster : monsters)
-		{
-			String monsterName = monster.toString();
-			if (monsterName.contains("Craft"))
-				monsterName = monsterName.substring(5);
-			monsterList.addItem(new ListWidgetItem(monsterName, "Health: "
-			        + Integer.toString(monster.getHealth())));
-		}
-		monsterList.setHeight(screen.getHeight() / 5).setWidth(4 * screen.getWidth() / 7);
-		screen.attachWidget(plugin, monsterList);
+		// Create the monster selection screen based on the list of field monsters
+		monsterList = new RandomBattleMonsterList(plugin, player, monsters);
+		// Set its dimensions
+		monsterList.setHeight(mainScreen.getHeight() / 5).setWidth(4 * mainScreen.getWidth() / 7);
+		screen.attachWidget(plugin, monsterList); // Attach the widget
 		monsterList.setAnchor(WidgetAnchor.BOTTOM_CENTER).shiftYPos(-monsterList.getHeight() - 20)
-		        .shiftXPos(-monsterList.getWidth() / 2);
+		        .shiftXPos(-monsterList.getWidth() / 2); // Position properly
 	}
 }
