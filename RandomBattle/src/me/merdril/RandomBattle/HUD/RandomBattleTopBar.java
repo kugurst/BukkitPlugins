@@ -21,6 +21,7 @@ public class RandomBattleTopBar extends GenericLabel
 	 */
 	public RandomBattleTopBar(RandomBattle instance)
 	{
+		super("Battle Start!");
 		plugin = instance;
 	}
 	

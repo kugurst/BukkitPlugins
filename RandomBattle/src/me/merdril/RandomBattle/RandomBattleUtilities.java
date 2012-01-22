@@ -17,7 +17,7 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public final class RandomBattleUtilities
 {
-	public static String[]	weaponIDs	= {"267", "268", "272", "276", "283", "258", "271", ""};
+	public static int[]	weaponIDs	= {267, 268, 272, 276, 283, 258, 271, 275, 279, 286};
 	
 	/**
 	 * 

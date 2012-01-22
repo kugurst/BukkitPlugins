@@ -55,9 +55,10 @@ public class RandomBattleHUD
 		topBar = new RandomBattleTopBar(plugin);
 		
 		// Setting the layout
-		screen.attachWidgets(plugin, buttons);
+		screen.attachWidgets(plugin, buttons, topBar);
 		buttons.setAnchor(WidgetAnchor.BOTTOM_LEFT).shiftYPos(-buttons.getHeight() - 20)
 		        .shiftXPos(20);
+		topBar.setAnchor(WidgetAnchor.TOP_CENTER).shiftXPos(-topBar.getWidth() / 2).shiftYPos(20);
 		mainScreen.attachPopupScreen(screen);
 	}
 }
