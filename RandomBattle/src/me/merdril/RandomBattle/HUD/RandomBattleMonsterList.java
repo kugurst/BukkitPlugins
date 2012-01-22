@@ -69,5 +69,10 @@ public class RandomBattleMonsterList extends GenericListWidget
 	public void onSelected(int item, boolean doubleClick)
 	{
 		Monster selMonster = monsters.get(item);
+		selMonster.damage(2);
+		player;
+		this.getItem(item).setTitle(selMonster.toString().substring(5));
+		this.getItem(item).setText("Health: " + Integer.toString(selMonster.getHealth()));
+		this.setDirty(true);
 	}
 }
