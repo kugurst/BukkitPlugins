@@ -7,7 +7,9 @@ package me.merdril.RandomBattle.HUD;
 import java.util.ArrayList;
 
 import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.RandomBattle.battleSystem.TurnListWidget;
 
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.getspout.spoutapi.gui.InGameScreen;
 import org.getspout.spoutapi.gui.WidgetAnchor;
@@ -25,6 +27,7 @@ public class RandomBattleHUD
 	private CommandButtonContainer	buttons;
 	private RandomBattleTopBar	    topBar;
 	private InGameScreen	        mainScreen;
+	private TurnListWidget	        turnList;
 	
 	/**
 	 * @param player
@@ -52,13 +55,21 @@ public class RandomBattleHUD
 		// Making the screen objects
 		screen = new RandomBattlePopupScreen(plugin, player);
 		buttons = new CommandButtonContainer(plugin, screen, player, battleMonsters);
+		// Turn List on the right
+		ArrayList<LivingEntity> tempAllEntities = new ArrayList<LivingEntity>();
+		for (Monster monster : battleMonsters)
+			tempAllEntities.add(monster);
+		tempAllEntities.add(player);
+		turnList = new TurnListWidget(plugin, tempAllEntities);
 		topBar = new RandomBattleTopBar(plugin);
 		
 		// Setting the layout
-		screen.attachWidgets(plugin, buttons, topBar);
+		screen.attachWidgets(plugin, buttons, topBar, turnList);
 		buttons.setAnchor(WidgetAnchor.BOTTOM_LEFT).shiftYPos(-buttons.getHeight() - 20)
 		        .shiftXPos(20);
 		topBar.setAnchor(WidgetAnchor.TOP_CENTER).shiftXPos(-topBar.getWidth() / 2).shiftYPos(20);
+		turnList.setAnchor(WidgetAnchor.CENTER_RIGHT).shiftXPos(-turnList.getWidth() - 20)
+		        .shiftYPos(-turnList.getHeight() / 2);
 		mainScreen.attachPopupScreen(screen);
 	}
 }

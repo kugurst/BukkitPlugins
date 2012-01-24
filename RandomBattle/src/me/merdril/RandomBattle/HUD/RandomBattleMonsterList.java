@@ -13,6 +13,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Monster;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.getspout.spoutapi.gui.GenericButton;
 import org.getspout.spoutapi.gui.GenericListWidget;
 import org.getspout.spoutapi.gui.ListWidgetItem;
 import org.getspout.spoutapi.player.SpoutPlayer;
@@ -28,10 +29,11 @@ public class RandomBattleMonsterList extends GenericListWidget
 	private SpoutPlayer	       player;
 	
 	/**
+	 * @param button
 	 * 
 	 */
 	public RandomBattleMonsterList(RandomBattle instance, SpoutPlayer player,
-	        ArrayList<Monster> monsters)
+	        ArrayList<Monster> monsters, GenericButton button)
 	{
 		super();
 		this.plugin = instance;
@@ -70,7 +72,6 @@ public class RandomBattleMonsterList extends GenericListWidget
 	{
 		Monster selMonster = monsters.get(item);
 		selMonster.damage(2);
-		player;
 		this.getItem(item).setTitle(selMonster.toString().substring(5));
 		this.getItem(item).setText("Health: " + Integer.toString(selMonster.getHealth()));
 		this.setDirty(true);

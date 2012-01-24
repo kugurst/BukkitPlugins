@@ -1,21 +1,27 @@
 /**
  * 
  */
+
 package me.merdril.RandomBattle.battleSystem;
+
+import me.merdril.RandomBattle.RandomBattle;
+
+import org.getspout.spoutapi.gui.GenericPopup;
 
 /**
  * @author mark
- *
+ * 
  */
 public class FightSys
 {
+	RandomBattle	plugin;
 	
 	/**
 	 * 
 	 */
-	public FightSys()
+	public FightSys(RandomBattle instance, GenericPopup popup)
 	{
-		// TODO Auto-generated constructor stub
+		plugin = instance;
 	}
 	
 }
