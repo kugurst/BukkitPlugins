@@ -6,8 +6,8 @@ package me.merdril.RandomBattle.HUD;
 
 import java.util.ArrayList;
 
+import me.merdril.RandomBattle.RBUtilities;
 import me.merdril.RandomBattle.RandomBattle;
-import me.merdril.RandomBattle.RandomBattleUtilities;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Monster;
@@ -42,7 +42,7 @@ public class RBMonsterList extends GenericListWidget
 		{
 			if (item == null)
 				break;
-			for (int type : RandomBattleUtilities.weaponIDs)
+			for (int type : RBUtilities.weaponIDs)
 			{
 				if (item.getTypeId() == type)
 				{

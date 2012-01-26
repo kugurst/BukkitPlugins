@@ -26,7 +26,7 @@ public class FightButton extends GenericButton
 	private SpoutPlayer	            player;
 	private InGameHUD	            mainScreen;
 	private ArrayList<Monster>	    monsters;
-	private RandomBattleMonsterList	monsterList;
+	private RBMonsterList	        monsterList;
 	
 	/**
 	 * @param screen
@@ -49,7 +49,7 @@ public class FightButton extends GenericButton
 	public void onButtonClick(ButtonClickEvent event)
 	{
 		// Create the monster selection screen based on the list of field monsters
-		monsterList = new RandomBattleMonsterList(plugin, player, monsters, this);
+		monsterList = new RBMonsterList(plugin, player, monsters);
 		// Set its dimensions
 		monsterList.setHeight(mainScreen.getHeight() / 5).setWidth(4 * mainScreen.getWidth() / 7);
 		screen.attachWidget(plugin, monsterList); // Attach the widget
