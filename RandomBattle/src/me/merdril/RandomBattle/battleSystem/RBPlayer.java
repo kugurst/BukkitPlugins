@@ -15,7 +15,7 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  * @author mark
  * 
  */
-public class RBPlayer
+public class RBPlayer extends RBLivingEntity
 {
 	RandomBattle	                 plugin;
 	private SpoutPlayer	             player;
@@ -34,13 +34,22 @@ public class RBPlayer
 	 *            - The player to represent
 	 * @param stats
 	 *            - The stats of the player
+	 * @throws Exception
 	 */
-	public RBPlayer(RandomBattle instance, SpoutPlayer player, Integer[] stats)
+	public RBPlayer(RandomBattle instance, SpoutPlayer player, int[] stat)
+	        throws ArrayIndexOutOfBoundsException
 	{
 		plugin = instance;
 		this.player = player;
-		if (stats.length != RBUtilities.statNames.length)
-			throw new SizeMismatch("The stats must be of correct length!");
+		if (stat.length != RBUtilities.statNames.length)
+			throw new ArrayIndexOutOfBoundsException("The stats must be of correct length!");
+		fillStats(stat);
+	}
+	
+	public void fillStats(int[] stat)
+	{
+		for (int i = 0; i < stat.length; i++)
+			stats.put(RBUtilities.statNames[i], stat[i]);
 	}
 	
 }
