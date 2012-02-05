@@ -8,23 +8,19 @@ import java.util.HashMap;
 
 import me.merdril.RandomBattle.RBUtilities;
 
-import org.bukkit.entity.LivingEntity;
-
 /**
  * @author mark
  * 
  */
 public class RBLivingEntity
 {
-	LivingEntity	                 creature;
 	private HashMap<String, Integer>	stats	= new HashMap<String, Integer>();
 	
 	/**
 	 * 
 	 */
-	public RBLivingEntity(LivingEntity entity, int[] stat)
+	public RBLivingEntity(int[] stat)
 	{
-		creature = entity;
 		if (stat.length != RBUtilities.statNames.length)
 			throw new ArrayIndexOutOfBoundsException("The stats must be of correct length!");
 		fillStats(stat);

@@ -25,7 +25,7 @@ public class RandomBattleHUD
 	private SpoutPlayer	            player;
 	private RandomBattlePopupScreen	screen;
 	private CommandButtonContainer	buttons;
-	private RandomBattleTopBar	    topBar;
+	private RBTopBar	            topBar;
 	private InGameScreen	        mainScreen;
 	private TurnListWidget	        turnList;
 	
@@ -61,7 +61,7 @@ public class RandomBattleHUD
 			tempAllEntities.add(monster);
 		tempAllEntities.add(player);
 		turnList = new TurnListWidget(plugin, tempAllEntities);
-		topBar = new RandomBattleTopBar(plugin);
+		topBar = new RBTopBar(plugin);
 		
 		// Setting the layout
 		screen.attachWidgets(plugin, buttons, topBar, turnList);

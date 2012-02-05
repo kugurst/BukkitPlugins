@@ -6,9 +6,9 @@ package me.merdril.RandomBattle;
 
 import java.util.logging.Logger;
 
+import me.merdril.RandomBattle.listeners.RBScreenListener;
 import me.merdril.RandomBattle.listeners.RandomBattleAttackCleanerListener;
 import me.merdril.RandomBattle.listeners.RandomBattleAttackListener;
-import me.merdril.RandomBattle.listeners.RandomBattleScreenListener;
 import me.merdril.RandomBattle.listeners.RandomBattleSpoutListener;
 
 import org.bukkit.event.Event;
@@ -53,7 +53,7 @@ public class RandomBattle extends JavaPlugin
 		pm.registerEvent(Event.Type.ENTITY_EXPLODE, attackCleanerListener, Event.Priority.Monitor,
 		        this);
 		
-		RandomBattleScreenListener screenListener = new RandomBattleScreenListener(this);
+		RBScreenListener screenListener = new RBScreenListener(this);
 		pm.registerEvent(Event.Type.CUSTOM_EVENT, screenListener, Event.Priority.Monitor, this);
 		
 		log.info("[RandomBattle] Random Battle has started!");

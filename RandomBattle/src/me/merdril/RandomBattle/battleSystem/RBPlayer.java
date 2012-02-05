@@ -4,9 +4,6 @@
 
 package me.merdril.RandomBattle.battleSystem;
 
-import java.util.HashMap;
-
-import me.merdril.RandomBattle.RBUtilities;
 import me.merdril.RandomBattle.RandomBattle;
 
 import org.getspout.spoutapi.player.SpoutPlayer;
@@ -17,9 +14,8 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class RBPlayer extends RBLivingEntity
 {
-	RandomBattle	                 plugin;
-	private SpoutPlayer	             player;
-	private HashMap<String, Integer>	stats	= new HashMap<String, Integer>();
+	RandomBattle	    plugin;
+	private SpoutPlayer	player;
 	
 	/**
 	 * <code>public RBPlayer(RandomBattle instance, SpoutPlayer player, Integer[] stats)</code> <br/>
@@ -39,17 +35,9 @@ public class RBPlayer extends RBLivingEntity
 	public RBPlayer(RandomBattle instance, SpoutPlayer player, int[] stat)
 	        throws ArrayIndexOutOfBoundsException
 	{
+		super(stat);
 		plugin = instance;
 		this.player = player;
-		if (stat.length != RBUtilities.statNames.length)
-			throw new ArrayIndexOutOfBoundsException("The stats must be of correct length!");
-		fillStats(stat);
-	}
-	
-	public void fillStats(int[] stat)
-	{
-		for (int i = 0; i < stat.length; i++)
-			stats.put(RBUtilities.statNames[i], stat[i]);
 	}
 	
 }

@@ -10,8 +10,8 @@ import java.util.Random;
 import java.util.UUID;
 
 import me.merdril.RandomBattle.BattleSetter;
+import me.merdril.RandomBattle.RBUtilities;
 import me.merdril.RandomBattle.RandomBattle;
-import me.merdril.RandomBattle.RandomBattleUtilities;
 
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.ComplexEntityPart;
@@ -123,7 +123,7 @@ public class RandomBattleAttackListener extends EntityListener
 				}
 			}
 			if (player != null
-			        && !RandomBattleUtilities.isRegisteredPlayer(player.getDisplayName(), 0, plugin
+			        && !RBUtilities.isRegisteredPlayer(player.getDisplayName(), 0, plugin
 			                .getServer().getConsoleSender()))
 				return;
 			if (player != null && (monster != null || dragon != null || dragonPart != null))

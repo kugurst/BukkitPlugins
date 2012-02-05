@@ -105,9 +105,8 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 				}
 				else
 				{
-					registeredPlayers
-					        .put(args[0], RandomBattleUtilities.getSpoutPlayerFromDisplayName(
-					                args[0], 0, sender));
+					registeredPlayers.put(args[0],
+					        RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender));
 					sender.sendMessage("[RandomBattle] " + args[0] + " is now registered!");
 					registeredPlayers.get(args[0]).sendMessage(
 					        "[RandomBattle] You have been registered for Random Battles by "
@@ -137,7 +136,7 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 					return true;
 				}
 				registeredPlayers.put(args[0],
-				        RandomBattleUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender));
+				        RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender));
 				sender.sendMessage("[RandomBattle] " + args[0] + " is now registered!");
 				registeredPlayers.get(args[0]).sendMessage(
 				        "[RandomBattle] You have been registered for Random Battles by console!");
