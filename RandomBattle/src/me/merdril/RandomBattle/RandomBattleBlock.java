@@ -13,7 +13,7 @@ import org.getspout.spoutapi.material.block.GenericCustomBlock;
 public class RandomBattleBlock extends GenericCustomBlock
 {
 	RandomBattle	plugin;
-	
+
 	/**
 	 * 
 	 */
