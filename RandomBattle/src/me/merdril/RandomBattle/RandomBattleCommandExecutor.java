@@ -7,8 +7,6 @@ package me.merdril.RandomBattle;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import me.merdril.RandomBattle.listeners.RandomBattleSpoutListener;
-
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,10 +20,9 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class RandomBattleCommandExecutor implements CommandExecutor
 {
-	public RandomBattle	                         plugin;
-	static volatile HashMap<String, SpoutPlayer>	registeredPlayers	=
-	                                                                          new HashMap<String, SpoutPlayer>();
-	
+	public RandomBattle								plugin;
+	static volatile HashMap<String, SpoutPlayer>	registeredPlayers	= new HashMap<String, SpoutPlayer>();
+
 	/**
 	 * 
 	 */
@@ -33,8 +30,9 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 	{
 		plugin = instance;
 	}
-	
-	// The global method that sends the command to the appropriate function and handles the case of
+
+	// The global method that sends the command to the appropriate function and
+	// handles the case of
 	// there not being an appropriate function
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
@@ -55,9 +53,8 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 			return removeEditedBlocks(sender, cmd, label, args);
 		return false;
 	}
-	
-	private boolean removeEditedBlocks(CommandSender sender, Command cmd, String label,
-	        String[] args)
+
+	private boolean removeEditedBlocks(CommandSender sender, Command cmd, String label, String[] args)
 	{
 		while (BattleSetter.allEditedBlocks.size() > 0)
 		{
@@ -67,18 +64,16 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 		sender.sendMessage("[RandomBattle] Blocks removed.");
 		return true;
 	}
-	
+
 	private boolean register(CommandSender sender, Command cmd, String label, String[] args)
 	{
 		if (sender instanceof Player)
 		{
 			boolean isSpoutPlayer = false;
 			if (args.length == 0)
-				isSpoutPlayer =
-				        RandomBattleSpoutListener.spoutPlayers.containsKey(((Player) sender)
-				                .getDisplayName());
+				isSpoutPlayer = ((SpoutPlayer) sender).isSpoutCraftEnabled();
 			else if (args.length == 1)
-				isSpoutPlayer = RandomBattleSpoutListener.spoutPlayers.containsKey(args[0]);
+				isSpoutPlayer = ((SpoutPlayer) sender).isSpoutCraftEnabled();
 			else if (args.length > 1)
 			{
 				sender.sendMessage("[RandomBattle] Too many arguments");
@@ -105,12 +100,9 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 				}
 				else
 				{
-					registeredPlayers.put(args[0],
-					        RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender));
+					registeredPlayers.put(args[0], RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender));
 					sender.sendMessage("[RandomBattle] " + args[0] + " is now registered!");
-					registeredPlayers.get(args[0]).sendMessage(
-					        "[RandomBattle] You have been registered for Random Battles by "
-					                + sender.getName() + "!");
+					registeredPlayers.get(args[0]).sendMessage("[RandomBattle] You have been registered for Random Battles by " + sender.getName() + "!");
 					return true;
 				}
 			}
@@ -129,22 +121,25 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 			}
 			else
 			{
-				boolean isSpoutPlayer = RandomBattleSpoutListener.spoutPlayers.containsKey(args[0]);
+				Player player = plugin.getServer().getPlayer(args[0]);
+				boolean isSpoutPlayer;
+				if (player == null)
+					isSpoutPlayer = false;
+				else
+					isSpoutPlayer = ((SpoutPlayer) player).isSpoutCraftEnabled();
 				if (!isSpoutPlayer)
 				{
 					sender.sendMessage("[RandomBattle] The player name does not refer to a SpoutCraft player.");
 					return true;
 				}
-				registeredPlayers.put(args[0],
-				        RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender));
+				registeredPlayers.put(args[0], RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender));
 				sender.sendMessage("[RandomBattle] " + args[0] + " is now registered!");
-				registeredPlayers.get(args[0]).sendMessage(
-				        "[RandomBattle] You have been registered for Random Battles by console!");
+				registeredPlayers.get(args[0]).sendMessage("[RandomBattle] You have been registered for Random Battles by console!");
 				return true;
 			}
 		}
 	}
-	
+
 	private boolean unRegister(CommandSender sender, Command cmd, String label, String[] args)
 	{
 		if (sender instanceof Player)
@@ -155,16 +150,13 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 				isRegisteredPlayer = registeredPlayers.containsKey(args[0]);
 				if (!isRegisteredPlayer)
 				{
-					sender.sendMessage("[RandomBattle] " + args[0]
-					        + " is not registered for Random Battles.");
+					sender.sendMessage("[RandomBattle] " + args[0] + " is not registered for Random Battles.");
 					return true;
 				}
 				SpoutPlayer player = registeredPlayers.remove(args[0]);
-				sender.sendMessage("[RandomBattle] " + player.getDisplayName()
-				        + " has been unregistered from Random Battles.");
+				sender.sendMessage("[RandomBattle] " + player.getDisplayName() + " has been unregistered from Random Battles.");
 				if (!sender.getName().equals(args[0]))
-					player.sendMessage("[RandomBattle] You have been unregistered from Random Battles by "
-					        + sender.getName() + ".");
+					player.sendMessage("[RandomBattle] You have been unregistered from Random Battles by " + sender.getName() + ".");
 				return true;
 			}
 			else if (args.length > 1)
@@ -174,14 +166,12 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 			}
 			if (!isRegisteredPlayer)
 			{
-				sender.sendMessage("[RandomBattle] " + sender.getName()
-				        + " is not registered for Random Battles.");
+				sender.sendMessage("[RandomBattle] " + sender.getName() + " is not registered for Random Battles.");
 				return true;
 			}
 			// At this point, the player is registered.
 			SpoutPlayer player = registeredPlayers.remove(sender.getName());
-			sender.sendMessage("[RandomBattle] " + player.getDisplayName()
-			        + " has been unregistered from Random Battles.");
+			sender.sendMessage("[RandomBattle] " + player.getDisplayName() + " has been unregistered from Random Battles.");
 			return true;
 		}
 		// Command line issued
@@ -193,13 +183,12 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 		if (registeredPlayers.containsKey(args[0]))
 		{
 			SpoutPlayer player = registeredPlayers.remove(args[0]);
-			sender.sendMessage("[RandomBattle] " + player.getDisplayName()
-			        + " has been unregistered from Random Battles.");
+			sender.sendMessage("[RandomBattle] " + player.getDisplayName() + " has been unregistered from Random Battles.");
 			player.sendMessage("[RandomBattle] You have been unregistered from Random Battles by console.");
 		}
 		return true;
 	}
-	
+
 	private boolean debugRegPlayers(CommandSender sender, Command cmd, String label, String[] args)
 	{
 		ArrayList<SpoutPlayer> regPlayers = new ArrayList<SpoutPlayer>(registeredPlayers.values());
@@ -209,28 +198,28 @@ public class RandomBattleCommandExecutor implements CommandExecutor
 			sender.sendMessage("[RandomBattle] " + player.getDisplayName());
 		return true;
 	}
-	
-	private boolean
-	        debugSpoutPlayers(CommandSender sender, Command cmd, String label, String[] args)
+
+	private boolean debugSpoutPlayers(CommandSender sender, Command cmd, String label, String[] args)
 	{
-		ArrayList<SpoutPlayer> spoutPlayers =
-		        new ArrayList<SpoutPlayer>(RandomBattleSpoutListener.spoutPlayers.values());
+		ArrayList<SpoutPlayer> spoutPlayers = new ArrayList<SpoutPlayer>();
+		for (Player player : plugin.getServer().getOnlinePlayers())
+			spoutPlayers.add((SpoutPlayer) player);
 		if (spoutPlayers.size() == 0)
 			sender.sendMessage("[RandomBattle] No Spout players!");
 		for (SpoutPlayer player : spoutPlayers)
 			sender.sendMessage("[RandomBattle] " + player.getDisplayName());
 		return true;
 	}
-	
+
 	private boolean stop(CommandSender sender, Command cmd, String label, String[] args)
 	{
 		return false;
-		
+
 	}
-	
+
 	private boolean start(CommandSender sender, Command cmd, String label, String[] args)
 	{
 		return false;
-		
+
 	}
 }

@@ -10,10 +10,11 @@ import java.util.UUID;
 import me.merdril.RandomBattle.RandomBattle;
 
 import org.bukkit.entity.ComplexLivingEntity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
-import org.bukkit.event.entity.EntityListener;
 import org.bukkit.inventory.ItemStack;
 import org.getspout.spoutapi.SpoutManager;
 
@@ -21,12 +22,12 @@ import org.getspout.spoutapi.SpoutManager;
  * @author mark
  * 
  */
-public class RandomBattleAttackCleanerListener extends EntityListener
+public class RandomBattleAttackCleanerListener implements Listener
 {
 	RandomBattle	plugin;
 	private UUID[]	requiredEntities;
 	protected int	deadEntites	= 0;
-	
+
 	/**
 	 * 
 	 */
@@ -35,20 +36,21 @@ public class RandomBattleAttackCleanerListener extends EntityListener
 		plugin = instance;
 		requiredEntities = new UUID[numReqEntities];
 	}
-	
+
 	/**
 	 * <code>public void onEntityDeath(EntityDeathEvent event)</code> <br/>
 	 * <br/>
-	 * This is a rather expensive function. It's a good thing Bukkit establishes concurrency on
-	 * listeners. Here that Bukkit maintainers? Don't change that. <br/>
-	 * This function looks through the HashMap of encountered entities and removes those that have
-	 * died after a certain number of entities have died.
+	 * This is a rather expensive function. It's a good thing Bukkit establishes
+	 * concurrency on listeners. Here that Bukkit maintainers? Don't change
+	 * that. <br/>
+	 * This function looks through the HashMap of encountered entities and
+	 * removes those that have died after a certain number of entities have
+	 * died.
 	 * 
 	 * 
 	 * @param event
 	 *            - The event that sparks the function call
 	 */
-	@Override
 	public void onEntityDeath(EntityDeathEvent event)
 	{
 		boolean isMonster = event.getEntity() instanceof Monster;
@@ -64,9 +66,7 @@ public class RandomBattleAttackCleanerListener extends EntityListener
 		{
 			requiredEntities[requiredEntities.length - 1] = event.getEntity().getUniqueId();
 			deadEntites = 0;
-			ArrayList<ArrayList<UUID>> allMonsters =
-			        new ArrayList<ArrayList<UUID>>(
-			                RandomBattleAttackListener.alreadyEncountered.values());
+			ArrayList<ArrayList<UUID>> allMonsters = new ArrayList<ArrayList<UUID>>(RandomBattleAttackListener.alreadyEncountered.values());
 			if (allMonsters == null || allMonsters.size() == 0)
 				return;
 			for (ArrayList<UUID> playerList : allMonsters)
@@ -80,15 +80,13 @@ public class RandomBattleAttackCleanerListener extends EntityListener
 			}
 		}
 	}
-	
-	@Override
+
 	public void onEntityExplode(EntityExplodeEvent event)
 	{
 		if (event.getEntity() instanceof Monster)
 		{
 			ArrayList<ItemStack> nullList = new ArrayList<ItemStack>(0);
-			plugin.getServer().getPluginManager()
-			        .callEvent(new EntityDeathEvent(event.getEntity(), nullList));
+			plugin.getServer().getPluginManager().callEvent(new EntityDeathEvent((LivingEntity) event.getEntity(), nullList));
 		}
 	}
 }

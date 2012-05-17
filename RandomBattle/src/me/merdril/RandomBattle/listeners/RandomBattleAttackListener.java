@@ -18,9 +18,9 @@ import org.bukkit.entity.ComplexEntityPart;
 import org.bukkit.entity.ComplexLivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityListener;
 import org.getspout.spoutapi.SpoutManager;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
@@ -28,14 +28,13 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  * @author mark
  * 
  */
-public class RandomBattleAttackListener extends EntityListener
+public class RandomBattleAttackListener implements Listener
 {
-	RandomBattle	                                      plugin;
-	protected int	                                      randomChance	       = 100;
-	private Random	                                      generator	           = new Random();
-	public static volatile HashMap<UUID, ArrayList<UUID>>	alreadyEncountered	=
-	                                                                                   new HashMap<UUID, ArrayList<UUID>>();
-	
+	RandomBattle											plugin;
+	protected int											randomChance		= 100;
+	private Random											generator			= new Random();
+	public static volatile HashMap<UUID, ArrayList<UUID>>	alreadyEncountered	= new HashMap<UUID, ArrayList<UUID>>();
+
 	/**
 	 * 
 	 */
@@ -43,7 +42,7 @@ public class RandomBattleAttackListener extends EntityListener
 	{
 		plugin = instance;
 	}
-	
+
 	// Check crazy
 	public void onEntityDamage(EntityDamageEvent event)
 	{
@@ -122,9 +121,7 @@ public class RandomBattleAttackListener extends EntityListener
 					entityID = dragonPart.getUniqueId();
 				}
 			}
-			if (player != null
-			        && !RBUtilities.isRegisteredPlayer(player.getDisplayName(), 0, plugin
-			                .getServer().getConsoleSender()))
+			if (player != null && !RBUtilities.isRegisteredPlayer(player.getDisplayName(), 0, plugin.getServer().getConsoleSender()))
 				return;
 			if (player != null && (monster != null || dragon != null || dragonPart != null))
 			{
@@ -133,13 +130,13 @@ public class RandomBattleAttackListener extends EntityListener
 				{
 					ArrayList<UUID> temp = new ArrayList<UUID>();
 					temp.add(entityID);
-					// Synchronized to prevent corruption from the cleaner listener.
+					// Synchronized to prevent corruption from the cleaner
+					// listener.
 					synchronized (alreadyEncountered)
 					{
 						alreadyEncountered.put(playerID, temp);
 					}
-					player.sendMessage("[RandomBattle] " + SpoutManager.getEntityFromId(entityID)
-					        + " has been added.");
+					player.sendMessage("[RandomBattle] " + SpoutManager.getEntityFromId(entityID) + " has been added.");
 				}
 				else
 				{
@@ -152,8 +149,7 @@ public class RandomBattleAttackListener extends EntityListener
 						{
 							alreadyEncountered.put(playerID, checkList);
 						}
-						player.sendMessage("[RandomBattle] "
-						        + SpoutManager.getEntityFromId(entityID) + " has been added.");
+						player.sendMessage("[RandomBattle] " + SpoutManager.getEntityFromId(entityID) + " has been added.");
 					}
 				}
 				int randomNumber = generator.nextInt(98) + 1;
@@ -168,8 +164,7 @@ public class RandomBattleAttackListener extends EntityListener
 						begin = new BattleSetter(plugin, player, dragon);
 					else if (dragonPart != null)
 						begin = new BattleSetter(plugin, player, dragonPart.getParent());
-					player.sendMessage("[RandomBattle] " + attackEvent.getDamage()
-					        + " random number: " + randomNumber);
+					player.sendMessage("[RandomBattle] " + attackEvent.getDamage() + " random number: " + randomNumber);
 				}
 			}
 		}
