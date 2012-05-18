@@ -14,7 +14,7 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  * @author mark
  * 
  */
-public class RandomBattlePopupScreen extends GenericPopup
+public class RBPopupScreen extends GenericPopup
 {
 	RandomBattle	     plugin;
 	private SpoutPlayer	 player;
@@ -23,7 +23,7 @@ public class RandomBattlePopupScreen extends GenericPopup
 	/**
 	 * 
 	 */
-	public RandomBattlePopupScreen(RandomBattle instance, SpoutPlayer player)
+	public RBPopupScreen(RandomBattle instance, SpoutPlayer player)
 	{
 		super();
 		this.plugin = instance;

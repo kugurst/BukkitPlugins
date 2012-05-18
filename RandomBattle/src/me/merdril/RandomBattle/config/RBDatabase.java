@@ -7,13 +7,13 @@ package me.merdril.RandomBattle.config;
  * @author mark
  *
  */
-public class RandomBattleDatabase
+public class RBDatabase
 {
 	
 	/**
 	 * 
 	 */
-	public RandomBattleDatabase()
+	public RBDatabase()
 	{
 		// TODO Auto-generated constructor stub
 	}

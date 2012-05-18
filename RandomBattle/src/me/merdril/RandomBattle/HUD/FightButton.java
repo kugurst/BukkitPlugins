@@ -22,7 +22,7 @@ import org.getspout.spoutapi.player.SpoutPlayer;
 public class FightButton extends GenericButton
 {
 	RandomBattle	                plugin;
-	private RandomBattlePopupScreen	screen;
+	private RBPopupScreen	screen;
 	private SpoutPlayer	            player;
 	private InGameHUD	            mainScreen;
 	private ArrayList<Monster>	    monsters;
@@ -33,7 +33,7 @@ public class FightButton extends GenericButton
 	 * @param monsters
 	 * 
 	 */
-	public FightButton(RandomBattle instance, RandomBattlePopupScreen screen, SpoutPlayer player,
+	public FightButton(RandomBattle instance, RBPopupScreen screen, SpoutPlayer player,
 	        ArrayList<Monster> monsters)
 	{
 		super();

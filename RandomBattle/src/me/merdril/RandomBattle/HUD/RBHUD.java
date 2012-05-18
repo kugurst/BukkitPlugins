@@ -19,11 +19,11 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  * @author Merdril
  * 
  */
-public class RandomBattleHUD
+public class RBHUD
 {
 	RandomBattle	                plugin;
 	private SpoutPlayer	            player;
-	private RandomBattlePopupScreen	screen;
+	private RBPopupScreen	screen;
 	private CommandButtonContainer	buttons;
 	private RBTopBar	            topBar;
 	private InGameScreen	        mainScreen;
@@ -34,7 +34,7 @@ public class RandomBattleHUD
 	 * @param battleMonsters
 	 * 
 	 */
-	public RandomBattleHUD(RandomBattle instance, SpoutPlayer player,
+	public RBHUD(RandomBattle instance, SpoutPlayer player,
 	        ArrayList<Monster> battleMonsters)
 	{
 		plugin = instance;
@@ -53,7 +53,7 @@ public class RandomBattleHUD
 		mainScreen.closePopup();
 		
 		// Making the screen objects
-		screen = new RandomBattlePopupScreen(plugin, player);
+		screen = new RBPopupScreen(plugin, player);
 		buttons = new CommandButtonContainer(plugin, screen, player, battleMonsters);
 		// Turn List on the right
 		ArrayList<LivingEntity> tempAllEntities = new ArrayList<LivingEntity>();

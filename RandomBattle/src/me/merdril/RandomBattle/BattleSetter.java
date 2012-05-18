@@ -2,17 +2,18 @@
 package me.merdril.RandomBattle;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import me.merdril.RandomBattle.HUD.RandomBattleHUD;
+import me.merdril.RandomBattle.HUD.RBHUD;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.ComplexLivingEntity;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Spider;
@@ -24,38 +25,39 @@ import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
  * @author mark
- * 
  */
-public class BattleSetter
-{
-	RandomBattle	                              plugin;
-	private int	                                  stageHeight;
-	private int	                                  stageWidth;
-	private int	                                  stageLength;
-	private Location	                          startPoint;
-	private Location	                          currentPoint;
+public class BattleSetter {
+	RandomBattle	                          plugin;
+	private int	                              stageHeight;
+	private int	                              stageWidth;
+	private int	                              stageLength;
+	private Location	                      startPoint;
+	private Location	                      currentPoint;
 	
 	// private int side = 1;
-	private boolean	                              goodStage	          = true;
-	private ArrayList<Block>	                  editedBlocks	      = new ArrayList<Block>();
-	public static ArrayList<Block>	              allEditedBlocks	  = new ArrayList<Block>();
-	public static HashMap<SpoutPlayer, Monster[]>	allBattleMonsters	=
-	                                                                          new HashMap<SpoutPlayer, Monster[]>();
-	public ArrayList<Monster>	                  battleMonsters	  = new ArrayList<Monster>();
-	private HashMap<Monster, Location[]>	      field	              =
-	                                                                          new HashMap<Monster, Location[]>();
-	private CommandSender	                      console;
-	private RandomBattleBlock	                  theBlock;
+	private boolean	                          goodStage	     = true;
+	private ArrayList<Block>	              editedBlocks	 = new ArrayList<Block>();
+	public static List<Block>	              allEditedBlocks;
+	public static Map<SpoutPlayer, Monster[]>	allBattleMonsters;
+	public ArrayList<Monster>	              battleMonsters	= new ArrayList<Monster>();
+	private HashMap<Monster, Location[]>	  field	         = new HashMap<Monster, Location[]>();
+	private CommandSender	                  console;
 	
 	/**
 	 * 
 	 */
-	public BattleSetter(RandomBattle instance, SpoutPlayer player, Monster monster, int sH, int sW,
-	        int sL)
-	{
+	public BattleSetter(RandomBattle instance, SpoutPlayer player, Monster monster, int sH, int sW, int sL) {
+		// Mark the plugin for future use
 		this.plugin = instance;
-		this.theBlock = new RandomBattleBlock(plugin);
+		// Initialize the static variables if need be
+		if (allBattleMonsters == null)
+			allBattleMonsters = Collections.synchronizedMap(new HashMap<SpoutPlayer, Monster[]>());
+		if (allEditedBlocks == null)
+			allEditedBlocks = Collections.synchronizedList(new ArrayList<Block>());
+		// Mark the console command sender for future use
 		console = plugin.getServer().getConsoleSender();
+		// Make sure the user specified values for the stage dimensions do not break some method in
+		// this class.
 		if (sH > 122)
 			stageHeight = 122;
 		else
@@ -68,25 +70,16 @@ public class BattleSetter
 			stageWidth = 15;
 		else
 			stageWidth = sW;
+		// Set the stage with the given monster grouping and player
 		setStage(player, monster);
+		// Add the monsters to the list of monsters in battle
 		battleMonsters.add(monster);
-		@SuppressWarnings("unused")
-		RandomBattleHUD overlay = new RandomBattleHUD(plugin, player, battleMonsters);
+		@SuppressWarnings ("unused")
+		// Start the battle
+		RBHUD overlay = new RBHUD(plugin, player, battleMonsters);
 	}
 	
-	public BattleSetter(RandomBattle instance, SpoutPlayer player, ComplexLivingEntity dragon)
-	{
-		// plugin = instance;
-		// if (monster instanceof ComplexEntityPart)
-		// {
-		// ComplexEntityPart dragonPart = (ComplexEntityPart) monster;
-		// LivingEntity dragon = dragonPart.getParent();
-		// setStage(player, dragon);
-		// }
-	}
-	
-	private void setStage(SpoutPlayer player, Monster monster)
-	{
+	private void setStage(SpoutPlayer player, Monster monster) {
 		// Get the location of the two entities
 		Location playerLocation = player.getLocation();
 		// Try to make a stage for the monsters
@@ -97,10 +90,9 @@ public class BattleSetter
 		console.sendMessage("[RandomBattle] Starting point: " + currentPoint);
 		findSafeStage();
 		// Check that a stage was set
-		if (!goodStage)
-		{
-			console.sendMessage("[RandomBattle] Failed to set stage for " + player.getDisplayName()
-			        + " at location " + player.getLocation().toString() + ".");
+		if (!goodStage) {
+			console.sendMessage("[RandomBattle] Failed to set stage for " + player.getDisplayName() + " at location "
+			        + player.getLocation().toString() + ".");
 			return;
 		}
 		player.sendMessage("[RandomBattle] Stage set. Teleporting...");
@@ -115,78 +107,71 @@ public class BattleSetter
 	 * <br/>
 	 * Returns a mapping of monsters to the corners of their bounding box. The first location is the
 	 * lower corner, and the second location is the upper corner.
-	 * 
 	 * @param player
 	 *            - The player that attacked or was attacked by the monster.
 	 * @param monster
 	 *            - The monster that attacked or was attacked by the player.
 	 * @return A mapping of monsters to their bounding boxes
 	 */
-	private HashMap<Monster, Location[]>
-	        determineBoundingBoxes(SpoutPlayer player, Monster monster)
-	{
+	private HashMap<Monster, Location[]> determineBoundingBoxes(SpoutPlayer player, Monster monster) {
 		Location mLowerCorner = null;
 		Location mUpperCorner = null;
-		if (monster instanceof Spider)
-		{
+		if (monster instanceof Spider) {
 			mLowerCorner =
-			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2),
-			                stageHeight, (startPoint.getBlockZ() + 3));
+			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2), stageHeight,
+			                (startPoint.getBlockZ() + 3));
 			mUpperCorner =
-			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2 + 3),
-			                (stageHeight + 2), (startPoint.getBlockZ() + 6));
+			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2 + 3), (stageHeight + 2),
+			                (startPoint.getBlockZ() + 6));
 		}
-		else if (monster instanceof Enderman)
-		{
+		else if (monster instanceof Enderman) {
 			mLowerCorner =
-			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2),
-			                stageHeight, (startPoint.getBlockZ() + 3));
+			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2), stageHeight,
+			                (startPoint.getBlockZ() + 3));
 			mUpperCorner =
-			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2 + 2),
-			                (stageHeight + 4), (startPoint.getBlockZ() + 5));
+			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2 + 2), (stageHeight + 4),
+			                (startPoint.getBlockZ() + 5));
 		}
-		else if (!(monster instanceof Enderman))
-		{
+		else if (!(monster instanceof Enderman)) {
 			mLowerCorner =
-			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2),
-			                stageHeight, (startPoint.getBlockZ() + 3));
+			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2), stageHeight,
+			                (startPoint.getBlockZ() + 3));
 			mUpperCorner =
-			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2 + 2),
-			                (stageHeight + 3), (startPoint.getBlockZ() + 5));
+			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2 + 2), (stageHeight + 3),
+			                (startPoint.getBlockZ() + 5));
 		}
 		makeBoundingBoxes(mLowerCorner, mUpperCorner);
 		HashMap<Monster, Location[]> mField = new HashMap<Monster, Location[]>();
 		mField.put(monster, new Location[] {mLowerCorner, mUpperCorner});
-		allBattleMonsters.put(player, new Monster[] {monster});
+		synchronized (allBattleMonsters) {
+			allBattleMonsters.put(player, new Monster[] {monster});
+		}
 		return mField;
 	}
 	
 	// In a bounding box, the coordinates of the inner boxes have nothing in common with the two
 	// corners that define it. In other words, the boxes on the edge of the box share the x, y, or z
 	// coordinate with one of the corners.
-	public void makeBoundingBoxes(Location lowerCorner, Location upperCorner)
-	{
+	public void makeBoundingBoxes(Location lowerCorner, Location upperCorner) {
 		int length = Math.abs(lowerCorner.getBlockX() - upperCorner.getBlockX()) + 1;
 		int width = Math.abs(lowerCorner.getBlockZ() - upperCorner.getBlockZ()) + 1;
 		int height = Math.abs(lowerCorner.getBlockY() - upperCorner.getBlockY()) + 1;
 		Location currentBlock = lowerCorner.getBlock().getLocation();
-		for (int x = 0; x < length; x++)
-		{
-			for (int y = 0; y < width; y++)
-			{
-				for (int z = 0; z < height; z++)
-				{
+		for (int x = 0; x < length; x++) {
+			for (int y = 0; y < width; y++) {
+				for (int z = 0; z < height; z++) {
 					// 6 conditions
 					if (z != 0
 					        && (currentBlock.getBlockX() == lowerCorner.getBlockX()
 					                || currentBlock.getBlockY() == lowerCorner.getBlockY()
 					                || currentBlock.getBlockZ() == lowerCorner.getBlockZ()
 					                || currentBlock.getBlockX() == upperCorner.getBlockX()
-					                || currentBlock.getBlockY() == upperCorner.getBlockY() || currentBlock
-					                .getBlockZ() == upperCorner.getBlockZ()))
-					{
+					                || currentBlock.getBlockY() == upperCorner.getBlockY() || currentBlock.getBlockZ() == upperCorner
+					                .getBlockZ())) {
 						editedBlocks.add(currentBlock.getBlock());
-						allEditedBlocks.add(currentBlock.getBlock());
+						synchronized (allEditedBlocks) {
+							allEditedBlocks.add(currentBlock.getBlock());
+						}
 						currentBlock.getBlock().setType(Material.GLASS);
 					}
 					// else
@@ -202,13 +187,11 @@ public class BattleSetter
 		}
 	}
 	
-	private void teleportMonster()
-	{
+	private void teleportMonster() {
 		Set<Map.Entry<Monster, Location[]>> toTele = field.entrySet();
 		console.sendMessage("[RandomBattle] toTele size: " + toTele.toArray().length);
 		Location teleportLocation = null;
-		for (Map.Entry<Monster, Location[]> monster : toTele)
-		{
+		for (Map.Entry<Monster, Location[]> monster : toTele) {
 			console.sendMessage("[RandomBattle] Teleporting monster: " + monster.getKey() + " at: "
 			        + monster.getKey().getLocation());
 			teleportLocation = monster.getValue()[0].getBlock().getLocation();
@@ -221,48 +204,42 @@ public class BattleSetter
 		}
 	}
 	
-	private void teleportPlayer(SpoutPlayer player)
-	{
+	private void teleportPlayer(SpoutPlayer player) {
 		int x = stageWidth / 2 + 1;
 		int z = stageLength - 3;
 		Location teleportLocation =
-		        new Location(player.getWorld(), startPoint.getBlockX() + x + 0.5,
-		                startPoint.getBlockY() + 1, startPoint.getBlockZ() + z + 0.5, -180, 0);
+		        new Location(player.getWorld(), startPoint.getBlockX() + x + 0.5, startPoint.getBlockY() + 1,
+		                startPoint.getBlockZ() + z + 0.5, -180, 0);
 		player.teleport(teleportLocation);
 	}
 	
-	private void findSafeStage()
-	{
+	private void findSafeStage() {
 		// Initially the same as startPoint, and doesn't change until a block that isn't air is
 		// encountered
 		// Location changePoint = currentPoint.getBlock().getLocation();
 		// 5 for the max height of the boundingBox
-		outer:
-		for (int i = 0; i < 5; i++)
-		{
-			for (int j = 0; j < stageWidth; j++)
-			{
-				for (int k = 0; k < stageLength; k++)
-				{
-					if (!currentPoint.getBlock().getType().equals(Material.AIR))
-					{
+		outer: for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < stageWidth; j++) {
+				for (int k = 0; k < stageLength; k++) {
+					if (!currentPoint.getBlock().getType().equals(Material.AIR)) {
 						removeBlocks(editedBlocks);
 						goodStage = false;
 						break outer;
 					}
 					// console.sendMessage("[RandomBattle] Current location: " + currentPoint);
-					if (i == 0)
-					{
+					if (i == 0) {
 						editedBlocks.add(currentPoint.getBlock());
-						allEditedBlocks.add(currentPoint.getBlock());
+						synchronized (allEditedBlocks) {
+							allEditedBlocks.add(currentPoint.getBlock());
+						}
 						currentPoint.getBlock().setType(Material.GRASS);
 					}
-					else if (i == 1)
-					{
-						if (j % 4 == 0 && k % 4 == 0)
-						{
+					else if (i == 1) {
+						if (j % 4 == 0 && k % 4 == 0) {
 							editedBlocks.add(currentPoint.getBlock());
-							allEditedBlocks.add(currentPoint.getBlock());
+							synchronized (allEditedBlocks) {
+								allEditedBlocks.add(currentPoint.getBlock());
+							}
 							currentPoint.getBlock().setType(Material.GLOWSTONE);
 						}
 					}
@@ -276,10 +253,8 @@ public class BattleSetter
 		}
 	}
 	
-	private void removeBlocks(ArrayList<Block> blockList)
-	{
-		while (blockList.size() > 0)
-		{
+	private void removeBlocks(ArrayList<Block> blockList) {
+		while (blockList.size() > 0) {
 			blockList.get(0).setType(Material.AIR);
 			blockList.remove(0);
 		}

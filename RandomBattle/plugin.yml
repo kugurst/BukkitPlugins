@@ -1,34 +1,59 @@
 name: RandomBattle
 main: me.merdril.RandomBattle.RandomBattle
-version: 0.6.1
+version: 0.6.3
 author: Mark Aligbe
 depend: [Spout]
 commands:
     regbattle:
         description: Adds this player to the list of players subject to random battles.
-        permission: RandomBattle.regbattle
+        permission: randombattle.register
         usage: /regbattle <player>
     unregbattle:
         description: Remove the player from the list of players subject to random battles.
-        permission: RandomBattle.regbattle.others
+        permission: randombattle.unregister
         usage: /unregbattle <player>
     stopbattles:
         description: Stop any further random battles from occuring server wide.
-        permission: RandomBattle.stopbattles
+        permission: randombattle.battle
         usage: /stopbattles
     resumebattles:
         description: Resume RandomBattle, if it was stopped.
-        permission: RandomBattle.stopbattles
+        permission: randombattle.battle
         usage: /resumebattles
     showregplayers:
         description: Shows registered players.
-        permission: RandomBattle.debug.show
+        permission: randombattle.debug
         usage: /showregplayers
     showspoutplayers:
         description: Show spout players.
-        permission: RandomBattle.debug.show
+        permission: randombattle.debug
         usage: /showspoutplayers
     removeblocks:
         description: Remove the blocks created by Random Battle.
-        permission: RandomBattle.remove
+        permission: randombattle.removeblocks
         usage: /removeblocks
+permissions:
+    randombattle.*:
+        description: Gives access to all RandomBattle commands
+        default: op
+        children:
+            randombattle.register: true
+            randombattle.unregister: true
+            randombattle.battle: true
+            randombattle.debug: true
+            randombattle.removeblocks: true
+    randombattle.register:
+        description: Allows a player to register some player into RandomBattles
+        default: op
+    randombattle.unregister:
+        description: Allows a player to remove some player from RandomBattles
+        default: op
+    randombattle.battle:
+        description: Allows a player to start or stop RandomBattles
+        default: op
+    randombattle.debug:
+        description: Allows a player to view internal details about the state of this plugin
+        default: op
+    randombattle.removeblocks:
+        description: Allows a player to remove the blocks created by this plugin
+        default: op

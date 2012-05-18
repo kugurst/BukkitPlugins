@@ -6,30 +6,40 @@ package me.merdril.RandomBattle;
 
 import java.util.logging.Logger;
 
+import me.merdril.RandomBattle.listeners.RBAttackCleanerListener;
+import me.merdril.RandomBattle.listeners.RBAttackListener;
 import me.merdril.RandomBattle.listeners.RBScreenListener;
-import me.merdril.RandomBattle.listeners.RandomBattleAttackCleanerListener;
-import me.merdril.RandomBattle.listeners.RandomBattleAttackListener;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
+ * <p>
+ * The entry point of RandomBattle and the initializer of all listeners.
+ * </p>
+ * <p>
+ * The listeners themselves are responsible for initializing whatever classes they need to function
+ * (and in turn, those classes initialize whatever it is they need to initialize).
+ * </p>
  * @author Merdril
- * 
  */
-public class RandomBattle extends JavaPlugin
-{
-	Logger			log				= Logger.getLogger("Minecraft");
-	protected int	numReqEntities	= 5;
-
-	/**
-	 * @param args
-	 */
-	public void onEnable()
-	{
+public class RandomBattle extends JavaPlugin {
+	private Logger	          log	     = Logger.getLogger("Minecraft");
+	public static String	  prefix	 = "";
+	private int	              trigDelNum	= 5;
+	private RBCommandExecutor	cExec;
+	
+	// Initializes all the listeners and registers all the commands. Tells the server when it is
+	// done.
+	@Override
+	public void onEnable() {
+		// Get the PluginManager to minimize line length (and stack calls)
 		PluginManager pm = this.getServer().getPluginManager();
-
-		RandomBattleCommandExecutor cExec = new RandomBattleCommandExecutor(this);
+		// Initialize the prefix for all communications with the outside world
+		prefix = "[" + this.getName() + "] ";
+		
+		// Initialize the command executer
+		cExec = new RBCommandExecutor(this);
 		getCommand("regbattle").setExecutor(cExec);
 		getCommand("stopbattles").setExecutor(cExec);
 		getCommand("unregbattle").setExecutor(cExec);
@@ -37,24 +47,24 @@ public class RandomBattle extends JavaPlugin
 		getCommand("showregplayers").setExecutor(cExec);
 		getCommand("showspoutplayers").setExecutor(cExec);
 		getCommand("removeblocks").setExecutor(cExec);
-
-		RandomBattleAttackListener attackListener = new RandomBattleAttackListener(this);
-		pm.registerEvents(attackListener, this);
-
-		RandomBattleAttackCleanerListener attackCleanerListener = new RandomBattleAttackCleanerListener(this, numReqEntities);
-		pm.registerEvents(attackCleanerListener, this);
-
-		RBScreenListener screenListener = new RBScreenListener(this);
-		pm.registerEvents(screenListener, this);
-
-		log.info("[RandomBattle] Random Battle has started!");
+		
+		// Initialize all the listeners: The AttackListener to initiate attacks, the AttackCleaner
+		// to clear the data structures that keep track of monster-player interactions, and the
+		// ScreenListener for something in the future, I guess. I don't know what old me was
+		// thinking exactly.
+		pm.registerEvents(new RBAttackListener(this), this);
+		pm.registerEvents(new RBAttackCleanerListener(this, trigDelNum), this);
+		pm.registerEvents(new RBScreenListener(this), this);
+		
+		// That's all folks
+		log.info(prefix + "Random Battle has started!");
 	}
-
-	public void onDisable()
-	{
-		RandomBattleCommandExecutor cExec = new RandomBattleCommandExecutor(this);
-		getCommand("removeblocks").setExecutor(cExec);
+	
+	// Removes all the blocks that this program has placed. The monsters will fall to their deaths
+	// (and so will the players if they were left there)
+	@Override
+	public void onDisable() {
 		getCommand("removeblocks").execute(getServer().getConsoleSender(), "removeblocks", new String[0]);
-		log.info("[RandomBattle] Random Battle has shut down!");
+		log.info(prefix + "Random Battle has shut down!");
 	}
 }

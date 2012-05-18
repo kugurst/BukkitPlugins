@@ -29,7 +29,7 @@ public class CommandButtonContainer extends GenericContainer
 	 * @param screen
 	 * 
 	 */
-	public CommandButtonContainer(RandomBattle instance, RandomBattlePopupScreen screen,
+	public CommandButtonContainer(RandomBattle instance, RBPopupScreen screen,
 	        SpoutPlayer player, ArrayList<Monster> monsters)
 	{
 		super();
