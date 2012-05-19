@@ -1,5 +1,5 @@
 
-package me.merdril.RandomBattle;
+package me.merdril.RandomBattle.battle;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import me.merdril.RandomBattle.HUD.RBHUD;
+import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.RandomBattle.hud.RBHUD;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -20,13 +21,13 @@ import org.bukkit.entity.Spider;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
- * 
+ * <p>
+ * Sets up the stage and teleports all actors to the stage.
+ * </p>
+ * @author Merdril
  */
-
-/**
- * @author mark
- */
-public class BattleSetter {
+public class BattleSetter
+{
 	RandomBattle	                          plugin;
 	private int	                              stageHeight;
 	private int	                              stageWidth;
@@ -37,16 +38,54 @@ public class BattleSetter {
 	// private int side = 1;
 	private boolean	                          goodStage	     = true;
 	private ArrayList<Block>	              editedBlocks	 = new ArrayList<Block>();
+	/**
+	 * <p>
+	 * Contains a List<Block> of all blocks that have been modified by this class from their
+	 * original state.
+	 * </p>
+	 * <p>
+	 * It is used after a battle in removing all modified blocks and generally leaving the server as
+	 * it was.
+	 * </p>
+	 */
 	public static List<Block>	              allEditedBlocks;
+	/**
+	 * <p>
+	 * A Map of SpoutPlayer to the Monsters they are currently facing.
+	 * </p>
+	 * <p>
+	 * Will serve a future use when parties are added to this plugin.
+	 * </p>
+	 */
 	public static Map<SpoutPlayer, Monster[]>	allBattleMonsters;
+	/**
+	 * <p>
+	 * An ArrayList of Monster this instance of BattleSetter is currently servicing.
+	 * </p>
+	 */
 	public ArrayList<Monster>	              battleMonsters	= new ArrayList<Monster>();
 	private HashMap<Monster, Location[]>	  field	         = new HashMap<Monster, Location[]>();
 	private CommandSender	                  console;
 	
 	/**
-	 * 
+	 * <p>
+	 * Initializes some tracker maps if they haven't already been, and sets some stage parameters.
+	 * </p>
+	 * @param instance
+	 *            The JavaPlugin that this class is a part of
+	 * @param player
+	 *            The SpoutPlayer that is involved in this RandomBattle
+	 * @param monster
+	 *            The Monster that is involved in this RandomBattle
+	 * @param sH
+	 *            The height of the stage to create
+	 * @param sW
+	 *            The width of the stage to create (larger than length)
+	 * @param sL
+	 *            The length of the stage to create (smaller than width)
 	 */
-	public BattleSetter(RandomBattle instance, SpoutPlayer player, Monster monster, int sH, int sW, int sL) {
+	public BattleSetter(RandomBattle instance, SpoutPlayer player, Monster monster, int sH, int sW, int sL)
+	{
 		// Mark the plugin for future use
 		this.plugin = instance;
 		// Initialize the static variables if need be
@@ -79,41 +118,58 @@ public class BattleSetter {
 		RBHUD overlay = new RBHUD(plugin, player, battleMonsters);
 	}
 	
-	private void setStage(SpoutPlayer player, Monster monster) {
+	/**
+	 * <p>
+	 * Creates a stage for the monsters to stand on, and then teleports the monsters to this stage.
+	 * </p>
+	 * @param player
+	 *            The player involved in the battle
+	 * @param monster
+	 *            The monster to create a grouping from
+	 */
+	private void setStage(SpoutPlayer player, Monster monster)
+	{
 		// Get the location of the two entities
 		Location playerLocation = player.getLocation();
 		// Try to make a stage for the monsters
 		startPoint = playerLocation;
+		// Move the starting point to the y above the player
 		startPoint.setY(stageHeight);
+		// Move the startPoint into block coordinates
 		startPoint = startPoint.getBlock().getLocation();
 		currentPoint = startPoint.getBlock().getLocation();
-		console.sendMessage("[RandomBattle] Starting point: " + currentPoint);
+		// Debugging
+		console.sendMessage(RandomBattle.prefix + "Starting point: " + currentPoint);
+		// Construct the stage, apparently old me was too lazy to make this method return a boolean.
 		findSafeStage();
 		// Check that a stage was set
 		if (!goodStage) {
-			console.sendMessage("[RandomBattle] Failed to set stage for " + player.getDisplayName() + " at location "
-			        + player.getLocation().toString() + ".");
+			console.sendMessage(RandomBattle.prefix + "Failed to set stage for " + player.getDisplayName()
+			        + " at location " + player.getLocation().toString() + ".");
 			return;
 		}
-		player.sendMessage("[RandomBattle] Stage set. Teleporting...");
+		player.sendMessage(RandomBattle.prefix + "Stage set. Teleporting...");
+		// Update the location of the monsters and players.
 		field = determineBoundingBoxes(player, monster);
+		// Moves the specified player
 		teleportPlayer(player);
+		// Moves all monsters in field
 		teleportMonster();
 	}
 	
 	/**
-	 * <code>private HashMap<Monster, Location[]> makeBoundingBoxes(SpoutPlayer player, Monster monster)</code>
-	 * <br/>
-	 * <br/>
+	 * <p>
 	 * Returns a mapping of monsters to the corners of their bounding box. The first location is the
 	 * lower corner, and the second location is the upper corner.
+	 * </p>
 	 * @param player
-	 *            - The player that attacked or was attacked by the monster.
+	 *            The player that attacked or was attacked by the monster.
 	 * @param monster
-	 *            - The monster that attacked or was attacked by the player.
+	 *            The monster that attacked or was attacked by the player.
 	 * @return A mapping of monsters to their bounding boxes
 	 */
-	private HashMap<Monster, Location[]> determineBoundingBoxes(SpoutPlayer player, Monster monster) {
+	private HashMap<Monster, Location[]> determineBoundingBoxes(SpoutPlayer player, Monster monster)
+	{
 		Location mLowerCorner = null;
 		Location mUpperCorner = null;
 		if (monster instanceof Spider) {
@@ -140,7 +196,7 @@ public class BattleSetter {
 			        new Location(monster.getWorld(), (startPoint.getBlockX() + stageWidth / 2 + 2), (stageHeight + 3),
 			                (startPoint.getBlockZ() + 5));
 		}
-		makeBoundingBoxes(mLowerCorner, mUpperCorner);
+		makeBoundingBox(mLowerCorner, mUpperCorner);
 		HashMap<Monster, Location[]> mField = new HashMap<Monster, Location[]>();
 		mField.put(monster, new Location[] {mLowerCorner, mUpperCorner});
 		synchronized (allBattleMonsters) {
@@ -149,10 +205,23 @@ public class BattleSetter {
 		return mField;
 	}
 	
-	// In a bounding box, the coordinates of the inner boxes have nothing in common with the two
-	// corners that define it. In other words, the boxes on the edge of the box share the x, y, or z
-	// coordinate with one of the corners.
-	public void makeBoundingBoxes(Location lowerCorner, Location upperCorner) {
+	/**
+	 * <p>
+	 * Constructs a bounding box made of glass based on the two coordinates given. Does not make
+	 * blocks in the first height layer.
+	 * </p>
+	 * <p>
+	 * In a bounding box, the coordinates of the inner boxes have nothing in common with the two
+	 * corners that define it. In other words, the boxes on the edge of the box share the x, y, or z
+	 * coordinate with one of the corners.
+	 * </p>
+	 * @param lowerCorner
+	 *            The lower left Location to position the bottom left corner of the bounding box
+	 * @param upperCorner
+	 *            The upper right Location to position the upper right corner of the bounding box
+	 */
+	public void makeBoundingBox(Location lowerCorner, Location upperCorner)
+	{
 		int length = Math.abs(lowerCorner.getBlockX() - upperCorner.getBlockX()) + 1;
 		int width = Math.abs(lowerCorner.getBlockZ() - upperCorner.getBlockZ()) + 1;
 		int height = Math.abs(lowerCorner.getBlockY() - upperCorner.getBlockY()) + 1;
@@ -160,7 +229,7 @@ public class BattleSetter {
 		for (int x = 0; x < length; x++) {
 			for (int y = 0; y < width; y++) {
 				for (int z = 0; z < height; z++) {
-					// 6 conditions
+					// The boolean expression of the above documentation
 					if (z != 0
 					        && (currentBlock.getBlockX() == lowerCorner.getBlockX()
 					                || currentBlock.getBlockY() == lowerCorner.getBlockY()
@@ -175,7 +244,7 @@ public class BattleSetter {
 						currentBlock.getBlock().setType(Material.GLASS);
 					}
 					// else
-					// console.sendMessage("[RandomBattle] Inner box location: "
+					// console.sendMessage(RandomBattle.prefix+"Inner box location: "
 					// + currentBlock.getBlock());
 					currentBlock.add(0, 1, 0);
 				}
@@ -187,24 +256,44 @@ public class BattleSetter {
 		}
 	}
 	
-	private void teleportMonster() {
+	/**
+	 * <p>
+	 * Teleports monsters contained in a HashMap local to this object to the stage created by this
+	 * class.
+	 * </p>
+	 * <p>
+	 * Spiders and humanoid mobs have different teleport locations to account for their different
+	 * dimensions.
+	 * </p>
+	 */
+	private void teleportMonster()
+	{
 		Set<Map.Entry<Monster, Location[]>> toTele = field.entrySet();
-		console.sendMessage("[RandomBattle] toTele size: " + toTele.toArray().length);
 		Location teleportLocation = null;
 		for (Map.Entry<Monster, Location[]> monster : toTele) {
-			console.sendMessage("[RandomBattle] Teleporting monster: " + monster.getKey() + " at: "
-			        + monster.getKey().getLocation());
 			teleportLocation = monster.getValue()[0].getBlock().getLocation();
+			// A position adjustment for the size of spiders.
 			if (monster.getKey() instanceof Spider)
 				teleportLocation.add(2, 1, 2);
 			else
 				teleportLocation.add(1.5, 2, 1.5);
 			monster.getKey().teleport(teleportLocation);
-			console.sendMessage("[RandomBattle] to: " + teleportLocation);
 		}
 	}
 	
-	private void teleportPlayer(SpoutPlayer player) {
+	/**
+	 * <p>
+	 * Teleports the specified player to: the middle-width of the stage, 3 block length from the
+	 * edge of the stage, and on top of the stage.
+	 * </p>
+	 * <p>
+	 * It also rotates the player to face the monsters on stage.
+	 * </p>
+	 * @param player
+	 *            The SpoutPlayer to teleport to an already determined location on the stage
+	 */
+	private void teleportPlayer(SpoutPlayer player)
+	{
 		int x = stageWidth / 2 + 1;
 		int z = stageLength - 3;
 		Location teleportLocation =
@@ -213,20 +302,32 @@ public class BattleSetter {
 		player.teleport(teleportLocation);
 	}
 	
-	private void findSafeStage() {
+	/**
+	 * <p>
+	 * Determines if the stage is safe to hold a battle.
+	 * </p>
+	 * <p>
+	 * Slightly misleadingly, this method also builds the stage while its at it, but then unbuilds
+	 * it should some obstruction be found.
+	 * </p>
+	 */
+	private void findSafeStage()
+	{
 		// Initially the same as startPoint, and doesn't change until a block that isn't air is
 		// encountered
-		// Location changePoint = currentPoint.getBlock().getLocation();
-		// 5 for the max height of the boundingBox
-		outer: for (int i = 0; i < 5; i++) {
+		// Iterate over the 3 dimensions
+		outer: for (int i = 0; i < stageHeight; i++) {
 			for (int j = 0; j < stageWidth; j++) {
 				for (int k = 0; k < stageLength; k++) {
+					// If we encounter a point that is not open, remove all the blocks we have
+					// changed and return
 					if (!currentPoint.getBlock().getType().equals(Material.AIR)) {
 						removeBlocks(editedBlocks);
 						goodStage = false;
 						break outer;
 					}
-					// console.sendMessage("[RandomBattle] Current location: " + currentPoint);
+					// console.sendMessage(RandomBattle.prefix+"Current location: " + currentPoint);
+					// If we are on the first level, make the floor grass.
 					if (i == 0) {
 						editedBlocks.add(currentPoint.getBlock());
 						synchronized (allEditedBlocks) {
@@ -234,6 +335,7 @@ public class BattleSetter {
 						}
 						currentPoint.getBlock().setType(Material.GRASS);
 					}
+					// If we are on the second level, place lightstone every so often
 					else if (i == 1) {
 						if (j % 4 == 0 && k % 4 == 0) {
 							editedBlocks.add(currentPoint.getBlock());
@@ -243,17 +345,31 @@ public class BattleSetter {
 							currentPoint.getBlock().setType(Material.GLOWSTONE);
 						}
 					}
+					// Move right
 					currentPoint.add(0, 0, 1);
 				}
+				// Reset the z position and move left
 				currentPoint.setZ(startPoint.getBlockZ());
 				currentPoint.add(1, 0, 0);
 			}
+			// Reset the x position and move up
 			currentPoint.setX(startPoint.getBlockX());
 			currentPoint.add(0, 1, 0);
 		}
 	}
 	
-	private void removeBlocks(ArrayList<Block> blockList) {
+	/**
+	 * <p>
+	 * A simply helper method to remove all the blocks that have been changed. It's generic in that
+	 * it turns all the blocks in some specified ArrayList&ltBlock&gt.
+	 * </p>
+	 * @param blockList
+	 *            The ArrayList&ltBlock&gt to remove blocks from.
+	 */
+	private void removeBlocks(ArrayList<Block> blockList)
+	{
+		if (blockList == null)
+			return;
 		while (blockList.size() > 0) {
 			blockList.get(0).setType(Material.AIR);
 			blockList.remove(0);
@@ -262,7 +378,7 @@ public class BattleSetter {
 }
 // This is the functional part of the "if location is not air" check
 
-// console.sendMessage("[RandomBattle] Location: " + currentPoint
+// console.sendMessage(RandomBattle.prefix+"Location: " + currentPoint
 // + " is not air on side: " + side + ".");
 // removeBlocks(editedBlocks);
 // if (side == 1)

@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import me.merdril.RandomBattle.listeners.RBAttackCleanerListener;
 import me.merdril.RandomBattle.listeners.RBAttackListener;
-import me.merdril.RandomBattle.listeners.RBScreenListener;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -23,7 +22,8 @@ import org.bukkit.plugin.java.JavaPlugin;
  * </p>
  * @author Merdril
  */
-public class RandomBattle extends JavaPlugin {
+public class RandomBattle extends JavaPlugin
+{
 	private Logger	          log	     = Logger.getLogger("Minecraft");
 	public static String	  prefix	 = "";
 	private int	              trigDelNum	= 5;
@@ -32,7 +32,8 @@ public class RandomBattle extends JavaPlugin {
 	// Initializes all the listeners and registers all the commands. Tells the server when it is
 	// done.
 	@Override
-	public void onEnable() {
+	public void onEnable()
+	{
 		// Get the PluginManager to minimize line length (and stack calls)
 		PluginManager pm = this.getServer().getPluginManager();
 		// Initialize the prefix for all communications with the outside world
@@ -48,13 +49,13 @@ public class RandomBattle extends JavaPlugin {
 		getCommand("showspoutplayers").setExecutor(cExec);
 		getCommand("removeblocks").setExecutor(cExec);
 		
-		// Initialize all the listeners: The AttackListener to initiate attacks, the AttackCleaner
+		// Initialize some of the listeners: The AttackListener to initiate attacks, the
+		// AttackCleaner
 		// to clear the data structures that keep track of monster-player interactions, and the
 		// ScreenListener for something in the future, I guess. I don't know what old me was
 		// thinking exactly.
 		pm.registerEvents(new RBAttackListener(this), this);
 		pm.registerEvents(new RBAttackCleanerListener(this, trigDelNum), this);
-		pm.registerEvents(new RBScreenListener(this), this);
 		
 		// That's all folks
 		log.info(prefix + "Random Battle has started!");
@@ -63,8 +64,10 @@ public class RandomBattle extends JavaPlugin {
 	// Removes all the blocks that this program has placed. The monsters will fall to their deaths
 	// (and so will the players if they were left there)
 	@Override
-	public void onDisable() {
-		getCommand("removeblocks").execute(getServer().getConsoleSender(), "removeblocks", new String[0]);
+	public void onDisable()
+	{
+		log.info(prefix + "Removing left over blocks...");
+		cExec.removeEditedBlocks(null, null, null, null);
 		log.info(prefix + "Random Battle has shut down!");
 	}
 }

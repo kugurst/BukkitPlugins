@@ -2,7 +2,7 @@
  * 
  */
 
-package me.merdril.RandomBattle.HUD;
+package me.merdril.RandomBattle.hud;
 
 import java.util.ArrayList;
 
@@ -10,11 +10,11 @@ import me.merdril.RandomBattle.RandomBattle;
 
 import org.bukkit.entity.Monster;
 import org.getspout.spoutapi.gui.GenericContainer;
+import org.getspout.spoutapi.gui.GenericPopup;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
  * @author mark
- * 
  */
 public class CommandButtonContainer extends GenericContainer
 {
@@ -27,10 +27,9 @@ public class CommandButtonContainer extends GenericContainer
 	
 	/**
 	 * @param screen
-	 * 
 	 */
-	public CommandButtonContainer(RandomBattle instance, RBPopupScreen screen,
-	        SpoutPlayer player, ArrayList<Monster> monsters)
+	public CommandButtonContainer(RandomBattle instance, GenericPopup screen, SpoutPlayer player,
+	        ArrayList<Monster> monsters)
 	{
 		super();
 		this.plugin = instance;

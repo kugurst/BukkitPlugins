@@ -7,10 +7,15 @@ package me.merdril.RandomBattle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import me.merdril.RandomBattle.battle.BattleSetter;
+
 import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -72,7 +77,7 @@ public class RBCommandExecutor implements CommandExecutor
 		else if (cmd.getName().equalsIgnoreCase("unregbattle")) {
 			if (sender instanceof Player) {
 				if (sender.hasPermission("randombattle.unregister"))
-					return register(sender, cmd, label, args);
+					return unRegister(sender, cmd, label, args);
 				else {
 					sender.sendMessage("&c" + RandomBattle.prefix
 					        + "You do not have permission to execute this command.");
@@ -85,7 +90,7 @@ public class RBCommandExecutor implements CommandExecutor
 		else if (cmd.getName().equalsIgnoreCase("stopbattles")) {
 			if (sender instanceof Player) {
 				if (sender.hasPermission("randombattle.battle"))
-					return register(sender, cmd, label, args);
+					return stop(sender, cmd, label, args);
 				else {
 					sender.sendMessage("&c" + RandomBattle.prefix
 					        + "You do not have permission to execute this command.");
@@ -98,7 +103,7 @@ public class RBCommandExecutor implements CommandExecutor
 		else if (cmd.getName().equalsIgnoreCase("resumebattles")) {
 			if (sender instanceof Player) {
 				if (sender.hasPermission("randombattle.battle"))
-					return register(sender, cmd, label, args);
+					return start(sender, cmd, label, args);
 				else {
 					sender.sendMessage("&c" + RandomBattle.prefix
 					        + "You do not have permission to execute this command.");
@@ -111,7 +116,7 @@ public class RBCommandExecutor implements CommandExecutor
 		else if (cmd.getName().equalsIgnoreCase("showregplayers")) {
 			if (sender instanceof Player) {
 				if (sender.hasPermission("randombattle.debug"))
-					return register(sender, cmd, label, args);
+					return debugRegPlayers(sender, cmd, label, args);
 				else {
 					sender.sendMessage("&c" + RandomBattle.prefix
 					        + "You do not have permission to execute this command.");
@@ -124,7 +129,7 @@ public class RBCommandExecutor implements CommandExecutor
 		else if (cmd.getName().equalsIgnoreCase("showspoutplayers")) {
 			if (sender instanceof Player) {
 				if (sender.hasPermission("randombattle.debug"))
-					return register(sender, cmd, label, args);
+					return debugSpoutPlayers(sender, cmd, label, args);
 				else {
 					sender.sendMessage("&c" + RandomBattle.prefix
 					        + "You do not have permission to execute this command.");
@@ -137,7 +142,7 @@ public class RBCommandExecutor implements CommandExecutor
 		else if (cmd.getName().equalsIgnoreCase("removeblocks")) {
 			if (sender instanceof Player) {
 				if (sender.hasPermission("randombattle.removeblocks"))
-					return register(sender, cmd, label, args);
+					return removeEditedBlocks(sender, cmd, label, args);
 				else {
 					sender.sendMessage("&c" + RandomBattle.prefix
 					        + "You do not have permission to execute this command.");
@@ -150,17 +155,30 @@ public class RBCommandExecutor implements CommandExecutor
 		return false;
 	}
 	
-	private boolean removeEditedBlocks(CommandSender sender, Command cmd, String label, String[] args)
+	public boolean removeEditedBlocks(CommandSender sender, Command cmd, String label, String[] args)
 	{
+		if (BattleSetter.allEditedBlocks == null || BattleSetter.allEditedBlocks.isEmpty()) {
+			if (sender != null)
+				sender.sendMessage(RandomBattle.prefix + "Nothing to remove.");
+			if (sender == null || !(sender instanceof ConsoleCommandSender))
+				plugin.getLogger().info("Nothing to remove.");
+			return true;
+		}
+		HashSet<World> affectedWorlds = new HashSet<World>();
 		synchronized (BattleSetter.allEditedBlocks) {
 			while (BattleSetter.allEditedBlocks.size() > 0) {
-				BattleSetter.allEditedBlocks.get(0).setType(Material.AIR);
+				Block block = BattleSetter.allEditedBlocks.get(0);
+				affectedWorlds.add(block.getWorld());
+				block.setType(Material.AIR);
 				BattleSetter.allEditedBlocks.remove(0);
 			}
 		}
-		sender.sendMessage(RandomBattle.prefix + "All modified blocks removed.");
-		if (!(sender instanceof ConsoleCommandSender))
-			plugin.getLogger().info(RandomBattle.prefix + "All modified blocks removed.");
+		for (World world : affectedWorlds)
+			world.save();
+		if (sender != null)
+			sender.sendMessage(RandomBattle.prefix + "All modified blocks removed.");
+		if (sender == null || !(sender instanceof ConsoleCommandSender))
+			plugin.getLogger().info("All modified blocks removed.");
 		return true;
 	}
 	
@@ -323,20 +341,30 @@ public class RBCommandExecutor implements CommandExecutor
 	
 	private synchronized boolean stop(CommandSender sender, Command cmd, String label, String[] args)
 	{
-		if (hasBeenStopped.get())
+		if (hasBeenStopped.get()) {
+			sender.sendMessage(RandomBattle.prefix + "RandomBattle has already been halted.");
 			return false;
+		}
 		deactivatedPlayerMap = registeredPlayers;
 		registeredPlayers = new HashMap<String, SpoutPlayer>();
 		hasBeenStopped.set(true);
+		sender.sendMessage(RandomBattle.prefix + "RandomBattle has halted.");
+		if (!(sender instanceof ConsoleCommandSender))
+			plugin.getLogger().info(RandomBattle.prefix + "RandomBattle has halted.");
 		return true;
 	}
 	
 	private synchronized boolean start(CommandSender sender, Command cmd, String label, String[] args)
 	{
-		if (!hasBeenStopped.get())
+		if (!hasBeenStopped.get()) {
+			sender.sendMessage(RandomBattle.prefix + "RandomBattle is already running.");
 			return false;
+		}
 		registeredPlayers = deactivatedPlayerMap;
 		hasBeenStopped.set(false);
+		sender.sendMessage(RandomBattle.prefix + "RandomBattle has resumed.");
+		if (!(sender instanceof ConsoleCommandSender))
+			plugin.getLogger().info(RandomBattle.prefix + "RandomBattle has resumed.");
 		return true;
 	}
 }

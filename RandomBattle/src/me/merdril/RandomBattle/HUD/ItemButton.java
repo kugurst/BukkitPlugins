@@ -2,7 +2,7 @@
  * 
  */
 
-package me.merdril.RandomBattle.HUD;
+package me.merdril.RandomBattle.hud;
 
 import java.util.ArrayList;
 

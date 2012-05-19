@@ -8,9 +8,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-import me.merdril.RandomBattle.BattleSetter;
 import me.merdril.RandomBattle.RBUtilities;
 import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.RandomBattle.battle.BattleSetter;
 
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Monster;

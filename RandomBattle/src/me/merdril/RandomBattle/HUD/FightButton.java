@@ -2,7 +2,7 @@
  * 
  */
 
-package me.merdril.RandomBattle.HUD;
+package me.merdril.RandomBattle.hud;
 
 import java.util.ArrayList;
 
@@ -11,30 +11,28 @@ import me.merdril.RandomBattle.RandomBattle;
 import org.bukkit.entity.Monster;
 import org.getspout.spoutapi.event.screen.ButtonClickEvent;
 import org.getspout.spoutapi.gui.GenericButton;
+import org.getspout.spoutapi.gui.GenericPopup;
 import org.getspout.spoutapi.gui.InGameHUD;
 import org.getspout.spoutapi.gui.WidgetAnchor;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
  * @author Merdril
- * 
  */
 public class FightButton extends GenericButton
 {
-	RandomBattle	                plugin;
-	private RBPopupScreen	screen;
-	private SpoutPlayer	            player;
-	private InGameHUD	            mainScreen;
-	private ArrayList<Monster>	    monsters;
-	private RBMonsterList	        monsterList;
+	RandomBattle	           plugin;
+	private GenericPopup	   screen;
+	private SpoutPlayer	       player;
+	private InGameHUD	       mainScreen;
+	private ArrayList<Monster>	monsters;
+	private RBMonsterList	   monsterList;
 	
 	/**
-	 * @param screen
+	 * @param screen2
 	 * @param monsters
-	 * 
 	 */
-	public FightButton(RandomBattle instance, RBPopupScreen screen, SpoutPlayer player,
-	        ArrayList<Monster> monsters)
+	public FightButton(RandomBattle instance, GenericPopup screen, SpoutPlayer player, ArrayList<Monster> monsters)
 	{
 		super();
 		this.plugin = instance;
