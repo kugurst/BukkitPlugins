@@ -2,15 +2,14 @@
  * 
  */
 
-package me.merdril.RandomBattle.battle;
+package me.merdril.randombattle.battle;
 
-import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.randombattle.RandomBattle;
 
 import org.bukkit.entity.Monster;
 
 /**
  * @author mark
- * 
  */
 public class RBMonster extends RBLivingEntity
 {
@@ -30,12 +29,10 @@ public class RBMonster extends RBLivingEntity
 	
 	private void AI()
 	{
-		try
-		{
+		try {
 			wait();
 		}
-		catch (InterruptedException e)
-		{
+		catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

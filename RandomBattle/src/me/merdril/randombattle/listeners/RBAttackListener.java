@@ -1,5 +1,5 @@
 
-package me.merdril.RandomBattle.listeners;
+package me.merdril.randombattle.listeners;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,9 +8,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-import me.merdril.RandomBattle.RBUtilities;
-import me.merdril.RandomBattle.RandomBattle;
-import me.merdril.RandomBattle.battle.BattleSetter;
+import me.merdril.randombattle.RBUtilities;
+import me.merdril.randombattle.RandomBattle;
+import me.merdril.randombattle.battle.BattleSetter;
 
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Monster;

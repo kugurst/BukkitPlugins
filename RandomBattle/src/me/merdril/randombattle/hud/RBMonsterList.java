@@ -2,12 +2,12 @@
  * 
  */
 
-package me.merdril.RandomBattle.hud;
+package me.merdril.randombattle.hud;
 
 import java.util.ArrayList;
 
-import me.merdril.RandomBattle.RBUtilities;
-import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.randombattle.RBUtilities;
+import me.merdril.randombattle.RandomBattle;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Monster;
@@ -19,7 +19,6 @@ import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
  * @author mark
- * 
  */
 public class RBMonsterList extends GenericListWidget
 {
@@ -37,30 +36,23 @@ public class RBMonsterList extends GenericListWidget
 		this.player = player;
 		PlayerInventory inventory = player.getInventory();
 		boolean inventoryContains = false;
-		outer:
-		for (ItemStack item : inventory.getContents())
-		{
+		outer: for (ItemStack item : inventory.getContents()) {
 			if (item == null)
 				break;
-			for (int type : RBUtilities.weaponIDs)
-			{
-				if (item.getTypeId() == type)
-				{
+			for (int type : RBUtilities.weaponIDs) {
+				if (item.getTypeId() == type) {
 					inventoryContains = true;
-					player.sendMessage("[RandomBattle] Item: " + Material.getMaterial(type)
-					        + " found.");
+					player.sendMessage("[RandomBattle] Item: " + Material.getMaterial(type) + " found.");
 					break outer;
 				}
 			}
 		}
 		this.monsters = monsters;
-		for (Monster monster : monsters)
-		{
+		for (Monster monster : monsters) {
 			String monsterName = monster.toString();
 			if (monsterName.contains("Craft"))
 				monsterName = monsterName.substring(5);
-			this.addItem(new ListWidgetItem(monsterName, "Health: "
-			        + Integer.toString(monster.getHealth())));
+			this.addItem(new ListWidgetItem(monsterName, "Health: " + Integer.toString(monster.getHealth())));
 		}
 	}
 	

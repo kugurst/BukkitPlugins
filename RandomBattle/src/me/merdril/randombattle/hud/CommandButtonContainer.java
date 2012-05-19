@@ -2,11 +2,11 @@
  * 
  */
 
-package me.merdril.RandomBattle.hud;
+package me.merdril.randombattle.hud;
 
 import java.util.ArrayList;
 
-import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.randombattle.RandomBattle;
 
 import org.bukkit.entity.Monster;
 import org.getspout.spoutapi.gui.GenericContainer;

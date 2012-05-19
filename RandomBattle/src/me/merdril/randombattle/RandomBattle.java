@@ -2,12 +2,12 @@
  * 
  */
 
-package me.merdril.RandomBattle;
+package me.merdril.randombattle;
 
 import java.util.logging.Logger;
 
-import me.merdril.RandomBattle.listeners.RBAttackCleanerListener;
-import me.merdril.RandomBattle.listeners.RBAttackListener;
+import me.merdril.randombattle.listeners.RBAttackCleanerListener;
+import me.merdril.randombattle.listeners.RBAttackListener;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -1,5 +1,5 @@
 
-package me.merdril.RandomBattle.battle;
+package me.merdril.randombattle.battle;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import me.merdril.RandomBattle.RandomBattle;
-import me.merdril.RandomBattle.hud.RBHUD;
+import me.merdril.randombattle.RandomBattle;
+import me.merdril.randombattle.hud.RBHUD;
 
 import org.bukkit.Location;
 import org.bukkit.Material;

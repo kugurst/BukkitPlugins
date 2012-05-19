@@ -2,7 +2,7 @@
  * 
  */
 
-package me.merdril.RandomBattle;
+package me.merdril.randombattle;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import me.merdril.RandomBattle.battle.BattleSetter;
+import me.merdril.randombattle.battle.BattleSetter;
 
 import org.bukkit.Material;
 import org.bukkit.World;

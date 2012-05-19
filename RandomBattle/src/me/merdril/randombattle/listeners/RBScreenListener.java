@@ -2,11 +2,11 @@
  * 
  */
 
-package me.merdril.RandomBattle.listeners;
+package me.merdril.randombattle.listeners;
 
 import java.util.ArrayList;
 
-import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.randombattle.RandomBattle;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

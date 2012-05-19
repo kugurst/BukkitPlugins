@@ -2,7 +2,7 @@
  * 
  */
 
-package me.merdril.RandomBattle.battle;
+package me.merdril.randombattle.battle;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,6 @@ import org.bukkit.entity.Monster;
 
 /**
  * @author mark
- * 
  */
 public class MonsterGroups extends ArrayList<Monster>
 {

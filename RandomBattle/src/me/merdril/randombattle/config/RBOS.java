@@ -1,4 +1,5 @@
-package me.merdril.RandomBattle.config;
+
+package me.merdril.randombattle.config;
 
 public class RBOS
 {	

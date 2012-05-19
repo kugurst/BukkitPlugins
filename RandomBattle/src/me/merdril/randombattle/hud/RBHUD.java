@@ -2,13 +2,13 @@
  * 
  */
 
-package me.merdril.RandomBattle.hud;
+package me.merdril.randombattle.hud;
 
 import java.util.ArrayList;
 
-import me.merdril.RandomBattle.RandomBattle;
-import me.merdril.RandomBattle.battle.TurnListWidget;
-import me.merdril.RandomBattle.listeners.RBScreenListener;
+import me.merdril.randombattle.RandomBattle;
+import me.merdril.randombattle.battle.TurnListWidget;
+import me.merdril.randombattle.listeners.RBScreenListener;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -67,7 +67,8 @@ public class RBHUD
 		mainScreen.closePopup();
 		
 		// Making the screen objects
-		screen = new RBPopupScreen(plugin, player);
+		screen = new GenericPopup();
+		screen.setTransparent(true);
 		RBScreenListener screenListener = new RBScreenListener(plugin, screen, invisibleWidgets);
 		plugin.getServer().getPluginManager().registerEvents(screenListener, plugin);
 		buttons = new CommandButtonContainer(plugin, screen, player, battleMonsters);

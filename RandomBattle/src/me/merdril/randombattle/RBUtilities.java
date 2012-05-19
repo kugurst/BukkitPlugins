@@ -2,7 +2,7 @@
  * 
  */
 
-package me.merdril.RandomBattle;
+package me.merdril.randombattle;
 
 import java.util.ArrayList;
 import java.util.Set;

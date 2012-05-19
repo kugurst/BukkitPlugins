@@ -2,11 +2,11 @@
  * 
  */
 
-package me.merdril.RandomBattle.battle;
+package me.merdril.randombattle.battle;
 
 import java.util.ArrayList;
 
-import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.randombattle.RandomBattle;
 
 import org.bukkit.entity.LivingEntity;
 import org.getspout.spoutapi.gui.GenericListWidget;
@@ -14,7 +14,6 @@ import org.getspout.spoutapi.gui.ListWidgetItem;
 
 /**
  * @author mark
- * 
  */
 public class TurnListWidget extends GenericListWidget
 {
@@ -34,8 +33,7 @@ public class TurnListWidget extends GenericListWidget
 	
 	private void addFaces()
 	{
-		for (LivingEntity creature : entities)
-		{
+		for (LivingEntity creature : entities) {
 			this.addItem(new ListWidgetItem(creature.toString(), "Health: " + creature.getHealth()));
 		}
 	}

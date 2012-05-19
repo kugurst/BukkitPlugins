@@ -1,11 +1,11 @@
 /**
  * 
  */
-package me.merdril.RandomBattle.config;
+
+package me.merdril.randombattle.config;
 
 /**
  * @author mark
- *
  */
 public class RBDatabase
 {

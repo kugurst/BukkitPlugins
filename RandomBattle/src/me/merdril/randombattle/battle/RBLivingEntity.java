@@ -2,15 +2,14 @@
  * 
  */
 
-package me.merdril.RandomBattle.battle;
+package me.merdril.randombattle.battle;
 
 import java.util.HashMap;
 
-import me.merdril.RandomBattle.RBUtilities;
+import me.merdril.randombattle.RBUtilities;
 
 /**
  * @author mark
- * 
  */
 public class RBLivingEntity
 {

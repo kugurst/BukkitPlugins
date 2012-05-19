@@ -2,14 +2,14 @@
  * 
  */
 
-package me.merdril.RandomBattle.listeners;
+package me.merdril.randombattle.listeners;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.UUID;
 
-import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.randombattle.RandomBattle;
 
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;

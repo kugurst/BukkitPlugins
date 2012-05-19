@@ -2,18 +2,17 @@
  * 
  */
 
-package me.merdril.RandomBattle.battle;
+package me.merdril.randombattle.battle;
 
 import java.util.ArrayList;
 
-import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.randombattle.RandomBattle;
 
 import org.bukkit.entity.LivingEntity;
 import org.getspout.spoutapi.gui.GenericPopup;
 
 /**
  * @author mark
- * 
  */
 public class FightSys
 {
@@ -25,8 +24,7 @@ public class FightSys
 	/**
 	 * 
 	 */
-	public FightSys(RandomBattle instance, GenericPopup popup,
-	        ArrayList<RBLivingEntity> involvedEntities)
+	public FightSys(RandomBattle instance, GenericPopup popup, ArrayList<RBLivingEntity> involvedEntities)
 	{
 		plugin = instance;
 		this.popup = popup;

@@ -2,15 +2,14 @@
  * 
  */
 
-package me.merdril.RandomBattle.hud;
+package me.merdril.randombattle.hud;
 
-import me.merdril.RandomBattle.RandomBattle;
+import me.merdril.randombattle.RandomBattle;
 
 import org.getspout.spoutapi.gui.GenericLabel;
 
 /**
  * @author mark
- * 
  */
 public class RBTopBar extends GenericLabel
 {
