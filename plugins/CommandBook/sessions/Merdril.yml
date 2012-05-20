@@ -1,8 +1,0 @@
-com/sk89q/commandbook/session/UserSession:
-    messaging: {last-recipient: !!null '', last-recipient-time: 0}
-    idle-status:
-    confirm-command:
-    teleport:
-        bringable: {}
-        requests: {}
-    last-update: 1337451527898
