@@ -31,8 +31,8 @@ import org.getspout.spoutapi.player.SpoutPlayer;
 public class RBAttackListener implements Listener
 {
 	private RandomBattle	        plugin;
-	private int	                    randomChance	= 100;
-	private Random	                generator	 = new Random();
+	private int	                    randomChance;
+	private Random	                generator	= new Random();
 	static Map<UUID, HashSet<UUID>>	alreadyEncountered;
 	
 	/**
@@ -46,6 +46,8 @@ public class RBAttackListener implements Listener
 		plugin = instance;
 		if (alreadyEncountered == null)
 			alreadyEncountered = Collections.synchronizedMap(new HashMap<UUID, HashSet<UUID>>());
+		//Ensures that we have some integer within 0 and 100 (inclusive)
+		randomChance = Math.abs(RandomBattle.randomChance % 101);
 	}
 	
 	/**
@@ -146,7 +148,7 @@ public class RBAttackListener implements Listener
 				@SuppressWarnings ("unused")
 				BattleSetter begin;
 				if (monster != null)
-					begin = new BattleSetter(plugin, player, monster, 123, 24, 16);
+					begin = new BattleSetter(plugin, player, monster);
 				player.sendMessage(RandomBattle.prefix + event.getDamage() + " random number: " + randomNumber);
 			}
 		}

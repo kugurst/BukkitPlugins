@@ -29,7 +29,7 @@ public class FightButton extends GenericButton
 	private RBMonsterList	   monsterList;
 	
 	/**
-	 * @param screen2
+	 * @param screen
 	 * @param monsters
 	 */
 	public FightButton(RandomBattle instance, GenericPopup screen, SpoutPlayer player, ArrayList<Monster> monsters)

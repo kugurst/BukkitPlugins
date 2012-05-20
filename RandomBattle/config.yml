@@ -1,0 +1,10 @@
+# Dimensions for the stage.
+# stageheight is the z-coordinate to place the first level of the stage
+stageheight: 122
+# stagewidth is how wide the stage will be (east and west of the player)
+stagewidth: 24
+# stagelength is how long the stage will be (north and south of the player)
+stagelength: 16
+
+# How probable a RandomBattle encounter is. 0 is never, 100 is always.
+randomchance: 100

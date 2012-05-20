@@ -19,7 +19,6 @@ import org.getspout.spoutapi.gui.GenericWidget;
  */
 public class RBScreenListener implements Listener
 {
-	private RandomBattle	         plugin;
 	private GenericPopup	         screen;
 	private ArrayList<GenericWidget>	invisibleWidgets;
 	
@@ -27,9 +26,8 @@ public class RBScreenListener implements Listener
 	 * @param screen
 	 * @param invisibleWidgets
 	 */
-	public RBScreenListener(RandomBattle instance, GenericPopup screen, ArrayList<GenericWidget> invisibleWidgets)
+	public RBScreenListener(GenericPopup screen, ArrayList<GenericWidget> invisibleWidgets)
 	{
-		this.plugin = instance;
 		this.screen = screen;
 		this.invisibleWidgets = invisibleWidgets;
 	}

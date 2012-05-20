@@ -69,7 +69,7 @@ public class RBHUD
 		// Making the screen objects
 		screen = new GenericPopup();
 		screen.setTransparent(true);
-		RBScreenListener screenListener = new RBScreenListener(plugin, screen, invisibleWidgets);
+		RBScreenListener screenListener = new RBScreenListener(screen, invisibleWidgets);
 		plugin.getServer().getPluginManager().registerEvents(screenListener, plugin);
 		buttons = new CommandButtonContainer(plugin, screen, player, battleMonsters);
 		// Turn List on the right

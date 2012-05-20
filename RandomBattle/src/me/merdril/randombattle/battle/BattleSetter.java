@@ -84,7 +84,7 @@ public class BattleSetter
 	 * @param sL
 	 *            The length of the stage to create (smaller than width)
 	 */
-	public BattleSetter(RandomBattle instance, SpoutPlayer player, Monster monster, int sH, int sW, int sL)
+	public BattleSetter(RandomBattle instance, SpoutPlayer player, Monster monster)
 	{
 		// Mark the plugin for future use
 		this.plugin = instance;
@@ -97,18 +97,18 @@ public class BattleSetter
 		console = plugin.getServer().getConsoleSender();
 		// Make sure the user specified values for the stage dimensions do not break some method in
 		// this class.
-		if (sH > 122)
+		if (RandomBattle.stageHeight > 122)
 			stageHeight = 122;
 		else
-			stageHeight = sH;
-		if (sL < 10)
+			stageHeight = RandomBattle.stageHeight;
+		if (RandomBattle.stageLength < 10)
 			stageLength = 10;
 		else
-			stageLength = sL;
-		if (sW < 15)
+			stageLength = RandomBattle.stageLength;
+		if (RandomBattle.stageWidth < 15)
 			stageWidth = 15;
 		else
-			stageWidth = sW;
+			stageWidth = RandomBattle.stageWidth;
 		// Set the stage with the given monster grouping and player
 		setStage(player, monster);
 		// Add the monsters to the list of monsters in battle
