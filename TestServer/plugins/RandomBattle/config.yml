@@ -1,0 +1,6 @@
+# Dimensions for the stage.
+# stageheight is the z-coordinate to place the first level of the stage
+stageheight: 122
+stagewidth: 24
+stagelength: 16
+randomchance: 100
