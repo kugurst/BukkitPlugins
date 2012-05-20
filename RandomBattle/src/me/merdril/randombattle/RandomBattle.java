@@ -4,6 +4,7 @@
 
 package me.merdril.randombattle;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 import me.merdril.randombattle.config.RBConfig;
@@ -26,22 +27,23 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class RandomBattle extends JavaPlugin
 {
-	private Logger	          log	     = Logger.getLogger("Minecraft");
+	private Logger	                   log	      = Logger.getLogger("Minecraft");
 	/**
 	 * <p>
 	 * The prefix to begin all log messages with.
 	 * </p>
 	 */
-	public static String	  prefix	 = "";
+	public static String	           prefix	  = "";
 	/**
 	 * <p>
 	 * An int representing the z-position of the stage, the width of the stage (east-west), the
 	 * length of the stage (north-south), and how often (in the long run) to have a random battle.
 	 * </p>
 	 */
-	public static int	      stageHeight, stageWidth, stageLength, randomChance;
-	private int	              trigDelNum	= 5;
-	private RBCommandExecutor	cExec;
+	public static int	               stageHeight, stageWidth, stageLength, randomChance;
+	public static Map<String, Integer>	playerBaseStats;
+	private int	                       trigDelNum	= 5;
+	private RBCommandExecutor	       cExec;
 	
 	// Initializes all the listeners and registers all the commands. Tells the server when it is
 	// done.
@@ -55,6 +57,7 @@ public class RandomBattle extends JavaPlugin
 		stageWidth = dim[1];
 		stageLength = dim[2];
 		randomChance = config.getChance();
+		playerBaseStats = config.getStartStats();
 		// Initialize the database wrapper
 		RBDatabase.initialize(this);
 		
@@ -81,11 +84,14 @@ public class RandomBattle extends JavaPlugin
 		pm.registerEvents(new RBAttackCleanerListener(this, trigDelNum), this);
 		
 		// That's all folks
-		log.info(prefix + "Random Battle has started!");
+		log.info(prefix + "Random Battle v" + getDescription().getVersion() + " has started!");
 	}
 	
 	// Removes all the blocks that this program has placed. The monsters will fall to their deaths
 	// (and so will the players if they were left there)
+	// Acutally, this method doesn't do that, because calling the removeEditedBlocks method after
+	// the server has shutdown seems to accomplish nothing. I guess the server shutsdown all world
+	// editing when the server is shutting down.
 	@Override
 	public void onDisable()
 	{

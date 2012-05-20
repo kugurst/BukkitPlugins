@@ -46,7 +46,7 @@ public class RBAttackListener implements Listener
 		plugin = instance;
 		if (alreadyEncountered == null)
 			alreadyEncountered = Collections.synchronizedMap(new HashMap<UUID, HashSet<UUID>>());
-		//Ensures that we have some integer within 0 and 100 (inclusive)
+		// Ensures that we have some integer within 0 and 100 (inclusive)
 		randomChance = Math.abs(RandomBattle.randomChance % 101);
 	}
 	
@@ -145,11 +145,9 @@ public class RBAttackListener implements Listener
 			// If there is a battle, launch the event
 			if (randomChance > randomNumber) {
 				event.setCancelled(true);
-				@SuppressWarnings ("unused")
-				BattleSetter begin;
-				if (monster != null)
-					begin = new BattleSetter(plugin, player, monster);
 				player.sendMessage(RandomBattle.prefix + event.getDamage() + " random number: " + randomNumber);
+				@SuppressWarnings ("unused")
+				BattleSetter begin = new BattleSetter(plugin, player, monster);
 			}
 		}
 	}

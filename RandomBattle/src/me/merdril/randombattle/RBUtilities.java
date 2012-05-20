@@ -16,14 +16,17 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public final class RBUtilities
 {
+	/** The Block IDs that will be considered weapons along with their damage rank */
 	public static int[]	   weaponIDs	= {267, 268, 272, 276, 283, 258, 271, 275, 279, 286};
+	/**
+	 * The various attributes of an entity. Should be obvious to anyone familiar with RPGs
+	 * (c=current)
+	 */
 	public static String[]	statNames	= {"hp", "mp", "chp", "cmp", "str", "mag", "def", "mdef", "agl", "acc", "eva",
 	        "luck"	                  };
 	
-	/**
-	 * 
-	 */
-	private RBUtilities()
+	/* Being a utility class, there's no reason to instantiate. None at all */
+	private RBUtilities() throws AssertionError
 	{
 		throw new AssertionError();
 	}

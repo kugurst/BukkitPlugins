@@ -39,7 +39,8 @@ public final class RBDatabase
 			Class.forName("org.sqlite.JDBC");
 		}
 		catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			plugin.getLogger().info(RandomBattle.prefix + "Unable to load the SQLite driver! Shutting down...");
+			plugin.getPluginLoader().disablePlugin(plugin);
 		}
 		try {
 			Connection conn =
