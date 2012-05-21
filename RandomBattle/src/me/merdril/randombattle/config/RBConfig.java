@@ -51,7 +51,7 @@ public class RBConfig
 		File folder = plugin.getDataFolder();
 		if (!folder.exists()) {
 			if (!folder.mkdirs()) {
-				plugin.getLogger().warning(
+				plugin.getLogger().severe(
 				        RandomBattle.prefix + "Unable to create configuration folder. Shutting down...");
 				plugin.getPluginLoader().disablePlugin(plugin);
 			}
@@ -62,14 +62,14 @@ public class RBConfig
 			configExisted = false;
 			try {
 				if (!file.createNewFile()) {
-					plugin.getLogger().warning(
+					plugin.getLogger().severe(
 					        RandomBattle.prefix + "Unable to create configuration file. Shutting down...");
 					plugin.getPluginLoader().disablePlugin(plugin);
 				}
 			}
 			catch (IOException e) {
-				plugin.getLogger().warning(
-				        RandomBattle.prefix + "Unable to create configuration file. Shutting down...");
+				plugin.getLogger()
+				        .severe(RandomBattle.prefix + "Unable to create configuration file. Shutting down...");
 				plugin.getPluginLoader().disablePlugin(plugin);
 			}
 		}
@@ -87,7 +87,7 @@ public class RBConfig
 				}
 			}
 			catch (FileNotFoundException e) {
-				plugin.getLogger().warning(
+				plugin.getLogger().severe(
 				        RandomBattle.prefix + "Unable to configure configuration file. Shutting down...");
 				plugin.getPluginLoader().disablePlugin(plugin);
 			}

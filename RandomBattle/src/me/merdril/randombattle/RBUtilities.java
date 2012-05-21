@@ -5,6 +5,7 @@
 package me.merdril.randombattle;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.bukkit.command.CommandSender;
@@ -17,13 +18,26 @@ import org.getspout.spoutapi.player.SpoutPlayer;
 public final class RBUtilities
 {
 	/** The Block IDs that will be considered weapons along with their damage rank */
-	public static int[]	   weaponIDs	= {267, 268, 272, 276, 283, 258, 271, 275, 279, 286};
+	public static int[]	          weaponIDs	  = {267, 268, 272, 276, 283, 258, 271, 275, 279, 286};
 	/**
 	 * The various attributes of an entity. Should be obvious to anyone familiar with RPGs
 	 * (c=current)
 	 */
-	public static String[]	statNames	= {"hp", "mp", "chp", "cmp", "str", "mag", "def", "mdef", "agl", "acc", "eva",
-	        "luck"	                  };
+	public static HashSet<String>	statNames	= new HashSet<String>();
+	static {
+		statNames.add("hp");
+		statNames.add("mp");
+		statNames.add("chp");
+		statNames.add("cmp");
+		statNames.add("str");
+		statNames.add("mag");
+		statNames.add("def");
+		statNames.add("mdef");
+		statNames.add("agl");
+		statNames.add("acc");
+		statNames.add("eva");
+		statNames.add("luck");
+	};
 	
 	/* Being a utility class, there's no reason to instantiate. None at all */
 	private RBUtilities() throws AssertionError
