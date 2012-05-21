@@ -8,7 +8,6 @@ import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
@@ -66,7 +65,8 @@ public final class RBDatabase
 		catch (SQLException e) {
 			queryFailed(e, true);
 		}
-		// Execute a series of dependent statements
+		// Execute a series of dependent statements to check that the table monsters exists and is
+		// populated with expectant entries
 		try {
 			// Check to make sure the table monsters exists
 			ResultSet set =
@@ -82,33 +82,90 @@ public final class RBDatabase
 			catch (AbstractMethodError e) {
 				statement.executeUpdate("DROP TABLE IF EXISTS monsters");
 				createTable("monsters", statement);
+				made = true;
 			}
 			// If so, make sure it has the right column headers
 			if (!made) {
-				ResultSetMetaData data = set.getMetaData();
+				set = statement.executeQuery("PRAGMA table_info(monsters)");
 				// We do not store chp or cmp for monsters. If there's a size mismatch, drop the
 				// table and make a new one
-				if (data.getColumnCount() != RBUtilities.statNames.size() - 2) {
-					statement.executeUpdate("DROP TABLE IF EXISTS monsters");
+				int rowCount = 0;
+				HashSet<String> columnNames = new HashSet<String>();
+				while (set.next()) {
+					columnNames.add(set.getString(1));
+					rowCount++;
+				}
+				// If the rowCount is not the same as the number of stats in RBUtilities (except chp
+				// and cmp), drop the table and make a new one
+				if (rowCount != RBUtilities.statNames.size() - 2) {
+					statement.executeUpdate("DROP TABLE monsters");
 					createTable("monsters", statement);
 				}
-				// Otherwise, check the column information
+				// If the column names and the stat names aren't the same (except chp and cmp), drop
+				// the table and make a new one
 				else {
-					int currentColumn = 1;
-					// Make sure the column names match expected stat names
-					HashSet<String> columnNames = new HashSet<String>();
-					while (currentColumn <= data.getColumnCount())
-						columnNames.add(data.getColumnName(currentColumn++));
-					// Remove chp and cmp from the set
 					@SuppressWarnings ("unchecked")
 					HashSet<String> statNames = (HashSet<String>) RBUtilities.statNames.clone();
 					statNames.remove("chp");
 					statNames.remove("cmp");
-					// If the two sets are equal, then the table is good as far as we are concerned.
-					// Otherwise, drop it and make a new one.
 					if (!statNames.equals(columnNames)) {
-						statement.executeUpdate("DROP TABLE IF EXISTS monsters");
+						statement.executeUpdate("DROP TABLE monsters");
 						createTable("monsters", statement);
+					}
+				}
+			}
+		}
+		catch (SQLException e) {
+			queryFailed(e, true);
+		}
+		// Execute a series of similarly dependent statements to check that the table players exists
+		// and is
+		// populated with expectant entries
+		try {
+			// Check to make sure the table players exists
+			ResultSet set =
+			        statement.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name='players'");
+			boolean made = false;
+			// If not, make it
+			try {
+				if (set.isClosed()) {
+					createTable("players", statement);
+					made = true;
+				}
+			}
+			catch (AbstractMethodError e) {
+				statement.executeUpdate("DROP TABLE IF EXISTS players");
+				createTable("players", statement);
+				made = true;
+			}
+			// If so, make sure it has the right column headers
+			if (!made) {
+				set = statement.executeQuery("PRAGMA table_info(players)");
+				// We do not store chp or cmp for monsters. If there's a size mismatch, drop the
+				// table and make a new one
+				int rowCount = 0;
+				HashSet<String> columnNames = new HashSet<String>();
+				while (set.next()) {
+					columnNames.add(set.getString(1));
+					rowCount++;
+				}
+				// If the rowCount is not the same as the number of stats in RBUtilities (with the
+				// addition of level, skills, and magicks), drop the table and make a new one
+				if (rowCount != RBUtilities.statNames.size() + 3) {
+					statement.executeUpdate("DROP TABLE players");
+					createTable("players", statement);
+				}
+				// If the column names and the stat names aren't the same (except chp and cmp), drop
+				// the table and make a new one
+				else {
+					@SuppressWarnings ("unchecked")
+					HashSet<String> statNames = (HashSet<String>) RBUtilities.statNames.clone();
+					statNames.add("level");
+					statNames.add("skills");
+					statNames.add("magicks");
+					if (!statNames.equals(columnNames)) {
+						statement.executeUpdate("DROP TABLE players");
+						createTable("players", statement);
 					}
 				}
 			}
@@ -137,11 +194,24 @@ public final class RBDatabase
 			e = e.getNextException();
 		}
 		if (shutdownOnFail) {
-			plugin.getLogger().severe("Shutting down as a result of the failed query...");
+			plugin.getLogger().severe("Shutting down as a result of a failed query...");
 			plugin.getPluginLoader().disablePlugin(plugin);
 		}
 	}
 	
+	/**
+	 * <p>
+	 * Creates a table in the SQLite database referenced by the given statement of a specified type.
+	 * </p>
+	 * @param type
+	 *            The type of table to make. Currently only supports a "monsters" table and a
+	 *            "players" table.
+	 * @param statement
+	 *            The Statement to execute the update on.
+	 * @return An int returned by the executeUpdate method of the given Statement
+	 * @throws SQLException
+	 *             If they table already existed, or NOT NULL is not permitted by the schema.
+	 */
 	private static int createTable(String type, Statement statement) throws SQLException
 	{
 		int result = 0;
@@ -163,7 +233,26 @@ public final class RBDatabase
 			//@formatter:on
 		}
 		else if (type.equals("players")) {
-			
+			//@formatter:off
+			result = statement.executeUpdate("CREATE TABLE players (" +
+				"name TEXT NOT NULL," +
+				"level INT NOT NULL," +
+				"hp INT NOT NULL," +
+				"mp INT NOT NULL," +
+				"chp INT NOT NULL," +
+				"cmp INT NOT NULL," +
+				"str INT NOT NULL," +
+				"mag INT NOT NULL," +
+				"def INT NOT NULL," +
+				"mdef INT NOT NULL," +
+				"agl INT NOT NULL," +
+				"acc INT NOT NULL," +
+				"eva INT NOT NULL," +
+				"luck INT NOT NULL," +
+				"skills TEXT NOT NULL," +
+				"magicks TEXT NOT NULL" +
+				")");
+			//@formatter:on
 		}
 		return result;
 	}
