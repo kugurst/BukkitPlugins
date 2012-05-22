@@ -9,7 +9,7 @@ stagelength: 16
 # How probable a RandomBattle encounter is. 0 is never, 100 is always.
 randomchance: 100
 
-# The default starting stats for a player. All but HP, MP, ACC, and EVA have a limit of 255. HP and MP have no limit, ACC and EVA have a limit of 100
+# The default starting stats for a player. All but HP, MP, ACC, and EVA have a limit of 255. HP and MP have a limit of 99999 and 9999 respectively, ACC and EVA have a limit of 100
 startstats:
     hp: 20
     mp: 20
