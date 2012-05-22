@@ -56,9 +56,10 @@ public class RandomBattle extends JavaPlugin
 		stageWidth = dim[1];
 		stageLength = dim[2];
 		randomChance = config.getChance();
+		int expectedMobs = config.getExpectedMobs();
 		Map<String, Integer> playerBaseStats = config.getStartStats();
 		// Initialize the database wrapper
-		RBDatabase.initialize(this, playerBaseStats);
+		RBDatabase.initialize(this, playerBaseStats, expectedMobs);
 		
 		// Get the PluginManager to minimize line length (and stack calls)
 		PluginManager pm = this.getServer().getPluginManager();

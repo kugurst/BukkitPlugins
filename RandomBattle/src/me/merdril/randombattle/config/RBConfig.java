@@ -172,4 +172,17 @@ public class RBConfig
 		}
 		return formatted;
 	}
+	
+	/**
+	 * <p>
+	 * Returns the user defined number for expected mobs. It should not be greater than the number
+	 * given in the default configuration (which is the most that this plugin can service).
+	 * </p>
+	 * @return An int representing the maximum number of mobs to expect. The actual mobs to service
+	 *         are determined by the values contained within stats.db.
+	 */
+	public int getExpectedMobs()
+	{
+		return config.getInt("expectedmobs");
+	}
 }

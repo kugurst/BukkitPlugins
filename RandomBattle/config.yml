@@ -21,3 +21,6 @@ startstats:
     acc: 50
     eva: 25
     luck: 5
+
+# The number of mobs that this plugin expects to service. Only change this number should you manually edit stats.db to remove mobs from the list.
+expectedmobs: 10

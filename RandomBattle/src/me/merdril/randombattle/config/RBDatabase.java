@@ -37,8 +37,9 @@ public final class RBDatabase
 	 * </p>
 	 * @param instance
 	 * @param playerBaseStats
+	 * @param expectedMobs
 	 */
-	public static void initialize(RandomBattle instance, Map<String, Integer> playerBaseStats)
+	public static void initialize(RandomBattle instance, Map<String, Integer> playerBaseStats, int expectedMobs)
 	{
 		// Save the plugin instance
 		plugin = instance;
@@ -100,29 +101,36 @@ public final class RBDatabase
 					rowCount++;
 				}
 				// If the rowCount is not the same as the number of stats in RBUtilities (except
-				// chp, cmp, and name - which is in rowCount, and including magicks, exp, and
-				// skills),
-				// drop the table and make a new one
-				if (rowCount != RBUtilities.statNames.size() + 2) {
+				// chp and cmp, including weak), drop the table and make a new one
+				if (rowCount != RBUtilities.statNames.size() - 1) {
 					statement.executeUpdate("DROP TABLE monsters");
 					createTable("monsters", statement);
 				}
-				// If the column names and the stat names aren't the same (except chp and cmp), drop
-				// the table and make a new one
+				// If the column names and the stat names aren't the same (except chp and cmp and
+				// including weak), drop the table and make a new one
 				else {
 					@SuppressWarnings ("unchecked")
 					HashSet<String> statNames = (HashSet<String>) RBUtilities.statNames.clone();
 					statNames.remove("chp");
 					statNames.remove("cmp");
-					statNames.add("name");
-					statNames.add("magicks");
-					statNames.add("skills");
-					statNames.add("exp");
+					statNames.add("weak");
 					if (!statNames.equals(columnNames)) {
 						statement.executeUpdate("DROP TABLE monsters");
 						createTable("monsters", statement);
 					}
 				}
+			}
+			// At this point, we have a working monster table. Let's make sure that we have the
+			// expected number of listed mobs.
+			set = statement.executeQuery("SELECT name FROM monsters");
+			int rowCount = 0;
+			while (set.next()) {
+				plugin.getLogger().info(RandomBattle.prefix + set.getString(1));
+				rowCount++;
+			}
+			if (rowCount != expectedMobs) {
+				statement.executeUpdate("DELETE FROM monsters");
+				generateMonsters(statement);
 			}
 		}
 		catch (SQLException e) {
@@ -156,21 +164,17 @@ public final class RBDatabase
 					rowCount++;
 				}
 				// If the rowCount is not the same as the number of stats in RBUtilities (with the
-				// addition of level, skills, name , and magicks), drop the table and make a new one
+				// addition of level), drop the table and make a new one
 				if (rowCount != RBUtilities.statNames.size() + 5) {
 					statement.executeUpdate("DROP TABLE players");
 					createTable("players", statement);
 				}
 				// If the column names and the stat names aren't the same (with the addition of
-				// level, skills, exp, name, and magicks), drop the table and make a new one
+				// level), drop the table and make a new one
 				else {
 					@SuppressWarnings ("unchecked")
 					HashSet<String> statNames = (HashSet<String>) RBUtilities.statNames.clone();
 					statNames.add("level");
-					statNames.add("skills");
-					statNames.add("magicks");
-					statNames.add("name");
-					statNames.add("exp");
 					if (!statNames.equals(columnNames)) {
 						statement.executeUpdate("DROP TABLE players");
 						createTable("players", statement);
@@ -271,6 +275,7 @@ public final class RBDatabase
 	{
 		int result = 0;
 		if (type.equals("monsters")) {
+			plugin.getLogger().info(RandomBattle.prefix + "Monster table made anew");
 			//@formatter:off
 			result = statement.executeUpdate("CREATE TABLE monsters (" +
 				"name TEXT NOT NULL," +
@@ -286,12 +291,14 @@ public final class RBDatabase
 				"luck INT NOT NULL," +
 				"skills TEXT NOT NULL," +
 				"magicks TEXT NOT NULL," +
-				"exp INT NOT NULL" +
+				"exp INT NOT NULL," +
+				"weak TEXT NOT NULL" +
 				")");
 			//@formatter:on
 			generateMonsters(statement);
 		}
 		else if (type.equals("players")) {
+			plugin.getLogger().info(RandomBattle.prefix + "Player table made anew");
 			//@formatter:off
 			statement.executeUpdate("CREATE TABLE players (" +
 				"name TEXT NOT NULL," +
@@ -343,11 +350,13 @@ public final class RBDatabase
 	 * </p>
 	 * @param statement
 	 *            The Statement to perform the queries on.
+	 * @return An int[] containing the results of the "INSERT INTOs" this method performs on the
+	 *         table monsters in stats.db
 	 */
-	private static void generateMonsters(Statement statement) throws SQLException
+	private static int[] generateMonsters(Statement statement) throws SQLException
 	{
 		//@formatter:off
-		statement.executeUpdate("INSERT INTO monsters VALUES (" +
+		statement.addBatch("INSERT INTO monsters VALUES (" +
 			"'Enderman'," +
 			"40000," +
 			"4000," +
@@ -361,9 +370,27 @@ public final class RBDatabase
 			"100," +
 			"'Head Smasher;'," +
 			"'Teleport;'," +
-			"500" +
+			"1000," +
+			"'ice;'" +
+			")");
+		statement.addBatch("INSERT INTO monsters VALUES (" +
+			"'Zombie Pigman'," +
+			"20000," +
+			"200," +
+			"150," +
+			"20," +
+			"150," +
+			"20," +
+			"50," +
+			"70," +
+			"15," +
+			"20," +
+			"'Call Friends;Sword Slash;'," +
+			"''," +
+			"500," +
+			"'fire;'" +
 			")");
 		//@formatter:on
-		plugin.getLogger().info(RandomBattle.prefix + "Executed");
+		return statement.executeBatch();
 	}
 }

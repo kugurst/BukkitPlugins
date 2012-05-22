@@ -37,6 +37,10 @@ public final class RBUtilities
 		statNames.add("acc");
 		statNames.add("eva");
 		statNames.add("luck");
+		statNames.add("skills");
+		statNames.add("magicks");
+		statNames.add("name");
+		statNames.add("exp");
 	};
 	
 	/* Being a utility class, there's no reason to instantiate. None at all */
