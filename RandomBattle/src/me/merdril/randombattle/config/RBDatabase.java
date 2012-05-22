@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
+import java.util.Map;
 
 import me.merdril.randombattle.RBUtilities;
 import me.merdril.randombattle.RandomBattle;
@@ -27,17 +28,21 @@ import me.merdril.randombattle.RandomBattle;
  */
 public final class RBDatabase
 {
-	private static RandomBattle	plugin;
+	private static RandomBattle	       plugin;
+	public static Map<String, Integer>	playerBaseStats;
 	
 	/**
 	 * <p>
 	 * Loads the player database and verifies its integrity.
 	 * </p>
+	 * @param instance
+	 * @param playerBaseStats
 	 */
-	public static void initialize(RandomBattle instance)
+	public static void initialize(RandomBattle instance, Map<String, Integer> playerBaseStats)
 	{
 		// Save the plugin instance
 		plugin = instance;
+		RBDatabase.playerBaseStats = playerBaseStats;
 		try {
 			Class.forName("org.sqlite.JDBC");
 		}
@@ -74,13 +79,12 @@ public final class RBDatabase
 			boolean made = false;
 			// If not, make it
 			try {
-				if (set.isClosed()) {
-					createTable("monsters", statement);
-					made = true;
-				}
+				// This will throw an exception on a closed set, which the ResultSet above will be
+				// if a table called monsters is not found (set.isClosed() with my version of SQLite
+				// JDBC throws an AbstractMethodError exception regardless of ResultSet state).
+				set.getString(1);
 			}
-			catch (AbstractMethodError e) {
-				statement.executeUpdate("DROP TABLE IF EXISTS monsters");
+			catch (SQLException e) {
 				createTable("monsters", statement);
 				made = true;
 			}
@@ -92,12 +96,12 @@ public final class RBDatabase
 				int rowCount = 0;
 				HashSet<String> columnNames = new HashSet<String>();
 				while (set.next()) {
-					columnNames.add(set.getString(1));
+					columnNames.add(set.getString("name"));
 					rowCount++;
 				}
-				// If the rowCount is not the same as the number of stats in RBUtilities (except chp
-				// and cmp), drop the table and make a new one
-				if (rowCount != RBUtilities.statNames.size() - 2) {
+				// If the rowCount is not the same as the number of stats in RBUtilities (except
+				// chp, cmp, and name - which is in rowCount), drop the table and make a new one
+				if (rowCount != RBUtilities.statNames.size() - 1) {
 					statement.executeUpdate("DROP TABLE monsters");
 					createTable("monsters", statement);
 				}
@@ -108,6 +112,7 @@ public final class RBDatabase
 					HashSet<String> statNames = (HashSet<String>) RBUtilities.statNames.clone();
 					statNames.remove("chp");
 					statNames.remove("cmp");
+					statNames.add("name");
 					if (!statNames.equals(columnNames)) {
 						statement.executeUpdate("DROP TABLE monsters");
 						createTable("monsters", statement);
@@ -128,13 +133,9 @@ public final class RBDatabase
 			boolean made = false;
 			// If not, make it
 			try {
-				if (set.isClosed()) {
-					createTable("players", statement);
-					made = true;
-				}
+				set.getString(1);
 			}
-			catch (AbstractMethodError e) {
-				statement.executeUpdate("DROP TABLE IF EXISTS players");
+			catch (SQLException e) {
 				createTable("players", statement);
 				made = true;
 			}
@@ -146,34 +147,81 @@ public final class RBDatabase
 				int rowCount = 0;
 				HashSet<String> columnNames = new HashSet<String>();
 				while (set.next()) {
-					columnNames.add(set.getString(1));
+					columnNames.add(set.getString("name"));
 					rowCount++;
 				}
 				// If the rowCount is not the same as the number of stats in RBUtilities (with the
-				// addition of level, skills, and magicks), drop the table and make a new one
-				if (rowCount != RBUtilities.statNames.size() + 3) {
+				// addition of level, skills, name , and magicks), drop the table and make a new one
+				if (rowCount != RBUtilities.statNames.size() + 4) {
 					statement.executeUpdate("DROP TABLE players");
 					createTable("players", statement);
 				}
-				// If the column names and the stat names aren't the same (except chp and cmp), drop
-				// the table and make a new one
+				// If the column names and the stat names aren't the same (with the addition of
+				// level, skills, and magicks), drop the table and make a new one
 				else {
 					@SuppressWarnings ("unchecked")
 					HashSet<String> statNames = (HashSet<String>) RBUtilities.statNames.clone();
 					statNames.add("level");
 					statNames.add("skills");
 					statNames.add("magicks");
+					statNames.add("name");
 					if (!statNames.equals(columnNames)) {
 						statement.executeUpdate("DROP TABLE players");
 						createTable("players", statement);
 					}
 				}
 			}
+			// At this point, we know that the players table and monsters table have the correct
+			// headings. Let us verify their contents.
+			set = statement.executeQuery("SELECT name FROM players WHERE name='base'");
+			// Check to see if the result set is closed
+			try {
+				set.getString(1);
+			}
+			catch (SQLException e) {
+				// The set was empty, so we need to make the base player
+				//@formatter:off
+				statement.executeUpdate("INSERT INTO players VALUES (" +
+					"'base'," +
+					"1," +
+					playerBaseStats.get("hp") + "," +
+					playerBaseStats.get("mp") + "," +
+					playerBaseStats.get("hp") + "," +
+					playerBaseStats.get("mp") + "," +
+					playerBaseStats.get("str") + "," +
+					playerBaseStats.get("mag") + "," +
+					playerBaseStats.get("def") + "," +
+					playerBaseStats.get("mdef") + "," +
+					playerBaseStats.get("agl") + "," +
+					playerBaseStats.get("acc") + "," +
+					playerBaseStats.get("eva") + "," +
+					playerBaseStats.get("luck") + "," +
+					"''," +
+					"'Fire;Blizzard;Thunder;'" +
+					")");
+				//@formatter:on
+			}
 		}
 		catch (SQLException e) {
 			queryFailed(e, true);
 		}
 		// ///////////////////////////////////////////////////End verification of the table contents
+		try {
+			statement.close();
+		}
+		catch (SQLException e) {
+			plugin.getLogger().warning(
+			        RandomBattle.prefix + "Failed to close the verification statement! Is everything all right?");
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		}
+		catch (SQLException e) {
+			plugin.getLogger().warning(
+			        RandomBattle.prefix + "Failed to close the database statement! Is everything all right?");
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -231,10 +279,11 @@ public final class RBDatabase
 				"luck INT NOT NULL" +
 				")");
 			//@formatter:on
+			generateMonsters(statement);
 		}
 		else if (type.equals("players")) {
 			//@formatter:off
-			result = statement.executeUpdate("CREATE TABLE players (" +
+			statement.executeUpdate("CREATE TABLE players (" +
 				"name TEXT NOT NULL," +
 				"level INT NOT NULL," +
 				"hp INT NOT NULL," +
@@ -252,8 +301,39 @@ public final class RBDatabase
 				"skills TEXT NOT NULL," +
 				"magicks TEXT NOT NULL" +
 				")");
+			result = statement.executeUpdate("INSERT INTO players VALUES (" +
+				"'base'," +
+				"1," +
+				playerBaseStats.get("hp") + "," +
+				playerBaseStats.get("mp") + "," +
+				playerBaseStats.get("hp") + "," +
+				playerBaseStats.get("mp") + "," +
+				playerBaseStats.get("str") + "," +
+				playerBaseStats.get("mag") + "," +
+				playerBaseStats.get("def") + "," +
+				playerBaseStats.get("mdef") + "," +
+				playerBaseStats.get("agl") + "," +
+				playerBaseStats.get("acc") + "," +
+				playerBaseStats.get("eva") + "," +
+				playerBaseStats.get("luck") + "," +
+				"''," +
+				"'Fire;Blizzard;Thunder;'" +
+				")");
 			//@formatter:on
 		}
 		return result;
+	}
+	
+	/**
+	 * <p>
+	 * Creates monster entries in the database for all recognized monsters. Some level factor should
+	 * be used when translating the stats of these monsters to battle.
+	 * </p>
+	 * @param statement
+	 *            The Statement to perform the queries on.
+	 */
+	private static void generateMonsters(Statement statement)
+	{	
+		
 	}
 }
