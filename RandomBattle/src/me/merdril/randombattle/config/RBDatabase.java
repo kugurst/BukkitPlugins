@@ -128,7 +128,7 @@ public final class RBDatabase
 				plugin.getLogger().info(RandomBattle.prefix + set.getString(1));
 				rowCount++;
 			}
-			if (rowCount != expectedMobs) {
+			if (rowCount < expectedMobs) {
 				statement.executeUpdate("DELETE FROM monsters");
 				generateMonsters(statement);
 			}
@@ -165,7 +165,10 @@ public final class RBDatabase
 				}
 				// If the rowCount is not the same as the number of stats in RBUtilities (with the
 				// addition of level), drop the table and make a new one
-				if (rowCount != RBUtilities.statNames.size() + 5) {
+				plugin.getLogger().info(RandomBattle.prefix + RBUtilities.statNames);
+				plugin.getLogger().info(RandomBattle.prefix + columnNames);
+				if (rowCount != RBUtilities.statNames.size() + 1) {
+					plugin.getLogger().warning(RandomBattle.prefix + "Column ID mismatch. Remaking players table.");
 					statement.executeUpdate("DROP TABLE players");
 					createTable("players", statement);
 				}
@@ -275,7 +278,6 @@ public final class RBDatabase
 	{
 		int result = 0;
 		if (type.equals("monsters")) {
-			plugin.getLogger().info(RandomBattle.prefix + "Monster table made anew");
 			//@formatter:off
 			result = statement.executeUpdate("CREATE TABLE monsters (" +
 				"name TEXT NOT NULL," +
@@ -298,7 +300,6 @@ public final class RBDatabase
 			generateMonsters(statement);
 		}
 		else if (type.equals("players")) {
-			plugin.getLogger().info(RandomBattle.prefix + "Player table made anew");
 			//@formatter:off
 			statement.executeUpdate("CREATE TABLE players (" +
 				"name TEXT NOT NULL," +
@@ -357,39 +358,158 @@ public final class RBDatabase
 	{
 		//@formatter:off
 		statement.addBatch("INSERT INTO monsters VALUES (" +
-			"'Enderman'," +
-			"40000," +
-			"4000," +
-			"200," +
-			"150," +
-			"100," +
-			"50," +
-			"175," +
-			"80," +
-			"80," +
-			"100," +
-			"'Head Smasher;'," +
-			"'Teleport;'," +
-			"1000," +
-			"'ice;'" +
-			")");
+				"'Enderman'," + // name
+				"40000," + // hp
+				"400," + // mp
+				"175," + // str
+				"75," + // mag
+				"50," + // def
+				"100," + // mdef
+				"175," + // agl
+				"80," + // acc
+				"80," + // eva
+				"100," + // luck
+				"'Head Smasher;'," + // skills
+				"'Teleport;'," + // magicks
+				"2000," + // exp
+				"'ice;'" + // weak
+				")");
 		statement.addBatch("INSERT INTO monsters VALUES (" +
-			"'Zombie Pigman'," +
-			"20000," +
-			"200," +
-			"150," +
-			"20," +
-			"150," +
-			"20," +
-			"50," +
-			"70," +
-			"15," +
-			"20," +
-			"'Call Friends;Sword Slash;'," +
-			"''," +
-			"500," +
-			"'fire;'" +
-			")");
+				"'Zombie Pigman'," + // name
+				"20000," + // hp
+				"100," + // mp
+				"150," + // str
+				"20," + // mag
+				"150," + // def
+				"20," + // mdef
+				"50," + // agl
+				"70," + // acc
+				"15," + // eva
+				"20," + // luck
+				"'Call Friends;Sword Slash;'," + // skills
+				"';'," + // magicks
+				"750," + // exp
+				"'holy;'" + // weak
+				")");
+		statement.addBatch("INSERT INTO monsters VALUES (" +
+				"'Blaze'," + // name
+				"20000," + // hp
+				"600," + // mp
+				"100," + // str
+				"175," + // mag
+				"100," + // def
+				"175," + // mdef
+				"80," + // agl
+				"90," + // acc
+				"60," + // eva
+				"50," + // luck
+				"'Pillar;'," + // skills
+				"'Fireball;'," + // magicks
+				"10000," + // exp
+				"'ice;'" + // weak
+				")");
+		statement.addBatch("INSERT INTO monsters VALUES (" +
+				"'Creeper'," + // name (a.k.a tonberry)
+				"50000," + // hp
+				"999," + // mp
+				"0," + // str
+				"255," + // mag
+				"125," + // def
+				"175," + // mdef
+				"25," + // agl
+				"100," + // acc
+				"15," + // eva
+				"150," + // luck
+				"'Explode;'," + // skills
+				"'/kill;'," + // magicks
+				"100000," + // exp
+				"'ice;'" + // weak
+				")");
+		statement.addBatch("INSERT INTO monsters VALUES (" +
+				"'Skeleton'," + // name
+				"20000," + // hp
+				"200," + // mp
+				"125," + // str
+				"100," + // mag
+				"75," + // def
+				"75," + // mdef
+				"150," + // agl
+				"90," + // acc
+				"50," + // eva
+				"50," + // luck
+				"'Aim;Triple Shot;'," + // skills
+				"';'," + // magicks
+				"500," + // exp
+				"'fire;holy;'" + // weak
+				")");
+		statement.addBatch("INSERT INTO monsters VALUES (" +
+				"'Spider'," + // name
+				"16000," + // hp
+				"200," + // mp
+				"125," + // str
+				"100," + // mag
+				"75," + // def
+				"125," + // mdef
+				"150," + // agl
+				"80," + // acc
+				"70," + // eva
+				"125," + // luck
+				"'Sticky Web;'," + // skills
+				"'Bio;'," + // magicks
+				"500," + // exp
+				"'fire;ice;'" + // weak
+				")");
+		statement.addBatch("INSERT INTO monsters VALUES (" +
+				"'Spider Jockey'," + // name
+				"36000," + // hp
+				"400," + // mp
+				"175," + // str
+				"100," + // mag
+				"125," + // def
+				"100," + // mdef
+				"160," + // agl
+				"85," + // acc
+				"60," + // eva
+				"75," + // luck
+				"'Sticky Web;Triple Shot;Poison Arrow;'," + // skills
+				"'Bio;'," + // magicks
+				"1000," + // exp
+				"'fire;ice;holy;'" + // weak
+				")");
+		statement.addBatch("INSERT INTO monsters VALUES (" +
+				"'Zombie'," + // name
+				"20000," + // hp
+				"100," + // mp
+				"125," + // str
+				"10," + // mag
+				"150," + // def
+				"10," + // mdef
+				"40," + // agl
+				"60," + // acc
+				"20," + // eva
+				"20," + // luck
+				"'Groan;Maul;'," + // skills
+				"'Foul Breath;'," + // magicks
+				"500," + // exp
+				"'fire;holy;'" + // weak
+				")");
+		statement.addBatch("INSERT INTO monsters VALUES (" +
+				"'Iron Golem'," + // name
+				"100000," + // hp
+				"100," + // mp
+				"225," + // str
+				"10," + // mag
+				"200," + // def
+				"10," + // mdef
+				"10," + // agl
+				"95," + // acc
+				"10," + // eva
+				"150," + // luck
+				"'Smash;Fortify;'," + // skills
+				"';'," + // magicks
+				"50000," + // exp
+				"'thunder;'" + // weak
+				")");
 		//@formatter:on
 		return statement.executeBatch();
 	}
