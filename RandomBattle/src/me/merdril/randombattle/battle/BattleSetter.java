@@ -7,8 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import me.merdril.randombattle.RandomBattle;
+import me.merdril.randombattle.config.RBOS;
 import me.merdril.randombattle.hud.RBHUD;
 
 import org.bukkit.Location;
@@ -66,6 +69,8 @@ public class BattleSetter
 	public ArrayList<Monster>	              battleMonsters	= new ArrayList<Monster>();
 	private HashMap<Monster, Location[]>	  field	         = new HashMap<Monster, Location[]>();
 	private CommandSender	                  console;
+	public static String	                  blocksFile	 = "allEditedBlocks.obj";
+	private static ExecutorService	          threadExec;
 	
 	/**
 	 * <p>
@@ -91,8 +96,9 @@ public class BattleSetter
 		// Initialize the static variables if need be
 		if (allBattleMonsters == null)
 			allBattleMonsters = Collections.synchronizedMap(new HashMap<SpoutPlayer, Monster[]>());
-		if (allEditedBlocks == null)
+		if (allEditedBlocks == null) {
 			allEditedBlocks = Collections.synchronizedList(new ArrayList<Block>());
+		}
 		// Mark the console command sender for future use
 		console = plugin.getServer().getConsoleSender();
 		// Make sure the user specified values for the stage dimensions do not break some method in
@@ -113,6 +119,9 @@ public class BattleSetter
 		setStage(player, monster);
 		// Add the monsters to the list of monsters in battle
 		battleMonsters.add(monster);
+		// Set up the thread executor to handle saving and loading streams
+		if (threadExec == null)
+			threadExec = Executors.newSingleThreadExecutor();
 		@SuppressWarnings ("unused")
 		// Start the battle
 		RBHUD overlay = new RBHUD(plugin, player, battleMonsters);
@@ -254,6 +263,13 @@ public class BattleSetter
 			currentBlock.setZ(lowerCorner.getBlockZ());
 			currentBlock.add(1, 0, 0);
 		}
+		threadExec.execute(new Runnable() {
+			@Override
+			public void run()
+			{
+				RBOS.saveBlocks(allEditedBlocks, blocksFile);
+			}
+		});
 	}
 	
 	/**

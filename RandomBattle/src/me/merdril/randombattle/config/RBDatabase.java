@@ -103,6 +103,7 @@ public final class RBDatabase
 				// If the rowCount is not the same as the number of stats in RBUtilities (except
 				// chp and cmp, including weak), drop the table and make a new one
 				if (rowCount != RBUtilities.statNames.size() - 1) {
+					plugin.getLogger().warning(RandomBattle.prefix + "Column ID mismatch. Remaking monsters table.");
 					statement.executeUpdate("DROP TABLE monsters");
 					createTable("monsters", statement);
 				}
@@ -124,10 +125,8 @@ public final class RBDatabase
 			// expected number of listed mobs.
 			set = statement.executeQuery("SELECT name FROM monsters");
 			int rowCount = 0;
-			while (set.next()) {
-				plugin.getLogger().info(RandomBattle.prefix + set.getString(1));
+			while (set.next())
 				rowCount++;
-			}
 			if (rowCount < expectedMobs) {
 				statement.executeUpdate("DELETE FROM monsters");
 				generateMonsters(statement);
@@ -165,8 +164,6 @@ public final class RBDatabase
 				}
 				// If the rowCount is not the same as the number of stats in RBUtilities (with the
 				// addition of level), drop the table and make a new one
-				plugin.getLogger().info(RandomBattle.prefix + RBUtilities.statNames);
-				plugin.getLogger().info(RandomBattle.prefix + columnNames);
 				if (rowCount != RBUtilities.statNames.size() + 1) {
 					plugin.getLogger().warning(RandomBattle.prefix + "Column ID mismatch. Remaking players table.");
 					statement.executeUpdate("DROP TABLE players");
@@ -446,7 +443,7 @@ public final class RBDatabase
 				"'Spider'," + // name
 				"16000," + // hp
 				"200," + // mp
-				"125," + // str
+				"100," + // str
 				"100," + // mag
 				"75," + // def
 				"125," + // mdef
@@ -464,7 +461,7 @@ public final class RBDatabase
 				"36000," + // hp
 				"400," + // mp
 				"175," + // str
-				"100," + // mag
+				"125," + // mag
 				"125," + // def
 				"100," + // mdef
 				"160," + // agl
@@ -500,7 +497,7 @@ public final class RBDatabase
 				"225," + // str
 				"10," + // mag
 				"200," + // def
-				"10," + // mdef
+				"50," + // mdef
 				"10," + // agl
 				"95," + // acc
 				"10," + // eva
