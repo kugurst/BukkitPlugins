@@ -51,7 +51,7 @@ public class BattleSetter
 	 * it was.
 	 * </p>
 	 */
-	public static List<Block>	              allEditedBlocks;
+	public static List<Location>	          allEditedBlockLocations;
 	/**
 	 * <p>
 	 * A Map of SpoutPlayer to the Monsters they are currently facing.
@@ -69,7 +69,7 @@ public class BattleSetter
 	public ArrayList<Monster>	              battleMonsters	= new ArrayList<Monster>();
 	private HashMap<Monster, Location[]>	  field	         = new HashMap<Monster, Location[]>();
 	private CommandSender	                  console;
-	public static String	                  blocksFile	 = "allEditedBlocks.obj";
+	public static String	                  blocksFile	 = "allEditedBlocks.txt";
 	private static ExecutorService	          threadExec;
 	
 	/**
@@ -93,11 +93,14 @@ public class BattleSetter
 	{
 		// Mark the plugin for future use
 		this.plugin = instance;
+		// Set up the thread executor to handle saving and loading streams
+		if (threadExec == null)
+			threadExec = Executors.newSingleThreadExecutor();
 		// Initialize the static variables if need be
 		if (allBattleMonsters == null)
 			allBattleMonsters = Collections.synchronizedMap(new HashMap<SpoutPlayer, Monster[]>());
-		if (allEditedBlocks == null) {
-			allEditedBlocks = Collections.synchronizedList(new ArrayList<Block>());
+		if (allEditedBlockLocations == null) {
+			allEditedBlockLocations = Collections.synchronizedList(new ArrayList<Location>());
 		}
 		// Mark the console command sender for future use
 		console = plugin.getServer().getConsoleSender();
@@ -119,9 +122,6 @@ public class BattleSetter
 		setStage(player, monster);
 		// Add the monsters to the list of monsters in battle
 		battleMonsters.add(monster);
-		// Set up the thread executor to handle saving and loading streams
-		if (threadExec == null)
-			threadExec = Executors.newSingleThreadExecutor();
 		@SuppressWarnings ("unused")
 		// Start the battle
 		RBHUD overlay = new RBHUD(plugin, player, battleMonsters);
@@ -247,8 +247,8 @@ public class BattleSetter
 					                || currentBlock.getBlockY() == upperCorner.getBlockY() || currentBlock.getBlockZ() == upperCorner
 					                .getBlockZ())) {
 						editedBlocks.add(currentBlock.getBlock());
-						synchronized (allEditedBlocks) {
-							allEditedBlocks.add(currentBlock.getBlock());
+						synchronized (allEditedBlockLocations) {
+							allEditedBlockLocations.add(currentBlock.getBlock().getLocation());
 						}
 						currentBlock.getBlock().setType(Material.GLASS);
 					}
@@ -267,7 +267,7 @@ public class BattleSetter
 			@Override
 			public void run()
 			{
-				RBOS.saveBlocks(allEditedBlocks, blocksFile);
+				RBOS.saveBlocks(allEditedBlockLocations, blocksFile);
 			}
 		});
 	}
@@ -346,8 +346,8 @@ public class BattleSetter
 					// If we are on the first level, make the floor grass.
 					if (i == 0) {
 						editedBlocks.add(currentPoint.getBlock());
-						synchronized (allEditedBlocks) {
-							allEditedBlocks.add(currentPoint.getBlock());
+						synchronized (allEditedBlockLocations) {
+							allEditedBlockLocations.add(currentPoint.getBlock().getLocation());
 						}
 						currentPoint.getBlock().setType(Material.GRASS);
 					}
@@ -355,8 +355,8 @@ public class BattleSetter
 					else if (i == 1) {
 						if (j % 4 == 0 && k % 4 == 0) {
 							editedBlocks.add(currentPoint.getBlock());
-							synchronized (allEditedBlocks) {
-								allEditedBlocks.add(currentPoint.getBlock());
+							synchronized (allEditedBlockLocations) {
+								allEditedBlockLocations.add(currentPoint.getBlock().getLocation());
 							}
 							currentPoint.getBlock().setType(Material.GLOWSTONE);
 						}
@@ -372,6 +372,13 @@ public class BattleSetter
 			currentPoint.setX(startPoint.getBlockX());
 			currentPoint.add(0, 1, 0);
 		}
+		threadExec.execute(new Runnable() {
+			@Override
+			public void run()
+			{
+				RBOS.saveBlocks(allEditedBlockLocations, blocksFile);
+			}
+		});
 	}
 	
 	/**
@@ -387,73 +394,9 @@ public class BattleSetter
 		if (blockList == null)
 			return;
 		while (blockList.size() > 0) {
-			blockList.get(0).setType(Material.AIR);
+			blockList.get(0).getLocation().getBlock().setType(Material.AIR);
+			allEditedBlockLocations.remove(blockList.get(0).getLocation());
 			blockList.remove(0);
 		}
 	}
 }
-// This is the functional part of the "if location is not air" check
-
-// console.sendMessage(RandomBattle.prefix+"Location: " + currentPoint
-// + " is not air on side: " + side + ".");
-// removeBlocks(editedBlocks);
-// if (side == 1)
-// {
-// if (changePoint.getBlockX() - startPoint.getBlockX() > stageWidth)
-// {
-// changePoint = startPoint.getBlock().getLocation();
-// changePoint.subtract(1, 0, 0);
-// currentPoint = changePoint.getBlock().getLocation();
-// side = 2;
-// }
-// else
-// {
-// changePoint.add(1, 0, 0);
-// currentPoint = changePoint.getBlock().getLocation();
-// }
-// }
-// else if (side == 2)
-// {
-// if (startPoint.getBlockX() - changePoint.getBlockX() > stageWidth)
-// {
-// changePoint = startPoint.getBlock().getLocation();
-// changePoint.add(0, 0, 1);
-// currentPoint = changePoint.getBlock().getLocation();
-// side = 3;
-// }
-// else
-// {
-// changePoint.subtract(1, 0, 0);
-// currentPoint = changePoint.getBlock().getLocation();
-// }
-// }
-// else if (side == 3)
-// {
-// if (changePoint.getBlockZ() - startPoint.getBlockZ() > stageLength)
-// {
-// changePoint = startPoint.getBlock().getLocation();
-// changePoint.subtract(0, 0, 1);
-// currentPoint = changePoint.getBlock().getLocation();
-// side = 4;
-// }
-// else
-// {
-// changePoint.add(0, 0, 1);
-// currentPoint = changePoint.getBlock().getLocation();
-// }
-// }
-// else if (side == 4)
-// {
-// if (startPoint.getBlockZ() - changePoint.getBlockZ() > stageLength)
-// {
-// goodStage = false;
-// break outer;
-// }
-// else
-// {
-// changePoint.subtract(0, 0, 1);
-// currentPoint = changePoint.getBlock().getLocation();
-// }
-// }
-// i = j = k = 0;
-// continue outer;

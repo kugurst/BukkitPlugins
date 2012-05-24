@@ -105,7 +105,7 @@ public final class RBUtilities
 	public static boolean isRegisteredPlayer(String name, int searchType, CommandSender sender)
 	{
 		ArrayList<String> possiblePlayers = new ArrayList<String>();
-		Set<String> allPlayers = RBCommandExecutor.registeredPlayers.keySet();
+		Set<String> allPlayers = RBCommandExecutor.registeredPlayers;
 		if (searchType == 0) {
 			for (String playerName : allPlayers)
 				if (playerName.equals(name))

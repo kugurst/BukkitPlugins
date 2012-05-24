@@ -10188,3 +10188,921 @@ org.bukkit.plugin.IllegalPluginAccessException: Plugin attempted to register me.
 2012-05-22 23:29:55 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
 2012-05-22 23:29:55 [INFO] Saving chunks
 2012-05-22 23:29:55 [INFO] Stopping server
+2012-05-23 19:44:50 [INFO] Starting minecraft server version 1.2.5
+2012-05-23 19:44:50 [INFO] Loading properties
+2012-05-23 19:44:50 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-23 19:44:50 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-23 19:44:50 [INFO] [Spout] Loading Spout v1174
+2012-05-23 19:44:50 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-23 19:44:50 [INFO] [RandomBattle] Loading RandomBattle v0.8.7
+2012-05-23 19:44:50 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-23 19:44:50 [INFO] [Spout] Enabling Spout v1174
+2012-05-23 19:44:50 [INFO] Preparing level "world"
+2012-05-23 19:44:50 [INFO] Default game type: 0
+2012-05-23 19:44:50 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-23 19:44:51 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-23 19:44:51 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-23 19:44:51 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R2.0 (build #2190) was released on Fri May 18 03:21:10 EDT 2012.
+2012-05-23 19:44:51 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01097_1.2.5-R2.0/
+2012-05-23 19:44:51 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01097_1.2.5-R2.0/craftbukkit.jar
+2012-05-23 19:44:51 [WARNING] ----- ------------------- -----
+2012-05-23 19:44:51 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-23 19:44:51 [INFO] Preparing spawn area: 0%
+2012-05-23 19:44:51 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-23 19:44:51 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-23 19:44:51 [INFO] [RandomBattle] Enabling RandomBattle v0.8.7
+2012-05-23 19:44:51 [WARNING] [RandomBattle] Could not find the file of the List<Block> to load from.
+2012-05-23 19:44:51 [INFO] [RandomBattle] Random Battle v0.8.7 has started!
+2012-05-23 19:44:51 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-23 19:44:51 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-23 19:44:52 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-23 19:44:52 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-23 19:44:52 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-23 19:44:52 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-23 19:44:52 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-23 19:44:52 [INFO] Done (1.643s)! For help, type "help" or "?"
+2012-05-23 19:45:21 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-23 19:45:21 [INFO] Stopping server
+2012-05-23 19:45:21 [INFO] [Spout] Disabling Spout v1174
+2012-05-23 19:45:21 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-23 19:45:21 [INFO] [RandomBattle] Disabling RandomBattle v0.8.7
+2012-05-23 19:45:21 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-23 19:45:21 [INFO] [RandomBattle] Nothing to remove.
+2012-05-23 19:45:21 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-23 19:45:21 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-23 19:45:21 [INFO] Saving chunks
+2012-05-23 19:45:22 [INFO] Stopping server
+2012-05-23 19:45:23 [INFO] Starting minecraft server version 1.2.5
+2012-05-23 19:45:23 [INFO] Loading properties
+2012-05-23 19:45:23 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-23 19:45:23 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-23 19:45:23 [INFO] [Spout] Loading Spout v1174
+2012-05-23 19:45:23 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-23 19:45:23 [INFO] [RandomBattle] Loading RandomBattle v0.8.7
+2012-05-23 19:45:23 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-23 19:45:23 [INFO] [Spout] Enabling Spout v1174
+2012-05-23 19:45:24 [INFO] Preparing level "world"
+2012-05-23 19:45:24 [INFO] Default game type: 0
+2012-05-23 19:45:24 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-23 19:45:24 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-23 19:45:24 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-23 19:45:24 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R2.0 (build #2190) was released on Fri May 18 03:21:10 EDT 2012.
+2012-05-23 19:45:24 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01097_1.2.5-R2.0/
+2012-05-23 19:45:24 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01097_1.2.5-R2.0/craftbukkit.jar
+2012-05-23 19:45:24 [WARNING] ----- ------------------- -----
+2012-05-23 19:45:24 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-23 19:45:25 [INFO] Preparing spawn area: 52%
+2012-05-23 19:45:25 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-23 19:45:25 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-23 19:45:25 [INFO] [RandomBattle] Enabling RandomBattle v0.8.7
+2012-05-23 19:45:25 [WARNING] [RandomBattle] Could not find the file of the List<Block> to load from.
+2012-05-23 19:45:25 [INFO] [RandomBattle] Random Battle v0.8.7 has started!
+2012-05-23 19:45:25 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-23 19:45:25 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-23 19:45:25 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-23 19:45:25 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-23 19:45:25 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-23 19:45:25 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-23 19:45:25 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-23 19:45:25 [INFO] Done (1.466s)! For help, type "help" or "?"
+2012-05-23 19:45:26 [INFO] [Spout] Server version: 1174[0m
+2012-05-23 19:45:26 [INFO] [Spout] Client version: no client[0m
+2012-05-23 19:45:26 [INFO] [Spout] Client version: standard client[0m
+2012-05-23 19:45:29 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-23 19:45:29 [INFO] Stopping server
+2012-05-23 19:45:29 [INFO] [Spout] Disabling Spout v1174
+2012-05-23 19:45:29 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-23 19:45:29 [INFO] [RandomBattle] Disabling RandomBattle v0.8.7
+2012-05-23 19:45:29 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-23 19:45:29 [INFO] [RandomBattle] Nothing to remove.
+2012-05-23 19:45:29 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-23 19:45:29 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-23 19:45:29 [INFO] Saving chunks
+2012-05-23 19:45:30 [INFO] Stopping server
+2012-05-23 19:45:47 [INFO] Starting minecraft server version 1.2.5
+2012-05-23 19:45:47 [INFO] Loading properties
+2012-05-23 19:45:47 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-23 19:45:47 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-23 19:45:48 [INFO] [Spout] Loading Spout v1174
+2012-05-23 19:45:48 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-23 19:45:48 [INFO] [RandomBattle] Loading RandomBattle v0.8.7
+2012-05-23 19:45:48 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-23 19:45:48 [INFO] [Spout] Enabling Spout v1174
+2012-05-23 19:45:48 [INFO] Preparing level "world"
+2012-05-23 19:45:48 [INFO] Default game type: 0
+2012-05-23 19:45:48 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-23 19:45:48 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-23 19:45:48 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-23 19:45:48 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R2.0 (build #2190) was released on Fri May 18 03:21:10 EDT 2012.
+2012-05-23 19:45:48 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01097_1.2.5-R2.0/
+2012-05-23 19:45:48 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01097_1.2.5-R2.0/craftbukkit.jar
+2012-05-23 19:45:48 [WARNING] ----- ------------------- -----
+2012-05-23 19:45:49 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-23 19:45:49 [INFO] Preparing spawn area: 52%
+2012-05-23 19:45:49 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-23 19:45:49 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-23 19:45:49 [INFO] [RandomBattle] Enabling RandomBattle v0.8.7
+2012-05-23 19:45:49 [WARNING] [RandomBattle] Could not find the file of the List<Block> to load from.
+2012-05-23 19:45:49 [INFO] [RandomBattle] Random Battle v0.8.7 has started!
+2012-05-23 19:45:49 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-23 19:45:49 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-23 19:45:49 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-23 19:45:49 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-23 19:45:49 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-23 19:45:49 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-23 19:45:49 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-23 19:45:49 [INFO] Done (1.458s)! For help, type "help" or "?"
+2012-05-23 19:46:53 [INFO] Merdril [/127.0.0.1:51025] logged in with entity id 177 at ([world] 222.03544199074878, 123.0, 392.18454062197605)
+2012-05-23 19:47:21 [INFO] Merdril lost connection: disconnect.quitting
+2012-05-23 19:47:21 [INFO] Connection reset
+2012-05-23 19:48:22 [INFO] /127.0.0.1:51236 lost connection
+2012-05-23 19:49:21 [INFO] Merdril [/127.0.0.1:51445] logged in with entity id 556 at ([world] 207.30000001192093, 123.0, 400.04068140987613)
+2012-05-23 19:49:22 [INFO] [Spout] Successfully authenticated Merdril's Spoutcraft client. Running client version: 1480
+2012-05-23 19:49:45 [INFO] Placed stronghold in INVALID biome at (30, -35)
+2012-05-23 19:51:58 [INFO] [RandomBattle] Starting point: Location{world=CraftWorld{name=world},x=157.0,y=122.0,z=398.0,pitch=0.0,yaw=0.0}[0m
+2012-05-23 19:51:59 [SEVERE] Could not pass event EntityDamageByEntityEvent to RandomBattle
+org.bukkit.event.EventException
+	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:303)
+	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62)
+	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:459)
+	at org.bukkit.craftbukkit.event.CraftEventFactory.callEntityDamageEvent(CraftEventFactory.java:363)
+	at org.bukkit.craftbukkit.event.CraftEventFactory.handleEntityDamageEvent(CraftEventFactory.java:381)
+	at net.minecraft.server.EntityLiving.damageEntity(EntityLiving.java:608)
+	at net.minecraft.server.EntityMonster.damageEntity(EntityMonster.java:38)
+	at net.minecraft.server.EntityHuman.attack(EntityHuman.java:750)
+	at net.minecraft.server.NetServerHandler.a(NetServerHandler.java:997)
+	at net.minecraft.server.Packet7UseEntity.handle(SourceFile:33)
+	at net.minecraft.server.NetworkManager.b(NetworkManager.java:229)
+	at net.minecraft.server.NetServerHandler.a(NetServerHandler.java:113)
+	at org.getspout.spout.SpoutNetServerHandler.a(SpoutNetServerHandler.java:172)
+	at net.minecraft.server.NetworkListenThread.a(NetworkListenThread.java:78)
+	at net.minecraft.server.MinecraftServer.w(MinecraftServer.java:551)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:449)
+	at net.minecraft.server.ThreadServerApplication.run(SourceFile:492)
+Caused by: java.lang.NullPointerException
+	at me.merdril.randombattle.battle.BattleSetter.findSafeStage(BattleSetter.java:375)
+	at me.merdril.randombattle.battle.BattleSetter.setStage(BattleSetter.java:153)
+	at me.merdril.randombattle.battle.BattleSetter.<init>(BattleSetter.java:119)
+	at me.merdril.randombattle.listeners.RBAttackListener.onEntityDamage(RBAttackListener.java:150)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:301)
+	... 16 more
+2012-05-23 19:53:20 [INFO] Connection reset
+2012-05-23 19:53:20 [INFO] Merdril lost connection: disconnect.quitting
+2012-05-23 19:53:22 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-23 19:53:22 [INFO] Stopping server
+2012-05-23 19:53:22 [INFO] [Spout] Disabling Spout v1174
+2012-05-23 19:53:22 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-23 19:53:22 [INFO] [RandomBattle] Disabling RandomBattle v0.8.7
+2012-05-23 19:53:22 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-23 19:53:22 [INFO] [RandomBattle] All modified blocks removed.
+2012-05-23 19:53:22 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-23 19:53:22 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-23 19:53:22 [INFO] Saving chunks
+2012-05-23 19:54:03 [INFO] Starting minecraft server version 1.2.5
+2012-05-23 19:54:03 [INFO] Loading properties
+2012-05-23 19:54:03 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-23 19:54:03 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-23 19:54:03 [INFO] [Spout] Loading Spout v1174
+2012-05-23 19:54:03 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-23 19:54:03 [INFO] [RandomBattle] Loading RandomBattle v0.8.7
+2012-05-23 19:54:03 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-23 19:54:03 [INFO] [Spout] Enabling Spout v1174
+2012-05-23 19:54:03 [INFO] Preparing level "world"
+2012-05-23 19:54:03 [INFO] Default game type: 0
+2012-05-23 19:54:03 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-23 19:54:04 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-23 19:54:04 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-23 19:54:04 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R2.0 (build #2190) was released on Fri May 18 03:21:10 EDT 2012.
+2012-05-23 19:54:04 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01097_1.2.5-R2.0/
+2012-05-23 19:54:04 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01097_1.2.5-R2.0/craftbukkit.jar
+2012-05-23 19:54:04 [WARNING] ----- ------------------- -----
+2012-05-23 19:54:04 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-23 19:54:04 [INFO] Preparing spawn area: 52%
+2012-05-23 19:54:05 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-23 19:54:05 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-23 19:54:05 [INFO] [RandomBattle] Enabling RandomBattle v0.8.7
+2012-05-23 19:54:05 [WARNING] [RandomBattle] Could not find the file of the List<Block> to load from.
+2012-05-23 19:54:05 [INFO] [RandomBattle] Random Battle v0.8.7 has started!
+2012-05-23 19:54:05 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-23 19:54:05 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-23 19:54:05 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-23 19:54:05 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-23 19:54:05 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-23 19:54:05 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-23 19:54:05 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-23 19:54:05 [INFO] Done (1.503s)! For help, type "help" or "?"
+2012-05-23 19:54:10 [INFO] Merdril [/127.0.0.1:51655] logged in with entity id 263 at ([world] 157.65063824445818, 64.0, 398.66910612874005)
+2012-05-23 19:54:10 [INFO] [Spout] Successfully authenticated Merdril's Spoutcraft client. Running client version: 1480
+2012-05-23 19:54:16 [INFO] [RandomBattle] Starting point: Location{world=CraftWorld{name=world},x=158.0,y=122.0,z=398.0,pitch=0.0,yaw=0.0}[0m
+2012-05-23 19:54:16 [INFO] [RandomBattle] Failed to set stage for Merdril at location Location{world=CraftWorld{name=world},x=158.8790642523343,y=64.0,z=398.33638864165897,pitch=27.30004,yaw=255.15112}.[0m
+2012-05-23 19:54:16 [WARNING] GenericLabel belonging to RandomBattle does not have a default size!
+2012-05-23 19:54:16 [WARNING] GenericListWidget belonging to RandomBattle does not have a default size!
+2012-05-23 19:54:16 [WARNING] [RandomBattle] [RandomBattle] Unable to save the list of edited blocks!
+2012-05-23 19:54:16 [SEVERE] java.io.NotSerializableException: org.getspout.spout.block.SpoutCraftBlock
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectOutputStream.writeObject(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.util.ArrayList.writeObject(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2012-05-23 19:54:16 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.lang.reflect.Method.invoke(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectStreamClass.invokeWriteObject(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectOutputStream.writeSerialData(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectOutputStream.writeOrdinaryObject(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectOutputStream.defaultWriteFields(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectOutputStream.defaultWriteObject(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.util.Collections$SynchronizedCollection.writeObject(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2012-05-23 19:54:16 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.lang.reflect.Method.invoke(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectStreamClass.invokeWriteObject(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectOutputStream.writeSerialData(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectOutputStream.writeOrdinaryObject(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.io.ObjectOutputStream.writeObject(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at me.merdril.randombattle.config.RBOS.saveBlocks(RBOS.java:85)
+2012-05-23 19:54:16 [SEVERE] 	at me.merdril.randombattle.battle.BattleSetter$2.run(BattleSetter.java:379)
+2012-05-23 19:54:16 [SEVERE] 	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2012-05-23 19:54:16 [SEVERE] 	at java.lang.Thread.run(Unknown Source)
+2012-05-23 19:54:49 [INFO] Merdril lost connection: disconnect.quitting
+2012-05-23 19:54:49 [INFO] Connection reset
+2012-05-23 19:54:51 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-23 19:54:51 [INFO] Stopping server
+2012-05-23 19:54:51 [INFO] [Spout] Disabling Spout v1174
+2012-05-23 19:54:51 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-23 19:54:51 [INFO] [RandomBattle] Disabling RandomBattle v0.8.7
+2012-05-23 19:54:51 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-23 19:54:51 [INFO] [RandomBattle] All modified blocks removed.
+2012-05-23 19:54:51 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-23 19:54:51 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-23 19:54:51 [INFO] Saving chunks
+2012-05-23 19:59:52 [INFO] Starting minecraft server version 1.2.5
+2012-05-23 19:59:52 [INFO] Loading properties
+2012-05-23 19:59:52 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-23 19:59:52 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-23 19:59:53 [INFO] [Spout] Loading Spout v1174
+2012-05-23 19:59:53 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-23 19:59:53 [INFO] [RandomBattle] Loading RandomBattle v0.8.7
+2012-05-23 19:59:53 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-23 19:59:53 [INFO] [Spout] Enabling Spout v1174
+2012-05-23 19:59:53 [INFO] Preparing level "world"
+2012-05-23 19:59:53 [INFO] Default game type: 0
+2012-05-23 19:59:53 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-23 19:59:53 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-23 19:59:53 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-23 19:59:53 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R2.0 (build #2190) was released on Fri May 18 03:21:10 EDT 2012.
+2012-05-23 19:59:53 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01097_1.2.5-R2.0/
+2012-05-23 19:59:53 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01097_1.2.5-R2.0/craftbukkit.jar
+2012-05-23 19:59:53 [WARNING] ----- ------------------- -----
+2012-05-23 19:59:54 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-23 19:59:54 [INFO] Preparing spawn area: 52%
+2012-05-23 19:59:54 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-23 19:59:54 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-23 19:59:54 [INFO] [RandomBattle] Enabling RandomBattle v0.8.7
+2012-05-23 19:59:54 [WARNING] [RandomBattle] An error occured while trying to read the file.
+2012-05-23 19:59:54 [SEVERE] java.io.WriteAbortedException: writing aborted; java.io.NotSerializableException: org.getspout.spout.block.SpoutCraftBlock
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectInputStream.readObject0(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectInputStream.readObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.util.ArrayList.readObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2012-05-23 19:59:54 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.lang.reflect.Method.invoke(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectStreamClass.invokeReadObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectInputStream.readSerialData(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectInputStream.readOrdinaryObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectInputStream.readObject0(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectInputStream.defaultReadFields(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectInputStream.readSerialData(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectInputStream.readOrdinaryObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectInputStream.readObject0(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectInputStream.readObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at me.merdril.randombattle.config.RBOS.loadBlocks(RBOS.java:159)
+2012-05-23 19:59:54 [SEVERE] 	at me.merdril.randombattle.config.RBOS.initialize(RBOS.java:53)
+2012-05-23 19:59:54 [SEVERE] 	at me.merdril.randombattle.RandomBattle.onEnable(RandomBattle.java:64)
+2012-05-23 19:59:54 [SEVERE] 	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:215)
+2012-05-23 19:59:54 [SEVERE] 	at org.bukkit.plugin.java.JavaPluginLoader.enablePlugin(JavaPluginLoader.java:336)
+2012-05-23 19:59:54 [SEVERE] 	at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:381)
+2012-05-23 19:59:54 [SEVERE] 	at org.bukkit.craftbukkit.CraftServer.loadPlugin(CraftServer.java:256)
+2012-05-23 19:59:54 [SEVERE] 	at org.bukkit.craftbukkit.CraftServer.enablePlugins(CraftServer.java:238)
+2012-05-23 19:59:54 [SEVERE] 	at net.minecraft.server.MinecraftServer.t(MinecraftServer.java:371)
+2012-05-23 19:59:54 [SEVERE] 	at net.minecraft.server.MinecraftServer.a(MinecraftServer.java:358)
+2012-05-23 19:59:54 [SEVERE] 	at net.minecraft.server.MinecraftServer.init(MinecraftServer.java:187)
+2012-05-23 19:59:54 [SEVERE] 	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:422)
+2012-05-23 19:59:54 [SEVERE] 	at net.minecraft.server.ThreadServerApplication.run(SourceFile:492)
+2012-05-23 19:59:54 [SEVERE] Caused by: java.io.NotSerializableException: org.getspout.spout.block.SpoutCraftBlock
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectOutputStream.writeObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.util.ArrayList.writeObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2012-05-23 19:59:54 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.lang.reflect.Method.invoke(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectStreamClass.invokeWriteObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectOutputStream.writeSerialData(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectOutputStream.writeOrdinaryObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectOutputStream.defaultWriteFields(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectOutputStream.defaultWriteObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.util.Collections$SynchronizedCollection.writeObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2012-05-23 19:59:54 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.lang.reflect.Method.invoke(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectStreamClass.invokeWriteObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectOutputStream.writeSerialData(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectOutputStream.writeOrdinaryObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.io.ObjectOutputStream.writeObject(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at me.merdril.randombattle.config.RBOS.saveBlocks(RBOS.java:85)
+2012-05-23 19:59:54 [SEVERE] 	at me.merdril.randombattle.battle.BattleSetter$2.run(BattleSetter.java:379)
+2012-05-23 19:59:54 [SEVERE] 	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2012-05-23 19:59:54 [SEVERE] 	at java.lang.Thread.run(Unknown Source)
+2012-05-23 19:59:54 [INFO] [RandomBattle] Random Battle v0.8.7 has started!
+2012-05-23 19:59:54 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-23 19:59:54 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-23 19:59:54 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-23 19:59:54 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-23 19:59:54 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-23 19:59:54 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-23 19:59:54 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-23 19:59:54 [INFO] Done (1.598s)! For help, type "help" or "?"
+2012-05-23 20:01:13 [INFO] Merdril [/127.0.0.1:51964] logged in with entity id 261 at ([world] 158.90076048979444, 64.0, 398.33058032396224)
+2012-05-23 20:01:14 [INFO] [Spout] Successfully authenticated Merdril's Spoutcraft client. Running client version: 1480
+2012-05-23 20:02:20 [INFO] [RandomBattle] Starting point: Location{world=CraftWorld{name=world},x=212.0,y=122.0,z=499.0,pitch=0.0,yaw=0.0}[0m
+2012-05-23 20:02:20 [WARNING] [RandomBattle] [RandomBattle] Unable to save the list of edited blocks!
+2012-05-23 20:02:20 [SEVERE] java.io.NotSerializableException: org.bukkit.Location
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.util.ArrayList.writeObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.lang.reflect.Method.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectStreamClass.invokeWriteObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeSerialData(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeOrdinaryObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.defaultWriteFields(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.defaultWriteObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.util.Collections$SynchronizedCollection.writeObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.lang.reflect.Method.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectStreamClass.invokeWriteObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeSerialData(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeOrdinaryObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at me.merdril.randombattle.config.RBOS.saveBlocks(RBOS.java:85)
+2012-05-23 20:02:20 [SEVERE] 	at me.merdril.randombattle.battle.BattleSetter$2.run(BattleSetter.java:379)
+2012-05-23 20:02:20 [SEVERE] 	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.lang.Thread.run(Unknown Source)
+2012-05-23 20:02:20 [WARNING] [RandomBattle] [RandomBattle] Unable to save the list of edited blocks!
+2012-05-23 20:02:20 [SEVERE] java.io.NotSerializableException: org.bukkit.Location
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.util.ArrayList.writeObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.lang.reflect.Method.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectStreamClass.invokeWriteObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeSerialData(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeOrdinaryObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.defaultWriteFields(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.defaultWriteObject(Unknown Source)
+2012-05-23 20:02:20 [WARNING] GenericListWidget belonging to RandomBattle does not have a default size!
+2012-05-23 20:02:20 [SEVERE] 	at java.util.Collections$SynchronizedCollection.writeObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+2012-05-23 20:02:20 [WARNING] GenericLabel belonging to RandomBattle does not have a default size!
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.lang.reflect.Method.invoke(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectStreamClass.invokeWriteObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeSerialData(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeOrdinaryObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeObject0(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.io.ObjectOutputStream.writeObject(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at me.merdril.randombattle.config.RBOS.saveBlocks(RBOS.java:85)
+2012-05-23 20:02:20 [SEVERE] 	at me.merdril.randombattle.battle.BattleSetter$1.run(BattleSetter.java:270)
+2012-05-23 20:02:20 [SEVERE] 	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2012-05-23 20:02:20 [SEVERE] 	at java.lang.Thread.run(Unknown Source)
+2012-05-23 20:02:33 [INFO] Merdril lost connection: disconnect.quitting
+2012-05-23 20:02:33 [INFO] Connection reset
+2012-05-23 20:02:36 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-23 20:02:36 [INFO] Stopping server
+2012-05-23 20:02:36 [INFO] [Spout] Disabling Spout v1174
+2012-05-23 20:02:36 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-23 20:02:36 [INFO] [RandomBattle] Disabling RandomBattle v0.8.7
+2012-05-23 20:02:36 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-23 20:02:36 [INFO] [RandomBattle] All modified blocks removed.
+2012-05-23 20:02:36 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-23 20:02:36 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-23 20:02:36 [INFO] Saving chunks
+2012-05-23 20:36:58 [INFO] Starting minecraft server version 1.2.5
+2012-05-23 20:36:58 [INFO] Loading properties
+2012-05-23 20:36:58 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-23 20:36:58 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-23 20:36:58 [INFO] [Spout] Loading Spout v1174
+2012-05-23 20:36:58 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-23 20:36:58 [INFO] [RandomBattle] Loading RandomBattle v0.8.7
+2012-05-23 20:36:58 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-23 20:36:58 [INFO] [Spout] Enabling Spout v1174
+2012-05-23 20:36:58 [INFO] Preparing level "world"
+2012-05-23 20:36:58 [INFO] Default game type: 0
+2012-05-23 20:36:58 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-23 20:36:59 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-23 20:36:59 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-23 20:36:59 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R2.0 (build #2190) was released on Fri May 18 03:21:10 EDT 2012.
+2012-05-23 20:36:59 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01097_1.2.5-R2.0/
+2012-05-23 20:36:59 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01097_1.2.5-R2.0/craftbukkit.jar
+2012-05-23 20:36:59 [WARNING] ----- ------------------- -----
+2012-05-23 20:36:59 [INFO] Preparing spawn area: 97%
+2012-05-23 20:36:59 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-23 20:37:00 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-23 20:37:00 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-23 20:37:00 [INFO] [RandomBattle] Enabling RandomBattle v0.8.7
+2012-05-23 20:37:00 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-23 20:37:00 [INFO] [RandomBattle] Random Battle v0.8.7 has started!
+2012-05-23 20:37:00 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-23 20:37:00 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-23 20:37:00 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-23 20:37:00 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-23 20:37:00 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-23 20:37:00 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-23 20:37:00 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-23 20:37:00 [INFO] Done (1.874s)! For help, type "help" or "?"
+2012-05-23 20:37:06 [INFO] Merdril [/127.0.0.1:53395] logged in with entity id 161 at ([world] 225.5, 123.0, 512.5)
+2012-05-23 20:37:07 [INFO] [Spout] Successfully authenticated Merdril's Spoutcraft client. Running client version: 1480
+2012-05-23 20:37:40 [INFO] [RandomBattle] Starting point: Location{world=CraftWorld{name=world},x=162.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}[0m
+2012-05-23 20:37:41 [SEVERE] Exception in thread "pool-1-thread-1" 
+2012-05-23 20:37:41 [WARNING] [RandomBattle] [RandomBattle] Unable to delete the existing block file!
+2012-05-23 20:37:41 [SEVERE] java.util.ConcurrentModificationException
+2012-05-23 20:37:41 [SEVERE] 	at java.util.ArrayList$Itr.checkForComodification(Unknown Source)
+2012-05-23 20:37:41 [SEVERE] 	at java.util.ArrayList$Itr.next(Unknown Source)
+2012-05-23 20:37:41 [SEVERE] 	at me.merdril.randombattle.config.RBOS.saveBlocks(RBOS.java:102)
+2012-05-23 20:37:41 [SEVERE] 	at me.merdril.randombattle.battle.BattleSetter$2.run(BattleSetter.java:379)
+2012-05-23 20:37:41 [SEVERE] 	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+2012-05-23 20:37:41 [SEVERE] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+2012-05-23 20:37:41 [SEVERE] 	at java.lang.Thread.run(Unknown Source)
+2012-05-23 20:37:41 [WARNING] GenericListWidget belonging to RandomBattle does not have a default size!
+2012-05-23 20:37:41 [WARNING] GenericLabel belonging to RandomBattle does not have a default size!
+2012-05-23 20:38:32 [INFO] [RandomBattle] All modified blocks removed.
+2012-05-23 20:38:47 [INFO] Connection reset
+2012-05-23 20:38:47 [INFO] Merdril lost connection: disconnect.quitting
+2012-05-23 20:38:49 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-23 20:38:49 [INFO] Stopping server
+2012-05-23 20:38:49 [INFO] [Spout] Disabling Spout v1174
+2012-05-23 20:38:49 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-23 20:38:49 [INFO] [RandomBattle] Disabling RandomBattle v0.8.7
+2012-05-23 20:38:49 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-23 20:38:49 [INFO] [RandomBattle] Nothing to remove.
+2012-05-23 20:38:49 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-23 20:38:49 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-23 20:38:49 [INFO] Saving chunks
+2012-05-23 20:45:29 [INFO] Starting minecraft server version 1.2.5
+2012-05-23 20:45:29 [INFO] Loading properties
+2012-05-23 20:45:29 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-23 20:45:29 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-23 20:45:29 [INFO] [Spout] Loading Spout v1174
+2012-05-23 20:45:29 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-23 20:45:29 [INFO] [RandomBattle] Loading RandomBattle v0.8.7
+2012-05-23 20:45:29 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-23 20:45:29 [INFO] [Spout] Enabling Spout v1174
+2012-05-23 20:45:29 [INFO] Preparing level "world"
+2012-05-23 20:45:29 [INFO] Default game type: 0
+2012-05-23 20:45:29 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-23 20:45:29 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-23 20:45:30 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-23 20:45:30 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R2.0 (build #2190) was released on Fri May 18 03:21:10 EDT 2012.
+2012-05-23 20:45:30 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01097_1.2.5-R2.0/
+2012-05-23 20:45:30 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01097_1.2.5-R2.0/craftbukkit.jar
+2012-05-23 20:45:30 [WARNING] ----- ------------------- -----
+2012-05-23 20:45:30 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-23 20:45:30 [INFO] Preparing spawn area: 32%
+2012-05-23 20:45:30 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-23 20:45:30 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-23 20:45:30 [INFO] [RandomBattle] Enabling RandomBattle v0.8.7
+2012-05-23 20:45:30 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-23 20:45:30 [INFO] [RandomBattle] Random Battle v0.8.7 has started!
+2012-05-23 20:45:30 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-23 20:45:30 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-23 20:45:30 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-23 20:45:30 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-23 20:45:30 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-23 20:45:30 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-23 20:45:31 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-23 20:45:31 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-23 20:45:31 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-23 20:45:31 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-23 20:45:31 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-23 20:45:31 [INFO] Done (1.585s)! For help, type "help" or "?"
+2012-05-23 20:45:40 [INFO] Merdril [/127.0.0.1:53697] logged in with entity id 141 at ([world] 160.1439727102107, 75.0, 513.4832311384173)
+2012-05-23 20:45:41 [INFO] [Spout] Successfully authenticated Merdril's Spoutcraft client. Running client version: 1480
+2012-05-23 20:46:01 [INFO] [RandomBattle] Starting point: Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}[0m
+2012-05-23 20:46:02 [WARNING] GenericLabel belonging to RandomBattle does not have a default size!
+2012-05-23 20:46:02 [WARNING] GenericListWidget belonging to RandomBattle does not have a default size!
+2012-05-23 20:46:52 [INFO] Merdril lost connection: disconnect.quitting
+2012-05-23 20:46:52 [INFO] Connection reset
+2012-05-23 20:46:54 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-23 20:46:54 [INFO] Stopping server
+2012-05-23 20:46:54 [INFO] [Spout] Disabling Spout v1174
+2012-05-23 20:46:54 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-23 20:46:54 [INFO] [RandomBattle] Disabling RandomBattle v0.8.7
+2012-05-23 20:46:54 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-23 20:46:54 [INFO] [RandomBattle] All modified blocks removed.
+2012-05-23 20:46:54 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-23 20:46:54 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-23 20:46:54 [INFO] Saving chunks
+2012-05-23 20:46:55 [INFO] Stopping server
+2012-05-23 20:46:58 [INFO] Starting minecraft server version 1.2.5
+2012-05-23 20:46:58 [INFO] Loading properties
+2012-05-23 20:46:58 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-23 20:46:58 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-23 20:46:58 [INFO] [Spout] Loading Spout v1174
+2012-05-23 20:46:58 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-23 20:46:58 [INFO] [RandomBattle] Loading RandomBattle v0.8.7
+2012-05-23 20:46:58 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-23 20:46:58 [INFO] [Spout] Enabling Spout v1174
+2012-05-23 20:46:58 [INFO] Preparing level "world"
+2012-05-23 20:46:58 [INFO] Default game type: 0
+2012-05-23 20:46:58 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-23 20:46:58 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-23 20:46:59 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-23 20:46:59 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R2.0 (build #2190) was released on Fri May 18 03:21:10 EDT 2012.
+2012-05-23 20:46:59 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01097_1.2.5-R2.0/
+2012-05-23 20:46:59 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01097_1.2.5-R2.0/craftbukkit.jar
+2012-05-23 20:46:59 [WARNING] ----- ------------------- -----
+2012-05-23 20:46:59 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-23 20:46:59 [INFO] Preparing spawn area: 52%
+2012-05-23 20:46:59 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-23 20:46:59 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-23 20:46:59 [INFO] [RandomBattle] Enabling RandomBattle v0.8.7
+2012-05-23 20:46:59 [INFO] [RandomBattle] Random Battle v0.8.7 has started!
+2012-05-23 20:46:59 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-23 20:46:59 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-23 20:46:59 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-23 20:46:59 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-23 20:46:59 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-23 20:46:59 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-23 20:46:59 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-23 20:47:00 [INFO] Done (1.553s)! For help, type "help" or "?"
+2012-05-23 20:47:05 [INFO] Merdril [/127.0.0.1:53779] logged in with entity id 137 at ([world] 181.5, 123.0, 494.5)
+2012-05-23 20:47:06 [INFO] [Spout] Successfully authenticated Merdril's Spoutcraft client. Running client version: 1480
+2012-05-23 20:47:14 [INFO] [RandomBattle] All modified blocks removed.
+2012-05-23 20:47:32 [INFO] Merdril lost connection: disconnect.quitting
+2012-05-23 20:47:32 [INFO] Connection reset
+2012-05-23 20:47:35 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-23 20:47:35 [INFO] Stopping server
+2012-05-23 20:47:35 [INFO] [Spout] Disabling Spout v1174
+2012-05-23 20:47:35 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-23 20:47:35 [INFO] [RandomBattle] Disabling RandomBattle v0.8.7
+2012-05-23 20:47:35 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-23 20:47:35 [INFO] [RandomBattle] Nothing to remove.
+2012-05-23 20:47:35 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-23 20:47:35 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-23 20:47:35 [INFO] Saving chunks
+2012-05-23 20:50:23 [INFO] Starting minecraft server version 1.2.5
+2012-05-23 20:50:23 [INFO] Loading properties
+2012-05-23 20:50:23 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-23 20:50:23 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-23 20:50:24 [INFO] [Spout] Loading Spout v1174
+2012-05-23 20:50:24 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-23 20:50:24 [INFO] [RandomBattle] Loading RandomBattle v0.8.7
+2012-05-23 20:50:24 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-23 20:50:24 [INFO] [Spout] Enabling Spout v1174
+2012-05-23 20:50:24 [INFO] Preparing level "world"
+2012-05-23 20:50:24 [INFO] Default game type: 0
+2012-05-23 20:50:24 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-23 20:50:24 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-23 20:50:24 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-23 20:50:24 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R2.0 (build #2190) was released on Fri May 18 03:21:10 EDT 2012.
+2012-05-23 20:50:24 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01097_1.2.5-R2.0/
+2012-05-23 20:50:24 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01097_1.2.5-R2.0/craftbukkit.jar
+2012-05-23 20:50:24 [WARNING] ----- ------------------- -----
+2012-05-23 20:50:25 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-23 20:50:25 [INFO] Preparing spawn area: 52%
+2012-05-23 20:50:25 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-23 20:50:25 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-23 20:50:25 [INFO] [RandomBattle] Enabling RandomBattle v0.8.7
+2012-05-23 20:50:25 [INFO] [RandomBattle] Random Battle v0.8.7 has started!
+2012-05-23 20:50:25 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-23 20:50:25 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-23 20:50:25 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-23 20:50:25 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-23 20:50:25 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-23 20:50:25 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-23 20:50:25 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-23 20:50:25 [INFO] Done (1.533s)! For help, type "help" or "?"
+2012-05-23 20:50:36 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-23 20:50:36 [INFO] Stopping server
+2012-05-23 20:50:36 [INFO] [Spout] Disabling Spout v1174
+2012-05-23 20:50:36 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-23 20:50:36 [INFO] [RandomBattle] Disabling RandomBattle v0.8.7
+2012-05-23 20:50:36 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-23 20:50:36 [INFO] [RandomBattle] All modified blocks removed.
+2012-05-23 20:50:36 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-23 20:50:36 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-23 20:50:36 [INFO] Saving chunks
+2012-05-23 20:50:36 [INFO] Stopping server
+2012-05-23 21:21:01 [INFO] Starting minecraft server version 1.2.5
+2012-05-23 21:21:01 [INFO] Loading properties
+2012-05-23 21:21:01 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-23 21:21:01 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-23 21:21:01 [INFO] [Spout] Loading Spout v1174
+2012-05-23 21:21:01 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-23 21:21:01 [INFO] [RandomBattle] Loading RandomBattle v0.8.7
+2012-05-23 21:21:01 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-23 21:21:01 [INFO] [Spout] Enabling Spout v1174
+2012-05-23 21:21:02 [INFO] Preparing level "world"
+2012-05-23 21:21:02 [INFO] Default game type: 0
+2012-05-23 21:21:02 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-23 21:21:02 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-23 21:21:02 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-23 21:21:02 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R2.0 (build #2190) was released on Fri May 18 03:21:10 EDT 2012.
+2012-05-23 21:21:02 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01097_1.2.5-R2.0/
+2012-05-23 21:21:02 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01097_1.2.5-R2.0/craftbukkit.jar
+2012-05-23 21:21:02 [WARNING] ----- ------------------- -----
+2012-05-23 21:21:02 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-23 21:21:03 [INFO] Preparing spawn area: 52%
+2012-05-23 21:21:03 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-23 21:21:03 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-23 21:21:03 [INFO] [RandomBattle] Enabling RandomBattle v0.8.7
+2012-05-23 21:21:03 [INFO] [RandomBattle] [Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=123.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=123.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=123.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=123.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=123.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=124.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=123.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=124.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=124.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=124.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=123.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=124.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=123.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=124.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=123.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=123.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=123.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=124.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=123.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=123.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=123.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=123.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=123.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=123.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=123.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=123.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=123.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=124.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=124.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=123.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=123.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=123.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=123.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=123.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=123.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=124.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=123.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=123.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=123.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=175.0,y=122.0,z=493.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=124.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=124.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=490.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=184.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=187.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=123.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=168.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=169.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=123.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=189.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=191.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=124.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=186.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=123.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=123.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=173.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=496.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=123.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=176.0,y=123.0,z=489.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=483.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=177.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=122.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=170.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=180.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=492.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=488.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=181.0,y=124.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=171.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=179.0,y=122.0,z=484.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=174.0,y=122.0,z=487.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=178.0,y=122.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=172.0,y=122.0,z=482.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=185.0,y=122.0,z=491.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=183.0,y=124.0,z=486.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=190.0,y=122.0,z=481.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=124.0,z=485.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=182.0,y=122.0,z=494.0,pitch=0.0,yaw=0.0}, Location{world=CraftWorld{name=world},x=188.0,y=122.0,z=495.0,pitch=0.0,yaw=0.0}]
+2012-05-23 21:21:03 [INFO] [RandomBattle] Random Battle v0.8.7 has started!
+2012-05-23 21:21:03 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-23 21:21:03 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-23 21:21:03 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-23 21:21:03 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-23 21:21:03 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-23 21:21:03 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-23 21:21:03 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-23 21:21:03 [INFO] Done (1.497s)! For help, type "help" or "?"
+2012-05-23 21:21:44 [INFO] Merdril [/127.0.0.1:55093] logged in with entity id 134 at ([world] 204.68352420896048, 76.0, 505.16548821518427)
+2012-05-23 21:21:44 [INFO] [Spout] Successfully authenticated Merdril's Spoutcraft client. Running client version: 1480
+2012-05-23 21:22:07 [SEVERE] null
+org.bukkit.command.CommandException: Unhandled exception executing command 'regbattle' in plugin RandomBattle v0.8.7
+	at org.bukkit.command.PluginCommand.execute(PluginCommand.java:42)
+	at org.bukkit.command.SimpleCommandMap.dispatch(SimpleCommandMap.java:166)
+	at org.bukkit.craftbukkit.CraftServer.dispatchCommand(CraftServer.java:479)
+	at net.minecraft.server.NetServerHandler.handleCommand(NetServerHandler.java:821)
+	at net.minecraft.server.NetServerHandler.chat(NetServerHandler.java:781)
+	at net.minecraft.server.NetServerHandler.a(NetServerHandler.java:764)
+	at org.getspout.spout.SpoutNetServerHandler.a(SpoutNetServerHandler.java:106)
+	at net.minecraft.server.Packet3Chat.handle(Packet3Chat.java:34)
+	at net.minecraft.server.NetworkManager.b(NetworkManager.java:229)
+	at net.minecraft.server.NetServerHandler.a(NetServerHandler.java:113)
+	at org.getspout.spout.SpoutNetServerHandler.a(SpoutNetServerHandler.java:172)
+	at net.minecraft.server.NetworkListenThread.a(NetworkListenThread.java:78)
+	at net.minecraft.server.MinecraftServer.w(MinecraftServer.java:551)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:449)
+	at net.minecraft.server.ThreadServerApplication.run(SourceFile:492)
+Caused by: java.lang.NullPointerException
+	at me.merdril.randombattle.RBCommandExecutor.register(RBCommandExecutor.java:232)
+	at me.merdril.randombattle.RBCommandExecutor.onCommand(RBCommandExecutor.java:67)
+	at org.bukkit.command.PluginCommand.execute(PluginCommand.java:40)
+	... 14 more
+2012-05-23 21:22:30 [INFO] [RandomBattle] Merdril has been unregistered from Random Battles.[0m
+2012-05-23 21:23:00 [SEVERE] null
+org.bukkit.command.CommandException: Unhandled exception executing command 'regbattle' in plugin RandomBattle v0.8.7
+	at org.bukkit.command.PluginCommand.execute(PluginCommand.java:42)
+	at org.bukkit.command.SimpleCommandMap.dispatch(SimpleCommandMap.java:166)
+	at org.bukkit.craftbukkit.CraftServer.dispatchCommand(CraftServer.java:479)
+	at net.minecraft.server.NetServerHandler.handleCommand(NetServerHandler.java:821)
+	at net.minecraft.server.NetServerHandler.chat(NetServerHandler.java:781)
+	at net.minecraft.server.NetServerHandler.a(NetServerHandler.java:764)
+	at org.getspout.spout.SpoutNetServerHandler.a(SpoutNetServerHandler.java:106)
+	at net.minecraft.server.Packet3Chat.handle(Packet3Chat.java:34)
+	at net.minecraft.server.NetworkManager.b(NetworkManager.java:229)
+	at net.minecraft.server.NetServerHandler.a(NetServerHandler.java:113)
+	at org.getspout.spout.SpoutNetServerHandler.a(SpoutNetServerHandler.java:172)
+	at net.minecraft.server.NetworkListenThread.a(NetworkListenThread.java:78)
+	at net.minecraft.server.MinecraftServer.w(MinecraftServer.java:551)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:449)
+	at net.minecraft.server.ThreadServerApplication.run(SourceFile:492)
+Caused by: java.lang.NullPointerException
+	at me.merdril.randombattle.RBCommandExecutor.register(RBCommandExecutor.java:232)
+	at me.merdril.randombattle.RBCommandExecutor.onCommand(RBCommandExecutor.java:67)
+	at org.bukkit.command.PluginCommand.execute(PluginCommand.java:40)
+	... 14 more
+2012-05-23 21:23:09 [INFO] Merdril lost connection: disconnect.quitting
+2012-05-23 21:23:09 [INFO] Connection reset
+2012-05-23 21:24:50 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-23 21:24:50 [INFO] Stopping server
+2012-05-23 21:24:50 [INFO] [Spout] Disabling Spout v1174
+2012-05-23 21:24:50 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-23 21:24:50 [INFO] [RandomBattle] Disabling RandomBattle v0.8.7
+2012-05-23 21:24:50 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-23 21:24:50 [INFO] [RandomBattle] All modified blocks removed.
+2012-05-23 21:24:50 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-23 21:24:50 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-23 21:24:50 [INFO] Saving chunks

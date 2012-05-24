@@ -1,6 +1,6 @@
 name: RandomBattle
 main: me.merdril.randombattle.RandomBattle
-version: 0.8.6
+version: 0.8.7
 author: Mark Aligbe
 depend: [Spout]
 commands:
