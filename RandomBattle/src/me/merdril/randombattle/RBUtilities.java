@@ -81,13 +81,17 @@ public final class RBUtilities
 		if (possiblePlayers.size() == 1)
 			return possiblePlayers.get(0);
 		else if (possiblePlayers.size() == 0) {
-			sender.sendMessage(RandomBattle.prefix + "No match found.");
+			if (sender != null)
+				sender.sendMessage(RandomBattle.prefix + "No match found.");
 			return null;
 		}
-		sender.sendMessage(RandomBattle.prefix + "Found the following matches: ");
-		for (SpoutPlayer player : possiblePlayers)
-			sender.sendMessage(RandomBattle.prefix + player.getDisplayName());
-		sender.sendMessage(RandomBattle.prefix + "Please use an exact match on the player you want.");
+		if (sender != null)
+			sender.sendMessage(RandomBattle.prefix + "Found the following matches: ");
+		if (sender != null)
+			for (SpoutPlayer player : possiblePlayers)
+				sender.sendMessage(RandomBattle.prefix + player.getDisplayName());
+		if (sender != null)
+			sender.sendMessage(RandomBattle.prefix + "Please use an exact match on the player you want.");
 		return null;
 	}
 	

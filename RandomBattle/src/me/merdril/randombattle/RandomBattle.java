@@ -12,6 +12,7 @@ import me.merdril.randombattle.config.RBDatabase;
 import me.merdril.randombattle.config.RBOS;
 import me.merdril.randombattle.listeners.RBAttackCleanerListener;
 import me.merdril.randombattle.listeners.RBAttackListener;
+import me.merdril.randombattle.listeners.RBLoginListener;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -29,11 +30,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class RandomBattle extends JavaPlugin
 {
 	private Logger	          log	     = Logger.getLogger("Minecraft");
-	/**
-	 * <p>
-	 * The prefix to begin all log messages with.
-	 * </p>
-	 */
+	/** The prefix to begin all log messages with. It is currently: "[RandomBattle] " */
 	public static String	  prefix	 = "";
 	/**
 	 * <p>
@@ -50,6 +47,8 @@ public class RandomBattle extends JavaPlugin
 	@Override
 	public void onEnable()
 	{
+		// Initialize the prefix for all communications with the outside world
+		prefix = "[" + this.getName() + "] ";
 		// Load the configuration
 		RBConfig config = new RBConfig(this);
 		int[] dim = config.getDimensions();
@@ -65,8 +64,6 @@ public class RandomBattle extends JavaPlugin
 		
 		// Get the PluginManager to minimize line length (and stack calls)
 		PluginManager pm = this.getServer().getPluginManager();
-		// Initialize the prefix for all communications with the outside world
-		prefix = "[" + this.getName() + "] ";
 		
 		// Initialize the command executer
 		cExec = new RBCommandExecutor(this);
@@ -84,6 +81,7 @@ public class RandomBattle extends JavaPlugin
 		// what old me was thinking exactly.
 		pm.registerEvents(new RBAttackListener(this), this);
 		pm.registerEvents(new RBAttackCleanerListener(this, trigDelNum), this);
+		pm.registerEvents(new RBLoginListener(this), this);
 		
 		// That's all folks
 		log.info(prefix + "Random Battle v" + getDescription().getVersion() + " has started!");

@@ -5,9 +5,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.locks.ReentrantLock;
@@ -17,7 +18,6 @@ import me.merdril.randombattle.RandomBattle;
 import me.merdril.randombattle.battle.BattleSetter;
 
 import org.bukkit.Location;
-import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
  * <p>
@@ -60,7 +60,12 @@ public final class RBOS
 			blockLock = new ReentrantLock();
 		if (playerLock == null)
 			playerLock = new ReentrantLock();
-		BattleSetter.allEditedBlockLocations = new LinkedList<Location>(loadBlocks(BattleSetter.blocksFile));
+		Collection<Location> aebl = loadBlocks(BattleSetter.blocksFile);
+		if (aebl != null)
+			BattleSetter.allEditedBlockLocations = Collections.synchronizedList(new ArrayList<Location>(aebl));
+		Collection<String> irp = loadRegisteredPlayers(RBCommandExecutor.registeredPlayersFile);
+		if (irp != null)
+			RBCommandExecutor.inactiveRegisteredPlayers = Collections.synchronizedSet(new HashSet<String>(irp));
 	}
 	
 	/**
@@ -141,7 +146,7 @@ public final class RBOS
 	 * @return A List&ltBlock&gt if the file was located and successfully read and casted from. null
 	 *         if some error occurs.
 	 */
-	public static HashSet<Location> loadBlocks(String fileName)
+	public static Collection<Location> loadBlocks(String fileName)
 	{
 		HashSet<Location> blocks = null;
 		boolean inData = true;
@@ -198,7 +203,7 @@ public final class RBOS
 				plugin.getLogger().warning(RandomBattle.prefix + "Line: \"" + line + "\" is not parsable!");
 			}
 		}
-		plugin.getLogger().info(RandomBattle.prefix + blocks);
+		in.close();
 		return blocks;
 	}
 	
@@ -211,7 +216,7 @@ public final class RBOS
 	 * @return True if the writing stream was successfully flushed after printing the players. False
 	 *         otherwise.
 	 */
-	public static boolean saveRegisteredPlayers(Collection<SpoutPlayer> players)
+	public static boolean saveRegisteredPlayers()
 	{
 		boolean saved = false;
 		// Check for the status of the players file
@@ -250,12 +255,64 @@ public final class RBOS
 			return saved;
 		}
 		// Our PrintWriter is now set up, so let's write those values
-		for (SpoutPlayer player : players)
-			out.println(player.getName());
+		synchronized (RBCommandExecutor.registeredPlayers) {
+			for (String player : RBCommandExecutor.registeredPlayers)
+				out.println(player);
+		}
+		synchronized (RBCommandExecutor.inactiveRegisteredPlayers) {
+			for (String player : RBCommandExecutor.inactiveRegisteredPlayers)
+				out.println(player);
+		}
 		out.flush();
 		saved = true;
 		out.close();
 		playerLock.unlock();
 		return saved;
+	}
+	
+	/**
+	 * <p>
+	 * Loads the registered players from disc from the file specified by RBCommandExecutor. This
+	 * class does not return a collection of players, but a string of their display names.
+	 * </p>
+	 * <p>
+	 * This method does not check to see if the players are online or if the players are currently
+	 * SpoutCraft enabled.
+	 * </p>
+	 * @param registeredPlayersFile
+	 * @return A Collection&ltString&gt (HashSet&ltString&gt) if the player file was successfully
+	 *         read from. null otherwise.</p>
+	 */
+	public static Collection<String> loadRegisteredPlayers(String registeredPlayersFile)
+	{
+		// Construct the return Collection
+		HashSet<String> players = new HashSet<String>();
+		// Assume the file is in the data folder
+		File file = new File(dataFolder, registeredPlayersFile);
+		// If not, check the plugin data folder
+		if (!file.exists()) {
+			file = new File(plugin.getDataFolder(), registeredPlayersFile);
+			// If it's also not in the data folder, then return
+			if (!file.exists()) {
+				plugin.getLogger().warning(RandomBattle.prefix + "Could not find the player file to load from!");
+				return null;
+			}
+		}
+		// At this point, we have an existent file
+		Scanner in = null;
+		try {
+			in = new Scanner(file);
+		}
+		catch (FileNotFoundException e) {
+			plugin.getLogger().warning(RandomBattle.prefix + "Unable to open the player file for reading!");
+			e.printStackTrace();
+			return null;
+		}
+		while (in.hasNextLine()) {
+			String line = in.nextLine();
+			if (!line.isEmpty())
+				players.add(line);
+		}
+		return players;
 	}
 }
