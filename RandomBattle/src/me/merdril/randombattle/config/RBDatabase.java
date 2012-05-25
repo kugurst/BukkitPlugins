@@ -13,8 +13,12 @@ import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Map;
 
+import javax.sql.rowset.CachedRowSet;
+
 import me.merdril.randombattle.RBUtilities;
 import me.merdril.randombattle.RandomBattle;
+
+import com.sun.rowset.CachedRowSetImpl;
 
 /**
  * <p>
@@ -56,7 +60,7 @@ public final class RBDatabase
 		// Create a connection to the database (and thus creating the database if it does not exist)
 		Connection conn = null;
 		try {
-			conn = DriverManager.getConnection("jdbc:sqlite:" + new File(plugin.getDataFolder(), "stats.db").getPath());
+			conn = getConnection();
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -509,5 +513,47 @@ public final class RBDatabase
 				")");
 		//@formatter:on
 		return statement.executeBatch();
+	}
+	
+	/**
+	 * <p>
+	 * Performs the provided query. Used for more complex operations than what the other methods of
+	 * this class can provide.
+	 * </p>
+	 * @param query
+	 * @return A CachedRowSet from the performed query. Null if the query fails or is a query that
+	 *         does not return a ResultSet.
+	 */
+	public static CachedRowSet performQuery(String query)
+	{
+		CachedRowSet rowSet = null;
+		try {
+			Connection conn = getConnection();
+			Statement stat = conn.createStatement();
+			ResultSet set = stat.executeQuery(query);
+			rowSet = new CachedRowSetImpl();
+			rowSet.populate(set);
+			stat.close();
+			conn.close();
+		}
+		catch (SQLException e) {
+			queryFailed(e, false);
+		}
+		return rowSet;
+	}
+	
+	/**
+	 * <p>
+	 * A short helper method to shorten line length as well as to reduce programmer error. Returns a
+	 * connection to the stats.db file.
+	 * </p>
+	 * @return A Connection to the stats.db file located in the plugin data folder of this plugin.
+	 * @throws SQLException
+	 *             If the Connection cannot be obtained, or whatever reasons
+	 *             DriverManager.getConnection(String url) throws an SQLException.
+	 */
+	private static Connection getConnection() throws SQLException
+	{
+		return DriverManager.getConnection("jdbc:sqlite:" + new File(plugin.getDataFolder(), "stats.db").getPath());
 	}
 }
