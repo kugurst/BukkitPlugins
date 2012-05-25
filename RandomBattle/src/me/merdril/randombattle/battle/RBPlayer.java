@@ -40,105 +40,42 @@ public class RBPlayer implements RBLivingEntity
 	}
 	
 	@Override
-	public int getCurHP()
+	public int getStat(Stat stat)
 	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
 	@Override
-	public int getCurMP()
+	public int setStat(Stat stat, int amount)
 	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
 	@Override
-	public int getMaxHP()
+	public List<Effect> getEffects()
 	{
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 	
 	@Override
-	public int getMaxMP()
+	public List<Effect> setEffect(int action, Effect... effect)
 	{
 		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getSTR()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getMAG()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getDEF()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getMDEF()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getAGL()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getACC()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getEVA()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getLUCK()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getEXP()
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getLevel()
-	{
-		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 	
 	@Override
 	public List<RBSkill> getSkills()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<RBSkill> setSkills(int action, RBSkill... skills)
 	{
 		// TODO Auto-generated method stub
 		return null;
@@ -152,7 +89,21 @@ public class RBPlayer implements RBLivingEntity
 	}
 	
 	@Override
+	public List<RBMagic> setMagicks(int action, RBMagic... magicks)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public List<RBElem> getWeak()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public List<RBElem> setWeak(RBElem... elems)
 	{
 		// TODO Auto-generated method stub
 		return null;
