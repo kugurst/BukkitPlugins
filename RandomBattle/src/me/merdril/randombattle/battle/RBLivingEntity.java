@@ -4,7 +4,10 @@
 
 package me.merdril.randombattle.battle;
 
+import java.util.Collection;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.bukkit.entity.LivingEntity;
@@ -23,15 +26,131 @@ import org.bukkit.entity.LivingEntity;
  */
 public interface RBLivingEntity
 {
+	/**
+	 * The enums to indicate the statuses of a given {@link RBLivingEntity}. The form of the enum
+	 * suggests that the implementations should use an EnumMap for handling this data, which should
+	 * enable quick calculations for whatever class requires this information.
+	 * @author Merdril
+	 */
 	public enum Stat {
-		HP, MP, CHP, CMP, STR, MAG, DEF, MDEF, AGL, ACC, EVA, LUCK, EXP, LEVEL
+		/**
+		 * This stat contains the hit points for this entity: the amount of damage it can take
+		 * before dying. Not necessary that all monsters "die" when their HP reaches 0.
+		 */
+		HP, /**
+		 * This stat contains the magic points for this entity: the amount of "currency" to
+		 * "buy" spells with. Spells should not be case with insufficient MP.
+		 */
+		MP, /**
+		 * This stat contains the current HP for this entity: the amount of HP minus some total
+		 * damage amount (not necessarily implemented that way).
+		 */
+		CHP, /**
+		 * This stat contains the current MP for this entity: the amount of MP minus some total
+		 * MP expenditure (not necessarily implemented that way).
+		 */
+		CMP, /**
+		 * This stat contains the current strength of this entity: the relative amount of
+		 * damage a physical attack should cause. The original strength should be kept by the
+		 * implementing class for uses with getOriginalStat(...).
+		 */
+		STR, /**
+		 * This stat contains the current magic power of this entity: the relative amount of
+		 * damage a magical attack should cause. The original magic should be kept by the
+		 * implementing class for uses with getOriginalStat(...).
+		 */
+		MAG, /**
+		 * This stat contains the current defensive ability of this entity: the relative amount
+		 * of damage nullified from a physical attack. The original defense should be kept by the
+		 * implementing class for uses with getOriginalStat(...).
+		 */
+		DEF, /**
+		 * This stat contains the current magic nullification ability of this entity: the
+		 * relative amount of damage nullified from a magical attack. The original magic defense
+		 * should be kept by the implementing class for uses with getOriginalStat(...).
+		 */
+		MDEF, /**
+		 * This stat contains the current agility of this entity: the relative quickness of
+		 * this entity in comparison to others in battle. The original agility should be kept by the
+		 * implementing class for uses with getOriginalStat(...).
+		 */
+		AGL, /**
+		 * This stat contains the current accuracy of this entity: the relative accuracy of
+		 * physical attacks. The original accuracy should be kept by the implementing class for uses
+		 * with getOriginalStat(...).
+		 */
+		ACC, /**
+		 * This stat contains the current evasion of this entity: the relative ability for this
+		 * entity to dodge physical attacks. The original evasion should be kept by the implementing
+		 * class for uses with getOriginalStat(...).
+		 */
+		EVA, /**
+		 * This stat contains the current luck of this entity: the relative frequency for
+		 * magical attacks to "miss," finding good items, as well as other things... The original
+		 * luck should be kept by the implementing class for uses with getOriginalStat(...).
+		 */
+		LUCK, /**
+		 * This stat contains the current experience points of this entity: for players, this
+		 * is the total number of experience points accumulated (before the last death perhaps), and
+		 * for monsters, this is the base experience it drops when it is killed.
+		 */
+		EXP, /**
+		 * This stat contains the current level of this entity: this is only relevant for
+		 * players, and may not actually serve any utility in this plugin, considering the way the
+		 * leveling system functions.
+		 */
+		LEVEL
 	}
 	
+	/**
+	 * The enums to indicate the various status conditions that an {@link RBLivingEntity} can have.
+	 * In its current form, this enables the quick addition/removal/deactivation of any effects, so
+	 * long as the effect is handled properly in whatever class requires the information.
+	 * @author Merdril
+	 */
 	public enum Effect {
-		DEAD, POISONED, SLEEPING, STONE, HASTE, BLIND, SLOW
+		/**
+		 * This status indicates that this {@link RBLivingEntity} is dead and can no longer perform
+		 * actions.
+		 */
+		DEAD, /**
+		 * This status indicates that this {@link RBLivingEntity} is suffering continuous
+		 * damage over some period of time.
+		 */
+		POISONED, /**
+		 * This status indicates that this {@link RBLivingEntity} is in a mode where it
+		 * cannot perform any actions aside from those that require it to be in this mode to be
+		 * performed.
+		 */
+		SLEEPING, /**
+		 * This status indicates that this {@link RBLivingEntity} is in a mode where it
+		 * cannot perform any actions and cannot be damaged except by {@link Poison}.
+		 */
+		STONE, /**
+		 * This status indicates the this {@link RBLivingEntity} is in a mode where its turn
+		 * speed should be doubled. It may not necessarily move twice as often in a time block.
+		 */
+		HASTE, /**
+		 * This status indicates that this {@link RBLivingEntity} is in a mode where its
+		 * effective accuracy is reduced. The amount to reduce its accuracy is dependent on the
+		 * class implementing this interface.
+		 */
+		BLIND, /**
+		 * This status indicates that this {@link RBLivingEntity} is in a state where its
+		 * turn speed should be halved. It may not necessarily move half as often in a time block.
+		 */
+		SLOW
 	}
 	
+	/**
+	 * Indicates to the relevant commands to add the specified items to whatever {@link Collection}
+	 * it handles.
+	 */
 	public int	ADD	   = 0;
+	/**
+	 * Indicates to the relevant commands to add the specified items to whatever {@link Collection}
+	 * it handles.
+	 */
 	public int	REMOVE	= 1;
 	
 	/**
@@ -69,19 +188,15 @@ public interface RBLivingEntity
 	public int setStat(Stat stat, int amount);
 	
 	/**
-	 * <p>
 	 * Returns an effect for use in damage calculation or turn calculation. Effects should be used,
 	 * rather than overriding the value of some stat that is provided by the class.
-	 * </p>
 	 * @return A List&ltEffect&gt that this RBLivingEntity currently has.
 	 */
 	public List<Effect> getEffects();
 	
 	/**
-	 * <p>
 	 * Modifies the effects of this {@link RBLivingEntity} according to the action specified. Can be
 	 * one of two things: ADD or REMOVE. Using ADD also implies to replace/update.
-	 * </p>
 	 * @param action
 	 *            The course of action to take with the specified effects: whether to add them or to
 	 *            remove them.
@@ -92,19 +207,15 @@ public interface RBLivingEntity
 	public List<Effect> setEffect(int action, Effect... effect);
 	
 	/**
-	 * <p>
 	 * Returns the {@link List}&lt{@link RBSkill}&gt of this entity.
-	 * <p>
 	 * @return A {@link List}&lt{@link RBSkill}&gt of the skills this LivingEntity knows. Returns an
 	 *         empty list in the case the entity knows none.
 	 */
 	public List<RBSkill> getSkills();
 	
 	/**
-	 * <p>
 	 * Modifies the {@link List}&lt{@link RBSkill}&gt that this entity knows. This method either
 	 * adds or removes from the list.
-	 * </p>
 	 * @param action
 	 *            An int representing whether to add or remove the specified skills.
 	 * @param skills
@@ -114,19 +225,15 @@ public interface RBLivingEntity
 	public List<RBSkill> setSkills(int action, RBSkill... skills);
 	
 	/**
-	 * <p>
 	 * Returns the List&ltRBMagic&gt of this entity.
-	 * <p>
 	 * @return A List&ltRBMagic&gt of the magicks this LivingEntity knows. Returns an empty list in
 	 *         the case the entity knows none.
 	 */
 	public List<RBMagic> getMagicks();
 	
 	/**
-	 * <p>
 	 * Modifies the magicks of this {@link RBLivingEntity} according to the action specified. Can be
 	 * one of two things: ADD or REMOVE. Using ADD also implies to replace/update.
-	 * </p>
 	 * @param action
 	 *            The course of action to take with the specified effects: whether to add them or to
 	 *            remove them.
@@ -138,19 +245,15 @@ public interface RBLivingEntity
 	public List<RBMagic> setMagicks(int action, RBMagic... magicks);
 	
 	/**
-	 * <p>
 	 * Returns the List&ltRBElem&gt of this entity.
-	 * <p>
 	 * @return A List&ltRBElem&gt of the elements this LivingEntity is weak to. Returns an empty
 	 *         list in the case it is weak to nothing.
 	 */
 	public List<RBElem> getWeak();
 	
 	/**
-	 * <p>
 	 * Modifies the weaknesses of this {@link RBLivingEntity} according to the action specified. Can
 	 * be one of two things: ADD or REMOVE. Using ADD also implies to replace/update.
-	 * </p>
 	 * @param action
 	 *            The course of action to take with the specified effects: whether to add them or to
 	 *            remove them.
@@ -162,9 +265,7 @@ public interface RBLivingEntity
 	public List<RBElem> setWeak(RBElem... elems);
 	
 	/**
-	 * <p>
 	 * Asks this LivingEntity to decide on a next move based on its current status.
-	 * <p>
 	 * @param lock
 	 *            The lock to pause execution of the turn system thread until this LivingEntity has
 	 *            made a move.
@@ -173,12 +274,28 @@ public interface RBLivingEntity
 	public RBMove getMove(ReentrantLock lock);
 	
 	/**
-	 * <p>
 	 * Returns the LivingEntity that this class encapsulates.
-	 * <p>
 	 * @return A LivingEntity which is affected by the actions of this class.
 	 */
 	public LivingEntity getEntity();
+	
+	/**
+	 * A {@link Map}&lt{@link Stat}, {@link Integer}&gt of the current stats of the entity to the
+	 * values of those stats. The mapping would make the most sense as an {@link EnumMap}.
+	 * @return A {@link Map}&lt{@link Stat}, {@link Integer}&gt view of the current stats and values
+	 *         of this entity. Changes to the values of this map should affect the values of the
+	 *         {@link RBLivingEntity}.
+	 */
+	public Map<Stat, Integer> getStats();
+	
+	/**
+	 * A {@link Map}&lt{@link Stat}, {@link Integer}&gt of the original stats of the entity to the
+	 * values of those stats. The mapping would make the most sense as an {@link EnumMap}.
+	 * @return A {@link Map}&lt{@link Stat}, {@link Integer}&gt view of the original stats and
+	 *         values of this entity. Changes to the values of this map should not affect the values
+	 *         of the {@link RBLivingEntity}.
+	 */
+	public Map<Stat, Integer> getOriginalStats();
 	
 	@Override
 	public boolean equals(Object obj);

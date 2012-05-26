@@ -5,6 +5,7 @@
 package me.merdril.randombattle.battle;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
 import me.merdril.randombattle.RandomBattle;
@@ -118,6 +119,20 @@ public class RBPlayer implements RBLivingEntity
 	
 	@Override
 	public LivingEntity getEntity()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public Map<Stat, Integer> getStats()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public Map<Stat, Integer> getOriginalStats()
 	{
 		// TODO Auto-generated method stub
 		return null;
