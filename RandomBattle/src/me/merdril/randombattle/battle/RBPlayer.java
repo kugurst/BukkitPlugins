@@ -4,6 +4,8 @@
 
 package me.merdril.randombattle.battle;
 
+import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
@@ -14,41 +16,101 @@ import org.bukkit.entity.LivingEntity;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 /**
- * @author mark
+ * @author Merdril
  */
 public class RBPlayer implements RBLivingEntity
 {
-	RandomBattle	    plugin;
-	private SpoutPlayer	player;
+	private RandomBattle	       plugin;
+	private SpoutPlayer	           player;
+	private EnumMap<Stat, Integer>	stats;
+	private ArrayList<Effect>	   effects;
+	private ArrayList<RBSkill>	   skills;
+	private ArrayList<RBMagic>	   magicks;
+	private ArrayList<RBElem>	   weakness;
 	
 	/**
-	 * <code>public RBPlayer(RandomBattle instance, SpoutPlayer player, Integer[] stats)</code> <br/>
-	 * <br/>
-	 * Defines a Random Battle player which is a SpoutPlayer with stats and corresponding methods
-	 * for manipulating them.
+	 * <p>
+	 * Constructs an {@link RBPlayer} out of the specified {@link Stat}s and {@link SpoutPlayer}.
+	 * The {@link EnumMap}&lt{@link Stat}, {@link Integer}&gt must include every {@link Stat} except
+	 * for EXP, CHP, and CMP. However, if they are included, they will be used in constructing this
+	 * {@link RBLivingEntity}.
+	 * </p>
+	 * <p>
+	 * This constructor assumes that this player is not afflicted with any {@link Effect}s, knows no
+	 * {@link RBSkill}s or {@link RBMagic}ks, and has no {@link RBElem} weaknesses.
+	 * </p>
 	 * @param instance
-	 *            - The RandomBattle instance
+	 *            The {@link RandomBattle} plugin this player is tied to. Used for server calls.
 	 * @param player
-	 *            - The player to represent
-	 * @param stats
-	 *            - The stats of the player
-	 * @throws Exception
+	 *            The {@link SpoutPlayer} this class wraps. There should be at most one instance of
+	 *            {@link RBPlayer} per {@link SpoutPlayer}.
+	 * @param statMap
+	 *            The {@link Stat}s to assign to this {@link SpoutPlayer}.
 	 */
-	public RBPlayer(RandomBattle instance, SpoutPlayer player, int[] stat) throws ArrayIndexOutOfBoundsException
+	public RBPlayer(RandomBattle instance, SpoutPlayer player, EnumMap<Stat, Integer> statMap)
 	{
 		plugin = instance;
 		this.player = player;
+		stats = statMap;
+	}
+	
+	/**
+	 * <p>
+	 * Constructs an {@link RBPlayer} out of the specified {@link Stat}s and {@link SpoutPlayer}.
+	 * The {@link EnumMap}&lt{@link Stat}, {@link Integer}&gt must include every {@link Stat} except
+	 * for EXP, CHP, and CMP. However, if they are included, they will be used in constructing this
+	 * {@link RBLivingEntity}.
+	 * </p>
+	 * <p>
+	 * This constructor attributes this {@link RBPlayer} with the specified status {@link Effect}s,
+	 * {@link Stat}s, {@link RBElem} weaknesses, and {@link RBMagic}ks. A null or empty list can be
+	 * used in place of an {@link ArrayList} to indicate this player knows/has none.
+	 * </p>
+	 * @param instance
+	 *            The {@link RandomBattle} plugin this player is tied to. Used for server calls.
+	 * @param player
+	 *            The {@link SpoutPlayer} this class wraps. There should be at most one instance of
+	 *            {@link RBPlayer} per {@link SpoutPlayer}.
+	 * @param statMap
+	 *            The {@link Stat}s to assign to this {@link SpoutPlayer}.
+	 * @param effects
+	 *            The {@link ArrayList}&lt{@link Effect}&gt to assign as this player's list of
+	 *            active effects. That is to say, any {@link Effect} included in this
+	 *            {@link ArrayList} is considered active.
+	 * @param skills
+	 *            The {@link ArrayList}&lt{@link RBSkill}&gt to assign as this player's known
+	 *            skills. That is to say, any {@link RBSkill} included in this {@link ArrayList} is
+	 *            available to the player to use (unless some effect prohibits it).
+	 * @param magicks
+	 *            The {@link ArrayList}&lt{@link RBMagic}&gt to assign as this player's known
+	 *            magicks. That is to say, any {@link RBMagic} included in this {@link ArrayList} is
+	 *            available to the player to use (unless some effect prohibits it).
+	 * @param weakness
+	 *            The {@link ArrayList}&lt{@link RBMagic}&gt to assign as this player's elemental
+	 *            weaknesses. That is to say, any {@link RBElem} included in this {@link ArrayList}
+	 *            is considered a weakness of this player.
+	 */
+	public RBPlayer(RandomBattle instance, SpoutPlayer player, EnumMap<Stat, Integer> statMap,
+	        ArrayList<Effect> effects, ArrayList<RBSkill> skills, ArrayList<RBMagic> magicks, ArrayList<RBElem> weakness)
+	{
+		plugin = instance;
+		this.player = player;
+		stats = statMap;
+		this.effects = effects;
+		this.skills = skills;
+		this.magicks = magicks;
+		this.weakness = weakness;
 	}
 	
 	@Override
-	public int getStat(Stat stat)
+	public Integer getStat(Stat stat)
 	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
 	@Override
-	public int setStat(Stat stat, int amount)
+	public Integer setStat(Stat stat, int amount)
 	{
 		// TODO Auto-generated method stub
 		return 0;
@@ -138,4 +200,10 @@ public class RBPlayer implements RBLivingEntity
 		return null;
 	}
 	
+	@Override
+	public int compareTo(RBLivingEntity other)
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

@@ -17,14 +17,14 @@ public class RBSpider implements RBLivingEntity
 {
 	
 	@Override
-	public int getStat(Stat stat)
+	public Integer getStat(Stat stat)
 	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
 	@Override
-	public int setStat(Stat stat, int amount)
+	public Integer setStat(Stat stat, int amount)
 	{
 		// TODO Auto-generated method stub
 		return 0;
@@ -114,4 +114,10 @@ public class RBSpider implements RBLivingEntity
 		return null;
 	}
 	
+	@Override
+	public int compareTo(RBLivingEntity other)
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

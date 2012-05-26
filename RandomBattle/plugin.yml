@@ -1,6 +1,6 @@
 name: RandomBattle
 main: me.merdril.randombattle.RandomBattle
-version: 0.6.9
+version: 0.6.10
 author: Mark Aligbe
 depend: [Spout]
 commands:
@@ -32,6 +32,10 @@ commands:
         description: Remove the blocks created by Random Battle.
         permission: randombattle.removeblocks
         usage: /removeblocks
+    spawnmobs:
+        description: Spawn all the supported mobs and print their names to console.
+        permission: randombattle.spawnmobs
+        usage: /spawnmobs
 permissions:
     randombattle.*:
         description: Gives access to all RandomBattle commands
@@ -56,4 +60,7 @@ permissions:
         default: op
     randombattle.removeblocks:
         description: Allows a player to remove the blocks created by this plugin
+        default: op
+    randombattle.spawnmobs:
+        description: Allows a player to spawn all supported mobs and see the name the plugin uses to identify them.
         default: op

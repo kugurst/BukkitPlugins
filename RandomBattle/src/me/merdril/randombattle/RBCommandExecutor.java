@@ -23,6 +23,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
@@ -170,7 +172,31 @@ public class RBCommandExecutor implements CommandExecutor
 			else
 				return removeEditedBlocks(sender, cmd, label, args);
 		}
+		else if (cmd.getName().equalsIgnoreCase("spawnmobs")) {
+			return spawnmobs(sender, cmd, label, args);
+		}
 		return false;
+	}
+	
+	private boolean spawnmobs(CommandSender sender, Command cmd, String label, String[] args)
+	{
+		if (sender instanceof Player) {
+			Player player = (Player) sender;
+			World world = plugin.getServer().getWorld("world");
+			ArrayList<LivingEntity> monsters = new ArrayList<LivingEntity>();
+			monsters.add(world.spawnCreature(player.getLocation(), EntityType.ENDERMAN));
+			monsters.add(world.spawnCreature(player.getLocation(), EntityType.PIG_ZOMBIE));
+			monsters.add(world.spawnCreature(player.getLocation(), EntityType.BLAZE));
+			monsters.add(world.spawnCreature(player.getLocation(), EntityType.CREEPER));
+			monsters.add(world.spawnCreature(player.getLocation(), EntityType.SKELETON));
+			monsters.add(world.spawnCreature(player.getLocation(), EntityType.SPIDER));
+			monsters.add(world.spawnCreature(player.getLocation(), EntityType.ZOMBIE));
+			monsters.add(world.spawnCreature(player.getLocation(), EntityType.IRON_GOLEM));
+			for (LivingEntity entity : monsters) {
+				plugin.getLogger().info(RandomBattle.prefix + entity.toString());
+			}
+		}
+		return true;
 	}
 	
 	public boolean removeEditedBlocks(CommandSender sender, Command cmd, String label, String[] args)

@@ -6,11 +6,20 @@ package me.merdril.randombattle.battle;
 
 import java.util.Collection;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
+import me.merdril.randombattle.config.RBDatabase;
+
+import org.bukkit.entity.ComplexLivingEntity;
+import org.bukkit.entity.Enderman;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
+import org.getspout.spoutapi.player.SpoutPlayer;
+
+import com.sun.xml.internal.stream.Entity;
 
 /**
  * <p>
@@ -24,7 +33,7 @@ import org.bukkit.entity.LivingEntity;
  * </p>
  * @author Merdril
  */
-public interface RBLivingEntity
+public interface RBLivingEntity extends Comparable<RBLivingEntity>
 {
 	/**
 	 * The enums to indicate the statuses of a given {@link RBLivingEntity}. The form of the enum
@@ -143,15 +152,26 @@ public interface RBLivingEntity
 	}
 	
 	/**
-	 * Indicates to the relevant commands to add the specified items to whatever {@link Collection}
-	 * it handles.
+	 * A mapping of monster names to their respective classes. This object maps the string name of
+	 * the monster (retivable via the getName() method of the {@link Monster} class or
+	 * {@link ComplexLivingEntity} class) to the corresponding class. In the case of CraftBukkit,
+	 * this name is usually CraftSpider, and there should be a simple replaceAll(...) call on the
+	 * {@link String} passed into this method's get call. Unless one ahs good reason (see
+	 * {@link RBDatabase}).
 	 */
-	public int	ADD	   = 0;
+	public Map<String, Class<? extends LivingEntity>>	MONSTERS	=
+	                                                                     new HashMap<String, Class<? extends LivingEntity>>();
+	
 	/**
 	 * Indicates to the relevant commands to add the specified items to whatever {@link Collection}
 	 * it handles.
 	 */
-	public int	REMOVE	= 1;
+	public int	                                      ADD	     = 0;
+	/**
+	 * Indicates to the relevant commands to add the specified items to whatever {@link Collection}
+	 * it handles.
+	 */
+	public int	                                      REMOVE	 = 1;
 	
 	/**
 	 * <p>
@@ -166,7 +186,7 @@ public interface RBLivingEntity
 	 *            the Stat to query.
 	 * @return An int specifying the amount of the Stat this living entity contains.
 	 */
-	public int getStat(Stat stat);
+	public Integer getStat(Stat stat);
 	
 	/**
 	 * <p>
@@ -185,7 +205,7 @@ public interface RBLivingEntity
 	 *         referenced by the Stat (which should in turn, have the same value as the int that was
 	 *         passed in).
 	 */
-	public int setStat(Stat stat, int amount);
+	public Integer setStat(Stat stat, int amount);
 	
 	/**
 	 * Returns an effect for use in damage calculation or turn calculation. Effects should be used,
@@ -289,20 +309,70 @@ public interface RBLivingEntity
 	public Map<Stat, Integer> getStats();
 	
 	/**
+	 * <p>
 	 * A {@link Map}&lt{@link Stat}, {@link Integer}&gt of the original stats of the entity to the
-	 * values of those stats. The mapping would make the most sense as an {@link EnumMap}.
+	 * values of those stats. The mapping would make the most sense as an {@link EnumMap}. The
+	 * original {@link Stat}s need not include CHP and CMP, though that is not strictly prohibited,
+	 * however there is no standard interpretation of its inclusion in the mapping returned by this
+	 * method.
+	 * </p>
 	 * @return A {@link Map}&lt{@link Stat}, {@link Integer}&gt view of the original stats and
 	 *         values of this entity. Changes to the values of this map should not affect the values
-	 *         of the {@link RBLivingEntity}.
+	 *         or mappings of the original {@link Stat}s of the {@link RBLivingEntity}. For
+	 *         permanent changes, see {@link RBDatabase}.
 	 */
 	public Map<Stat, Integer> getOriginalStats();
 	
+	/**
+	 * <p>
+	 * This tests for equality between two different {@link RBLivingEntity}. Another {@link Object}
+	 * is considered equal if it implements {@link RBLivingEntity} and both wrap the same
+	 * {@link LivingEntity}.
+	 * </p>
+	 * <p>
+	 * For example if the {@link LivingEntity} of the two classes are both {@link Enderman}, but not
+	 * the same game {@link Enderman}, then this method should return false.
+	 * </p>
+	 * @param obj
+	 *            The other {@link Object} to test for equality.
+	 * @return True if this {@link RBLivingEntity} and the {@link RBLivingEntity} of the argument
+	 *         wrap the exact same {@link Entity}. False otherwise.
+	 */
 	@Override
 	public boolean equals(Object obj);
 	
+	/**
+	 * <p>
+	 * This method extends the equals method to allow comparisons between similar
+	 * {@link RBLivingEntity}.
+	 * </p>
+	 * <p>
+	 * This method should return 0 if <code>this.equals(other) == true</code> This method should
+	 * return -1 if <code>other</code> wraps the same subclass of {@link LivingEntity}: e.g.
+	 * {@link Monster}, {@link SpoutPlayer}, {@link ComplexLivingEntity}, etc... This method should
+	 * return 1 if <code>other</code> does not wrap the same subclass of {@link LivingEntity}.
+	 * </p>
+	 * @param other
+	 * @return
+	 */
+	@Override
+	public int compareTo(RBLivingEntity other);
+	
+	/**
+	 * This method returns the fully qualified name of the class, the name of the
+	 * {@link LivingEntity}, and the current stats of this {@link RBLivingEntity}.
+	 * @return A String made to the above specifications.
+	 */
 	@Override
 	public String toString();
 	
+	/**
+	 * This method should returns a hash code determined by the hash code of the enclosed
+	 * {@link LivingEntity} as well as some factor to differentiate between different instances of
+	 * the same class of {@link LivingEntity}.
+	 * @return Hopefully, a unique int that is specific to the instance of the enclosed
+	 *         {@link LivingEntity} of this class.
+	 */
 	@Override
 	public int hashCode();
 }

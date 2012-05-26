@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -181,8 +182,8 @@ public class RBConfig
 	 * @return An int representing the maximum number of mobs to expect. The actual mobs to service
 	 *         are determined by the values contained within stats.db.
 	 */
-	public int getExpectedMobs()
+	public List<String> getExpectedMobs()
 	{
-		return config.getInt("expectedmobs");
+		return config.getStringList("expectedmobs");
 	}
 }

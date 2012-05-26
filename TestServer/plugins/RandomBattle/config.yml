@@ -1,26 +1,21 @@
 # Dimensions for the stage.
 # stageheight is the z-coordinate to place the first level of the stage
 stageheight: 122
-# stagewidth is how wide the stage will be (east and west of the player)
 stagewidth: 24
-# stagelength is how long the stage will be (north and south of the player)
 stagelength: 16
-
-# How probable a RandomBattle encounter is. 0 is never, 100 is always.
 randomchance: 100
-
-# The default starting stats for a player. All but HP, MP, ACC, and EVA have a limit of 255. HP and MP have a limit of 99999 and 9999 respectively, ACC and EVA have a limit of 100
 startstats:
-    hp: 20
-    mp: 20
-    str: 10
-    mag: 10
-    def: 10
-    mdef: 10
-    agl: 10
-    acc: 50
-    eva: 25
-    luck: 5
-
-# The number of mobs that this plugin expects to service. Only change this number should you manually edit stats.db to remove mobs from the list.
-expectedmobs: 9
+  hp: 20
+  mp: 20
+  str: 10
+  mag: 10
+  def: 10
+  mdef: 10
+  agl: 10
+  acc: 50
+  eva: 25
+  luck: 5
+expectedmobs:
+- spider
+- iron golem
+- zombie

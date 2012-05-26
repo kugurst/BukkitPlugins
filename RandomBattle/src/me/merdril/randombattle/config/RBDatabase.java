@@ -10,13 +10,24 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 import javax.sql.rowset.CachedRowSet;
 
 import me.merdril.randombattle.RBUtilities;
 import me.merdril.randombattle.RandomBattle;
+import me.merdril.randombattle.battle.RBLivingEntity;
+import me.merdril.randombattle.battle.RBLivingEntity.Stat;
+
+import org.bukkit.entity.Blaze;
+import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Enderman;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.PigZombie;
 
 import com.sun.rowset.CachedRowSetImpl;
 
@@ -34,6 +45,7 @@ public final class RBDatabase
 {
 	private static RandomBattle	       plugin;
 	public static Map<String, Integer>	playerBaseStats;
+	private static List<String>	       activeMobs;
 	
 	/**
 	 * <p>
@@ -43,10 +55,12 @@ public final class RBDatabase
 	 * @param playerBaseStats
 	 * @param expectedMobs
 	 */
-	public static void initialize(RandomBattle instance, Map<String, Integer> playerBaseStats, int expectedMobs)
+	public static void
+	        initialize(RandomBattle instance, Map<String, Integer> playerBaseStats, List<String> expectedMobs)
 	{
 		// Save the plugin instance
 		plugin = instance;
+		activeMobs = expectedMobs;
 		RBDatabase.playerBaseStats = playerBaseStats;
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -124,16 +138,6 @@ public final class RBDatabase
 						createTable("monsters", statement);
 					}
 				}
-			}
-			// At this point, we have a working monster table. Let's make sure that we have the
-			// expected number of listed mobs.
-			set = statement.executeQuery("SELECT name FROM monsters");
-			int rowCount = 0;
-			while (set.next())
-				rowCount++;
-			if (rowCount < expectedMobs) {
-				statement.executeUpdate("DELETE FROM monsters");
-				generateMonsters(statement);
 			}
 		}
 		catch (SQLException e) {
@@ -221,6 +225,10 @@ public final class RBDatabase
 			queryFailed(e, true);
 		}
 		// ///////////////////////////////////////////////////End verification of the table contents
+		
+		// Cache the contents of the monster table.
+		List<EnumMap<Stat, Integer>> monsterStats = loadMonsterStats(statement, RBLivingEntity.MONSTERS);
+		// Initialize the MONSTER map of RBLiving Entity.
 		try {
 			statement.close();
 		}
@@ -237,6 +245,19 @@ public final class RBDatabase
 			        RandomBattle.prefix + "Failed to close the database statement! Is everything all right?");
 			e.printStackTrace();
 		}
+	}
+	
+	private static List<EnumMap<Stat, Integer>> loadMonsterStats(Statement statement,
+	        Map<String, Class<? extends LivingEntity>> monsterClassMap)
+	{
+		// First, initialize the MONSTERS map with the found monsters in the database.
+		monsterClassMap.put("enderman", Enderman.class);
+		monsterClassMap.put("zombie pigman", PigZombie.class);
+		monsterClassMap.put("blaze", Blaze.class);
+		monsterClassMap.put("creeper", Creeper.class);
+		ArrayList<EnumMap<Stat, Integer>> result = new ArrayList<EnumMap<Stat, Integer>>();
+		
+		return result;
 	}
 	
 	/**

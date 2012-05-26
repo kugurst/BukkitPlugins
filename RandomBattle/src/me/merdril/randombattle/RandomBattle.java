@@ -4,6 +4,7 @@
 
 package me.merdril.randombattle;
 
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -29,17 +30,17 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class RandomBattle extends JavaPlugin
 {
-	private Logger	          log	     = Logger.getLogger("Minecraft");
+	private Logger	           log	      = Logger.getLogger("Minecraft");
 	/** The prefix to begin all log messages with. It is currently: "[RandomBattle] " */
-	public static String	  prefix	 = "";
+	public static final String	prefix	  = "[RandomBattle] ";
 	/**
 	 * <p>
 	 * An int representing the z-position of the stage, the width of the stage (east-west), the
 	 * length of the stage (north-south), and how often (in the long run) to have a random battle.
 	 * </p>
 	 */
-	public static int	      stageHeight, stageWidth, stageLength, randomChance;
-	private int	              trigDelNum	= 5;
+	public static int	       stageHeight, stageWidth, stageLength, randomChance;
+	private int	               trigDelNum	= 5;
 	private RBCommandExecutor	cExec;
 	
 	// Initializes all the listeners and registers all the commands. Tells the server when it is
@@ -47,8 +48,7 @@ public class RandomBattle extends JavaPlugin
 	@Override
 	public void onEnable()
 	{
-		// Initialize the prefix for all communications with the outside world
-		prefix = "[" + this.getName() + "] ";
+		getLogger().info(prefix + "lol");
 		// Load the configuration
 		RBConfig config = new RBConfig(this);
 		int[] dim = config.getDimensions();
@@ -56,10 +56,11 @@ public class RandomBattle extends JavaPlugin
 		stageWidth = dim[1];
 		stageLength = dim[2];
 		randomChance = config.getChance();
-		int expectedMobs = config.getExpectedMobs();
+		List<String> expectedMobs = config.getExpectedMobs();
 		Map<String, Integer> playerBaseStats = config.getStartStats();
 		// Initialize the database wrapper
 		RBDatabase.initialize(this, playerBaseStats, expectedMobs);
+		// Initialize the object serializing class.
 		RBOS.initialize(this);
 		
 		// Get the PluginManager to minimize line length (and stack calls)
@@ -74,6 +75,7 @@ public class RandomBattle extends JavaPlugin
 		getCommand("showregplayers").setExecutor(cExec);
 		getCommand("showspoutplayers").setExecutor(cExec);
 		getCommand("removeblocks").setExecutor(cExec);
+		getCommand("spawnmobs").setExecutor(cExec);
 		
 		// Initialize some of the listeners: The AttackListener to initiate attacks, the
 		// AttackCleaner to clear the data structures that keep track of monster-player
