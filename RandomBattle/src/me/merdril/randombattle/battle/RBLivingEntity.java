@@ -15,6 +15,7 @@ import me.merdril.randombattle.config.RBDatabase;
 
 import org.bukkit.entity.ComplexLivingEntity;
 import org.bukkit.entity.Enderman;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.getspout.spoutapi.player.SpoutPlayer;
@@ -152,26 +153,25 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	}
 	
 	/**
-	 * A mapping of monster names to their respective classes. This object maps the string name of
-	 * the monster (retivable via the getName() method of the {@link Monster} class or
-	 * {@link ComplexLivingEntity} class) to the corresponding class. In the case of CraftBukkit,
+	 * A mapping of monster names to their respective {@link EntityType}. This object maps the
+	 * string name of the monster (retivable via the getName() method of the {@link Monster} class
+	 * or {@link ComplexLivingEntity} class) to the corresponding class. In the case of CraftBukkit,
 	 * this name is usually CraftSpider, and there should be a simple replaceAll(...) call on the
 	 * {@link String} passed into this method's get call. Unless one ahs good reason (see
 	 * {@link RBDatabase}).
 	 */
-	public Map<String, Class<? extends LivingEntity>>	MONSTERS	=
-	                                                                     new HashMap<String, Class<? extends LivingEntity>>();
+	public Map<String, EntityType>	MONSTERS	= new HashMap<String, EntityType>();
 	
 	/**
 	 * Indicates to the relevant commands to add the specified items to whatever {@link Collection}
 	 * it handles.
 	 */
-	public int	                                      ADD	     = 0;
+	public int	                   ADD	     = 0;
 	/**
 	 * Indicates to the relevant commands to add the specified items to whatever {@link Collection}
 	 * it handles.
 	 */
-	public int	                                      REMOVE	 = 1;
+	public int	                   REMOVE	 = 1;
 	
 	/**
 	 * <p>

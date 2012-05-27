@@ -10,8 +10,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -23,11 +23,7 @@ import me.merdril.randombattle.RandomBattle;
 import me.merdril.randombattle.battle.RBLivingEntity;
 import me.merdril.randombattle.battle.RBLivingEntity.Stat;
 
-import org.bukkit.entity.Blaze;
-import org.bukkit.entity.Creeper;
-import org.bukkit.entity.Enderman;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.EntityType;
 
 import com.sun.rowset.CachedRowSetImpl;
 
@@ -227,7 +223,8 @@ public final class RBDatabase
 		// ///////////////////////////////////////////////////End verification of the table contents
 		
 		// Cache the contents of the monster table.
-		List<EnumMap<Stat, Integer>> monsterStats = loadMonsterStats(statement, RBLivingEntity.MONSTERS);
+		Map<String, EnumMap<Stat, Integer>> monsterStats =
+		        loadMonsterStats(statement, RBLivingEntity.MONSTERS, activeMobs);
 		// Initialize the MONSTER map of RBLiving Entity.
 		try {
 			statement.close();
@@ -247,15 +244,29 @@ public final class RBDatabase
 		}
 	}
 	
-	private static List<EnumMap<Stat, Integer>> loadMonsterStats(Statement statement,
-	        Map<String, Class<? extends LivingEntity>> monsterClassMap)
+	private static Map<String, EnumMap<Stat, Integer>> loadMonsterStats(Statement statement,
+	        Map<String, EntityType> monsters, List<String> activeMobs)
 	{
+		// Get the monsters from the database:
+		CachedRowSet set = performQuery("SELECT * FROM monsters");
+		if (set == null) {
+			plugin.getLogger().warning(
+			        RandomBattle.prefix + "Unable to read the monsters from the database! Shutting down...");
+			plugin.getPluginLoader().disablePlugin(plugin);
+		}
 		// First, initialize the MONSTERS map with the found monsters in the database.
-		monsterClassMap.put("enderman", Enderman.class);
-		monsterClassMap.put("zombie pigman", PigZombie.class);
-		monsterClassMap.put("blaze", Blaze.class);
-		monsterClassMap.put("creeper", Creeper.class);
-		ArrayList<EnumMap<Stat, Integer>> result = new ArrayList<EnumMap<Stat, Integer>>();
+		try {
+			while (set.next()) {
+				String monsterName = set.getString("name");
+				if (monsterName.equalsIgnoreCase("enderman") && set.getBoolean("enabled")) {
+					monsters.put(monsterName.toLowerCase(), EntityType.ENDERMAN);
+				}
+			}
+		}
+		catch (SQLException e) {
+			queryFailed(e, true);
+		}
+		HashMap<String, EnumMap<Stat, Integer>> result = new HashMap<String, EnumMap<Stat, Integer>>();
 		
 		return result;
 	}

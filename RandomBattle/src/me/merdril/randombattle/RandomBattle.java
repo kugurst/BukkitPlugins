@@ -32,7 +32,8 @@ public class RandomBattle extends JavaPlugin
 {
 	private Logger	           log	      = Logger.getLogger("Minecraft");
 	/** The prefix to begin all log messages with. It is currently: "[RandomBattle] " */
-	public static final String	prefix	  = "[RandomBattle] ";
+	public static final String	prefi	  = "[RandomBattle] ";
+	public static final String	prefix	  = "";
 	/**
 	 * <p>
 	 * An int representing the z-position of the stage, the width of the stage (east-west), the
@@ -48,7 +49,6 @@ public class RandomBattle extends JavaPlugin
 	@Override
 	public void onEnable()
 	{
-		getLogger().info(prefix + "lol");
 		// Load the configuration
 		RBConfig config = new RBConfig(this);
 		int[] dim = config.getDimensions();
@@ -86,7 +86,7 @@ public class RandomBattle extends JavaPlugin
 		pm.registerEvents(new RBLoginListener(this), this);
 		
 		// That's all folks
-		log.info(prefix + "Random Battle v" + getDescription().getVersion() + " has started!");
+		log.info(prefi + "Random Battle v" + getDescription().getVersion() + " has started!");
 	}
 	
 	// Removes all the blocks that this program has placed. The monsters will fall to their deaths
@@ -97,8 +97,8 @@ public class RandomBattle extends JavaPlugin
 	@Override
 	public void onDisable()
 	{
-		log.info(prefix + "Removing left over blocks...");
+		log.info(prefi + "Removing left over blocks...");
 		cExec.removeEditedBlocks(null, null, null, null);
-		log.info(prefix + "Random Battle has shut down!");
+		log.info(prefi + "Random Battle has shut down!");
 	}
 }
