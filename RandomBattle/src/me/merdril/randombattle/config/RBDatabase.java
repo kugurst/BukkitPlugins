@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import me.merdril.randombattle.RBUtilities;
 import me.merdril.randombattle.RandomBattle;
 import me.merdril.randombattle.battle.RBLivingEntity;
 import me.merdril.randombattle.battle.RBLivingEntity.Stat;
+import me.merdril.randombattle.battle.RBSkill;
 
 import org.bukkit.entity.EntityType;
 
@@ -223,8 +225,7 @@ public final class RBDatabase
 		// ///////////////////////////////////////////////////End verification of the table contents
 		
 		// Cache the contents of the monster table.
-		Map<String, EnumMap<Stat, Integer>> monsterStats =
-		        loadMonsterStats(statement, RBLivingEntity.MONSTERS, activeMobs);
+		Map<String, Object> monsterStats = loadMonsterStats(statement, RBLivingEntity.MONSTERS, activeMobs);
 		// Initialize the MONSTER map of RBLiving Entity.
 		try {
 			statement.close();
@@ -244,8 +245,8 @@ public final class RBDatabase
 		}
 	}
 	
-	private static Map<String, EnumMap<Stat, Integer>> loadMonsterStats(Statement statement,
-	        Map<String, EntityType> monsters, List<String> activeMobs)
+	private static Map<String, Object> loadMonsterStats(Statement statement, Map<String, EntityType> monsters,
+	        List<String> activeMobs)
 	{
 		// Get the monsters from the database:
 		CachedRowSet set = performQuery("SELECT * FROM monsters");
@@ -254,20 +255,40 @@ public final class RBDatabase
 			        RandomBattle.prefix + "Unable to read the monsters from the database! Shutting down...");
 			plugin.getPluginLoader().disablePlugin(plugin);
 		}
-		// First, initialize the MONSTERS map with the found monsters in the database.
+		// Initialize the stat holder
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		// //Get the stats for the enabled monsters
+		// Find the enabled monsters and add their stats.
 		try {
 			while (set.next()) {
 				String monsterName = set.getString("name");
-				if (monsterName.equalsIgnoreCase("enderman") && set.getBoolean("enabled")) {
-					monsters.put(monsterName.toLowerCase(), EntityType.ENDERMAN);
+				// If the mob is enabled...
+				if (activeMobs.contains(monsterName)) {
+					// Make an object array to hold the values associated with the monster (its
+					// stats, skills, magicks, and weaknesses
+					Object[] attributes = new Object[4];
+					// // Get its stats and add it to the map
+					// Make an EnumMap to hold the stats
+					EnumMap<Stat, Integer> stats = new EnumMap<RBLivingEntity.Stat, Integer>(Stat.class);
+					for (Stat stat : RBLivingEntity.Stat.values()) {
+						String statName = stat.toString().toLowerCase();
+						// We don't care about certain stats (more accurately, asking for them would
+						// throw an exception)
+						if (statName.equalsIgnoreCase("chp") || statName.equalsIgnoreCase("cmp")
+						        || statName.equals("level"))
+							continue;
+						// Get the stat and load it in.
+						int statAmount = set.getInt(statName);
+						stats.put(stat, statAmount);
+					}
+					// Get the skills of the monster
+					LinkedList<RBSkill> skills = new LinkedList<RBSkill>();
 				}
 			}
 		}
 		catch (SQLException e) {
 			queryFailed(e, true);
 		}
-		HashMap<String, EnumMap<Stat, Integer>> result = new HashMap<String, EnumMap<Stat, Integer>>();
-		
 		return result;
 	}
 	
@@ -408,7 +429,7 @@ public final class RBDatabase
 				"'ice;'" + // weak
 				")");
 		statement.addBatch("INSERT INTO monsters VALUES (" +
-				"'Zombie Pigman'," + // name
+				"'Pig Zombie'," + // name
 				"20000," + // hp
 				"100," + // mp
 				"150," + // str

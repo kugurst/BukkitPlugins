@@ -30,18 +30,18 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class RandomBattle extends JavaPlugin
 {
-	private Logger	           log	      = Logger.getLogger("Minecraft");
+	private Logger	            log	       = Logger.getLogger("Minecraft");
 	/** The prefix to begin all log messages with. It is currently: "[RandomBattle] " */
-	public static final String	prefi	  = "[RandomBattle] ";
-	public static final String	prefix	  = "";
+	private static final String	prefi	   = "[RandomBattle] ";
+	public static final String	prefix	   = "";
 	/**
 	 * <p>
 	 * An int representing the z-position of the stage, the width of the stage (east-west), the
 	 * length of the stage (north-south), and how often (in the long run) to have a random battle.
 	 * </p>
 	 */
-	public static int	       stageHeight, stageWidth, stageLength, randomChance;
-	private int	               trigDelNum	= 5;
+	public static int	        stageHeight, stageWidth, stageLength, randomChance;
+	private int	                trigDelNum	= 5;
 	private RBCommandExecutor	cExec;
 	
 	// Initializes all the listeners and registers all the commands. Tells the server when it is
@@ -65,6 +65,7 @@ public class RandomBattle extends JavaPlugin
 		
 		// Get the PluginManager to minimize line length (and stack calls)
 		PluginManager pm = this.getServer().getPluginManager();
+		log.info(prefi + Thread.currentThread());
 		
 		// Initialize the command executer
 		cExec = new RBCommandExecutor(this);

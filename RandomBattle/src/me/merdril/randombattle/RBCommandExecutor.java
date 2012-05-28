@@ -55,7 +55,7 @@ public class RBCommandExecutor implements CommandExecutor
 	 */
 	public static String	       registeredPlayersFile	= "registeredPlayers.txt";
 	private static Set<String>	   deactivatedPlayers;
-	private AtomicBoolean	       hasBeenStopped;
+	public static AtomicBoolean	   hasBeenStopped;
 	private static ExecutorService	threadExec;
 	
 	/**
@@ -71,7 +71,8 @@ public class RBCommandExecutor implements CommandExecutor
 			registeredPlayers = Collections.synchronizedSet(new HashSet<String>());
 		if (inactiveRegisteredPlayers == null)
 			inactiveRegisteredPlayers = Collections.synchronizedSet(new HashSet<String>());
-		hasBeenStopped = new AtomicBoolean(false);
+		if (hasBeenStopped == null)
+			hasBeenStopped = new AtomicBoolean(false);
 		if (threadExec == null)
 			threadExec = Executors.newSingleThreadExecutor();
 	}
@@ -81,6 +82,7 @@ public class RBCommandExecutor implements CommandExecutor
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 	{
+		plugin.getLogger().info(RandomBattle.prefix + Thread.currentThread());
 		if (cmd.getName().equalsIgnoreCase("regbattle")) {
 			if (sender instanceof Player) {
 				if (sender.hasPermission("randombattle.register"))

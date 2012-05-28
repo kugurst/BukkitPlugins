@@ -53,7 +53,11 @@ public class RBLoginListener implements Listener
 	public void onPlayerLogoff(PlayerQuitEvent event)
 	{
 		// Simply move the player from the list of registered players to inactive players.
-		if (RBCommandExecutor.registeredPlayers.contains(event.getPlayer().getName())) {
+		boolean registered = false;
+		synchronized (RBCommandExecutor.registeredPlayers) {
+			registered = RBCommandExecutor.registeredPlayers.contains(event.getPlayer().getName());
+		}
+		if (registered) {
 			synchronized (RBCommandExecutor.inactiveRegisteredPlayers) {
 				RBCommandExecutor.inactiveRegisteredPlayers.add(event.getPlayer().getName());
 			}
@@ -83,7 +87,11 @@ public class RBLoginListener implements Listener
 	public void onSpoutcraftEnable(SpoutCraftEnableEvent event)
 	{
 		// Simply move the player from the list of inactive players to registered players.
-		if (RBCommandExecutor.inactiveRegisteredPlayers.contains(event.getPlayer().getName())) {
+		boolean registered = false;
+		synchronized (RBCommandExecutor.inactiveRegisteredPlayers) {
+			registered = RBCommandExecutor.inactiveRegisteredPlayers.contains(event.getPlayer().getName());
+		}
+		if (registered && !RBCommandExecutor.hasBeenStopped.get()) {
 			synchronized (RBCommandExecutor.registeredPlayers) {
 				RBCommandExecutor.registeredPlayers.add(event.getPlayer().getName());
 			}

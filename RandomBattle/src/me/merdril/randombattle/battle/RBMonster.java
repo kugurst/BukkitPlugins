@@ -1,33 +1,26 @@
-
-package me.merdril.randombattle.battle.monsters;
+package me.merdril.randombattle.battle;
 
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
-import me.merdril.randombattle.battle.RBElem;
-import me.merdril.randombattle.battle.RBLivingEntity;
-import me.merdril.randombattle.battle.RBMagic;
-import me.merdril.randombattle.battle.RBMove;
-import me.merdril.randombattle.battle.RBSkill;
-
 import org.bukkit.entity.LivingEntity;
 
-public class RBSpider implements RBLivingEntity
+public class RBMonster implements RBLivingEntity
 {
 	
 	@Override
 	public Integer getStat(Stat stat)
 	{
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 	
 	@Override
 	public Integer setStat(Stat stat, int amount)
 	{
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 	
 	@Override
@@ -120,4 +113,5 @@ public class RBSpider implements RBLivingEntity
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 }

@@ -1,6 +1,6 @@
+
 package me.merdril.randombattle.battle;
 
-public class RBMagic
-{	
+public enum RBMagic {
 	
 }

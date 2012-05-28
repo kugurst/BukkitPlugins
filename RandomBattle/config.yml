@@ -25,7 +25,7 @@ startstats:
 # The mob types this plugin will service. Adding more monsters than originally listed will do nothing; however, removing the ones listed will remove them from RandomBattle.
 enabledmobs:
     - enderman
-    - zombie pigman
+    - pig zombie
     - blaze
     - creeper
     - skeleton
