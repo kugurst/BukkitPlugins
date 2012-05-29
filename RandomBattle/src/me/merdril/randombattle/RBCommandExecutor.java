@@ -82,7 +82,6 @@ public class RBCommandExecutor implements CommandExecutor
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 	{
-		plugin.getLogger().info(RandomBattle.prefix + Thread.currentThread());
 		if (cmd.getName().equalsIgnoreCase("regbattle")) {
 			if (sender instanceof Player) {
 				if (sender.hasPermission("randombattle.register"))

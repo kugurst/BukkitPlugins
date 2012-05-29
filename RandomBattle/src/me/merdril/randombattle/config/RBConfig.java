@@ -184,6 +184,6 @@ public class RBConfig
 	 */
 	public List<String> getExpectedMobs()
 	{
-		return config.getStringList("expectedmobs");
+		return config.getStringList("enabledmobs");
 	}
 }

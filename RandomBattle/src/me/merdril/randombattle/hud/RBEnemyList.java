@@ -20,7 +20,7 @@ import org.getspout.spoutapi.player.SpoutPlayer;
 /**
  * @author mark
  */
-public class RBMonsterList extends GenericListWidget
+public class RBEnemyList extends GenericListWidget
 {
 	RandomBattle	           plugin;
 	private ArrayList<Monster>	monsters;
@@ -29,7 +29,7 @@ public class RBMonsterList extends GenericListWidget
 	/**
 	 * 
 	 */
-	public RBMonsterList(RandomBattle instance, SpoutPlayer player, ArrayList<Monster> monsters)
+	public RBEnemyList(RandomBattle instance, SpoutPlayer player, ArrayList<Monster> monsters)
 	{
 		super();
 		this.plugin = instance;

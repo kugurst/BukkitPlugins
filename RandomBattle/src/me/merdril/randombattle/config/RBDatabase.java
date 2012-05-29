@@ -21,8 +21,10 @@ import javax.sql.rowset.CachedRowSet;
 
 import me.merdril.randombattle.RBUtilities;
 import me.merdril.randombattle.RandomBattle;
+import me.merdril.randombattle.battle.RBElem;
 import me.merdril.randombattle.battle.RBLivingEntity;
 import me.merdril.randombattle.battle.RBLivingEntity.Stat;
+import me.merdril.randombattle.battle.RBMagic;
 import me.merdril.randombattle.battle.RBSkill;
 
 import org.bukkit.entity.EntityType;
@@ -44,6 +46,8 @@ public final class RBDatabase
 	private static RandomBattle	       plugin;
 	public static Map<String, Integer>	playerBaseStats;
 	private static List<String>	       activeMobs;
+	public static Map<String, Object>	monsterStats;
+	private static Map<String, Object>	playerStats;
 	
 	/**
 	 * <p>
@@ -225,7 +229,8 @@ public final class RBDatabase
 		// ///////////////////////////////////////////////////End verification of the table contents
 		
 		// Cache the contents of the monster table.
-		Map<String, Object> monsterStats = loadMonsterStats(statement, RBLivingEntity.MONSTERS, activeMobs);
+		monsterStats = loadMonsterStats(statement, RBLivingEntity.MONSTERS, activeMobs);
+		playerStats = loadPlayerStats(statement);
 		// Initialize the MONSTER map of RBLiving Entity.
 		try {
 			statement.close();
@@ -245,13 +250,25 @@ public final class RBDatabase
 		}
 	}
 	
+	private static Map<String, Object> loadPlayerStats(Statement statement)
+	{
+		// Get the players from the database
+		CachedRowSet set = performQuery("SELECT * FROM players");
+		if (set == null) {
+			plugin.getLogger().severe(
+			        RandomBattle.prefix + "Unable to read the players from the database! Shutting down...");
+			plugin.getPluginLoader().disablePlugin(plugin);
+		}
+		return null;
+	}
+	
 	private static Map<String, Object> loadMonsterStats(Statement statement, Map<String, EntityType> monsters,
 	        List<String> activeMobs)
 	{
 		// Get the monsters from the database:
 		CachedRowSet set = performQuery("SELECT * FROM monsters");
 		if (set == null) {
-			plugin.getLogger().warning(
+			plugin.getLogger().severe(
 			        RandomBattle.prefix + "Unable to read the monsters from the database! Shutting down...");
 			plugin.getPluginLoader().disablePlugin(plugin);
 		}
@@ -263,13 +280,18 @@ public final class RBDatabase
 			while (set.next()) {
 				String monsterName = set.getString("name");
 				// If the mob is enabled...
-				if (activeMobs.contains(monsterName)) {
+				if (activeMobs.contains(monsterName.toLowerCase())) {
 					// Make an object array to hold the values associated with the monster (its
-					// stats, skills, magicks, and weaknesses
-					Object[] attributes = new Object[4];
+					// stats, skills, magicks, and weaknesses)
+					Object[] attributes;
 					// // Get its stats and add it to the map
 					// Make an EnumMap to hold the stats
 					EnumMap<Stat, Integer> stats = new EnumMap<RBLivingEntity.Stat, Integer>(Stat.class);
+					// Make a LinkedList for the skills, magic, and elemental weaknesses.
+					LinkedList<RBSkill> skills = new LinkedList<RBSkill>();
+					LinkedList<RBMagic> magicks = new LinkedList<RBMagic>();
+					LinkedList<RBElem> weakness = new LinkedList<RBElem>();
+					// Populate the stats list
 					for (Stat stat : RBLivingEntity.Stat.values()) {
 						String statName = stat.toString().toLowerCase();
 						// We don't care about certain stats (more accurately, asking for them would
@@ -281,10 +303,27 @@ public final class RBDatabase
 						int statAmount = set.getInt(statName);
 						stats.put(stat, statAmount);
 					}
-					// Get the skills of the monster
-					LinkedList<RBSkill> skills = new LinkedList<RBSkill>();
+					// Get the skills of this monster
+					String[] skillArray = set.getString("skills").split("\\;");
+					for (String skill : skillArray)
+						if (!skill.isEmpty())
+							skills.add(RBSkill.skillMap.get(skill.toLowerCase().replaceAll("\\ ", "\\_")));
+					// Get the magicks of this monster
+					String[] magicksArray = set.getString("magicks").split("\\;");
+					for (String magic : magicksArray)
+						if (!magic.isEmpty())
+							magicks.add(RBMagic.magicMap.get(magic.toLowerCase().replaceAll("\\ ", "\\_")));
+					// Get the weaknesses of this monster
+					String[] weaknessArray = set.getString("weak").split("\\;");
+					for (String weak : weaknessArray)
+						if (!weak.isEmpty())
+							weakness.add(RBElem.elemMap.get(weak.toLowerCase()));
+					// Add all of these lists and the map to the attributes of this monster and
+					// store it in the map
+					attributes = new Object[] {stats, skills, magicks, weakness};
+					result.put(monsterName.toLowerCase(), attributes);
 				}
-			}
+			} // Repeat
 		}
 		catch (SQLException e) {
 			queryFailed(e, true);
@@ -475,7 +514,7 @@ public final class RBDatabase
 				"15," + // eva
 				"150," + // luck
 				"'Explode;'," + // skills
-				"'/kill;'," + // magicks
+				"'Kill;'," + // magicks
 				"100000," + // exp
 				"'ice;'" + // weak
 				")");
@@ -562,7 +601,7 @@ public final class RBDatabase
 				"'Smash;Fortify;'," + // skills
 				"';'," + // magicks
 				"50000," + // exp
-				"'thunder;'" + // weak
+				"'lightning;'" + // weak
 				")");
 		//@formatter:on
 		return statement.executeBatch();

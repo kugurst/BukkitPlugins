@@ -13747,3 +13747,1371 @@ java.lang.NullPointerException
 2012-05-27 18:45:35 [INFO] [RandomBattle] Random Battle has shut down!
 2012-05-27 18:45:35 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
 2012-05-27 18:45:35 [INFO] Saving chunks
+2012-05-28 00:00:15 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 00:00:15 [INFO] Loading properties
+2012-05-28 00:00:15 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 00:00:16 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 00:00:16 [INFO] [Spout] Loading Spout v1174
+2012-05-28 00:00:16 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 00:00:16 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 00:00:16 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 00:00:16 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 00:00:16 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 00:00:16 [INFO] Preparing level "world"
+2012-05-28 00:00:16 [INFO] Default game type: 0
+2012-05-28 00:00:16 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 00:00:16 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 00:00:16 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 00:00:16 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 00:00:16 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 00:00:16 [WARNING] ----- ------------------- -----
+2012-05-28 00:00:17 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 00:00:17 [INFO] Preparing spawn area: 0%
+2012-05-28 00:00:18 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 00:00:18 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 00:00:18 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 00:00:18 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 00:00:18 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 00:00:18 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 00:00:18 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 00:00:19 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 00:00:19 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 00:00:19 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 00:00:19 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 00:00:19 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 00:00:19 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 00:00:19 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 00:00:19 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 00:00:19 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 00:00:19 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 00:00:19 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 00:00:19 [INFO] Done (2.794s)! For help, type "help" or "?"
+2012-05-28 04:34:57 [WARNING] Can't keep up! Did the system time change, or is the server overloaded?
+2012-05-28 13:42:15 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 13:42:15 [INFO] Stopping server
+2012-05-28 13:42:15 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 13:42:15 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 13:42:15 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 13:42:15 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 13:42:15 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 13:42:15 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 13:42:15 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 13:42:15 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 13:42:15 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 13:42:15 [INFO] Saving chunks
+2012-05-28 18:53:25 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 18:53:25 [INFO] Loading properties
+2012-05-28 18:53:25 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 18:53:25 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 18:53:25 [INFO] [Spout] Loading Spout v1174
+2012-05-28 18:53:25 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 18:53:25 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 18:53:25 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 18:53:25 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 18:53:25 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 18:53:25 [INFO] Preparing level "world"
+2012-05-28 18:53:25 [INFO] Default game type: 0
+2012-05-28 18:53:26 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 18:53:26 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 18:53:26 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 18:53:26 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 18:53:26 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 18:53:26 [WARNING] ----- ------------------- -----
+2012-05-28 18:53:26 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 18:53:27 [INFO] Preparing spawn area: 52%
+2012-05-28 18:53:27 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 18:53:27 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 18:53:27 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 18:53:27 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 18:53:27 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 18:53:27 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 18:53:27 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 18:53:27 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 18:53:27 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 18:53:27 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 18:53:27 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 18:53:27 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 18:53:28 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 18:53:28 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 18:53:28 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 18:53:28 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 18:53:28 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 18:53:28 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 18:53:28 [INFO] Done (2.216s)! For help, type "help" or "?"
+2012-05-28 18:54:24 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 18:54:24 [INFO] Stopping server
+2012-05-28 18:54:24 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 18:54:24 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 18:54:24 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 18:54:24 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 18:54:24 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 18:54:24 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 18:54:24 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 18:54:24 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 18:54:24 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 18:54:24 [INFO] Saving chunks
+2012-05-28 18:54:30 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 18:54:30 [INFO] Loading properties
+2012-05-28 18:54:30 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 18:54:30 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 18:54:30 [INFO] [Spout] Loading Spout v1174
+2012-05-28 18:54:30 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 18:54:30 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 18:54:30 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 18:54:30 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 18:54:30 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 18:54:30 [INFO] Preparing level "world"
+2012-05-28 18:54:30 [INFO] Default game type: 0
+2012-05-28 18:54:30 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 18:54:30 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 18:54:31 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 18:54:31 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 18:54:31 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 18:54:31 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 18:54:31 [WARNING] ----- ------------------- -----
+2012-05-28 18:54:31 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 18:54:31 [INFO] Preparing spawn area: 52%
+2012-05-28 18:54:31 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 18:54:31 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 18:54:31 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 18:54:31 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 18:54:31 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 18:54:31 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 18:54:31 [INFO] [RandomBattle] Loading monster stats...
+2012-05-28 18:54:31 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 18:54:31 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 18:54:31 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 18:54:31 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 18:54:31 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 18:54:31 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 18:54:31 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 18:54:31 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 18:54:31 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 18:54:31 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 18:54:31 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 18:54:31 [INFO] Done (1.504s)! For help, type "help" or "?"
+2012-05-28 18:55:00 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 18:55:00 [INFO] Stopping server
+2012-05-28 18:55:00 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 18:55:00 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 18:55:00 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 18:55:00 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 18:55:00 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 18:55:00 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 18:55:00 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 18:55:00 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 18:55:00 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 18:55:00 [INFO] Saving chunks
+2012-05-28 18:55:15 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 18:55:15 [INFO] Loading properties
+2012-05-28 18:55:15 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 18:55:15 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 18:55:15 [INFO] [Spout] Loading Spout v1174
+2012-05-28 18:55:15 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 18:55:15 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 18:55:15 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 18:55:15 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 18:55:15 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 18:55:15 [INFO] Preparing level "world"
+2012-05-28 18:55:15 [INFO] Default game type: 0
+2012-05-28 18:55:15 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 18:55:16 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 18:55:16 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 18:55:16 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 18:55:16 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 18:55:16 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 18:55:16 [WARNING] ----- ------------------- -----
+2012-05-28 18:55:16 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 18:55:16 [INFO] Preparing spawn area: 52%
+2012-05-28 18:55:16 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 18:55:16 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 18:55:16 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 18:55:16 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 18:55:16 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 18:55:16 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 18:55:16 [INFO] [RandomBattle] Loading monster stats...
+2012-05-28 18:55:16 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 18:55:16 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 18:55:16 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 18:55:16 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 18:55:16 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 18:55:17 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 18:55:17 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 18:55:17 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 18:55:17 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 18:55:17 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 18:55:17 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 18:55:17 [INFO] Done (1.528s)! For help, type "help" or "?"
+2012-05-28 18:55:23 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 18:55:23 [INFO] Stopping server
+2012-05-28 18:55:23 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 18:55:23 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 18:55:23 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 18:55:23 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 18:55:23 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 18:55:23 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 18:55:23 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 18:55:23 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 18:55:23 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 18:55:23 [INFO] Saving chunks
+2012-05-28 18:57:57 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 18:57:57 [INFO] Loading properties
+2012-05-28 18:57:57 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 18:57:57 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 18:57:57 [INFO] [Spout] Loading Spout v1174
+2012-05-28 18:57:57 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 18:57:57 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 18:57:57 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 18:57:57 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 18:57:57 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 18:57:57 [INFO] Preparing level "world"
+2012-05-28 18:57:57 [INFO] Default game type: 0
+2012-05-28 18:57:57 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 18:57:58 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 18:57:58 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 18:57:58 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 18:57:58 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 18:57:58 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 18:57:58 [WARNING] ----- ------------------- -----
+2012-05-28 18:57:58 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 18:57:58 [INFO] Preparing spawn area: 52%
+2012-05-28 18:57:59 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 18:57:59 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 18:57:59 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 18:57:59 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 18:57:59 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 18:57:59 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 18:57:59 [INFO] [RandomBattle] Monster name: Enderman
+2012-05-28 18:57:59 [INFO] [RandomBattle] Monster name: Pig Zombie
+2012-05-28 18:57:59 [INFO] [RandomBattle] Monster name: Blaze
+2012-05-28 18:57:59 [INFO] [RandomBattle] Monster name: Creeper
+2012-05-28 18:57:59 [INFO] [RandomBattle] Monster name: Skeleton
+2012-05-28 18:57:59 [INFO] [RandomBattle] Monster name: Spider
+2012-05-28 18:57:59 [INFO] [RandomBattle] Monster name: Spider Jockey
+2012-05-28 18:57:59 [INFO] [RandomBattle] Monster name: Zombie
+2012-05-28 18:57:59 [INFO] [RandomBattle] Monster name: Iron Golem
+2012-05-28 18:57:59 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 18:57:59 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 18:57:59 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 18:57:59 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 18:57:59 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 18:57:59 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 18:57:59 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 18:57:59 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 18:57:59 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 18:57:59 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 18:57:59 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 18:57:59 [INFO] Done (1.630s)! For help, type "help" or "?"
+2012-05-28 18:59:17 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 18:59:17 [INFO] Stopping server
+2012-05-28 18:59:17 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 18:59:17 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 18:59:17 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 18:59:17 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 18:59:17 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 18:59:17 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 18:59:17 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 18:59:17 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 18:59:17 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 18:59:17 [INFO] Saving chunks
+2012-05-28 18:59:17 [INFO] Stopping server
+2012-05-28 18:59:34 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 18:59:34 [INFO] Loading properties
+2012-05-28 18:59:34 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 18:59:35 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 18:59:35 [INFO] [Spout] Loading Spout v1174
+2012-05-28 18:59:35 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 18:59:35 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 18:59:35 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 18:59:35 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 18:59:35 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 18:59:35 [INFO] Preparing level "world"
+2012-05-28 18:59:35 [INFO] Default game type: 0
+2012-05-28 18:59:35 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 18:59:35 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 18:59:35 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 18:59:35 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 18:59:35 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 18:59:35 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 18:59:35 [WARNING] ----- ------------------- -----
+2012-05-28 18:59:36 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 18:59:36 [INFO] Preparing spawn area: 52%
+2012-05-28 18:59:36 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 18:59:36 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 18:59:36 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 18:59:36 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 18:59:36 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 18:59:36 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 18:59:36 [INFO] [RandomBattle] Monster name: Enderman
+2012-05-28 18:59:36 [INFO] [RandomBattle] Monster name: Pig Zombie
+2012-05-28 18:59:36 [INFO] [RandomBattle] Monster name: Blaze
+2012-05-28 18:59:36 [INFO] [RandomBattle] Monster name: Creeper
+2012-05-28 18:59:36 [INFO] [RandomBattle] Monster name: Skeleton
+2012-05-28 18:59:36 [INFO] [RandomBattle] Monster name: Spider
+2012-05-28 18:59:36 [INFO] [RandomBattle] Monster name: Spider Jockey
+2012-05-28 18:59:36 [INFO] [RandomBattle] Monster name: Zombie
+2012-05-28 18:59:36 [INFO] [RandomBattle] Monster name: Iron Golem
+2012-05-28 18:59:36 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 18:59:36 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 18:59:36 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 18:59:36 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 18:59:36 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 18:59:36 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 18:59:36 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 18:59:36 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 18:59:36 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 18:59:36 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 18:59:36 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 18:59:36 [INFO] Done (1.516s)! For help, type "help" or "?"
+2012-05-28 18:59:41 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 18:59:41 [INFO] Stopping server
+2012-05-28 18:59:41 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 18:59:41 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 18:59:41 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 18:59:41 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 18:59:41 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 18:59:41 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 18:59:41 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 18:59:41 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 18:59:41 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 18:59:41 [INFO] Saving chunks
+2012-05-28 19:00:24 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 19:00:24 [INFO] Loading properties
+2012-05-28 19:00:24 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 19:00:24 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 19:00:24 [INFO] [Spout] Loading Spout v1174
+2012-05-28 19:00:24 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 19:00:24 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 19:00:24 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 19:00:24 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 19:00:24 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 19:00:24 [INFO] Preparing level "world"
+2012-05-28 19:00:24 [INFO] Default game type: 0
+2012-05-28 19:00:24 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 19:00:25 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 19:00:25 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 19:00:25 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 19:00:25 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 19:00:25 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 19:00:25 [WARNING] ----- ------------------- -----
+2012-05-28 19:00:25 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 19:00:25 [INFO] Preparing spawn area: 48%
+2012-05-28 19:00:25 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 19:00:25 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 19:00:25 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 19:00:25 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 19:00:25 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 19:00:25 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 19:00:25 [INFO] [RandomBattle] []
+2012-05-28 19:00:25 [INFO] [RandomBattle] Monster name: Enderman
+2012-05-28 19:00:25 [INFO] [RandomBattle] Monster name: Pig Zombie
+2012-05-28 19:00:25 [INFO] [RandomBattle] Monster name: Blaze
+2012-05-28 19:00:25 [INFO] [RandomBattle] Monster name: Creeper
+2012-05-28 19:00:25 [INFO] [RandomBattle] Monster name: Skeleton
+2012-05-28 19:00:25 [INFO] [RandomBattle] Monster name: Spider
+2012-05-28 19:00:25 [INFO] [RandomBattle] Monster name: Spider Jockey
+2012-05-28 19:00:25 [INFO] [RandomBattle] Monster name: Zombie
+2012-05-28 19:00:25 [INFO] [RandomBattle] Monster name: Iron Golem
+2012-05-28 19:00:25 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 19:00:25 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 19:00:25 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 19:00:25 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 19:00:25 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 19:00:25 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 19:00:25 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 19:00:25 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 19:00:25 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 19:00:25 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 19:00:26 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 19:00:26 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 19:00:26 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 19:00:26 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 19:00:26 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 19:00:26 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 19:00:26 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 19:00:26 [INFO] Done (1.569s)! For help, type "help" or "?"
+2012-05-28 19:00:56 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 19:00:56 [INFO] Stopping server
+2012-05-28 19:00:56 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 19:00:56 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 19:00:56 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 19:00:56 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 19:00:56 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 19:00:56 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 19:00:56 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 19:00:56 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 19:00:56 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 19:00:56 [INFO] Saving chunks
+2012-05-28 19:00:57 [INFO] Stopping server
+2012-05-28 19:01:01 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 19:01:01 [INFO] Loading properties
+2012-05-28 19:01:01 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 19:01:01 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 19:01:01 [INFO] [Spout] Loading Spout v1174
+2012-05-28 19:01:01 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 19:01:01 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 19:01:01 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 19:01:01 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 19:01:01 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 19:01:02 [INFO] Preparing level "world"
+2012-05-28 19:01:02 [INFO] Default game type: 0
+2012-05-28 19:01:02 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 19:01:02 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 19:01:02 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 19:01:02 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 19:01:02 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 19:01:02 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 19:01:02 [WARNING] ----- ------------------- -----
+2012-05-28 19:01:03 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 19:01:03 [INFO] Preparing spawn area: 52%
+2012-05-28 19:01:03 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 19:01:03 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 19:01:03 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 19:01:03 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 19:01:03 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 19:01:03 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 19:01:03 [INFO] [RandomBattle] [enderman, pig zombie, blaze, creeper, skeleton, spider, spider jockey, zombie, iron golem]
+2012-05-28 19:01:03 [INFO] [RandomBattle] Monster name: Enderman
+2012-05-28 19:01:03 [INFO] [RandomBattle] hp
+2012-05-28 19:01:03 [INFO] [RandomBattle] mp
+2012-05-28 19:01:03 [INFO] [RandomBattle] chp
+2012-05-28 19:01:03 [INFO] [RandomBattle] cmp
+2012-05-28 19:01:03 [INFO] [RandomBattle] str
+2012-05-28 19:01:03 [INFO] [RandomBattle] mag
+2012-05-28 19:01:03 [INFO] [RandomBattle] def
+2012-05-28 19:01:03 [INFO] [RandomBattle] mdef
+2012-05-28 19:01:03 [INFO] [RandomBattle] agl
+2012-05-28 19:01:03 [INFO] [RandomBattle] acc
+2012-05-28 19:01:03 [INFO] [RandomBattle] eva
+2012-05-28 19:01:03 [INFO] [RandomBattle] luck
+2012-05-28 19:01:03 [INFO] [RandomBattle] exp
+2012-05-28 19:01:03 [INFO] [RandomBattle] level
+2012-05-28 19:01:03 [INFO] [RandomBattle] Monster name: Pig Zombie
+2012-05-28 19:01:03 [INFO] [RandomBattle] hp
+2012-05-28 19:01:03 [INFO] [RandomBattle] mp
+2012-05-28 19:01:03 [INFO] [RandomBattle] chp
+2012-05-28 19:01:03 [INFO] [RandomBattle] cmp
+2012-05-28 19:01:03 [INFO] [RandomBattle] str
+2012-05-28 19:01:03 [INFO] [RandomBattle] mag
+2012-05-28 19:01:03 [INFO] [RandomBattle] def
+2012-05-28 19:01:03 [INFO] [RandomBattle] mdef
+2012-05-28 19:01:03 [INFO] [RandomBattle] agl
+2012-05-28 19:01:03 [INFO] [RandomBattle] acc
+2012-05-28 19:01:03 [INFO] [RandomBattle] eva
+2012-05-28 19:01:03 [INFO] [RandomBattle] luck
+2012-05-28 19:01:03 [INFO] [RandomBattle] exp
+2012-05-28 19:01:03 [INFO] [RandomBattle] level
+2012-05-28 19:01:03 [INFO] [RandomBattle] Monster name: Blaze
+2012-05-28 19:01:03 [INFO] [RandomBattle] hp
+2012-05-28 19:01:03 [INFO] [RandomBattle] mp
+2012-05-28 19:01:03 [INFO] [RandomBattle] chp
+2012-05-28 19:01:03 [INFO] [RandomBattle] cmp
+2012-05-28 19:01:03 [INFO] [RandomBattle] str
+2012-05-28 19:01:03 [INFO] [RandomBattle] mag
+2012-05-28 19:01:03 [INFO] [RandomBattle] def
+2012-05-28 19:01:03 [INFO] [RandomBattle] mdef
+2012-05-28 19:01:03 [INFO] [RandomBattle] agl
+2012-05-28 19:01:03 [INFO] [RandomBattle] acc
+2012-05-28 19:01:03 [INFO] [RandomBattle] eva
+2012-05-28 19:01:03 [INFO] [RandomBattle] luck
+2012-05-28 19:01:03 [INFO] [RandomBattle] exp
+2012-05-28 19:01:03 [INFO] [RandomBattle] level
+2012-05-28 19:01:03 [INFO] [RandomBattle] Monster name: Creeper
+2012-05-28 19:01:03 [INFO] [RandomBattle] hp
+2012-05-28 19:01:03 [INFO] [RandomBattle] mp
+2012-05-28 19:01:03 [INFO] [RandomBattle] chp
+2012-05-28 19:01:03 [INFO] [RandomBattle] cmp
+2012-05-28 19:01:03 [INFO] [RandomBattle] str
+2012-05-28 19:01:03 [INFO] [RandomBattle] mag
+2012-05-28 19:01:03 [INFO] [RandomBattle] def
+2012-05-28 19:01:03 [INFO] [RandomBattle] mdef
+2012-05-28 19:01:03 [INFO] [RandomBattle] agl
+2012-05-28 19:01:03 [INFO] [RandomBattle] acc
+2012-05-28 19:01:03 [INFO] [RandomBattle] eva
+2012-05-28 19:01:03 [INFO] [RandomBattle] luck
+2012-05-28 19:01:03 [INFO] [RandomBattle] exp
+2012-05-28 19:01:03 [INFO] [RandomBattle] level
+2012-05-28 19:01:03 [INFO] [RandomBattle] Monster name: Skeleton
+2012-05-28 19:01:03 [INFO] [RandomBattle] hp
+2012-05-28 19:01:03 [INFO] [RandomBattle] mp
+2012-05-28 19:01:03 [INFO] [RandomBattle] chp
+2012-05-28 19:01:03 [INFO] [RandomBattle] cmp
+2012-05-28 19:01:03 [INFO] [RandomBattle] str
+2012-05-28 19:01:03 [INFO] [RandomBattle] mag
+2012-05-28 19:01:03 [INFO] [RandomBattle] def
+2012-05-28 19:01:03 [INFO] [RandomBattle] mdef
+2012-05-28 19:01:03 [INFO] [RandomBattle] agl
+2012-05-28 19:01:03 [INFO] [RandomBattle] acc
+2012-05-28 19:01:03 [INFO] [RandomBattle] eva
+2012-05-28 19:01:03 [INFO] [RandomBattle] luck
+2012-05-28 19:01:03 [INFO] [RandomBattle] exp
+2012-05-28 19:01:03 [INFO] [RandomBattle] level
+2012-05-28 19:01:03 [INFO] [RandomBattle] Monster name: Spider
+2012-05-28 19:01:03 [INFO] [RandomBattle] hp
+2012-05-28 19:01:03 [INFO] [RandomBattle] mp
+2012-05-28 19:01:03 [INFO] [RandomBattle] chp
+2012-05-28 19:01:03 [INFO] [RandomBattle] cmp
+2012-05-28 19:01:03 [INFO] [RandomBattle] str
+2012-05-28 19:01:03 [INFO] [RandomBattle] mag
+2012-05-28 19:01:03 [INFO] [RandomBattle] def
+2012-05-28 19:01:03 [INFO] [RandomBattle] mdef
+2012-05-28 19:01:03 [INFO] [RandomBattle] agl
+2012-05-28 19:01:03 [INFO] [RandomBattle] acc
+2012-05-28 19:01:03 [INFO] [RandomBattle] eva
+2012-05-28 19:01:03 [INFO] [RandomBattle] luck
+2012-05-28 19:01:03 [INFO] [RandomBattle] exp
+2012-05-28 19:01:03 [INFO] [RandomBattle] level
+2012-05-28 19:01:03 [INFO] [RandomBattle] Monster name: Spider Jockey
+2012-05-28 19:01:03 [INFO] [RandomBattle] hp
+2012-05-28 19:01:03 [INFO] [RandomBattle] mp
+2012-05-28 19:01:03 [INFO] [RandomBattle] chp
+2012-05-28 19:01:03 [INFO] [RandomBattle] cmp
+2012-05-28 19:01:03 [INFO] [RandomBattle] str
+2012-05-28 19:01:03 [INFO] [RandomBattle] mag
+2012-05-28 19:01:03 [INFO] [RandomBattle] def
+2012-05-28 19:01:03 [INFO] [RandomBattle] mdef
+2012-05-28 19:01:03 [INFO] [RandomBattle] agl
+2012-05-28 19:01:03 [INFO] [RandomBattle] acc
+2012-05-28 19:01:03 [INFO] [RandomBattle] eva
+2012-05-28 19:01:03 [INFO] [RandomBattle] luck
+2012-05-28 19:01:03 [INFO] [RandomBattle] exp
+2012-05-28 19:01:03 [INFO] [RandomBattle] level
+2012-05-28 19:01:03 [INFO] [RandomBattle] Monster name: Zombie
+2012-05-28 19:01:03 [INFO] [RandomBattle] hp
+2012-05-28 19:01:03 [INFO] [RandomBattle] mp
+2012-05-28 19:01:03 [INFO] [RandomBattle] chp
+2012-05-28 19:01:03 [INFO] [RandomBattle] cmp
+2012-05-28 19:01:03 [INFO] [RandomBattle] str
+2012-05-28 19:01:03 [INFO] [RandomBattle] mag
+2012-05-28 19:01:03 [INFO] [RandomBattle] def
+2012-05-28 19:01:03 [INFO] [RandomBattle] mdef
+2012-05-28 19:01:03 [INFO] [RandomBattle] agl
+2012-05-28 19:01:03 [INFO] [RandomBattle] acc
+2012-05-28 19:01:03 [INFO] [RandomBattle] eva
+2012-05-28 19:01:03 [INFO] [RandomBattle] luck
+2012-05-28 19:01:03 [INFO] [RandomBattle] exp
+2012-05-28 19:01:03 [INFO] [RandomBattle] level
+2012-05-28 19:01:03 [INFO] [RandomBattle] Monster name: Iron Golem
+2012-05-28 19:01:03 [INFO] [RandomBattle] hp
+2012-05-28 19:01:03 [INFO] [RandomBattle] mp
+2012-05-28 19:01:03 [INFO] [RandomBattle] chp
+2012-05-28 19:01:03 [INFO] [RandomBattle] cmp
+2012-05-28 19:01:03 [INFO] [RandomBattle] str
+2012-05-28 19:01:03 [INFO] [RandomBattle] mag
+2012-05-28 19:01:03 [INFO] [RandomBattle] def
+2012-05-28 19:01:03 [INFO] [RandomBattle] mdef
+2012-05-28 19:01:03 [INFO] [RandomBattle] agl
+2012-05-28 19:01:03 [INFO] [RandomBattle] acc
+2012-05-28 19:01:03 [INFO] [RandomBattle] eva
+2012-05-28 19:01:03 [INFO] [RandomBattle] luck
+2012-05-28 19:01:03 [INFO] [RandomBattle] exp
+2012-05-28 19:01:03 [INFO] [RandomBattle] level
+2012-05-28 19:01:03 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 19:01:03 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 19:01:03 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 19:01:03 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 19:01:03 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 19:01:03 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 19:01:03 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 19:01:03 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 19:01:03 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 19:01:03 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 19:01:03 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 19:01:03 [INFO] Done (1.610s)! For help, type "help" or "?"
+2012-05-28 19:01:13 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 19:01:13 [INFO] Stopping server
+2012-05-28 19:01:13 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 19:01:13 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 19:01:13 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 19:01:13 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 19:01:13 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 19:01:13 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 19:01:13 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 19:01:13 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 19:01:13 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 19:01:13 [INFO] Saving chunks
+2012-05-28 19:31:01 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 19:31:01 [INFO] Loading properties
+2012-05-28 19:31:01 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 19:31:01 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 19:31:01 [INFO] [Spout] Loading Spout v1174
+2012-05-28 19:31:01 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 19:31:01 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 19:31:01 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 19:31:01 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 19:31:01 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 19:31:01 [INFO] Preparing level "world"
+2012-05-28 19:31:01 [INFO] Default game type: 0
+2012-05-28 19:31:01 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 19:31:02 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 19:31:02 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 19:31:02 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 19:31:02 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 19:31:02 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 19:31:02 [WARNING] ----- ------------------- -----
+2012-05-28 19:31:02 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 19:31:02 [INFO] Preparing spawn area: 48%
+2012-05-28 19:31:03 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 19:31:03 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 19:31:03 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 19:31:03 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 19:31:03 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 19:31:03 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 19:31:03 [SEVERE] Error occurred while enabling RandomBattle v0.6.11 (Is it up to date?)
+java.lang.ArrayIndexOutOfBoundsException: 1
+	at me.merdril.randombattle.config.RBDatabase.loadMonsterStats(RBDatabase.java:294)
+	at me.merdril.randombattle.config.RBDatabase.initialize(RBDatabase.java:230)
+	at me.merdril.randombattle.RandomBattle.onEnable(RandomBattle.java:62)
+	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:215)
+	at org.bukkit.plugin.java.JavaPluginLoader.enablePlugin(JavaPluginLoader.java:336)
+	at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:381)
+	at org.bukkit.craftbukkit.CraftServer.loadPlugin(CraftServer.java:256)
+	at org.bukkit.craftbukkit.CraftServer.enablePlugins(CraftServer.java:238)
+	at net.minecraft.server.MinecraftServer.t(MinecraftServer.java:371)
+	at net.minecraft.server.MinecraftServer.a(MinecraftServer.java:358)
+	at net.minecraft.server.MinecraftServer.init(MinecraftServer.java:187)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:422)
+	at net.minecraft.server.ThreadServerApplication.run(SourceFile:492)
+2012-05-28 19:31:03 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 19:31:03 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 19:31:03 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 19:31:03 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 19:31:03 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 19:31:03 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 19:31:03 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 19:31:03 [INFO] Done (1.533s)! For help, type "help" or "?"
+2012-05-28 19:31:21 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 19:31:21 [INFO] Stopping server
+2012-05-28 19:31:21 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 19:31:21 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 19:31:21 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 19:31:21 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 19:31:21 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 19:31:21 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 19:31:21 [SEVERE] Error occurred while disabling RandomBattle v0.6.11 (Is it up to date?)
+java.lang.NullPointerException
+	at me.merdril.randombattle.RandomBattle.onDisable(RandomBattle.java:102)
+	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:217)
+	at org.bukkit.plugin.java.JavaPluginLoader.disablePlugin(JavaPluginLoader.java:362)
+	at org.bukkit.plugin.SimplePluginManager.disablePlugin(SimplePluginManager.java:399)
+	at org.bukkit.plugin.SimplePluginManager.disablePlugins(SimplePluginManager.java:392)
+	at org.bukkit.craftbukkit.CraftServer.disablePlugins(CraftServer.java:251)
+	at net.minecraft.server.MinecraftServer.stop(MinecraftServer.java:399)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:479)
+	at net.minecraft.server.ThreadServerApplication.run(SourceFile:492)
+2012-05-28 19:31:21 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 19:31:21 [INFO] Saving chunks
+2012-05-28 19:31:21 [INFO] Stopping server
+2012-05-28 19:34:45 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 19:34:45 [INFO] Loading properties
+2012-05-28 19:34:45 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 19:34:45 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 19:34:45 [INFO] [Spout] Loading Spout v1174
+2012-05-28 19:34:45 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 19:34:45 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 19:34:45 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 19:34:45 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 19:34:45 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 19:34:45 [INFO] Preparing level "world"
+2012-05-28 19:34:45 [INFO] Default game type: 0
+2012-05-28 19:34:45 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 19:34:45 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 19:34:45 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 19:34:45 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 19:34:45 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 19:34:45 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 19:34:45 [WARNING] ----- ------------------- -----
+2012-05-28 19:34:46 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 19:34:46 [INFO] Preparing spawn area: 48%
+2012-05-28 19:34:46 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 19:34:46 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 19:34:46 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 19:34:46 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 19:34:46 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 19:34:46 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 19:34:46 [INFO] [RandomBattle] [HEAD_SMASHER]
+2012-05-28 19:34:46 [INFO] [RandomBattle] [CALL_FRIENDS, SWORD_SLASH]
+2012-05-28 19:34:46 [INFO] [RandomBattle] [PILLAR]
+2012-05-28 19:34:46 [INFO] [RandomBattle] [EXPLODE]
+2012-05-28 19:34:46 [INFO] [RandomBattle] [AIM, TRIPLE_SHOT]
+2012-05-28 19:34:46 [INFO] [RandomBattle] [STICKY_WEB]
+2012-05-28 19:34:46 [INFO] [RandomBattle] [STICKY_WEB, TRIPLE_SHOT, POISON_ARROW]
+2012-05-28 19:34:46 [INFO] [RandomBattle] [GROAN, MAUL]
+2012-05-28 19:34:46 [INFO] [RandomBattle] [SMASH, FORTIFY]
+2012-05-28 19:34:46 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 19:34:46 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 19:34:46 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 19:34:46 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 19:34:46 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 19:34:46 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 19:34:46 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 19:34:46 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 19:34:46 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 19:34:46 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 19:34:46 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 19:34:46 [INFO] Done (1.570s)! For help, type "help" or "?"
+2012-05-28 19:35:13 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 19:35:13 [INFO] Stopping server
+2012-05-28 19:35:13 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 19:35:13 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 19:35:13 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 19:35:13 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 19:35:13 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 19:35:13 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 19:35:13 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 19:35:13 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 19:35:13 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 19:35:13 [INFO] Saving chunks
+2012-05-28 19:35:13 [INFO] Stopping server
+2012-05-28 19:38:55 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 19:38:55 [INFO] Loading properties
+2012-05-28 19:38:55 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 19:38:55 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 19:38:55 [INFO] [Spout] Loading Spout v1174
+2012-05-28 19:38:55 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 19:38:55 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 19:38:55 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 19:38:55 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 19:38:55 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 19:38:56 [INFO] Preparing level "world"
+2012-05-28 19:38:56 [INFO] Default game type: 0
+2012-05-28 19:38:56 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 19:38:56 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 19:38:56 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 19:38:56 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 19:38:56 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 19:38:56 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 19:38:56 [WARNING] ----- ------------------- -----
+2012-05-28 19:38:56 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 19:38:57 [INFO] Preparing spawn area: 48%
+2012-05-28 19:38:57 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 19:38:57 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 19:38:57 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 19:38:57 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 19:38:57 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 19:38:57 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 19:38:57 [INFO] [RandomBattle] [HEAD_SMASHER]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [TELEPORT]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [CALL_FRIENDS, SWORD_SLASH]
+2012-05-28 19:38:57 [INFO] [RandomBattle] []
+2012-05-28 19:38:57 [INFO] [RandomBattle] [PILLAR]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [FIREBALL]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [EXPLODE]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [null]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [AIM, TRIPLE_SHOT]
+2012-05-28 19:38:57 [INFO] [RandomBattle] []
+2012-05-28 19:38:57 [INFO] [RandomBattle] [STICKY_WEB]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [BIO]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [STICKY_WEB, TRIPLE_SHOT, POISON_ARROW]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [BIO]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [GROAN, MAUL]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [FOUL_BREATH]
+2012-05-28 19:38:57 [INFO] [RandomBattle] [SMASH, FORTIFY]
+2012-05-28 19:38:57 [INFO] [RandomBattle] []
+2012-05-28 19:38:57 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 19:38:57 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 19:38:57 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 19:38:57 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 19:38:57 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 19:38:57 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 19:38:57 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 19:38:57 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 19:38:57 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 19:38:57 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 19:38:57 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 19:38:57 [INFO] Done (1.552s)! For help, type "help" or "?"
+2012-05-28 19:39:07 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 19:39:07 [INFO] Stopping server
+2012-05-28 19:39:07 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 19:39:07 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 19:39:07 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 19:39:07 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 19:39:07 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 19:39:07 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 19:39:07 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 19:39:07 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 19:39:07 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 19:39:07 [INFO] Saving chunks
+2012-05-28 19:39:07 [INFO] Stopping server
+2012-05-28 19:40:10 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 19:40:10 [INFO] Loading properties
+2012-05-28 19:40:10 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 19:40:10 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 19:40:10 [INFO] [Spout] Loading Spout v1174
+2012-05-28 19:40:10 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 19:40:10 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 19:40:10 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 19:40:10 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 19:40:10 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 19:40:10 [INFO] Preparing level "world"
+2012-05-28 19:40:10 [INFO] Default game type: 0
+2012-05-28 19:40:10 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 19:40:11 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 19:40:11 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 19:40:11 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 19:40:11 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 19:40:11 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 19:40:11 [WARNING] ----- ------------------- -----
+2012-05-28 19:40:11 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 19:40:11 [INFO] Preparing spawn area: 52%
+2012-05-28 19:40:12 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 19:40:12 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 19:40:12 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 19:40:12 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 19:40:12 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 19:40:12 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 19:40:12 [INFO] [RandomBattle] EndermanSkills: [HEAD_SMASHER]
+2012-05-28 19:40:12 [INFO] [RandomBattle] EndermanMagicks: [TELEPORT]
+2012-05-28 19:40:12 [INFO] [RandomBattle] Pig ZombieSkills: [CALL_FRIENDS, SWORD_SLASH]
+2012-05-28 19:40:12 [INFO] [RandomBattle] Pig ZombieMagicks: []
+2012-05-28 19:40:12 [INFO] [RandomBattle] BlazeSkills: [PILLAR]
+2012-05-28 19:40:12 [INFO] [RandomBattle] BlazeMagicks: [FIREBALL]
+2012-05-28 19:40:12 [INFO] [RandomBattle] CreeperSkills: [EXPLODE]
+2012-05-28 19:40:12 [INFO] [RandomBattle] CreeperMagicks: [KILL]
+2012-05-28 19:40:12 [INFO] [RandomBattle] SkeletonSkills: [AIM, TRIPLE_SHOT]
+2012-05-28 19:40:12 [INFO] [RandomBattle] SkeletonMagicks: []
+2012-05-28 19:40:12 [INFO] [RandomBattle] SpiderSkills: [STICKY_WEB]
+2012-05-28 19:40:12 [INFO] [RandomBattle] SpiderMagicks: [BIO]
+2012-05-28 19:40:12 [INFO] [RandomBattle] Spider JockeySkills: [STICKY_WEB, TRIPLE_SHOT, POISON_ARROW]
+2012-05-28 19:40:12 [INFO] [RandomBattle] Spider JockeyMagicks: [BIO]
+2012-05-28 19:40:12 [INFO] [RandomBattle] ZombieSkills: [GROAN, MAUL]
+2012-05-28 19:40:12 [INFO] [RandomBattle] ZombieMagicks: [FOUL_BREATH]
+2012-05-28 19:40:12 [INFO] [RandomBattle] Iron GolemSkills: [SMASH, FORTIFY]
+2012-05-28 19:40:12 [INFO] [RandomBattle] Iron GolemMagicks: []
+2012-05-28 19:40:12 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 19:40:12 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 19:40:12 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 19:40:12 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 19:40:12 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 19:40:12 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 19:40:12 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 19:40:12 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 19:40:12 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 19:40:12 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 19:40:12 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 19:40:12 [INFO] Done (1.643s)! For help, type "help" or "?"
+2012-05-28 19:40:29 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 19:40:29 [INFO] Stopping server
+2012-05-28 19:40:29 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 19:40:29 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 19:40:29 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 19:40:29 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 19:40:29 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 19:40:29 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 19:40:29 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 19:40:29 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 19:40:29 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 19:40:29 [INFO] Saving chunks
+2012-05-28 19:40:30 [INFO] Stopping server
+2012-05-28 19:44:02 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 19:44:02 [INFO] Loading properties
+2012-05-28 19:44:02 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 19:44:02 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 19:44:02 [INFO] [Spout] Loading Spout v1174
+2012-05-28 19:44:02 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 19:44:02 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 19:44:02 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 19:44:02 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 19:44:02 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 19:44:02 [INFO] Preparing level "world"
+2012-05-28 19:44:02 [INFO] Default game type: 0
+2012-05-28 19:44:03 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 19:44:03 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 19:44:03 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 19:44:03 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 19:44:03 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 19:44:03 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 19:44:03 [WARNING] ----- ------------------- -----
+2012-05-28 19:44:03 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 19:44:04 [INFO] Preparing spawn area: 48%
+2012-05-28 19:44:04 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 19:44:04 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 19:44:04 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 19:44:04 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 19:44:04 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 19:44:04 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 19:44:04 [INFO] [RandomBattle] Enderman skills: [HEAD_SMASHER]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Enderman magicks: [TELEPORT]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Enderman elemental attributes: [ICE]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Pig Zombie skills: [CALL_FRIENDS, SWORD_SLASH]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Pig Zombie magicks: []
+2012-05-28 19:44:04 [INFO] [RandomBattle] Pig Zombie elemental attributes: [HOLY]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Blaze skills: [PILLAR]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Blaze magicks: [FIREBALL]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Blaze elemental attributes: [ICE]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Creeper skills: [EXPLODE]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Creeper magicks: [KILL]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Creeper elemental attributes: [ICE]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Skeleton skills: [AIM, TRIPLE_SHOT]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Skeleton magicks: []
+2012-05-28 19:44:04 [INFO] [RandomBattle] Skeleton elemental attributes: [FIRE, HOLY]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Spider skills: [STICKY_WEB]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Spider magicks: [BIO]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Spider elemental attributes: [FIRE, ICE]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Spider Jockey skills: [STICKY_WEB, TRIPLE_SHOT, POISON_ARROW]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Spider Jockey magicks: [BIO]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Spider Jockey elemental attributes: [FIRE, ICE, HOLY]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Zombie skills: [GROAN, MAUL]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Zombie magicks: [FOUL_BREATH]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Zombie elemental attributes: [FIRE, HOLY]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Iron Golem skills: [SMASH, FORTIFY]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Iron Golem magicks: []
+2012-05-28 19:44:04 [INFO] [RandomBattle] Iron Golem elemental attributes: [null]
+2012-05-28 19:44:04 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 19:44:04 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 19:44:04 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 19:44:04 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 19:44:04 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 19:44:04 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 19:44:04 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 19:44:04 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 19:44:04 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 19:44:04 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 19:44:04 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 19:44:04 [INFO] Done (1.589s)! For help, type "help" or "?"
+2012-05-28 19:44:56 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 19:44:56 [INFO] Stopping server
+2012-05-28 19:44:56 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 19:44:56 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 19:44:56 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 19:44:56 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 19:44:56 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 19:44:56 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 19:44:56 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 19:44:56 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 19:44:56 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 19:44:56 [INFO] Saving chunks
+2012-05-28 19:44:56 [INFO] Stopping server
+2012-05-28 19:45:14 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 19:45:14 [INFO] Loading properties
+2012-05-28 19:45:14 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 19:45:14 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 19:45:14 [INFO] [Spout] Loading Spout v1174
+2012-05-28 19:45:14 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 19:45:14 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 19:45:14 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 19:45:14 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 19:45:14 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 19:45:14 [INFO] Preparing level "world"
+2012-05-28 19:45:14 [INFO] Default game type: 0
+2012-05-28 19:45:14 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 19:45:15 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 19:45:15 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 19:45:15 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 19:45:15 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 19:45:15 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 19:45:15 [WARNING] ----- ------------------- -----
+2012-05-28 19:45:15 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 19:45:15 [INFO] Preparing spawn area: 48%
+2012-05-28 19:45:15 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 19:45:15 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 19:45:15 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 19:45:15 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 19:45:15 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 19:45:15 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 19:45:16 [INFO] [RandomBattle] Enderman skills: [HEAD_SMASHER]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Enderman magicks: [TELEPORT]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Enderman elemental attributes: [ICE]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Pig Zombie skills: [CALL_FRIENDS, SWORD_SLASH]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Pig Zombie magicks: []
+2012-05-28 19:45:16 [INFO] [RandomBattle] Pig Zombie elemental attributes: [HOLY]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Blaze skills: [PILLAR]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Blaze magicks: [FIREBALL]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Blaze elemental attributes: [ICE]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Creeper skills: [EXPLODE]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Creeper magicks: [KILL]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Creeper elemental attributes: [ICE]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Skeleton skills: [AIM, TRIPLE_SHOT]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Skeleton magicks: []
+2012-05-28 19:45:16 [INFO] [RandomBattle] Skeleton elemental attributes: [FIRE, HOLY]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Spider skills: [STICKY_WEB]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Spider magicks: [BIO]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Spider elemental attributes: [FIRE, ICE]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Spider Jockey skills: [STICKY_WEB, TRIPLE_SHOT, POISON_ARROW]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Spider Jockey magicks: [BIO]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Spider Jockey elemental attributes: [FIRE, ICE, HOLY]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Zombie skills: [GROAN, MAUL]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Zombie magicks: [FOUL_BREATH]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Zombie elemental attributes: [FIRE, HOLY]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Iron Golem skills: [SMASH, FORTIFY]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Iron Golem magicks: []
+2012-05-28 19:45:16 [INFO] [RandomBattle] Iron Golem elemental attributes: [LIGHTNING]
+2012-05-28 19:45:16 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 19:45:16 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 19:45:16 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 19:45:16 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 19:45:16 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 19:45:16 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 19:45:16 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 19:45:16 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 19:45:16 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 19:45:16 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 19:45:16 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 19:45:16 [INFO] Done (1.801s)! For help, type "help" or "?"
+2012-05-28 19:45:35 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 19:45:35 [INFO] Stopping server
+2012-05-28 19:45:35 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 19:45:35 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 19:45:35 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 19:45:35 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 19:45:35 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 19:45:35 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 19:45:35 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 19:45:35 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 19:45:35 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 19:45:35 [INFO] Saving chunks
+2012-05-28 19:45:36 [INFO] Stopping server
+2012-05-28 19:49:56 [INFO] Starting minecraft server version 1.2.5
+2012-05-28 19:49:56 [INFO] Loading properties
+2012-05-28 19:49:56 [INFO] Starting Minecraft server on 0.0.0.0:25500
+2012-05-28 19:49:56 [INFO] This server is running CraftBukkit version git-Bukkit-1.2.5-R1.3-b2175jnks (MC: 1.2.5) (Implementing API version 1.2.5-R1.3)
+2012-05-28 19:49:56 [INFO] [Spout] Loading Spout v1174
+2012-05-28 19:49:56 [INFO] [WorldEdit] Loading WorldEdit v1167-3c00535
+2012-05-28 19:49:56 [INFO] [Spider Jockey] Loading Spider Jockey v0.2
+2012-05-28 19:49:56 [INFO] [RandomBattle] Loading RandomBattle v0.6.11
+2012-05-28 19:49:56 [INFO] [CommandBook] Loading CommandBook v500-8d62f0a
+2012-05-28 19:49:56 [INFO] [Spout] Enabling Spout v1174
+2012-05-28 19:49:56 [INFO] Preparing level "world"
+2012-05-28 19:49:56 [INFO] Default game type: 0
+2012-05-28 19:49:56 [INFO] Preparing start region for level 0 (Seed: -3319787588311176117)
+2012-05-28 19:49:57 [INFO] Preparing start region for level 1 (Seed: -3319787588311176117)
+2012-05-28 19:49:57 [WARNING] ----- Bukkit Auto Updater -----
+2012-05-28 19:49:57 [WARNING] Your version of CraftBukkit is out of date. Version 1.2.5-R3.0 (build #2203) was released on Sat May 26 04:30:27 EDT 2012.
+2012-05-28 19:49:57 [WARNING] Details: http://dl.bukkit.org/downloads/craftbukkit/view/01119_1.2.5-R3.0/
+2012-05-28 19:49:57 [WARNING] Download: http://dl.bukkit.org/downloads/craftbukkit/get/01119_1.2.5-R3.0/craftbukkit.jar
+2012-05-28 19:49:57 [WARNING] ----- ------------------- -----
+2012-05-28 19:49:57 [INFO] Preparing start region for level 2 (Seed: -3319787588311176117)
+2012-05-28 19:49:57 [INFO] Preparing spawn area: 48%
+2012-05-28 19:49:58 [INFO] [WorldEdit] Enabling WorldEdit v1167-3c00535
+2012-05-28 19:49:58 [INFO] WEPIF: Using the Bukkit Permissions API.
+2012-05-28 19:49:58 [INFO] [Spider Jockey] Enabling Spider Jockey v0.2
+2012-05-28 19:49:58 [INFO] [Spider Jockey] Can't find permission system, only avable for OPs
+2012-05-28 19:49:58 [INFO] [Spider Jockey] Spider Jockey v0.2 Started
+2012-05-28 19:49:58 [INFO] [RandomBattle] Enabling RandomBattle v0.6.11
+2012-05-28 19:49:58 [INFO] [RandomBattle] Monster name: Enderman. Attributes: [{HP=40000, MP=400, STR=175, MAG=75, DEF=50, MDEF=100, AGL=175, ACC=80, EVA=80, LUCK=100, EXP=2000}, [HEAD_SMASHER], [TELEPORT], [ICE]]
+2012-05-28 19:49:58 [INFO] [RandomBattle] Monster name: Pig Zombie. Attributes: [{HP=20000, MP=100, STR=150, MAG=20, DEF=150, MDEF=20, AGL=50, ACC=70, EVA=15, LUCK=20, EXP=750}, [CALL_FRIENDS, SWORD_SLASH], [], [HOLY]]
+2012-05-28 19:49:58 [INFO] [RandomBattle] Monster name: Blaze. Attributes: [{HP=20000, MP=600, STR=100, MAG=175, DEF=100, MDEF=175, AGL=80, ACC=90, EVA=60, LUCK=50, EXP=10000}, [PILLAR], [FIREBALL], [ICE]]
+2012-05-28 19:49:58 [INFO] [RandomBattle] Monster name: Creeper. Attributes: [{HP=50000, MP=999, STR=0, MAG=255, DEF=125, MDEF=175, AGL=25, ACC=100, EVA=15, LUCK=150, EXP=100000}, [EXPLODE], [KILL], [ICE]]
+2012-05-28 19:49:58 [INFO] [RandomBattle] Monster name: Skeleton. Attributes: [{HP=20000, MP=200, STR=125, MAG=100, DEF=75, MDEF=75, AGL=150, ACC=90, EVA=50, LUCK=50, EXP=500}, [AIM, TRIPLE_SHOT], [], [FIRE, HOLY]]
+2012-05-28 19:49:58 [INFO] [RandomBattle] Monster name: Spider. Attributes: [{HP=16000, MP=200, STR=100, MAG=100, DEF=75, MDEF=125, AGL=150, ACC=80, EVA=70, LUCK=125, EXP=500}, [STICKY_WEB], [BIO], [FIRE, ICE]]
+2012-05-28 19:49:58 [INFO] [RandomBattle] Monster name: Spider Jockey. Attributes: [{HP=36000, MP=400, STR=175, MAG=125, DEF=125, MDEF=100, AGL=160, ACC=85, EVA=60, LUCK=75, EXP=1000}, [STICKY_WEB, TRIPLE_SHOT, POISON_ARROW], [BIO], [FIRE, ICE, HOLY]]
+2012-05-28 19:49:58 [INFO] [RandomBattle] Monster name: Zombie. Attributes: [{HP=20000, MP=100, STR=125, MAG=10, DEF=150, MDEF=10, AGL=40, ACC=60, EVA=20, LUCK=20, EXP=500}, [GROAN, MAUL], [FOUL_BREATH], [FIRE, HOLY]]
+2012-05-28 19:49:58 [INFO] [RandomBattle] Monster name: Iron Golem. Attributes: [{HP=100000, MP=100, STR=225, MAG=10, DEF=200, MDEF=50, AGL=10, ACC=95, EVA=10, LUCK=150, EXP=50000}, [SMASH, FORTIFY], [], [LIGHTNING]]
+2012-05-28 19:49:58 [WARNING] [RandomBattle] Could not find the file of the List<Location> to load from.
+2012-05-28 19:49:58 [WARNING] [RandomBattle] Could not find the player file to load from!
+2012-05-28 19:49:58 [INFO] [RandomBattle] Thread[Server thread,5,main]
+2012-05-28 19:49:58 [INFO] [RandomBattle] Random Battle v0.6.11 has started!
+2012-05-28 19:49:58 [INFO] [CommandBook] Enabling CommandBook v500-8d62f0a
+2012-05-28 19:49:58 [INFO] [CommandBook] Maximum wrapper compatibility is enabled. Some features have been disabled to be compatible with poorly written server wrappers.
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Sessions successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Bans successfully enabled!
+2012-05-28 19:49:58 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\homes.csv (The system cannot find the file specified)
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Homes successfully enabled!
+2012-05-28 19:49:58 [WARNING] [CommandBook] Failed to load warps: plugins\CommandBook\warps.csv (The system cannot find the file specified)
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Warps successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Messaging successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Teleports successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Inventory successfully enabled!
+2012-05-28 19:49:58 [INFO] [CommandBook] 1 kit(s) loaded.
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Kits successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component JingleNote successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Time Control successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Name Verification successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Fun successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Debug successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Thor successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Online List successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Stored Messages successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Spawn Locations successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Info successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component World Tools successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component Player Commands successfully enabled!
+2012-05-28 19:49:58 [FINEST] [CommandBook] Component God successfully enabled!
+2012-05-28 19:49:58 [INFO] Server permissions file permissions.yml is empty, ignoring it
+2012-05-28 19:49:58 [INFO] Done (1.541s)! For help, type "help" or "?"
+2012-05-28 19:50:35 [INFO] CONSOLE: Stopping the server..[0m
+2012-05-28 19:50:35 [INFO] Stopping server
+2012-05-28 19:50:35 [INFO] [Spout] Disabling Spout v1174
+2012-05-28 19:50:35 [INFO] [WorldEdit] Disabling WorldEdit v1167-3c00535
+2012-05-28 19:50:35 [INFO] [Spider Jockey] Disabling Spider Jockey v0.2
+2012-05-28 19:50:35 [INFO] [Spider Jockey] Spider Jockey Disabled
+2012-05-28 19:50:35 [INFO] [RandomBattle] Disabling RandomBattle v0.6.11
+2012-05-28 19:50:35 [INFO] [RandomBattle] Removing left over blocks...
+2012-05-28 19:50:35 [INFO] [RandomBattle] Nothing to remove.
+2012-05-28 19:50:35 [INFO] [RandomBattle] Random Battle has shut down!
+2012-05-28 19:50:35 [INFO] [CommandBook] Disabling CommandBook v500-8d62f0a
+2012-05-28 19:50:35 [INFO] Saving chunks

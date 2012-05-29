@@ -65,7 +65,6 @@ public class RandomBattle extends JavaPlugin
 		
 		// Get the PluginManager to minimize line length (and stack calls)
 		PluginManager pm = this.getServer().getPluginManager();
-		log.info(prefi + Thread.currentThread());
 		
 		// Initialize the command executer
 		cExec = new RBCommandExecutor(this);

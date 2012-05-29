@@ -109,7 +109,12 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 		 * players, and may not actually serve any utility in this plugin, considering the way the
 		 * leveling system functions.
 		 */
-		LEVEL
+		LEVEL;
+		public final static HashMap<String, Stat>	statMap	= new HashMap<String, Stat>();
+		static {
+			for (Stat stat : Stat.values())
+				statMap.put(stat.toString().toLowerCase(), stat);
+		}
 	}
 	
 	/**
@@ -149,7 +154,7 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 		 * This status indicates that this {@link RBLivingEntity} is in a state where its
 		 * turn speed should be halved. It may not necessarily move half as often in a time block.
 		 */
-		SLOW
+		SLOW;
 	}
 	
 	/**
