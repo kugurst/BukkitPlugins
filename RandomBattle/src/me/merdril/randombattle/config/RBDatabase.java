@@ -49,9 +49,10 @@ public final class RBDatabase
 {
 	private static RandomBattle	             plugin;
 	private static Map<String, Integer>	     playerBaseStats;
+	private static Map<String, Object[]>	 playerBaseAttributes;
 	private static List<String>	             activeMobs;
-	private static Map<String, Object>	     monsterStats;
-	private static Map<String, Object>	     playerStats;
+	private static Map<String, Object[]>	 monsterStats;
+	private static Map<String, Object[]>	 playerStats;
 	private static HashMap<String, RBPlayer>	cachedPlayers;
 	
 	/**
@@ -91,7 +92,9 @@ public final class RBDatabase
 		// Create a Statement to use for verifying the integrity of the database
 		Statement statement = null;
 		try {
-			statement = conn.createStatement();
+			statement =
+			        conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY,
+			                ResultSet.CLOSE_CURSORS_AT_COMMIT);
 		}
 		catch (SQLException e) {
 			queryFailed(e, true);
@@ -264,7 +267,7 @@ public final class RBDatabase
 			return cachedPlayers.get(name.toLowerCase());
 		// It's assumed that the player is registered
 		if (playerStats.containsKey(name.toLowerCase())) {
-			Object[] attributes = (Object[]) playerStats.get(name.toLowerCase());
+			Object[] attributes = playerStats.get(name.toLowerCase());
 			rbPlayer =
 			        new RBPlayer(plugin, (SpoutPlayer) plugin.getServer().getPlayer(name),
 			                (EnumMap<Stat, Integer>) attributes[0], null, (List<RBSkill>) attributes[1],
@@ -273,9 +276,41 @@ public final class RBDatabase
 		}
 		// We have to make a new player
 		else {
-			
+			Object[] attributes = playerBaseAttributes.get(name.toLowerCase());
+			EnumMap<Stat, Integer> statMap = (EnumMap<Stat, Integer>) attributes[0];
+			List<RBSkill> skills = (List<RBSkill>) attributes[1];
+			List<RBMagic> magicks = (List<RBMagic>) attributes[2];
+			rbPlayer =
+			        new RBPlayer(plugin, (SpoutPlayer) plugin.getServer().getPlayer(name), statMap, null, skills,
+			                magicks, null);
+			cachedPlayers.put(name.toLowerCase(), rbPlayer);
+			// Save the player
+			try {
+				Connection conn = getConnection();
+				Statement stat = conn.createStatement();
+				// Format the skills and magicks
+				String skillLine = formatRBList(skills);
+				String magicLine = formatRBList(magicks);
+				// Write to the database
+				String query = "INSERT INTO players (", statValues = "", statColumns = "";
+				for (Map.Entry<Stat, Integer> entry : statMap.entrySet()) {
+					statColumns += entry.getKey().toString().toLowerCase() + ", ";
+					statValues += entry.getValue() + ", ";
+				}
+				statColumns = statColumns.substring(0, statColumns.length() - 2);
+				statValues = statValues.substring(0, statValues.length() - 2);
+			}
+			catch (SQLException e) {
+				queryFailed(e, false);
+			}
 		}
 		return rbPlayer;
+	}
+	
+	private static String formatRBList(List<?> list)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	/**
@@ -293,7 +328,7 @@ public final class RBDatabase
 	 *         Where the EnumMap are the stats of the {@link RBPlayer}, and the other three are
 	 *         self-explanitory
 	 */
-	private static Map<String, Object> loadPlayerStats(Statement statement)
+	private static Map<String, Object[]> loadPlayerStats(Statement statement)
 	{
 		// Get the players from the database
 		ResultSet set = null;
@@ -307,10 +342,12 @@ public final class RBDatabase
 			plugin.getPluginLoader().disablePlugin(plugin);
 		}
 		// Initialize the player cache
-		HashMap<String, Object> playerMap = new HashMap<String, Object>();
+		HashMap<String, Object[]> playerMap = new HashMap<String, Object[]>();
 		// Go through the list of players
 		try {
+			int row = 0;
 			while (set.next()) {
+				row++;
 				String playerName = set.getString("name");
 				// // Make the attribute holder
 				Object[] attributes = null;
@@ -325,6 +362,28 @@ public final class RBDatabase
 						String statName = stat.toString().toLowerCase();
 						int statAmount = set.getInt(statName);
 						stats.put(stat, statAmount);
+						// Check to make sure the base stat in the database is up to date
+						if (playerName.equalsIgnoreCase("base")) {
+							// Skipping stats that aren't provided for in the config
+							if (statName.equalsIgnoreCase("chp") || statName.equalsIgnoreCase("cmp")
+							        || statName.equalsIgnoreCase("exp") || statName.equalsIgnoreCase("level"))
+								continue;
+							// If there's a stat mismatch, update the database
+							if (playerBaseStats.get(statName) != stats.get(stat)) {
+								stats.put(stat, playerBaseStats.get(statName));
+								statement.executeUpdate("UPDATE players SET " + statName + "="
+								        + playerBaseStats.get(statName) + " WHERE name='" + playerName + "'");
+								// The SQLite driver I'm using doesn't support set.update(...), so
+								// we're doing this the longer way.
+								set = statement.executeQuery("SELECT * FROM players");
+								int currentRow = 0;
+								while (currentRow++ < row) {
+									boolean hasNext = set.next();
+									if (!hasNext)
+										break;
+								}
+							}
+						}
 					}
 					// Get the skills of this player
 					String[] skillArray = set.getString("skills").split("\\;");
@@ -340,9 +399,10 @@ public final class RBDatabase
 				// If stats is empty, then neither of the two conditions were true
 				if (stats.isEmpty())
 					continue;
-				// TODO do a check for the base player to set up the field so that we can actually
-				// make new players when needed.
 				attributes = new Object[] {stats, skills, magicks};
+				// If we're on the base player, set him aside for easier access
+				if (playerName.equalsIgnoreCase("base"))
+					playerBaseAttributes.put(playerName.toLowerCase(), attributes);
 				playerMap.put(playerName.toLowerCase(), attributes);
 			}
 		}
@@ -374,8 +434,8 @@ public final class RBDatabase
 	 *         Where the EnumMap are the stats of the {@link RBMonster} (excluding CHP, CMP, and
 	 *         LEVEL), and the other three are self-explanitory
 	 */
-	private static Map<String, Object> loadMonsterStats(Statement statement, Map<String, Class<? extends AI>> monsters,
-	        List<String> activeMobs)
+	private static Map<String, Object[]> loadMonsterStats(Statement statement,
+	        Map<String, Class<? extends AI>> monsters, List<String> activeMobs)
 	{
 		// Get the monsters from the database:
 		ResultSet set = null;
@@ -389,7 +449,7 @@ public final class RBDatabase
 			plugin.getPluginLoader().disablePlugin(plugin);
 		}
 		// Initialize the stat holder
-		HashMap<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object[]> result = new HashMap<String, Object[]>();
 		// //Get the stats for the enabled monsters
 		// Find the enabled monsters and add their stats.
 		try {
