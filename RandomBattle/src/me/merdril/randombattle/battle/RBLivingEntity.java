@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 
+import me.merdril.randombattle.battle.ai.AI;
 import me.merdril.randombattle.config.RBDatabase;
 
 import org.bukkit.entity.ComplexLivingEntity;
@@ -165,18 +166,18 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 * {@link String} passed into this method's get call. Unless one ahs good reason (see
 	 * {@link RBDatabase}).
 	 */
-	public Map<String, EntityType>	MONSTERS	= new HashMap<String, EntityType>();
+	public Map<String, Class<? extends AI>>	MONSTERS	= new HashMap<String, Class<? extends AI>>();
 	
 	/**
 	 * Indicates to the relevant commands to add the specified items to whatever {@link Collection}
 	 * it handles.
 	 */
-	public int	                   ADD	     = 0;
+	public int	                            ADD	     = 0;
 	/**
 	 * Indicates to the relevant commands to add the specified items to whatever {@link Collection}
 	 * it handles.
 	 */
-	public int	                   REMOVE	 = 1;
+	public int	                            REMOVE	 = 1;
 	
 	/**
 	 * <p>

@@ -267,7 +267,11 @@ public class BattleSetter
 			@Override
 			public void run()
 			{
-				RBOS.saveBlocks(allEditedBlockLocations, blocksFile);
+				List<Location> blocks = null;
+				synchronized (allEditedBlockLocations) {
+					blocks = allEditedBlockLocations.subList(0, allEditedBlockLocations.size());
+				}
+				RBOS.saveBlocks(blocks, blocksFile);
 			}
 		});
 	}
@@ -376,7 +380,11 @@ public class BattleSetter
 			@Override
 			public void run()
 			{
-				RBOS.saveBlocks(allEditedBlockLocations, blocksFile);
+				List<Location> blocks = null;
+				synchronized (allEditedBlockLocations) {
+					blocks = allEditedBlockLocations.subList(0, allEditedBlockLocations.size());
+				}
+				RBOS.saveBlocks(blocks, blocksFile);
 			}
 		});
 	}
@@ -395,8 +403,21 @@ public class BattleSetter
 			return;
 		while (blockList.size() > 0) {
 			blockList.get(0).getLocation().getBlock().setType(Material.AIR);
-			allEditedBlockLocations.remove(blockList.get(0).getLocation());
+			synchronized (allEditedBlockLocations) {
+				allEditedBlockLocations.remove(blockList.get(0).getLocation());
+			}
 			blockList.remove(0);
 		}
+		threadExec.execute(new Runnable() {
+			@Override
+			public void run()
+			{
+				List<Location> blocks = null;
+				synchronized (allEditedBlockLocations) {
+					blocks = allEditedBlockLocations.subList(0, allEditedBlockLocations.size());
+				}
+				RBOS.saveBlocks(blocks, blocksFile);
+			}
+		});
 	}
 }

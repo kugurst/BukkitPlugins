@@ -4,7 +4,6 @@
 
 package me.merdril.randombattle.battle;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -23,10 +22,10 @@ public class RBPlayer implements RBLivingEntity
 	private RandomBattle	       plugin;
 	private SpoutPlayer	           player;
 	private EnumMap<Stat, Integer>	stats;
-	private ArrayList<Effect>	   effects;
-	private ArrayList<RBSkill>	   skills;
-	private ArrayList<RBMagic>	   magicks;
-	private ArrayList<RBElem>	   weakness;
+	private List<Effect>	       effects;
+	private List<RBSkill>	       skills;
+	private List<RBMagic>	       magicks;
+	private List<RBElem>	       weakness;
 	
 	/**
 	 * <p>
@@ -64,7 +63,7 @@ public class RBPlayer implements RBLivingEntity
 	 * <p>
 	 * This constructor attributes this {@link RBPlayer} with the specified status {@link Effect}s,
 	 * {@link Stat}s, {@link RBElem} weaknesses, and {@link RBMagic}ks. A null or empty list can be
-	 * used in place of an {@link ArrayList} to indicate this player knows/has none.
+	 * used in place of an {@link List} to indicate this player knows/has none.
 	 * </p>
 	 * @param instance
 	 *            The {@link RandomBattle} plugin this player is tied to. Used for server calls.
@@ -74,24 +73,24 @@ public class RBPlayer implements RBLivingEntity
 	 * @param statMap
 	 *            The {@link Stat}s to assign to this {@link SpoutPlayer}.
 	 * @param effects
-	 *            The {@link ArrayList}&lt{@link Effect}&gt to assign as this player's list of
-	 *            active effects. That is to say, any {@link Effect} included in this
-	 *            {@link ArrayList} is considered active.
+	 *            The {@link List}&lt{@link Effect}&gt to assign as this player's list of active
+	 *            effects. That is to say, any {@link Effect} included in this {@link List} is
+	 *            considered active.
 	 * @param skills
-	 *            The {@link ArrayList}&lt{@link RBSkill}&gt to assign as this player's known
-	 *            skills. That is to say, any {@link RBSkill} included in this {@link ArrayList} is
-	 *            available to the player to use (unless some effect prohibits it).
+	 *            The {@link List}&lt{@link RBSkill}&gt to assign as this player's known skills.
+	 *            That is to say, any {@link RBSkill} included in this {@link List} is available to
+	 *            the player to use (unless some effect prohibits it).
 	 * @param magicks
-	 *            The {@link ArrayList}&lt{@link RBMagic}&gt to assign as this player's known
-	 *            magicks. That is to say, any {@link RBMagic} included in this {@link ArrayList} is
-	 *            available to the player to use (unless some effect prohibits it).
+	 *            The {@link List}&lt{@link RBMagic}&gt to assign as this player's known magicks.
+	 *            That is to say, any {@link RBMagic} included in this {@link List} is available to
+	 *            the player to use (unless some effect prohibits it).
 	 * @param weakness
-	 *            The {@link ArrayList}&lt{@link RBMagic}&gt to assign as this player's elemental
-	 *            weaknesses. That is to say, any {@link RBElem} included in this {@link ArrayList}
-	 *            is considered a weakness of this player.
+	 *            The {@link List}&lt{@link RBMagic}&gt to assign as this player's elemental
+	 *            weaknesses. That is to say, any {@link RBElem} included in this {@link List} is
+	 *            considered a weakness of this player.
 	 */
-	public RBPlayer(RandomBattle instance, SpoutPlayer player, EnumMap<Stat, Integer> statMap,
-	        ArrayList<Effect> effects, ArrayList<RBSkill> skills, ArrayList<RBMagic> magicks, ArrayList<RBElem> weakness)
+	public RBPlayer(RandomBattle instance, SpoutPlayer player, EnumMap<Stat, Integer> statMap, List<Effect> effects,
+	        List<RBSkill> skills, List<RBMagic> magicks, List<RBElem> weakness)
 	{
 		plugin = instance;
 		this.player = player;

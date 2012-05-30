@@ -25,9 +25,13 @@ import me.merdril.randombattle.battle.RBElem;
 import me.merdril.randombattle.battle.RBLivingEntity;
 import me.merdril.randombattle.battle.RBLivingEntity.Stat;
 import me.merdril.randombattle.battle.RBMagic;
+import me.merdril.randombattle.battle.RBMonster;
+import me.merdril.randombattle.battle.RBPlayer;
 import me.merdril.randombattle.battle.RBSkill;
+import me.merdril.randombattle.battle.ai.AI;
 
 import org.bukkit.entity.EntityType;
+import org.getspout.spoutapi.player.SpoutPlayer;
 
 import com.sun.rowset.CachedRowSetImpl;
 
@@ -43,11 +47,12 @@ import com.sun.rowset.CachedRowSetImpl;
  */
 public final class RBDatabase
 {
-	private static RandomBattle	       plugin;
-	public static Map<String, Integer>	playerBaseStats;
-	private static List<String>	       activeMobs;
-	public static Map<String, Object>	monsterStats;
-	private static Map<String, Object>	playerStats;
+	private static RandomBattle	             plugin;
+	private static Map<String, Integer>	     playerBaseStats;
+	private static List<String>	             activeMobs;
+	private static Map<String, Object>	     monsterStats;
+	private static Map<String, Object>	     playerStats;
+	private static HashMap<String, RBPlayer>	cachedPlayers;
 	
 	/**
 	 * <p>
@@ -228,10 +233,11 @@ public final class RBDatabase
 		}
 		// ///////////////////////////////////////////////////End verification of the table contents
 		
-		// Cache the contents of the monster table.
+		// Cache the contents of the monster and player table.
 		monsterStats = loadMonsterStats(statement, RBLivingEntity.MONSTERS, activeMobs);
 		playerStats = loadPlayerStats(statement);
-		// Initialize the MONSTER map of RBLiving Entity.
+		
+		// Close the connections and call it a day folks!
 		try {
 			statement.close();
 		}
@@ -250,26 +256,136 @@ public final class RBDatabase
 		}
 	}
 	
+	@SuppressWarnings ("unchecked")
+	public static RBPlayer getPlayer(String name)
+	{
+		RBPlayer rbPlayer = null;
+		if (cachedPlayers.containsKey(name.toLowerCase()))
+			return cachedPlayers.get(name.toLowerCase());
+		// It's assumed that the player is registered
+		if (playerStats.containsKey(name.toLowerCase())) {
+			Object[] attributes = (Object[]) playerStats.get(name.toLowerCase());
+			rbPlayer =
+			        new RBPlayer(plugin, (SpoutPlayer) plugin.getServer().getPlayer(name),
+			                (EnumMap<Stat, Integer>) attributes[0], null, (List<RBSkill>) attributes[1],
+			                (List<RBMagic>) attributes[2], null);
+			cachedPlayers.put(name.toLowerCase(), rbPlayer);
+		}
+		// We have to make a new player
+		else {
+			
+		}
+		return rbPlayer;
+	}
+	
+	/**
+	 * <p>
+	 * Loads the contents (all of them) of the players table into memory for quick access. The
+	 * results are stored in a {@link HashMap}&lt{@link String}, {@link Object}&gt.
+	 * </p>
+	 * @param statement
+	 *            The {@link Statement} to use to fetch the players.
+	 * @return A {@link Map}&lt{@link String}, {@link Object}&gt that maps the lower case name of
+	 *         the players as specified in the stats.db file to an <code>{@link Object}[]</code> of
+	 *         the form:<br />
+	 *         {{@link EnumMap}&lt{@link Stat}, {@link Integer}&gt, {@link LinkedList}&lt
+	 *         {@link RBSkill}&gt and {@link LinkedList}&lt{@link RBMagic}&gt}<br />
+	 *         Where the EnumMap are the stats of the {@link RBPlayer}, and the other three are
+	 *         self-explanitory
+	 */
 	private static Map<String, Object> loadPlayerStats(Statement statement)
 	{
 		// Get the players from the database
-		CachedRowSet set = performQuery("SELECT * FROM players");
-		if (set == null) {
+		ResultSet set = null;
+		try {
+			set = statement.executeQuery("SELECT * FROM players");
+		}
+		catch (SQLException e) {
 			plugin.getLogger().severe(
-			        RandomBattle.prefix + "Unable to read the players from the database! Shutting down...");
+			        RandomBattle.prefix + "Unable to read the monsters from the database! Shutting down...");
+			e.printStackTrace();
 			plugin.getPluginLoader().disablePlugin(plugin);
 		}
-		return null;
+		// Initialize the player cache
+		HashMap<String, Object> playerMap = new HashMap<String, Object>();
+		// Go through the list of players
+		try {
+			while (set.next()) {
+				String playerName = set.getString("name");
+				// // Make the attribute holder
+				Object[] attributes = null;
+				// Make an EnumMap to hold the stats
+				EnumMap<Stat, Integer> stats = new EnumMap<RBLivingEntity.Stat, Integer>(Stat.class);
+				// Make a LinkedList for the skills and magic.
+				LinkedList<RBSkill> skills = new LinkedList<RBSkill>();
+				LinkedList<RBMagic> magicks = new LinkedList<RBMagic>();
+				if (playerName.startsWith("\\*") || playerName.equalsIgnoreCase("base")) {
+					// Get all the stats
+					for (Stat stat : RBLivingEntity.Stat.values()) {
+						String statName = stat.toString().toLowerCase();
+						int statAmount = set.getInt(statName);
+						stats.put(stat, statAmount);
+					}
+					// Get the skills of this player
+					String[] skillArray = set.getString("skills").split("\\;");
+					for (String skill : skillArray)
+						if (!skill.isEmpty())
+							skills.add(RBSkill.skillMap.get(skill.toLowerCase().replaceAll("\\ ", "\\_")));
+					// Get the magicks of this player
+					String[] magicksArray = set.getString("magicks").split("\\;");
+					for (String magic : magicksArray)
+						if (!magic.isEmpty())
+							magicks.add(RBMagic.magicMap.get(magic.toLowerCase().replaceAll("\\ ", "\\_")));
+				}
+				// If stats is empty, then neither of the two conditions were true
+				if (stats.isEmpty())
+					continue;
+				// TODO do a check for the base player to set up the field so that we can actually
+				// make new players when needed.
+				attributes = new Object[] {stats, skills, magicks};
+				playerMap.put(playerName.toLowerCase(), attributes);
+			}
+		}
+		catch (SQLException e) {
+			queryFailed(e, true);
+		}
+		return playerMap;
 	}
 	
-	private static Map<String, Object> loadMonsterStats(Statement statement, Map<String, EntityType> monsters,
+	/**
+	 * <p>
+	 * Loads the contents (all of them) of the monster table into memory for quick access. The
+	 * results are stored in a {@link HashMap}&lt{@link String}, {@link Object}&gt.
+	 * </p>
+	 * @param statement
+	 *            The {@link Statement} to use to fetch the monsters.
+	 * @param monsters
+	 *            The {@link Map}&lt{@link String}, {@link EntityType}&gt to use for monster
+	 *            comparison (of the enabled monsters).
+	 * @param activeMobs
+	 *            The {@link List}&lt{@link String}&gt containing the enabled mobs as specified by
+	 *            the configuration file.
+	 * @return A {@link Map}&lt{@link String}, {@link Object}&gt that maps the lower case name of
+	 *         the monster as specified in the stats.db file to an <code>{@link Object}[]</code> of
+	 *         the form:<br />
+	 *         {{@link EnumMap}&lt{@link Stat}, {@link Integer}&gt, {@link LinkedList}&lt
+	 *         {@link RBSkill}&gt, {@link LinkedList}&lt{@link RBMagic}&gt, {@link LinkedList}&lt
+	 *         {@link RBElem}&gt}<br />
+	 *         Where the EnumMap are the stats of the {@link RBMonster} (excluding CHP, CMP, and
+	 *         LEVEL), and the other three are self-explanitory
+	 */
+	private static Map<String, Object> loadMonsterStats(Statement statement, Map<String, Class<? extends AI>> monsters,
 	        List<String> activeMobs)
 	{
 		// Get the monsters from the database:
-		CachedRowSet set = performQuery("SELECT * FROM monsters");
-		if (set == null) {
+		ResultSet set = null;
+		try {
+			set = statement.executeQuery("SELECT * FROM monsters");
+		}
+		catch (SQLException e) {
 			plugin.getLogger().severe(
 			        RandomBattle.prefix + "Unable to read the monsters from the database! Shutting down...");
+			e.printStackTrace();
 			plugin.getPluginLoader().disablePlugin(plugin);
 		}
 		// Initialize the stat holder
@@ -281,6 +397,27 @@ public final class RBDatabase
 				String monsterName = set.getString("name");
 				// If the mob is enabled...
 				if (activeMobs.contains(monsterName.toLowerCase())) {
+					// Get the AIs for the enabled monsters
+					try {
+						// It is checked, by that ClassCastException
+						@SuppressWarnings ("unchecked")
+						Class<? extends AI> aiClass =
+						        (Class<? extends AI>) Class.forName("me.merdril.randombattle.battle.ai."
+						                + monsterName.replaceAll("\\ ", "") + "AI");
+						monsters.put(monsterName.toLowerCase(), aiClass);
+					}
+					catch (ClassNotFoundException e) {
+						plugin.getLogger().severe(
+						        RandomBattle.prefix + "Unkown class: " + "me.merdril.randombattle.battle.ai."
+						                + monsterName.replaceAll("\\ ", "") + "AI");
+						e.printStackTrace();
+					}
+					catch (ClassCastException e) {
+						plugin.getLogger().severe(
+						        RandomBattle.prefix + "Bad cast: " + "me.merdril.randombattle.battle.ai."
+						                + monsterName.replaceAll("\\ ", "") + "AI");
+						e.printStackTrace();
+					}
 					// Make an object array to hold the values associated with the monster (its
 					// stats, skills, magicks, and weaknesses)
 					Object[] attributes;
@@ -647,5 +784,11 @@ public final class RBDatabase
 	private static Connection getConnection() throws SQLException
 	{
 		return DriverManager.getConnection("jdbc:sqlite:" + new File(plugin.getDataFolder(), "stats.db").getPath());
+	}
+	
+	// It's a utility class, so it needs not be instantiated
+	private RBDatabase() throws AssertionError
+	{
+		throw new AssertionError();
 	}
 }

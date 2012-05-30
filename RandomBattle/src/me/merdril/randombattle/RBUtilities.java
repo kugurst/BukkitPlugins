@@ -6,7 +6,6 @@ package me.merdril.randombattle;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 
 import org.bukkit.command.CommandSender;
 import org.getspout.spoutapi.SpoutManager;
@@ -109,22 +108,27 @@ public final class RBUtilities
 	public static boolean isRegisteredPlayer(String name, int searchType, CommandSender sender)
 	{
 		ArrayList<String> possiblePlayers = new ArrayList<String>();
-		Set<String> allPlayers = RBCommandExecutor.registeredPlayers;
 		if (searchType == 0) {
-			for (String playerName : allPlayers)
-				if (playerName.equals(name))
-					return true;
-			return false;
+			synchronized (RBCommandExecutor.registeredPlayers) {
+				for (String playerName : RBCommandExecutor.registeredPlayers)
+					if (playerName.equals(name))
+						return true;
+				return false;
+			}
 		}
 		else if (searchType == 1) {
-			for (String playerName : allPlayers)
-				if (playerName.equalsIgnoreCase(name))
-					possiblePlayers.add(playerName);
+			synchronized (RBCommandExecutor.registeredPlayers) {
+				for (String playerName : RBCommandExecutor.registeredPlayers)
+					if (playerName.equalsIgnoreCase(name))
+						possiblePlayers.add(playerName);
+			}
 		}
 		else if (searchType == 2) {
-			for (String playerName : allPlayers)
-				if (playerName.toLowerCase().startsWith(name.toLowerCase()))
-					possiblePlayers.add(playerName);
+			synchronized (RBCommandExecutor.registeredPlayers) {
+				for (String playerName : RBCommandExecutor.registeredPlayers)
+					if (playerName.toLowerCase().startsWith(name.toLowerCase()))
+						possiblePlayers.add(playerName);
+			}
 		}
 		if (possiblePlayers.size() == 0) {
 			sender.sendMessage(RandomBattle.prefix + "No match found.");

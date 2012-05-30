@@ -7,6 +7,7 @@ package me.merdril.randombattle;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -41,22 +42,22 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class RBCommandExecutor implements CommandExecutor
 {
-	private RandomBattle	       plugin;
+	private RandomBattle	           plugin;
 	/** This is the list of the players currently on the server who have registered. */
-	public static Set<String>	   registeredPlayers;
+	public static volatile Set<String>	registeredPlayers;
 	/**
 	 * This is the list of players who have registered and have not unregistered that are currently
 	 * not logged in.
 	 */
-	public static Set<String>	   inactiveRegisteredPlayers;
+	public static volatile Set<String>	inactiveRegisteredPlayers;
 	/**
 	 * This is the String that specifies the file name to use when creating/loading the list of
 	 * registered players.
 	 */
-	public static String	       registeredPlayersFile	= "registeredPlayers.txt";
-	private static Set<String>	   deactivatedPlayers;
-	public static AtomicBoolean	   hasBeenStopped;
-	private static ExecutorService	threadExec;
+	public static String	           registeredPlayersFile	= "registeredPlayers.txt";
+	private static Set<String>	       deactivatedPlayers;
+	public static AtomicBoolean	       hasBeenStopped;
+	private static ExecutorService	   threadExec;
 	
 	/**
 	 * <p>
@@ -220,6 +221,18 @@ public class RBCommandExecutor implements CommandExecutor
 		}
 		for (World world : affectedWorlds)
 			world.save();
+		threadExec.execute(new Runnable() {
+			@Override
+			public void run()
+			{
+				List<Location> blocks = null;
+				synchronized (BattleSetter.allEditedBlockLocations) {
+					blocks =
+					        BattleSetter.allEditedBlockLocations.subList(0, BattleSetter.allEditedBlockLocations.size());
+				}
+				RBOS.saveBlocks(blocks, BattleSetter.blocksFile);
+			}
+		});
 		if (sender != null)
 			sender.sendMessage(RandomBattle.prefix + "All modified blocks removed.");
 		if (sender == null || !(sender instanceof ConsoleCommandSender))
@@ -352,7 +365,11 @@ public class RBCommandExecutor implements CommandExecutor
 			if (args.length == 0) {
 				unregistered = true;
 				player = (Player) sender;
-				if (registeredPlayers.contains(player.getName())) {
+				boolean contains = false;
+				synchronized (registeredPlayers) {
+					contains = registeredPlayers.contains(player.getName());
+				}
+				if (contains) {
 					sender.sendMessage(RandomBattle.prefix + "You have been unregistered from Random Battles!");
 					synchronized (registeredPlayers) {
 						registeredPlayers.remove(player.getName());
@@ -387,7 +404,11 @@ public class RBCommandExecutor implements CommandExecutor
 			// The offlinePlayer is not null, so lets remove it from the inactive players if it is
 			// there
 			else {
-				if (inactiveRegisteredPlayers.contains(offlinePlayer.getName())) {
+				boolean contains = false;
+				synchronized (inactiveRegisteredPlayers) {
+					contains = inactiveRegisteredPlayers.contains(offlinePlayer.getName());
+				}
+				if (contains) {
 					sender.sendMessage(RandomBattle.prefix + offlinePlayer.getName()
 					        + " has been unregistered from Random Battles.");
 					unregistered = true;
@@ -410,7 +431,11 @@ public class RBCommandExecutor implements CommandExecutor
 		// The player is not null, so lets remove it from the active registered players if it is
 		// there
 		else {
-			if (registeredPlayers.contains(player.getName())) {
+			boolean contains = false;
+			synchronized (registeredPlayers) {
+				contains = registeredPlayers.contains(player.getName());
+			}
+			if (contains) {
 				sender.sendMessage(RandomBattle.prefix + player.getName()
 				        + " has been unregistered from Random Battles.");
 				unregistered = true;
@@ -512,7 +537,10 @@ public class RBCommandExecutor implements CommandExecutor
 			sender.sendMessage(RandomBattle.prefix + "RandomBattle has already been halted.");
 			return false;
 		}
-		deactivatedPlayers = registeredPlayers;
+		
+		synchronized (registeredPlayers) {
+			deactivatedPlayers = registeredPlayers;
+		}
 		registeredPlayers = new HashSet<String>();
 		hasBeenStopped.set(true);
 		sender.sendMessage(RandomBattle.prefix + "RandomBattle has halted.");
@@ -527,7 +555,9 @@ public class RBCommandExecutor implements CommandExecutor
 			sender.sendMessage(RandomBattle.prefix + "RandomBattle is already running.");
 			return false;
 		}
-		registeredPlayers = deactivatedPlayers;
+		synchronized (registeredPlayers) {
+			registeredPlayers = deactivatedPlayers;
+		}
 		hasBeenStopped.set(false);
 		sender.sendMessage(RandomBattle.prefix + "RandomBattle has resumed.");
 		if (!(sender instanceof ConsoleCommandSender))
@@ -535,58 +565,3 @@ public class RBCommandExecutor implements CommandExecutor
 		return true;
 	}
 }
-// The following is the old code for register(...):
-/*
- * if (sender instanceof Player) { boolean isSpoutPlayer = false; if (args.length == 0)
- * isSpoutPlayer = ((SpoutPlayer) sender).isSpoutCraftEnabled(); else if (args.length == 1) { Player
- * player = plugin.getServer().getPlayer(args[0]); if (player == null) isSpoutPlayer = false; else
- * isSpoutPlayer = ((SpoutPlayer) player).isSpoutCraftEnabled(); } else if (args.length > 1) {
- * sender.sendMessage(RandomBattle.prefix + "Too many arguments"); return false; } if
- * (!isSpoutPlayer) { sender.sendMessage(RandomBattle.prefix +
- * "The player name does not refer to a SpoutCraft player."); return true; } else { if (args.length
- * == 0) { registeredPlayers.add(sender.getName()); sender.sendMessage(RandomBattle.prefix +
- * sender.getName() + " is now registered!"); return true; } else if (sender.getName() == args[0]) {
- * registeredPlayers.add(sender.getName()); sender.sendMessage(RandomBattle.prefix +
- * sender.getName() + " is now registered!"); return true; } else {
- * registeredPlayers.add(RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender).getName());
- * sender.sendMessage(RandomBattle.prefix + args[0] + " is now registered!");
- * RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender).sendMessage( RandomBattle.prefix +
- * "You have been registered for Random Battles by " + sender.getName() + "!"); return true; } } }
- * else { if (args.length == 0) { sender.sendMessage(RandomBattle.prefix +
- * "This command requires a player context."); return true; } else if (args.length > 1) {
- * sender.sendMessage(RandomBattle.prefix + "Too many arguments."); return false; } else { Player
- * player = plugin.getServer().getPlayer(args[0]); boolean isSpoutPlayer; if (player == null)
- * isSpoutPlayer = false; else isSpoutPlayer = ((SpoutPlayer) player).isSpoutCraftEnabled(); if
- * (!isSpoutPlayer) { sender.sendMessage(RandomBattle.prefix +
- * "The player name does not refer to a SpoutCraft player."); return true; }
- * registeredPlayers.add(RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender).getName());
- * sender.sendMessage(RandomBattle.prefix + args[0] + " is now registered!");
- * RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender).sendMessage( RandomBattle.prefix +
- * "You have been registered for Random Battles by console!"); return true; } }
- */
-// The following is the old code for unRegister(...):
-/*
- * if (sender instanceof Player) { boolean isRegisteredPlayer =
- * registeredPlayers.contains(((SpoutPlayer) sender).getName()); if (args.length == 1) {
- * isRegisteredPlayer = registeredPlayers.contains(args[0]); if (!isRegisteredPlayer) {
- * sender.sendMessage(RandomBattle.prefix + args[0] + " is not registered for Random Battles.");
- * return true; } SpoutPlayer player = RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0,
- * sender); registeredPlayers.remove(args[0]); sender.sendMessage(RandomBattle.prefix +
- * player.getDisplayName() + " has been unregistered from Random Battles."); if
- * (!sender.getName().equals(args[0])) player.sendMessage(RandomBattle.prefix +
- * "You have been unregistered from Random Battles by " + sender.getName() + "."); return true; }
- * else if (args.length > 1) { sender.sendMessage(RandomBattle.prefix +
- * "Incorrect arguments. Usage:"); return false; } if (!isRegisteredPlayer) {
- * sender.sendMessage(RandomBattle.prefix + sender.getName() +
- * " is not registered for Random Battles."); return true; } // At this point, the player is
- * registered. SpoutPlayer player = RBUtilities.getSpoutPlayerFromDisplayName(sender.getName(), 0,
- * sender); registeredPlayers.remove(sender.getName()); sender.sendMessage(RandomBattle.prefix +
- * player.getDisplayName() + " has been unregistered from Random Battles."); return true; } //
- * Command line issued if (args.length != 1) { sender.sendMessage(RandomBattle.prefix +
- * "This command takes one player as an argument. Usage:"); return false; } if
- * (registeredPlayers.contains(args[0])) { SpoutPlayer player =
- * RBUtilities.getSpoutPlayerFromDisplayName(args[0], 0, sender); registeredPlayers.remove(args[0]);
- * sender.sendMessage(RandomBattle.prefix + player.getDisplayName() +
- * " has been unregistered from Random Battles."); player.sendMessage(RandomBattle.prefix +
- * "You have been unregistered from Random Battles by console."); }
- */
