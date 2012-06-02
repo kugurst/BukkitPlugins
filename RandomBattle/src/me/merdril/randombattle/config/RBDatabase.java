@@ -10,12 +10,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.ReentrantLock;
 
 import javax.sql.rowset.CachedRowSet;
 
@@ -47,13 +49,15 @@ import com.sun.rowset.CachedRowSetImpl;
  */
 public final class RBDatabase
 {
-	private static RandomBattle	             plugin;
-	private static Map<String, Integer>	     playerBaseStats;
-	private static Map<String, Object[]>	 playerBaseAttributes;
-	private static List<String>	             activeMobs;
-	private static Map<String, Object[]>	 monsterStats;
-	private static Map<String, Object[]>	 playerStats;
-	private static HashMap<String, RBPlayer>	cachedPlayers;
+	private static RandomBattle	         plugin;
+	private static Map<String, Integer>	 playerBaseStats;
+	private static Map<String, Object[]>	playerBaseAttributes;
+	private static List<String>	         activeMobs;
+	private static Map<String, Object[]>	monsterStats;
+	private static ReentrantLock	     playerStatsLock;
+	private static Map<String, Object[]>	playerStats;
+	private static ReentrantLock	     cachedPlayersLock;
+	private static Map<String, RBPlayer>	cachedPlayers;
 	
 	/**
 	 * <p>
@@ -238,6 +242,7 @@ public final class RBDatabase
 		
 		// Cache the contents of the monster and player table.
 		monsterStats = loadMonsterStats(statement, RBLivingEntity.MONSTERS, activeMobs);
+		playerBaseAttributes = Collections.synchronizedMap(new HashMap<String, Object[]>());
 		playerStats = loadPlayerStats(statement);
 		
 		// Close the connections and call it a day folks!
@@ -257,17 +262,82 @@ public final class RBDatabase
 			        RandomBattle.prefix + "Failed to close the database statement! Is everything all right?");
 			e.printStackTrace();
 		}
+		// Initialize anything else that needs to be initialized
+		cachedPlayers = Collections.synchronizedMap(new HashMap<String, RBPlayer>());
+		cachedPlayersLock = new ReentrantLock(true);
+		playerStatsLock = new ReentrantLock(true);
+	}
+	
+	public static boolean savePlayer(String name)
+	{
+		boolean savedSuccessfully = false;
+		// A save has to be mirrored between all three objects that may contain the player:
+		// cachedPlayer, playerStats, and the database
+		RBPlayer player = null;
+		cachedPlayersLock.lock();
+		if (cachedPlayers.containsKey(name.toLowerCase()))
+			player = cachedPlayers.get(name.toLowerCase());
+		cachedPlayersLock.unlock();
+		// There is no need to check playerStats for this player, because of the player is not
+		// cached, then no changes could have occurred (that is, the player should have already been
+		// saved before it was unloaded by whatever method unloaded it)
+		if (player == null)
+			return false;
+		// Get the attributes of the player
+		Map<Stat, Integer> statMap = player.getOriginalStats();
+		List<RBSkill> skills = player.getSkills();
+		List<RBMagic> magicks = player.getMagicks();
+		// Save the player
+		try {
+			// Format the skills and magicks
+			String skillLine = formatRBList(skills);
+			String magicLine = formatRBList(magicks);
+			// Write to the database
+			// TODO fix the query string
+			String query = "UPDATE players (", statValues = "", statColumns = "";
+			// Align the stats and their values
+			for (Map.Entry<Stat, Integer> entry : statMap.entrySet()) {
+				statColumns += entry.getKey().toString().toLowerCase() + ", ";
+				statValues += entry.getValue() + ", ";
+			}
+			// Add the other columns to the query, then add skills and magic
+			query += statColumns + "name, skills, magicks) VALUES (";
+			query += statValues + "'*" + name.toLowerCase() + "', '" + skillLine + "', '" + magicLine + "')";
+			plugin.getLogger().info(RandomBattle.prefix + "Query: " + query);
+			Connection conn = getConnection();
+			Statement stat = conn.createStatement();
+			stat.executeUpdate(query);
+		}
+		catch (SQLException e) {
+			queryFailed(e, false);
+		}
+		return savedSuccessfully;
+	}
+	
+	public static RBPlayer unloadPlayer(String name)
+	{
+		RBPlayer player = null;
+		// A player has to be cached to be unloaded
+		cachedPlayersLock.lock();
+		if (cachedPlayers.containsKey(name.toLowerCase()))
+			player = cachedPlayers.remove(name.toLowerCase());
+		cachedPlayersLock.unlock();
+		return player;
 	}
 	
 	@SuppressWarnings ("unchecked")
-	public static RBPlayer getPlayer(String name)
+	public static RBPlayer loadPlayer(String name)
 	{
 		RBPlayer rbPlayer = null;
-		if (cachedPlayers.containsKey(name.toLowerCase()))
-			return cachedPlayers.get(name.toLowerCase());
 		// It's assumed that the player is registered
-		if (playerStats.containsKey(name.toLowerCase())) {
-			Object[] attributes = playerStats.get(name.toLowerCase());
+		cachedPlayersLock.lock();
+		if (cachedPlayers.containsKey(name.toLowerCase())) {
+			cachedPlayersLock.unlock();
+			return cachedPlayers.get(name.toLowerCase());
+		}
+		playerStatsLock.lock();
+		if (playerStats.containsKey("*" + name.toLowerCase())) {
+			Object[] attributes = playerStats.get("*" + name.toLowerCase());
 			rbPlayer =
 			        new RBPlayer(plugin, (SpoutPlayer) plugin.getServer().getPlayer(name),
 			                (EnumMap<Stat, Integer>) attributes[0], null, (List<RBSkill>) attributes[1],
@@ -276,7 +346,9 @@ public final class RBDatabase
 		}
 		// We have to make a new player
 		else {
-			Object[] attributes = playerBaseAttributes.get(name.toLowerCase());
+			playerStatsLock.unlock();
+			cachedPlayersLock.unlock();
+			Object[] attributes = playerBaseAttributes.get("base");
 			EnumMap<Stat, Integer> statMap = (EnumMap<Stat, Integer>) attributes[0];
 			List<RBSkill> skills = (List<RBSkill>) attributes[1];
 			List<RBMagic> magicks = (List<RBMagic>) attributes[2];
@@ -286,31 +358,49 @@ public final class RBDatabase
 			cachedPlayers.put(name.toLowerCase(), rbPlayer);
 			// Save the player
 			try {
-				Connection conn = getConnection();
-				Statement stat = conn.createStatement();
 				// Format the skills and magicks
 				String skillLine = formatRBList(skills);
 				String magicLine = formatRBList(magicks);
 				// Write to the database
 				String query = "INSERT INTO players (", statValues = "", statColumns = "";
+				// Align the stats and their values
 				for (Map.Entry<Stat, Integer> entry : statMap.entrySet()) {
 					statColumns += entry.getKey().toString().toLowerCase() + ", ";
 					statValues += entry.getValue() + ", ";
 				}
-				statColumns = statColumns.substring(0, statColumns.length() - 2);
-				statValues = statValues.substring(0, statValues.length() - 2);
+				// Add the other columns to the query, then add skills and magic
+				query += statColumns + "name, skills, magicks) VALUES (";
+				query += statValues + "'*" + name.toLowerCase() + "', '" + skillLine + "', '" + magicLine + "')";
+				plugin.getLogger().info(RandomBattle.prefix + "Query: " + query);
+				Connection conn = getConnection();
+				Statement stat = conn.createStatement();
+				stat.executeUpdate(query);
 			}
 			catch (SQLException e) {
 				queryFailed(e, false);
 			}
 		}
+		playerStatsLock.unlock();
+		cachedPlayersLock.unlock();
 		return rbPlayer;
 	}
 	
 	private static String formatRBList(List<?> list)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		String result = "";
+		for (Object object : list) {
+			String name = object.toString();
+			name.replaceAll("\\_", "\\ ");
+			name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+			StringBuilder formatted = new StringBuilder(name);
+			for (int i = 1; i < formatted.length(); i++) {
+				if (formatted.charAt(i - 1) == ' ') {
+					formatted.replace(i, i + 1, Character.toString(Character.toUpperCase(formatted.charAt(i))));
+				}
+			}
+			result += formatted + ";";
+		}
+		return result;
 	}
 	
 	/**
@@ -356,7 +446,7 @@ public final class RBDatabase
 				// Make a LinkedList for the skills and magic.
 				LinkedList<RBSkill> skills = new LinkedList<RBSkill>();
 				LinkedList<RBMagic> magicks = new LinkedList<RBMagic>();
-				if (playerName.startsWith("\\*") || playerName.equalsIgnoreCase("base")) {
+				if (playerName.charAt(0) == '*' || playerName.equalsIgnoreCase("base")) {
 					// Get all the stats
 					for (Stat stat : RBLivingEntity.Stat.values()) {
 						String statName = stat.toString().toLowerCase();
@@ -401,8 +491,16 @@ public final class RBDatabase
 					continue;
 				attributes = new Object[] {stats, skills, magicks};
 				// If we're on the base player, set him aside for easier access
-				if (playerName.equalsIgnoreCase("base"))
+				if (playerName.equalsIgnoreCase("base")) {
+					// Add chp, cmp, exp, and level
+					@SuppressWarnings ("unchecked")
+					EnumMap<Stat, Integer> statMap = (EnumMap<Stat, Integer>) attributes[0];
+					statMap.put(Stat.CHP, statMap.get(Stat.HP));
+					statMap.put(Stat.CMP, statMap.get(Stat.MP));
+					statMap.put(Stat.LEVEL, set.getInt(Stat.LEVEL.toString().toLowerCase()));
+					statMap.put(Stat.EXP, set.getInt(Stat.EXP.toString().toLowerCase()));
 					playerBaseAttributes.put(playerName.toLowerCase(), attributes);
+				}
 				playerMap.put(playerName.toLowerCase(), attributes);
 			}
 		}

@@ -57,9 +57,9 @@ public final class RBOS
 			if (!dataFolder.mkdirs())
 				dataFolder = null;
 		if (blockLock == null)
-			blockLock = new ReentrantLock();
+			blockLock = new ReentrantLock(true);
 		if (playerLock == null)
-			playerLock = new ReentrantLock();
+			playerLock = new ReentrantLock(true);
 		Collection<Location> aebl = loadBlocks(BattleSetter.blocksFile);
 		if (aebl != null)
 			BattleSetter.allEditedBlockLocations = Collections.synchronizedList(new ArrayList<Location>(aebl));

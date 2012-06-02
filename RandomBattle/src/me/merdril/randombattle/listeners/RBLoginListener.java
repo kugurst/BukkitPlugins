@@ -3,6 +3,7 @@ package me.merdril.randombattle.listeners;
 
 import me.merdril.randombattle.RBCommandExecutor;
 import me.merdril.randombattle.RandomBattle;
+import me.merdril.randombattle.config.RBDatabase;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -101,6 +102,7 @@ public class RBLoginListener implements Listener
 			plugin.getLogger().info(
 			        RandomBattle.prefix + event.getPlayer().getName()
 			                + " has been moved to the active registered players.");
+			RBDatabase.loadPlayer(event.getPlayer().getName());
 		}
 	}
 }
