@@ -334,8 +334,7 @@ public class BattleSetter
 	private void findSafeStage()
 	{
 		// Initially the same as startPoint, and doesn't change until a block that isn't air is
-		// encountered
-		// Iterate over the 3 dimensions
+		// encountered Iterate over the 3 dimensions
 		outer: for (int i = 0; i < stageHeight; i++) {
 			for (int j = 0; j < stageWidth; j++) {
 				for (int k = 0; k < stageLength; k++) {

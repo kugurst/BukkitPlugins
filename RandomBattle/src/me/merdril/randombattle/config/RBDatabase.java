@@ -1,10 +1,9 @@
-/**
- * 
- */
 
 package me.merdril.randombattle.config;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -33,6 +32,9 @@ import me.merdril.randombattle.battle.RBSkill;
 import me.merdril.randombattle.battle.ai.AI;
 
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
 import com.sun.rowset.CachedRowSetImpl;
@@ -55,17 +57,36 @@ public final class RBDatabase
 	private static List<String>	         activeMobs;
 	private static Map<String, Object[]>	monsterStats;
 	private static ReentrantLock	     playerStatsLock;
+	/**
+	 * <p>
+	 * A {@link HashMap} mapping a player name preceded by an asterisk -
+	 * <code>new String("*"+name.toLowerCase())</code> - to the stats, skills, and magicks known by
+	 * the player. The Object returned by the <code>get()</code> method is:<br/>
+	 * <code>new Object[] {{@link EnumMap}&lt{@link Stat}, {@link Integer}&gt,
+	 * {@link LinkedList}&lt{@link RBSkill}&gt, {@link LinkedList}&lt{@link RBMagic}&gt};</code>
+	 * </p>
+	 */
 	private static Map<String, Object[]>	playerStats;
 	private static ReentrantLock	     cachedPlayersLock;
 	private static Map<String, RBPlayer>	cachedPlayers;
 	
 	/**
 	 * <p>
-	 * Loads the player database and verifies its integrity.
+	 * Loads the values of <code>stat.db</code> and verifies its contents. That is to say, it
+	 * creates <code>stat.db</code> should it not exist, the monsters table in it should it not
+	 * exist or be of the expected format, and the players table in it should it not exist or be of
+	 * the expected format. This is to prevent tying up the server thread as disk reads are slower
+	 * than memory reads.
 	 * </p>
 	 * @param instance
+	 *            The {@link RandomBattle} plugin this database is tied to. Used for outputting
+	 *            error messages.
 	 * @param playerBaseStats
+	 *            The {@link Map}&lt{@link String}, {@link Integer}&gt loaded from the config file
+	 *            containing the stats for a brand new player.
 	 * @param expectedMobs
+	 *            The {@link List}&lt{@link String}&gt loaded from the config file representing the
+	 *            mobs that this instance of the plugin should load and support.
 	 */
 	public static void
 	        initialize(RandomBattle instance, Map<String, Integer> playerBaseStats, List<String> expectedMobs)
@@ -268,6 +289,64 @@ public final class RBDatabase
 		playerStatsLock = new ReentrantLock(true);
 	}
 	
+	public static AI getMonsterAI(LivingEntity monster)
+	{
+		// First check to see if this monster was specified in the config
+		String monsterName = monster.toString();
+		monsterName = monsterName.toLowerCase();
+		monsterName.replaceAll("craft", "");
+		boolean active = false;
+		for (String name : activeMobs) {
+			name.replaceAll(" ", "");
+			if (name.equalsIgnoreCase(monsterName)) {
+				active = true;
+				break;
+			}
+		}
+		// If the monster isn't active there's nothing more to do
+		if (!active)
+			return null;
+		// Otherwise, return the AI from the living entity mapping
+		else {
+			try {
+				Constructor<? extends AI> construct =
+				        RBLivingEntity.MONSTERS.get(monsterName).getConstructor(Object[].class);
+				AI ai = construct.newInstance((Object) monsterStats.get(monsterName));
+				return ai;
+			}
+			catch (InstantiationException e) {
+				// If an exception is thrown, return a null AI as something went very wrong.
+				return null;
+			}
+			catch (IllegalAccessException e) {
+				return null;
+			}
+			catch (NoSuchMethodException e) {
+				return null;
+			}
+			catch (SecurityException e) {
+				return null;
+			}
+			catch (IllegalArgumentException e) {
+				return null;
+			}
+			catch (InvocationTargetException e) {
+				return null;
+			}
+		}
+	}
+	
+	/**
+	 * <p>
+	 * Saves the current status of an {@link RBPlayer}. Specifically, it saves all the player's
+	 * {@link Stat}, their <code>{@link RBSkill}s</code>, and their <code>{@link RBMagic}ks</code>.
+	 * @param name
+	 *            The {@link String} of the player to save. Care should be taken to pass the player
+	 *            name from the actual {@link Player}/{@link HumanEntity} object (not the display
+	 *            name).
+	 * @return True if the player was written to the database without error. False if the player was
+	 *         not cached, does not exist, or a database write error occurred.
+	 */
 	public static boolean savePlayer(String name)
 	{
 		boolean savedSuccessfully = false;
@@ -293,20 +372,19 @@ public final class RBDatabase
 			String skillLine = formatRBList(skills);
 			String magicLine = formatRBList(magicks);
 			// Write to the database
-			// TODO fix the query string
-			String query = "UPDATE players (", statValues = "", statColumns = "";
-			// Align the stats and their values
-			for (Map.Entry<Stat, Integer> entry : statMap.entrySet()) {
-				statColumns += entry.getKey().toString().toLowerCase() + ", ";
-				statValues += entry.getValue() + ", ";
-			}
+			String query = "UPDATE players SET ", stats = "";
+			// Add the stats and their values
+			for (Map.Entry<Stat, Integer> entry : statMap.entrySet())
+				stats += entry.getKey().toString().toLowerCase() + "=" + entry.getValue() + ", ";
 			// Add the other columns to the query, then add skills and magic
-			query += statColumns + "name, skills, magicks) VALUES (";
-			query += statValues + "'*" + name.toLowerCase() + "', '" + skillLine + "', '" + magicLine + "')";
+			query +=
+			        stats + "skills='" + skillLine + "', magicks='" + magicLine + "' WHERE name ='*"
+			                + name.toLowerCase() + "'";
 			plugin.getLogger().info(RandomBattle.prefix + "Query: " + query);
 			Connection conn = getConnection();
 			Statement stat = conn.createStatement();
 			stat.executeUpdate(query);
+			savedSuccessfully = true;
 		}
 		catch (SQLException e) {
 			queryFailed(e, false);
@@ -314,6 +392,20 @@ public final class RBDatabase
 		return savedSuccessfully;
 	}
 	
+	/**
+	 * <p>
+	 * For conserving memory usage, this program removes a player from the mapping of cached
+	 * players. It is up to the JVM to then get rid of the actual {@link RBPlayer} object from
+	 * memory. The calling method should be the last method with a reference to the removed
+	 * {@link RBPlayer} for this method to have any meaning.
+	 * </p>
+	 * @param name
+	 *            The {@link String} of the player to unload. Care should be taken to pass the
+	 *            player name from the actual {@link Player}/{@link HumanEntity} object (not the
+	 *            display name).
+	 * @return The {@link RBPlayer} as contained in the mapping of cached players, or null if it was
+	 *         not found.
+	 */
 	public static RBPlayer unloadPlayer(String name)
 	{
 		RBPlayer player = null;
@@ -325,6 +417,20 @@ public final class RBDatabase
 		return player;
 	}
 	
+	/**
+	 * <p>
+	 * Returns an {@link RBPlayer} specified by the given name. This method first looks to see if
+	 * the player has already been loaded, and returns that instance, otherwise it loads the player
+	 * as last saved (the attributes specified in stats.db). If the player does not exist in either
+	 * location, it is created, so care should be taken to pass the player name from the actual
+	 * {@link Player}/{@link HumanEntity} object (not the display name).
+	 * </p>
+	 * @param name
+	 *            The {@link String} of the player's name to load.
+	 * @return An {@link RBPlayer} if the load was successful. Null otherwise. It is possible for a
+	 *         database write to fail in this method and a player still be returned, so one should
+	 *         not assume the player exists in the database if this method does not return null.
+	 */
 	@SuppressWarnings ("unchecked")
 	public static RBPlayer loadPlayer(String name)
 	{
@@ -343,11 +449,11 @@ public final class RBDatabase
 			                (EnumMap<Stat, Integer>) attributes[0], null, (List<RBSkill>) attributes[1],
 			                (List<RBMagic>) attributes[2], null);
 			cachedPlayers.put(name.toLowerCase(), rbPlayer);
+			cachedPlayersLock.unlock();
+			playerStatsLock.unlock();
 		}
 		// We have to make a new player
 		else {
-			playerStatsLock.unlock();
-			cachedPlayersLock.unlock();
 			Object[] attributes = playerBaseAttributes.get("base");
 			EnumMap<Stat, Integer> statMap = (EnumMap<Stat, Integer>) attributes[0];
 			List<RBSkill> skills = (List<RBSkill>) attributes[1];
@@ -355,7 +461,10 @@ public final class RBDatabase
 			rbPlayer =
 			        new RBPlayer(plugin, (SpoutPlayer) plugin.getServer().getPlayer(name), statMap, null, skills,
 			                magicks, null);
+			playerStats.put("*" + name.toLowerCase(), attributes);
 			cachedPlayers.put(name.toLowerCase(), rbPlayer);
+			cachedPlayersLock.unlock();
+			playerStatsLock.unlock();
 			// Save the player
 			try {
 				// Format the skills and magicks
@@ -380,19 +489,18 @@ public final class RBDatabase
 				queryFailed(e, false);
 			}
 		}
-		playerStatsLock.unlock();
-		cachedPlayersLock.unlock();
 		return rbPlayer;
 	}
 	
 	private static String formatRBList(List<?> list)
 	{
 		String result = "";
+		StringBuilder formatted;
 		for (Object object : list) {
 			String name = object.toString();
 			name.replaceAll("\\_", "\\ ");
 			name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-			StringBuilder formatted = new StringBuilder(name);
+			formatted = new StringBuilder(name);
 			for (int i = 1; i < formatted.length(); i++) {
 				if (formatted.charAt(i - 1) == ' ') {
 					formatted.replace(i, i + 1, Character.toString(Character.toUpperCase(formatted.charAt(i))));
@@ -418,6 +526,7 @@ public final class RBDatabase
 	 *         Where the EnumMap are the stats of the {@link RBPlayer}, and the other three are
 	 *         self-explanitory
 	 */
+	@SuppressWarnings ("resource")
 	private static Map<String, Object[]> loadPlayerStats(Statement statement)
 	{
 		// Get the players from the database
@@ -507,6 +616,13 @@ public final class RBDatabase
 		catch (SQLException e) {
 			queryFailed(e, true);
 		}
+		if (set != null)
+			try {
+				set.close();
+			}
+			catch (SQLException e) {
+				queryFailed(e, true);
+			}
 		return playerMap;
 	}
 	
@@ -562,7 +678,7 @@ public final class RBDatabase
 						Class<? extends AI> aiClass =
 						        (Class<? extends AI>) Class.forName("me.merdril.randombattle.battle.ai."
 						                + monsterName.replaceAll("\\ ", "") + "AI");
-						monsters.put(monsterName.toLowerCase(), aiClass);
+						monsters.put(monsterName.replaceAll("\\ ", "").toLowerCase(), aiClass);
 					}
 					catch (ClassNotFoundException e) {
 						plugin.getLogger().severe(
@@ -616,7 +732,7 @@ public final class RBDatabase
 					// Add all of these lists and the map to the attributes of this monster and
 					// store it in the map
 					attributes = new Object[] {stats, skills, magicks, weakness};
-					result.put(monsterName.toLowerCase(), attributes);
+					result.put(monsterName.toLowerCase().replaceAll("\\ ", ""), attributes);
 				}
 			} // Repeat
 		}
@@ -944,9 +1060,9 @@ public final class RBDatabase
 		return DriverManager.getConnection("jdbc:sqlite:" + new File(plugin.getDataFolder(), "stats.db").getPath());
 	}
 	
-	// It's a utility class, so it needs not be instantiated
+	// It's a utility class, so it need not be instantiated
 	private RBDatabase() throws AssertionError
 	{
-		throw new AssertionError();
+		throw new AssertionError("This class cannot be instantiated!");
 	}
 }
