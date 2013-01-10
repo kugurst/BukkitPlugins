@@ -9,10 +9,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import me.merdril.randombattle.RandomBattle;
+import me.merdril.randombattle.config.RBDatabase;
 import me.merdril.randombattle.config.RBOS;
-import me.merdril.randombattle.hud.RBHUD;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -31,16 +33,16 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class BattleSetter
 {
-	RandomBattle	                          plugin;
-	private int	                              stageHeight;
-	private int	                              stageWidth;
-	private int	                              stageLength;
-	private Location	                      startPoint;
-	private Location	                      currentPoint;
+	RandomBattle	                           plugin;
+	private int	                               stageHeight;
+	private int	                               stageWidth;
+	private int	                               stageLength;
+	private Location	                       startPoint;
+	private Location	                       currentPoint;
 	
 	// private int side = 1;
-	private boolean	                          goodStage	     = true;
-	private ArrayList<Block>	              editedBlocks	 = new ArrayList<Block>();
+	private boolean	                           goodStage	  = true;
+	private ArrayList<Block>	               editedBlocks	  = new ArrayList<Block>();
 	/**
 	 * <p>
 	 * Contains a List<Block> of all blocks that have been modified by this class from their
@@ -51,7 +53,8 @@ public class BattleSetter
 	 * it was.
 	 * </p>
 	 */
-	public static List<Location>	          allEditedBlockLocations;
+	private static List<Location>	           allEditedBlockLocations;
+	private static ReentrantReadWriteLock	   aeblLock;
 	/**
 	 * <p>
 	 * A Map of SpoutPlayer to the Monsters they are currently facing.
@@ -60,17 +63,30 @@ public class BattleSetter
 	 * Will serve a future use when parties are added to this plugin.
 	 * </p>
 	 */
-	public static Map<SpoutPlayer, Monster[]>	allBattleMonsters;
+	private static Map<SpoutPlayer, Monster[]>	allBattleMonsters;
+	private static ReentrantReadWriteLock	   abmLock;
 	/**
 	 * <p>
 	 * An ArrayList of Monster this instance of BattleSetter is currently servicing.
 	 * </p>
 	 */
-	public ArrayList<Monster>	              battleMonsters	= new ArrayList<Monster>();
-	private HashMap<Monster, Location[]>	  field	         = new HashMap<Monster, Location[]>();
-	private CommandSender	                  console;
-	public static String	                  blocksFile	 = "allEditedBlocks.txt";
-	private static ExecutorService	          threadExec;
+	private ArrayList<Monster>	               battleMonsters	= new ArrayList<Monster>();
+	private HashMap<Monster, Location[]>	   field	      = new HashMap<Monster, Location[]>();
+	private CommandSender	                   console;
+	public static final String	               blocksFile	  = "allEditedBlocks.txt";
+	private static ExecutorService	           blockSaver;
+	private static AtomicInteger	           battleCount	  = new AtomicInteger();
+	
+	public static void initialize()
+	{
+		ArrayList<Location> aebl = RBOS.loadBlocks(BattleSetter.blocksFile);
+		if (aebl != null)
+			allEditedBlockLocations = Collections.synchronizedList(aebl);
+		else
+			allEditedBlockLocations = Collections.synchronizedList(new ArrayList<Location>());
+		allBattleMonsters = Collections.synchronizedMap(new HashMap<SpoutPlayer, Monster[]>());
+		blockSaver = Executors.newSingleThreadExecutor();
+	}
 	
 	/**
 	 * <p>
@@ -93,15 +109,6 @@ public class BattleSetter
 	{
 		// Mark the plugin for future use
 		this.plugin = instance;
-		// Set up the thread executor to handle saving and loading streams
-		if (threadExec == null)
-			threadExec = Executors.newSingleThreadExecutor();
-		// Initialize the static variables if need be
-		if (allBattleMonsters == null)
-			allBattleMonsters = Collections.synchronizedMap(new HashMap<SpoutPlayer, Monster[]>());
-		if (allEditedBlockLocations == null) {
-			allEditedBlockLocations = Collections.synchronizedList(new ArrayList<Location>());
-		}
 		// Mark the console command sender for future use
 		console = plugin.getServer().getConsoleSender();
 		// Make sure the user specified values for the stage dimensions do not break some method in
@@ -124,7 +131,8 @@ public class BattleSetter
 		battleMonsters.add(monster);
 		@SuppressWarnings ("unused")
 		// Start the battle
-		RBHUD overlay = new RBHUD(plugin, player, battleMonsters);
+		FightSys fight =
+		        new FightSys(battleCount.getAndAdd(1), battleMonsters, RBDatabase.loadPlayer(player.getName()));
 	}
 	
 	/**
@@ -208,9 +216,9 @@ public class BattleSetter
 		makeBoundingBox(mLowerCorner, mUpperCorner);
 		HashMap<Monster, Location[]> mField = new HashMap<Monster, Location[]>();
 		mField.put(monster, new Location[] {mLowerCorner, mUpperCorner});
-		synchronized (allBattleMonsters) {
-			allBattleMonsters.put(player, new Monster[] {monster});
-		}
+		abmLock.writeLock().lock();
+		allBattleMonsters.put(player, new Monster[] {monster});
+		abmLock.writeLock().unlock();
 		return mField;
 	}
 	
@@ -247,9 +255,9 @@ public class BattleSetter
 					                || currentBlock.getBlockY() == upperCorner.getBlockY() || currentBlock.getBlockZ() == upperCorner
 					                .getBlockZ())) {
 						editedBlocks.add(currentBlock.getBlock());
-						synchronized (allEditedBlockLocations) {
-							allEditedBlockLocations.add(currentBlock.getBlock().getLocation());
-						}
+						aeblLock.writeLock().lock();
+						allEditedBlockLocations.add(currentBlock.getBlock().getLocation());
+						aeblLock.writeLock().lock();
 						currentBlock.getBlock().setType(Material.GLASS);
 					}
 					// else
@@ -263,14 +271,13 @@ public class BattleSetter
 			currentBlock.setZ(lowerCorner.getBlockZ());
 			currentBlock.add(1, 0, 0);
 		}
-		threadExec.execute(new Runnable() {
+		blockSaver.execute(new Runnable() {
 			@Override
 			public void run()
 			{
-				List<Location> blocks = null;
-				synchronized (allEditedBlockLocations) {
-					blocks = allEditedBlockLocations.subList(0, allEditedBlockLocations.size());
-				}
+				aeblLock.readLock().lock();
+				ArrayList<Location> blocks = new ArrayList<Location>(allEditedBlockLocations);
+				aeblLock.readLock().unlock();
 				RBOS.saveBlocks(blocks, blocksFile);
 			}
 		});
@@ -349,18 +356,18 @@ public class BattleSetter
 					// If we are on the first level, make the floor grass.
 					if (i == 0) {
 						editedBlocks.add(currentPoint.getBlock());
-						synchronized (allEditedBlockLocations) {
-							allEditedBlockLocations.add(currentPoint.getBlock().getLocation());
-						}
+						aeblLock.writeLock().lock();
+						allEditedBlockLocations.add(currentPoint.getBlock().getLocation());
+						aeblLock.writeLock().unlock();
 						currentPoint.getBlock().setType(Material.GRASS);
 					}
 					// If we are on the second level, place lightstone every so often
 					else if (i == 1) {
 						if (j % 4 == 0 && k % 4 == 0) {
 							editedBlocks.add(currentPoint.getBlock());
-							synchronized (allEditedBlockLocations) {
-								allEditedBlockLocations.add(currentPoint.getBlock().getLocation());
-							}
+							aeblLock.writeLock().lock();
+							allEditedBlockLocations.add(currentPoint.getBlock().getLocation());
+							aeblLock.writeLock().unlock();
 							currentPoint.getBlock().setType(Material.GLOWSTONE);
 						}
 					}
@@ -375,14 +382,13 @@ public class BattleSetter
 			currentPoint.setX(startPoint.getBlockX());
 			currentPoint.add(0, 1, 0);
 		}
-		threadExec.execute(new Runnable() {
+		blockSaver.execute(new Runnable() {
 			@Override
 			public void run()
 			{
-				List<Location> blocks = null;
-				synchronized (allEditedBlockLocations) {
-					blocks = allEditedBlockLocations.subList(0, allEditedBlockLocations.size());
-				}
+				aeblLock.readLock().lock();
+				ArrayList<Location> blocks = new ArrayList<Location>(allEditedBlockLocations);
+				aeblLock.readLock().unlock();
 				RBOS.saveBlocks(blocks, blocksFile);
 			}
 		});
@@ -402,21 +408,41 @@ public class BattleSetter
 			return;
 		while (blockList.size() > 0) {
 			blockList.get(0).getLocation().getBlock().setType(Material.AIR);
-			synchronized (allEditedBlockLocations) {
-				allEditedBlockLocations.remove(blockList.get(0).getLocation());
-			}
+			aeblLock.writeLock().lock();
+			allEditedBlockLocations.remove(blockList.get(0).getLocation());
+			aeblLock.writeLock().unlock();
 			blockList.remove(0);
 		}
-		threadExec.execute(new Runnable() {
+		blockSaver.execute(new Runnable() {
 			@Override
 			public void run()
 			{
-				List<Location> blocks = null;
-				synchronized (allEditedBlockLocations) {
-					blocks = allEditedBlockLocations.subList(0, allEditedBlockLocations.size());
-				}
+				aeblLock.readLock().lock();
+				ArrayList<Location> blocks = new ArrayList<Location>(allEditedBlockLocations);
+				aeblLock.readLock().unlock();
 				RBOS.saveBlocks(blocks, blocksFile);
 			}
 		});
+	}
+	
+	public static List<Location> getEditedBlocks()
+	{
+		aeblLock.writeLock().lock();
+		return allEditedBlockLocations;
+	}
+	
+	public static void returnEditedBlocks()
+	{
+		if (aeblLock.writeLock().isHeldByCurrentThread()) {
+			aeblLock.writeLock().unlock();
+			return;
+		}
+		aeblLock.readLock().unlock();
+	}
+	
+	public static List<Location> readEditedBlocks()
+	{
+		aeblLock.readLock().lock();
+		return allEditedBlockLocations;
 	}
 }

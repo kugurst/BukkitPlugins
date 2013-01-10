@@ -6,16 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.Set;
 
-import me.merdril.randombattle.RBCommandExecutor;
 import me.merdril.randombattle.RandomBattle;
-import me.merdril.randombattle.battle.BattleSetter;
 
 import org.bukkit.Location;
 
@@ -29,10 +25,8 @@ import org.bukkit.Location;
  */
 public final class RBOS
 {
-	private static RandomBattle	 plugin;
-	private static File	         dataFolder;
-	private static ReentrantLock	blockLock;
-	private static ReentrantLock	playerLock;
+	private static RandomBattle	plugin;
+	private static File	        dataFolder;
 	
 	// It's another utility class!
 	private RBOS() throws AssertionError
@@ -49,52 +43,43 @@ public final class RBOS
 	 * @param instance
 	 *            The RandomBattle instance that extends JavaPlugin.
 	 */
-	public static void initialize(RandomBattle instance)
+	public static void initialize(RandomBattle instance) throws AssertionError
 	{
 		plugin = instance;
 		dataFolder = new File(plugin.getDataFolder(), "data");
 		if (!dataFolder.isDirectory())
-			if (!dataFolder.mkdirs())
-				dataFolder = null;
-		if (blockLock == null)
-			blockLock = new ReentrantLock(true);
-		if (playerLock == null)
-			playerLock = new ReentrantLock(true);
-		Collection<Location> aebl = loadBlocks(BattleSetter.blocksFile);
-		if (aebl != null)
-			BattleSetter.allEditedBlockLocations = Collections.synchronizedList(new ArrayList<Location>(aebl));
-		Collection<String> irp = loadRegisteredPlayers(RBCommandExecutor.registeredPlayersFile);
-		if (irp != null)
-			RBCommandExecutor.inactiveRegisteredPlayers = Collections.synchronizedSet(new HashSet<String>(irp));
+			// Failing to make the data folder results in over-engineering, and it doesn't really
+			// make sense to continue. Just terminate the plugin
+			if (!dataFolder.mkdirs()) {
+				plugin.getLogger().severe(
+				        "Unable to create data folder. Check your plugin folder permissions. Shutting Down...");
+				throw new AssertionError("Cannot create plugin data folder.");
+			}
 	}
 	
 	/**
 	 * <p>
 	 * Takes in a List&ltLocation&gt of blocks and writes them to the specified filename under the
-	 * data folder specified by this class.
+	 * data folder specified by this class. It is expected that this method is only called by the
+	 * blockSaver object initialized by BattleSetter.
 	 * </p>
-	 * @param allEditedBlockLocations
+	 * @param blocks
 	 *            The List&ltLocation&gt to write to file.
 	 * @param fileName
 	 *            The String to call the created file.
 	 * @return True if the list was successfully saved. False otherwise.
 	 */
-	public static boolean saveBlocks(List<Location> allEditedBlockLocations, String fileName)
+	public static boolean saveBlocks(List<Location> blocks, String fileName)
 	{
 		// Initialize the return variable.
 		boolean result = false;
 		// Make the file to save the Locations to
-		File file = null;
-		if (dataFolder == null)
-			file = new File(plugin.getDataFolder(), fileName);
-		else
-			file = new File(dataFolder, fileName);
-		// Acquire the lock to proceed
-		blockLock.lock();
+		File file = new File(dataFolder, fileName);
 		if (file.exists()) {
 			if (!file.delete()) {
-				plugin.getLogger().warning(RandomBattle.prefix + "Unable to delete the existing block file!");
-				blockLock.unlock();
+				plugin.getLogger().warning(
+				        RandomBattle.prefix
+				                + "Unable to delete the existing block file! Check your folder/file permissions.");
 				return result;
 			}
 		}
@@ -102,9 +87,9 @@ public final class RBOS
 			file.createNewFile();
 		}
 		catch (IOException e) {
-			plugin.getLogger().warning(RandomBattle.prefix + "Unable to create a new edited block list!");
+			plugin.getLogger().warning(
+			        RandomBattle.prefix + "Unable to create a new edited block list! Check your folder permissions.");
 			e.printStackTrace();
-			blockLock.unlock();
 			return result;
 		}
 		// Make the PrintWriter to write the locations
@@ -113,23 +98,20 @@ public final class RBOS
 			out = new PrintWriter(file);
 		}
 		catch (FileNotFoundException e) {
-			plugin.getLogger().warning(RandomBattle.prefix + "Unable to locate the newly created location file!");
+			plugin.getLogger().warning(
+			        RandomBattle.prefix + "Unable to open file for writing! What happened in those few microseconds?");
 			e.printStackTrace();
-			blockLock.unlock();
 			return result;
 		}
 		// Write the locations to disk
 		// Location loc = new Location(world, x, y, z);
-		for (int i = 0; i < allEditedBlockLocations.size(); i++) {
-			Location loc = allEditedBlockLocations.get(i);
+		for (Location loc : blocks)
 			out.println(loc.getWorld().getName() + "," + loc.getBlockX() + "," + loc.getBlockY() + ","
 			        + loc.getBlockZ());
-		}
 		out.flush();
 		// By this point, the lines have been written
 		result = true;
 		out.close();
-		blockLock.unlock();
 		return result;
 	}
 	
@@ -146,47 +128,32 @@ public final class RBOS
 	 * @return A List&ltBlock&gt if the file was located and successfully read and casted from. null
 	 *         if some error occurs.
 	 */
-	public static Collection<Location> loadBlocks(String fileName)
+	public static ArrayList<Location> loadBlocks(String fileName)
 	{
-		HashSet<Location> blocks = null;
-		boolean inData = true;
-		File file = null;
-		if (dataFolder != null)
-			file = new File(dataFolder, fileName);
-		else {
-			file = new File(plugin.getDataFolder(), fileName);
-			inData = false;
-		}
+		ArrayList<Location> blocks = new ArrayList<Location>();
+		File file = new File(dataFolder, fileName);
 		// Check for the file's existence
 		if (!file.exists()) {
-			if (inData) {
-				// It did not exist in the data folder, so let's check the plugin folder
-				file = new File(plugin.getDataFolder(), fileName);
-				if (!file.exists()) {
-					plugin.getLogger().warning(
-					        RandomBattle.prefix + "Could not find the file of the List<Location> to load from.");
-					return blocks;
-				}
-			}
-			else {
-				plugin.getLogger().warning(
-				        RandomBattle.prefix + "Could not find the file of the List<Location> to load from.");
-				return blocks;
-			}
+			plugin.getLogger().warning(
+			        RandomBattle.prefix + "Could not find the file of the List<Location> to load from.");
+			return blocks;
 		}
-		// If we're here, then the file existed
+		else if (!file.canRead()) {
+			plugin.getLogger().warning(
+			        RandomBattle.prefix + "Cannot read from the Location file. Check your file permissions.");
+			return blocks;
+		}
 		// Make a Scanner to read the file contents
 		Scanner in = null;
 		try {
 			in = new Scanner(file);
 		}
 		catch (FileNotFoundException e) {
-			plugin.getLogger().warning(RandomBattle.prefix + "Could not open the Location file!");
+			plugin.getLogger().warning(
+			        RandomBattle.prefix + "Could not open the Location file! What happened in those few microseconds");
 			e.printStackTrace();
 			return blocks;
 		}
-		// Initialize the location array
-		blocks = new HashSet<Location>();
 		// Read the file contents from the scanner
 		// Location loc = new Location(world, x, y, z);
 		while (in.hasNextLine()) {
@@ -195,6 +162,7 @@ public final class RBOS
 			if (line.isEmpty())
 				continue;
 			try {
+				// World,X,Y,Z
 				String[] locArray = line.split("\\,");
 				blocks.add(new Location(plugin.getServer().getWorld(locArray[0]), Integer.parseInt(locArray[1]),
 				        Integer.parseInt(locArray[2]), Integer.parseInt(locArray[3])));
@@ -216,21 +184,14 @@ public final class RBOS
 	 * @return True if the writing stream was successfully flushed after printing the players. False
 	 *         otherwise.
 	 */
-	public static boolean saveRegisteredPlayers()
+	public static boolean saveRegisteredPlayers(String registeredPlayersFile, Set<String>... playerLists)
 	{
 		boolean saved = false;
 		// Check for the status of the players file
-		File file = null;
-		if (dataFolder == null)
-			file = new File(plugin.getDataFolder(), RBCommandExecutor.registeredPlayersFile);
-		else
-			file = new File(dataFolder, RBCommandExecutor.registeredPlayersFile);
-		// Acquire the lock before going on to delete the file
-		playerLock.lock();
+		File file = new File(dataFolder, registeredPlayersFile);
 		if (file.exists()) {
 			if (!file.delete()) {
 				plugin.getLogger().warning(RandomBattle.prefix + "Unable to delete the existing saved players file!");
-				playerLock.unlock();
 				return saved;
 			}
 		}
@@ -240,7 +201,6 @@ public final class RBOS
 		catch (IOException e) {
 			plugin.getLogger().warning(RandomBattle.prefix + "Unable to create the new player file!");
 			e.printStackTrace();
-			playerLock.unlock();
 			return saved;
 		}
 		// At this point, we have a file, so we can start writing to it.
@@ -249,24 +209,19 @@ public final class RBOS
 			out = new PrintWriter(file);
 		}
 		catch (FileNotFoundException e) {
-			plugin.getLogger().warning(RandomBattle.prefix + "Unable to open the player file!");
+			plugin.getLogger().warning(
+			        RandomBattle.prefix
+			                + "Unable to open the player file for writing! What happened in those few microseconds?");
 			e.printStackTrace();
-			playerLock.unlock();
 			return saved;
 		}
-		// Our PrintWriter is now set up, so let's write those values
-		synchronized (RBCommandExecutor.registeredPlayers) {
-			for (String player : RBCommandExecutor.registeredPlayers)
+		// Our PrintWriter is now set up, so let's write those players
+		for (Set<String> players : playerLists)
+			for (String player : players)
 				out.println(player);
-		}
-		synchronized (RBCommandExecutor.inactiveRegisteredPlayers) {
-			for (String player : RBCommandExecutor.inactiveRegisteredPlayers)
-				out.println(player);
-		}
 		out.flush();
 		saved = true;
 		out.close();
-		playerLock.unlock();
 		return saved;
 	}
 	
@@ -283,7 +238,7 @@ public final class RBOS
 	 * @return A Collection&ltString&gt (HashSet&ltString&gt) if the player file was successfully
 	 *         read from. null otherwise.</p>
 	 */
-	public static Collection<String> loadRegisteredPlayers(String registeredPlayersFile)
+	public static HashSet<String> loadRegisteredPlayers(String registeredPlayersFile)
 	{
 		// Construct the return Collection
 		HashSet<String> players = new HashSet<String>();
@@ -313,6 +268,8 @@ public final class RBOS
 			if (!line.isEmpty())
 				players.add(line);
 		}
+		if (in != null)
+			in.close();
 		return players;
 	}
 }

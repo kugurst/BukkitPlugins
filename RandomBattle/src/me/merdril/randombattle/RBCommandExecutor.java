@@ -9,9 +9,11 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 import me.merdril.randombattle.battle.BattleSetter;
 import me.merdril.randombattle.config.RBOS;
@@ -24,8 +26,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.getspout.spoutapi.player.SpoutPlayer;
 
@@ -42,22 +44,25 @@ import org.getspout.spoutapi.player.SpoutPlayer;
  */
 public class RBCommandExecutor implements CommandExecutor
 {
-	private RandomBattle	           plugin;
+	private RandomBattle	              plugin;
 	/** This is the list of the players currently on the server who have registered. */
-	public static volatile Set<String>	registeredPlayers;
+	private static Set<String>	          registeredPlayers;
+	private static ReentrantReadWriteLock	rpLock;
 	/**
 	 * This is the list of players who have registered and have not unregistered that are currently
 	 * not logged in.
 	 */
-	public static volatile Set<String>	inactiveRegisteredPlayers;
+	private static Set<String>	          inactiveRegisteredPlayers;
+	private static ReentrantReadWriteLock	irpLock;
 	/**
 	 * This is the String that specifies the file name to use when creating/loading the list of
 	 * registered players.
 	 */
-	public static String	           registeredPlayersFile	= "registeredPlayers.txt";
-	private static Set<String>	       deactivatedPlayers;
-	public static AtomicBoolean	       hasBeenStopped;
-	private static ExecutorService	   threadExec;
+	protected static String	              registeredPlayersFile	= "registeredPlayers.txt";
+	private static Set<String>	          deactivatedPlayers;
+	private static AtomicBoolean	      hasBeenStopped;
+	private static ExecutorService	      playerSaver;
+	private static Runnable	              playerSaverRunnable;
 	
 	/**
 	 * <p>
@@ -70,12 +75,23 @@ public class RBCommandExecutor implements CommandExecutor
 		plugin = instance;
 		if (registeredPlayers == null)
 			registeredPlayers = Collections.synchronizedSet(new HashSet<String>());
-		if (inactiveRegisteredPlayers == null)
-			inactiveRegisteredPlayers = Collections.synchronizedSet(new HashSet<String>());
+		if (rpLock == null)
+			rpLock = new ReentrantReadWriteLock(true);
+		HashSet<String> irp = RBOS.loadRegisteredPlayers(registeredPlayersFile);
+		if (irp != null)
+			inactiveRegisteredPlayers = Collections.synchronizedSet(irp);
+		if (irpLock == null)
+			irpLock = new ReentrantReadWriteLock(true);
 		if (hasBeenStopped == null)
 			hasBeenStopped = new AtomicBoolean(false);
-		if (threadExec == null)
-			threadExec = Executors.newSingleThreadExecutor();
+		if (playerSaver == null)
+			playerSaver = Executors.newSingleThreadExecutor();
+		if (playerSaverRunnable == null)
+			playerSaverRunnable = new PlayerSaverRunnable();
+		if (rpLock == null)
+			rpLock = new ReentrantReadWriteLock(true);
+		if (irpLock == null)
+			irpLock = new ReentrantReadWriteLock(true);
 	}
 	
 	// The global method that sends the command to the appropriate function and
@@ -185,16 +201,16 @@ public class RBCommandExecutor implements CommandExecutor
 		if (sender instanceof Player) {
 			Player player = (Player) sender;
 			World world = plugin.getServer().getWorld("world");
-			ArrayList<LivingEntity> monsters = new ArrayList<LivingEntity>();
-			monsters.add(world.spawnCreature(player.getLocation(), EntityType.ENDERMAN));
-			monsters.add(world.spawnCreature(player.getLocation(), EntityType.PIG_ZOMBIE));
-			monsters.add(world.spawnCreature(player.getLocation(), EntityType.BLAZE));
-			monsters.add(world.spawnCreature(player.getLocation(), EntityType.CREEPER));
-			monsters.add(world.spawnCreature(player.getLocation(), EntityType.SKELETON));
-			monsters.add(world.spawnCreature(player.getLocation(), EntityType.SPIDER));
-			monsters.add(world.spawnCreature(player.getLocation(), EntityType.ZOMBIE));
-			monsters.add(world.spawnCreature(player.getLocation(), EntityType.IRON_GOLEM));
-			for (LivingEntity entity : monsters) {
+			ArrayList<Entity> monsters = new ArrayList<Entity>();
+			monsters.add(world.spawnEntity(player.getLocation(), EntityType.ENDERMAN));
+			monsters.add(world.spawnEntity(player.getLocation(), EntityType.PIG_ZOMBIE));
+			monsters.add(world.spawnEntity(player.getLocation(), EntityType.BLAZE));
+			monsters.add(world.spawnEntity(player.getLocation(), EntityType.CREEPER));
+			monsters.add(world.spawnEntity(player.getLocation(), EntityType.SKELETON));
+			monsters.add(world.spawnEntity(player.getLocation(), EntityType.SPIDER));
+			monsters.add(world.spawnEntity(player.getLocation(), EntityType.ZOMBIE));
+			monsters.add(world.spawnEntity(player.getLocation(), EntityType.IRON_GOLEM));
+			for (Entity entity : monsters) {
 				plugin.getLogger().info(RandomBattle.prefix + entity.toString());
 			}
 		}
@@ -203,33 +219,31 @@ public class RBCommandExecutor implements CommandExecutor
 	
 	public boolean removeEditedBlocks(CommandSender sender, Command cmd, String label, String[] args)
 	{
-		if (BattleSetter.allEditedBlockLocations == null || BattleSetter.allEditedBlockLocations.isEmpty()) {
+		List<Location> allBlocks = BattleSetter.getEditedBlocks();
+		if (allBlocks == null || allBlocks.isEmpty()) {
 			if (sender != null)
 				sender.sendMessage(RandomBattle.prefix + "Nothing to remove.");
 			if (sender == null || !(sender instanceof ConsoleCommandSender))
 				plugin.getLogger().info("Nothing to remove.");
+			BattleSetter.returnEditedBlocks();
 			return true;
 		}
 		HashSet<World> affectedWorlds = new HashSet<World>();
-		synchronized (BattleSetter.allEditedBlockLocations) {
-			while (BattleSetter.allEditedBlockLocations.size() > 0) {
-				Location block = BattleSetter.allEditedBlockLocations.get(0);
-				affectedWorlds.add(block.getWorld());
-				block.getBlock().setType(Material.AIR);
-				BattleSetter.allEditedBlockLocations.remove(0);
-			}
+		while (allBlocks.size() > 0) {
+			Location block = allBlocks.get(0);
+			affectedWorlds.add(block.getWorld());
+			block.getBlock().setType(Material.AIR);
+			allBlocks.remove(0);
 		}
+		BattleSetter.returnEditedBlocks();
 		for (World world : affectedWorlds)
 			world.save();
-		threadExec.execute(new Runnable() {
+		playerSaver.execute(new Runnable() {
 			@Override
 			public void run()
 			{
-				List<Location> blocks = null;
-				synchronized (BattleSetter.allEditedBlockLocations) {
-					blocks =
-					        BattleSetter.allEditedBlockLocations.subList(0, BattleSetter.allEditedBlockLocations.size());
-				}
+				ArrayList<Location> blocks = new ArrayList<Location>(BattleSetter.readEditedBlocks());
+				BattleSetter.returnEditedBlocks();
 				RBOS.saveBlocks(blocks, BattleSetter.blocksFile);
 			}
 		});
@@ -295,9 +309,9 @@ public class RBCommandExecutor implements CommandExecutor
 			if (spoutPlayer.isSpoutCraftEnabled()) {
 				registered = true;
 				Boolean newlyRegistered = null;
-				synchronized (registeredPlayers) {
-					newlyRegistered = registeredPlayers.add(spoutPlayer.getName());
-				}
+				rpLock.writeLock().lock();
+				newlyRegistered = registeredPlayers.add(spoutPlayer.getName());
+				rpLock.writeLock().unlock();
 				if (!newlyRegistered) {
 					sender.sendMessage(RandomBattle.prefix + spoutPlayer.getName() + " is already registered!");
 					return registered;
@@ -305,13 +319,7 @@ public class RBCommandExecutor implements CommandExecutor
 				else {
 					sender.sendMessage(RandomBattle.prefix + spoutPlayer.getName()
 					        + " has been successfully registered for Random Battles!");
-					threadExec.execute(new Runnable() {
-						@Override
-						public void run()
-						{
-							RBOS.saveRegisteredPlayers();
-						}
-					});
+					playerSaver.execute(playerSaverRunnable);
 				}
 			}
 		}
@@ -366,21 +374,15 @@ public class RBCommandExecutor implements CommandExecutor
 				unregistered = true;
 				player = (Player) sender;
 				boolean contains = false;
-				synchronized (registeredPlayers) {
-					contains = registeredPlayers.contains(player.getName());
-				}
+				rpLock.readLock().lock();
+				contains = registeredPlayers.contains(player.getName());
+				rpLock.readLock().unlock();
 				if (contains) {
 					sender.sendMessage(RandomBattle.prefix + "You have been unregistered from Random Battles!");
-					synchronized (registeredPlayers) {
-						registeredPlayers.remove(player.getName());
-					}
-					threadExec.execute(new Runnable() {
-						@Override
-						public void run()
-						{
-							RBOS.saveRegisteredPlayers();
-						}
-					});
+					rpLock.writeLock().lock();
+					registeredPlayers.remove(player.getName());
+					rpLock.writeLock().unlock();
+					playerSaver.execute(playerSaverRunnable);
 				}
 				// The player was not registered (online players should not be in inactive players)
 				else
@@ -405,23 +407,17 @@ public class RBCommandExecutor implements CommandExecutor
 			// there
 			else {
 				boolean contains = false;
-				synchronized (inactiveRegisteredPlayers) {
-					contains = inactiveRegisteredPlayers.contains(offlinePlayer.getName());
-				}
+				irpLock.readLock().lock();
+				contains = inactiveRegisteredPlayers.contains(offlinePlayer.getName());
+				irpLock.readLock().unlock();
 				if (contains) {
 					sender.sendMessage(RandomBattle.prefix + offlinePlayer.getName()
 					        + " has been unregistered from Random Battles.");
 					unregistered = true;
-					synchronized (inactiveRegisteredPlayers) {
-						inactiveRegisteredPlayers.remove(offlinePlayer.getName());
-					}
-					threadExec.execute(new Runnable() {
-						@Override
-						public void run()
-						{
-							RBOS.saveRegisteredPlayers();
-						}
-					});
+					irpLock.writeLock().lock();
+					inactiveRegisteredPlayers.remove(offlinePlayer.getName());
+					irpLock.writeLock().unlock();
+					playerSaver.execute(playerSaverRunnable);
 				}
 				else
 					sender.sendMessage(RandomBattle.prefix + offlinePlayer.getName()
@@ -432,23 +428,17 @@ public class RBCommandExecutor implements CommandExecutor
 		// there
 		else {
 			boolean contains = false;
-			synchronized (registeredPlayers) {
-				contains = registeredPlayers.contains(player.getName());
-			}
+			rpLock.readLock().lock();
+			contains = registeredPlayers.contains(player.getName());
+			rpLock.readLock().unlock();
 			if (contains) {
 				sender.sendMessage(RandomBattle.prefix + player.getName()
 				        + " has been unregistered from Random Battles.");
 				unregistered = true;
-				synchronized (registeredPlayers) {
-					registeredPlayers.remove(player.getName());
-				}
-				threadExec.execute(new Runnable() {
-					@Override
-					public void run()
-					{
-						RBOS.saveRegisteredPlayers();
-					}
-				});
+				rpLock.writeLock().lock();
+				registeredPlayers.remove(player.getName());
+				rpLock.writeLock().unlock();
+				playerSaver.execute(playerSaverRunnable);
 			}
 			else
 				sender.sendMessage(RandomBattle.prefix + player.getName() + " is not registered for Random Battles!");
@@ -538,10 +528,10 @@ public class RBCommandExecutor implements CommandExecutor
 			return false;
 		}
 		
-		synchronized (registeredPlayers) {
-			deactivatedPlayers = registeredPlayers;
-		}
+		rpLock.writeLock().lock();
+		deactivatedPlayers = registeredPlayers;
 		registeredPlayers = new HashSet<String>();
+		rpLock.writeLock().unlock();
 		hasBeenStopped.set(true);
 		sender.sendMessage(RandomBattle.prefix + "RandomBattle has halted.");
 		if (!(sender instanceof ConsoleCommandSender))
@@ -553,15 +543,50 @@ public class RBCommandExecutor implements CommandExecutor
 	{
 		if (!hasBeenStopped.get()) {
 			sender.sendMessage(RandomBattle.prefix + "RandomBattle is already running.");
-			return false;
+			return true;
 		}
-		synchronized (registeredPlayers) {
-			registeredPlayers = deactivatedPlayers;
-		}
+		rpLock.writeLock().lock();
+		registeredPlayers = deactivatedPlayers;
 		hasBeenStopped.set(false);
+		rpLock.writeLock().unlock();
 		sender.sendMessage(RandomBattle.prefix + "RandomBattle has resumed.");
 		if (!(sender instanceof ConsoleCommandSender))
 			plugin.getLogger().info(RandomBattle.prefix + "RandomBattle has resumed.");
 		return true;
+	}
+	
+	public static Set<String> getRegisteredPlayers()
+	{
+		rpLock.writeLock().lock();
+		return registeredPlayers;
+	}
+	
+	public static Set<String> readRegisteredPlayers()
+	{
+		rpLock.readLock().lock();
+		return registeredPlayers;
+	}
+	
+	public static void returnRegisteredPlayers()
+	{
+		if (rpLock.writeLock().isHeldByCurrentThread())
+			rpLock.writeLock().unlock();
+		rpLock.readLock().unlock();
+	}
+	
+	class PlayerSaverRunnable implements Runnable
+	{
+		@SuppressWarnings ("unchecked")
+		@Override
+		public void run()
+		{
+			rpLock.readLock().lock();
+			Set<String> rp = new CopyOnWriteArraySet<String>(registeredPlayers);
+			rpLock.readLock().unlock();
+			irpLock.readLock().lock();
+			Set<String> irp = new CopyOnWriteArraySet<String>(inactiveRegisteredPlayers);
+			irpLock.readLock().unlock();
+			RBOS.saveRegisteredPlayers(registeredPlayersFile, rp, irp);
+		}
 	}
 }

@@ -85,6 +85,8 @@ public class RBConfig
 					if (reader.hasNextLine())
 						out.println();
 					out.flush();
+					out.close();
+					reader.close();
 				}
 			}
 			catch (FileNotFoundException e) {
