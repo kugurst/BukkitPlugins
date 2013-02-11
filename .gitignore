@@ -1,0 +1,24 @@
+#Java compiled files
+*.class
+
+#Eclipse compile directory
+*bin/
+
+#Eclipse settings directory
+.metadata/
+
+#gedit temporary files, and maybe all temporary files in general
+*~
+
+#Settings
+*.epf
+
+#Hidden files
+.classpath
+.project
+
+#Personal directories
+RandomBattle/scratch/
+
+#Misc
+*.iml
