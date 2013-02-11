@@ -20,5 +20,21 @@
 #Personal directories
 RandomBattle/scratch/
 
+#Unecessary server files
+TestServer/banned-ips.txt
+TestServer/banned-players.txt
+TestServer/help.yml
+TestServer/ops.txt
+TestServer/wepif.yml
+TestServer/white-list.txt
+TestServer/guiconfig.json
+TestServer/server.properties
+TestServer/gui.log
+TestServer/server.log
+
+#Exclude plugin and world directories
+TestServer/plugins/*/
+TestServer/world*/
+
 #Misc
 *.iml
