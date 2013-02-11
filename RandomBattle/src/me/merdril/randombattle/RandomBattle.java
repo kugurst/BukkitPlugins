@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import me.merdril.randombattle.battle.BattleSetter;
 import me.merdril.randombattle.config.RBConfig;
 import me.merdril.randombattle.config.RBDatabase;
 import me.merdril.randombattle.config.RBOS;
@@ -62,6 +63,7 @@ public class RandomBattle extends JavaPlugin
 		RBDatabase.initialize(this, playerBaseStats, expectedMobs);
 		// Initialize the object serializing class.
 		RBOS.initialize(this);
+		BattleSetter.initialize();
 		
 		// Get the PluginManager to minimize line length (and stack calls)
 		PluginManager pm = this.getServer().getPluginManager();

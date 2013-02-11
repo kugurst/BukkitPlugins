@@ -61,8 +61,8 @@ public class RBCommandExecutor implements CommandExecutor
 	protected static String	              registeredPlayersFile	= "registeredPlayers.txt";
 	private static Set<String>	          deactivatedPlayers;
 	private static AtomicBoolean	      hasBeenStopped;
-	private static ExecutorService	      playerSaver;
-	private static Runnable	              playerSaverRunnable;
+	private static ExecutorService	      playerSaverExecutor;
+	private static Runnable	              playerSaver;
 	
 	/**
 	 * <p>
@@ -78,16 +78,15 @@ public class RBCommandExecutor implements CommandExecutor
 		if (rpLock == null)
 			rpLock = new ReentrantReadWriteLock(true);
 		HashSet<String> irp = RBOS.loadRegisteredPlayers(registeredPlayersFile);
-		if (irp != null)
-			inactiveRegisteredPlayers = Collections.synchronizedSet(irp);
+		inactiveRegisteredPlayers = Collections.synchronizedSet(irp);
 		if (irpLock == null)
 			irpLock = new ReentrantReadWriteLock(true);
 		if (hasBeenStopped == null)
 			hasBeenStopped = new AtomicBoolean(false);
+		if (playerSaverExecutor == null)
+			playerSaverExecutor = Executors.newSingleThreadExecutor();
 		if (playerSaver == null)
-			playerSaver = Executors.newSingleThreadExecutor();
-		if (playerSaverRunnable == null)
-			playerSaverRunnable = new PlayerSaverRunnable();
+			playerSaver = new PlayerSaverRunnable();
 		if (rpLock == null)
 			rpLock = new ReentrantReadWriteLock(true);
 		if (irpLock == null)
@@ -238,15 +237,7 @@ public class RBCommandExecutor implements CommandExecutor
 		BattleSetter.returnEditedBlocks();
 		for (World world : affectedWorlds)
 			world.save();
-		playerSaver.execute(new Runnable() {
-			@Override
-			public void run()
-			{
-				ArrayList<Location> blocks = new ArrayList<Location>(BattleSetter.readEditedBlocks());
-				BattleSetter.returnEditedBlocks();
-				RBOS.saveBlocks(blocks, BattleSetter.blocksFile);
-			}
-		});
+		BattleSetter.saveBlocks();
 		if (sender != null)
 			sender.sendMessage(RandomBattle.prefix + "All modified blocks removed.");
 		if (sender == null || !(sender instanceof ConsoleCommandSender))
@@ -319,7 +310,7 @@ public class RBCommandExecutor implements CommandExecutor
 				else {
 					sender.sendMessage(RandomBattle.prefix + spoutPlayer.getName()
 					        + " has been successfully registered for Random Battles!");
-					playerSaver.execute(playerSaverRunnable);
+					playerSaverExecutor.execute(playerSaver);
 				}
 			}
 		}
@@ -382,7 +373,7 @@ public class RBCommandExecutor implements CommandExecutor
 					rpLock.writeLock().lock();
 					registeredPlayers.remove(player.getName());
 					rpLock.writeLock().unlock();
-					playerSaver.execute(playerSaverRunnable);
+					playerSaverExecutor.execute(playerSaver);
 				}
 				// The player was not registered (online players should not be in inactive players)
 				else
@@ -417,7 +408,7 @@ public class RBCommandExecutor implements CommandExecutor
 					irpLock.writeLock().lock();
 					inactiveRegisteredPlayers.remove(offlinePlayer.getName());
 					irpLock.writeLock().unlock();
-					playerSaver.execute(playerSaverRunnable);
+					playerSaverExecutor.execute(playerSaver);
 				}
 				else
 					sender.sendMessage(RandomBattle.prefix + offlinePlayer.getName()
@@ -438,7 +429,7 @@ public class RBCommandExecutor implements CommandExecutor
 				rpLock.writeLock().lock();
 				registeredPlayers.remove(player.getName());
 				rpLock.writeLock().unlock();
-				playerSaver.execute(playerSaverRunnable);
+				playerSaverExecutor.execute(playerSaver);
 			}
 			else
 				sender.sendMessage(RandomBattle.prefix + player.getName() + " is not registered for Random Battles!");
@@ -569,9 +560,37 @@ public class RBCommandExecutor implements CommandExecutor
 	
 	public static void returnRegisteredPlayers()
 	{
-		if (rpLock.writeLock().isHeldByCurrentThread())
+		if (rpLock.writeLock().isHeldByCurrentThread()) {
 			rpLock.writeLock().unlock();
+			return;
+		}
 		rpLock.readLock().unlock();
+	}
+	
+	public static Set<String> getInactiveRegisteredPlayers()
+	{
+		irpLock.writeLock().lock();
+		return inactiveRegisteredPlayers;
+	}
+	
+	public static Set<String> readInactiveRegisiteredPlayers()
+	{
+		irpLock.readLock().lock();
+		return inactiveRegisteredPlayers;
+	}
+	
+	public static void returnInactiveRegisteredPlayers()
+	{
+		if (irpLock.writeLock().isHeldByCurrentThread()) {
+			irpLock.writeLock().unlock();
+			return;
+		}
+		irpLock.readLock().unlock();
+	}
+	
+	public static boolean hasBeenStopped()
+	{
+		return hasBeenStopped.get();
 	}
 	
 	class PlayerSaverRunnable implements Runnable

@@ -1,6 +1,8 @@
 
 package me.merdril.randombattle.listeners;
 
+import java.util.Set;
+
 import me.merdril.randombattle.RBCommandExecutor;
 import me.merdril.randombattle.RandomBattle;
 import me.merdril.randombattle.config.RBDatabase;
@@ -55,16 +57,19 @@ public class RBLoginListener implements Listener
 	{
 		// Simply move the player from the list of registered players to inactive players.
 		boolean registered = false;
-		synchronized (RBCommandExecutor.registeredPlayers) {
-			registered = RBCommandExecutor.registeredPlayers.contains(event.getPlayer().getName());
-		}
+		// I initially acquired the write lock here, but decided that if another thread has the
+		// write lock for the inactive registered players, then we could be waiting for longer than
+		// desired while holding the write lock
+		Set<String> registeredPlayers = RBCommandExecutor.readRegisteredPlayers();
+		registered = registeredPlayers.contains(event.getPlayer().getName());
+		RBCommandExecutor.returnRegisteredPlayers();
 		if (registered) {
-			synchronized (RBCommandExecutor.inactiveRegisteredPlayers) {
-				RBCommandExecutor.inactiveRegisteredPlayers.add(event.getPlayer().getName());
-			}
-			synchronized (RBCommandExecutor.registeredPlayers) {
-				RBCommandExecutor.registeredPlayers.remove(event.getPlayer().getName());
-			}
+			Set<String> inactiveRegisteredPlayers = RBCommandExecutor.getInactiveRegisteredPlayers();
+			inactiveRegisteredPlayers.add(event.getPlayer().getName());
+			RBCommandExecutor.returnInactiveRegisteredPlayers();
+			registeredPlayers = RBCommandExecutor.getRegisteredPlayers();
+			registeredPlayers.remove(event.getPlayer().getName());
+			RBCommandExecutor.returnRegisteredPlayers();
 			plugin.getLogger().info(
 			        RandomBattle.prefix + event.getPlayer().getName()
 			                + " has been moved to the inactive registered players.");
@@ -89,16 +94,16 @@ public class RBLoginListener implements Listener
 	{
 		// Simply move the player from the list of inactive players to registered players.
 		boolean registered = false;
-		synchronized (RBCommandExecutor.inactiveRegisteredPlayers) {
-			registered = RBCommandExecutor.inactiveRegisteredPlayers.contains(event.getPlayer().getName());
-		}
-		if (registered && !RBCommandExecutor.hasBeenStopped.get()) {
-			synchronized (RBCommandExecutor.registeredPlayers) {
-				RBCommandExecutor.registeredPlayers.add(event.getPlayer().getName());
-			}
-			synchronized (RBCommandExecutor.inactiveRegisteredPlayers) {
-				RBCommandExecutor.inactiveRegisteredPlayers.remove(event.getPlayer().getName());
-			}
+		Set<String> inactiveRegisteredPlayers = RBCommandExecutor.readInactiveRegisiteredPlayers();
+		registered = inactiveRegisteredPlayers.contains(event.getPlayer().getName());
+		RBCommandExecutor.returnInactiveRegisteredPlayers();
+		if (registered && !RBCommandExecutor.hasBeenStopped()) {
+			Set<String> registeredPlayers = RBCommandExecutor.getRegisteredPlayers();
+			registeredPlayers.add(event.getPlayer().getName());
+			RBCommandExecutor.returnRegisteredPlayers();
+			inactiveRegisteredPlayers = RBCommandExecutor.getInactiveRegisteredPlayers();
+			inactiveRegisteredPlayers.remove(event.getPlayer().getName());
+			RBCommandExecutor.returnInactiveRegisteredPlayers();
 			plugin.getLogger().info(
 			        RandomBattle.prefix + event.getPlayer().getName()
 			                + " has been moved to the active registered players.");

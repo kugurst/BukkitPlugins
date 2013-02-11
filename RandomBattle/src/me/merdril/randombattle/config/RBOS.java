@@ -71,6 +71,7 @@ public final class RBOS
 	 */
 	public static boolean saveBlocks(List<Location> blocks, String fileName)
 	{
+		System.out.println(blocks);
 		// Initialize the return variable.
 		boolean result = false;
 		// Make the file to save the Locations to
@@ -132,17 +133,14 @@ public final class RBOS
 	{
 		ArrayList<Location> blocks = new ArrayList<Location>();
 		File file = new File(dataFolder, fileName);
-		// Check for the file's existence
-		if (!file.exists()) {
-			plugin.getLogger().warning(
-			        RandomBattle.prefix + "Could not find the file of the List<Location> to load from.");
+		if (!file.exists())
 			return blocks;
-		}
 		else if (!file.canRead()) {
 			plugin.getLogger().warning(
 			        RandomBattle.prefix + "Cannot read from the Location file. Check your file permissions.");
 			return blocks;
 		}
+		
 		// Make a Scanner to read the file contents
 		Scanner in = null;
 		try {
@@ -150,7 +148,8 @@ public final class RBOS
 		}
 		catch (FileNotFoundException e) {
 			plugin.getLogger().warning(
-			        RandomBattle.prefix + "Could not open the Location file! What happened in those few microseconds");
+			        RandomBattle.prefix
+			                + "Could not open the Location file for reading! What happened in those few microseconds?");
 			e.printStackTrace();
 			return blocks;
 		}
@@ -240,36 +239,37 @@ public final class RBOS
 	 */
 	public static HashSet<String> loadRegisteredPlayers(String registeredPlayersFile)
 	{
-		// Construct the return Collection
+		// Construct the return
 		HashSet<String> players = new HashSet<String>();
-		// Assume the file is in the data folder
+		
 		File file = new File(dataFolder, registeredPlayersFile);
-		// If not, check the plugin data folder
-		if (!file.exists()) {
-			file = new File(plugin.getDataFolder(), registeredPlayersFile);
-			// If it's also not in the data folder, then return
-			if (!file.exists()) {
-				plugin.getLogger().warning(RandomBattle.prefix + "Could not find the player file to load from!");
-				return null;
-			}
+		// If the file doesn't exist, return the empty HashSet
+		if (!file.exists())
+			return players;
+		// If we cannot read from the file, inform the server manager
+		if (!file.canRead()) {
+			plugin.getLogger().warning(
+			        RandomBattle.prefix + "Cannot read from the players file. Check your file permissions.");
+			return players;
 		}
-		// At this point, we have an existent file
+		
 		Scanner in = null;
 		try {
 			in = new Scanner(file);
 		}
 		catch (FileNotFoundException e) {
-			plugin.getLogger().warning(RandomBattle.prefix + "Unable to open the player file for reading!");
+			plugin.getLogger().warning(
+			        RandomBattle.prefix
+			                + "Unable to open the players file for reading. What happened in those few microseconds?");
 			e.printStackTrace();
-			return null;
+			return players;
 		}
 		while (in.hasNextLine()) {
 			String line = in.nextLine();
 			if (!line.isEmpty())
 				players.add(line);
 		}
-		if (in != null)
-			in.close();
+		in.close();
 		return players;
 	}
 }

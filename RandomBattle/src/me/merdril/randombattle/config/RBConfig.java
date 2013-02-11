@@ -84,10 +84,10 @@ public class RBConfig
 					out.print(reader.nextLine());
 					if (reader.hasNextLine())
 						out.println();
-					out.flush();
-					out.close();
-					reader.close();
 				}
+				out.flush();
+				out.close();
+				reader.close();
 			}
 			catch (FileNotFoundException e) {
 				plugin.getLogger().severe(

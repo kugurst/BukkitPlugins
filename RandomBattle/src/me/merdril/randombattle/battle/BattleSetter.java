@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -19,7 +20,6 @@ import me.merdril.randombattle.config.RBOS;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Spider;
@@ -72,20 +72,20 @@ public class BattleSetter
 	 */
 	private ArrayList<Monster>	               battleMonsters	= new ArrayList<Monster>();
 	private HashMap<Monster, Location[]>	   field	      = new HashMap<Monster, Location[]>();
-	private CommandSender	                   console;
 	public static final String	               blocksFile	  = "allEditedBlocks.txt";
-	private static ExecutorService	           blockSaver;
+	private static ExecutorService	           blockSaverExecutor;
+	private static Runnable	                   blockSaver;
 	private static AtomicInteger	           battleCount	  = new AtomicInteger();
 	
 	public static void initialize()
 	{
 		ArrayList<Location> aebl = RBOS.loadBlocks(BattleSetter.blocksFile);
-		if (aebl != null)
-			allEditedBlockLocations = Collections.synchronizedList(aebl);
-		else
-			allEditedBlockLocations = Collections.synchronizedList(new ArrayList<Location>());
+		allEditedBlockLocations = Collections.synchronizedList(aebl);
 		allBattleMonsters = Collections.synchronizedMap(new HashMap<SpoutPlayer, Monster[]>());
-		blockSaver = Executors.newSingleThreadExecutor();
+		blockSaverExecutor = Executors.newSingleThreadExecutor();
+		blockSaver = new BlockSaverRunnable();
+		aeblLock = new ReentrantReadWriteLock(true);
+		abmLock = new ReentrantReadWriteLock(true);
 	}
 	
 	/**
@@ -109,8 +109,6 @@ public class BattleSetter
 	{
 		// Mark the plugin for future use
 		this.plugin = instance;
-		// Mark the console command sender for future use
-		console = plugin.getServer().getConsoleSender();
 		// Make sure the user specified values for the stage dimensions do not break some method in
 		// this class.
 		if (RandomBattle.stageHeight > 122)
@@ -156,13 +154,14 @@ public class BattleSetter
 		startPoint = startPoint.getBlock().getLocation();
 		currentPoint = startPoint.getBlock().getLocation();
 		// Debugging
-		console.sendMessage(RandomBattle.prefix + "Starting point: " + currentPoint);
+		plugin.getLogger().info(RandomBattle.prefix + "Starting point: " + currentPoint);
 		// Construct the stage, apparently old me was too lazy to make this method return a boolean.
 		findSafeStage();
 		// Check that a stage was set
 		if (!goodStage) {
-			console.sendMessage(RandomBattle.prefix + "Failed to set stage for " + player.getDisplayName()
-			        + " at location " + player.getLocation().toString() + ".");
+			plugin.getLogger().info(
+			        RandomBattle.prefix + "Failed to set stage for " + player.getDisplayName() + " at location "
+			                + player.getLocation().toString() + ".");
 			return;
 		}
 		player.sendMessage(RandomBattle.prefix + "Stage set. Teleporting...");
@@ -172,6 +171,8 @@ public class BattleSetter
 		teleportPlayer(player);
 		// Moves all monsters in field
 		teleportMonster();
+		// Save the made blocks
+		saveBlocks();
 	}
 	
 	/**
@@ -243,6 +244,7 @@ public class BattleSetter
 		int width = Math.abs(lowerCorner.getBlockZ() - upperCorner.getBlockZ()) + 1;
 		int height = Math.abs(lowerCorner.getBlockY() - upperCorner.getBlockY()) + 1;
 		Location currentBlock = lowerCorner.getBlock().getLocation();
+		aeblLock.writeLock().lock();
 		for (int x = 0; x < length; x++) {
 			for (int y = 0; y < width; y++) {
 				for (int z = 0; z < height; z++) {
@@ -255,9 +257,7 @@ public class BattleSetter
 					                || currentBlock.getBlockY() == upperCorner.getBlockY() || currentBlock.getBlockZ() == upperCorner
 					                .getBlockZ())) {
 						editedBlocks.add(currentBlock.getBlock());
-						aeblLock.writeLock().lock();
 						allEditedBlockLocations.add(currentBlock.getBlock().getLocation());
-						aeblLock.writeLock().lock();
 						currentBlock.getBlock().setType(Material.GLASS);
 					}
 					// else
@@ -271,16 +271,7 @@ public class BattleSetter
 			currentBlock.setZ(lowerCorner.getBlockZ());
 			currentBlock.add(1, 0, 0);
 		}
-		blockSaver.execute(new Runnable() {
-			@Override
-			public void run()
-			{
-				aeblLock.readLock().lock();
-				ArrayList<Location> blocks = new ArrayList<Location>(allEditedBlockLocations);
-				aeblLock.readLock().unlock();
-				RBOS.saveBlocks(blocks, blocksFile);
-			}
-		});
+		aeblLock.writeLock().unlock();
 	}
 	
 	/**
@@ -340,6 +331,7 @@ public class BattleSetter
 	 */
 	private void findSafeStage()
 	{
+		aeblLock.writeLock().lock();
 		// Initially the same as startPoint, and doesn't change until a block that isn't air is
 		// encountered Iterate over the 3 dimensions
 		outer: for (int i = 0; i < stageHeight; i++) {
@@ -356,18 +348,14 @@ public class BattleSetter
 					// If we are on the first level, make the floor grass.
 					if (i == 0) {
 						editedBlocks.add(currentPoint.getBlock());
-						aeblLock.writeLock().lock();
 						allEditedBlockLocations.add(currentPoint.getBlock().getLocation());
-						aeblLock.writeLock().unlock();
 						currentPoint.getBlock().setType(Material.GRASS);
 					}
 					// If we are on the second level, place lightstone every so often
 					else if (i == 1) {
 						if (j % 4 == 0 && k % 4 == 0) {
 							editedBlocks.add(currentPoint.getBlock());
-							aeblLock.writeLock().lock();
 							allEditedBlockLocations.add(currentPoint.getBlock().getLocation());
-							aeblLock.writeLock().unlock();
 							currentPoint.getBlock().setType(Material.GLOWSTONE);
 						}
 					}
@@ -382,16 +370,7 @@ public class BattleSetter
 			currentPoint.setX(startPoint.getBlockX());
 			currentPoint.add(0, 1, 0);
 		}
-		blockSaver.execute(new Runnable() {
-			@Override
-			public void run()
-			{
-				aeblLock.readLock().lock();
-				ArrayList<Location> blocks = new ArrayList<Location>(allEditedBlockLocations);
-				aeblLock.readLock().unlock();
-				RBOS.saveBlocks(blocks, blocksFile);
-			}
-		});
+		aeblLock.writeLock().unlock();
 	}
 	
 	/**
@@ -406,28 +385,25 @@ public class BattleSetter
 	{
 		if (blockList == null)
 			return;
+		aeblLock.writeLock().lock();
 		while (blockList.size() > 0) {
 			blockList.get(0).getLocation().getBlock().setType(Material.AIR);
-			aeblLock.writeLock().lock();
 			allEditedBlockLocations.remove(blockList.get(0).getLocation());
-			aeblLock.writeLock().unlock();
 			blockList.remove(0);
 		}
-		blockSaver.execute(new Runnable() {
-			@Override
-			public void run()
-			{
-				aeblLock.readLock().lock();
-				ArrayList<Location> blocks = new ArrayList<Location>(allEditedBlockLocations);
-				aeblLock.readLock().unlock();
-				RBOS.saveBlocks(blocks, blocksFile);
-			}
-		});
+		aeblLock.writeLock().unlock();
+	}
+	
+	public static void saveBlocks()
+	{
+		blockSaverExecutor.execute(blockSaver);
 	}
 	
 	public static List<Location> getEditedBlocks()
 	{
 		aeblLock.writeLock().lock();
+		StackTraceElement[] stack = Thread.currentThread().getStackTrace();
+		System.out.println(RandomBattle.prefix + stack[0]);
 		return allEditedBlockLocations;
 	}
 	
@@ -443,6 +419,20 @@ public class BattleSetter
 	public static List<Location> readEditedBlocks()
 	{
 		aeblLock.readLock().lock();
+		StackTraceElement[] stack = Thread.currentThread().getStackTrace();
+		System.out.println(RandomBattle.prefix + stack[0]);
 		return allEditedBlockLocations;
+	}
+	
+	static class BlockSaverRunnable implements Runnable
+	{
+		@Override
+		public void run()
+		{
+			aeblLock.readLock().lock();
+			CopyOnWriteArrayList<Location> blocks = new CopyOnWriteArrayList<Location>(allEditedBlockLocations);
+			aeblLock.readLock().unlock();
+			RBOS.saveBlocks(blocks, blocksFile);
+		}
 	}
 }
