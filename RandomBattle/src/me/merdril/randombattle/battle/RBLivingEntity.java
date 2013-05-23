@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 
 package me.merdril.randombattle.battle;
@@ -16,12 +16,11 @@ import me.merdril.randombattle.config.RBDatabase;
 
 import org.bukkit.entity.ComplexLivingEntity;
 import org.bukkit.entity.Enderman;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.getspout.spoutapi.player.SpoutPlayer;
-
-import com.sun.xml.internal.stream.Entity;
 
 /**
  * <p>
@@ -117,7 +116,7 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 				statMap.put(stat.toString().toLowerCase(), stat);
 		}
 	}
-	
+
 	/**
 	 * The enums to indicate the various status conditions that an {@link RBLivingEntity} can have.
 	 * In its current form, this enables the quick addition/removal/deactivation of any effects, so
@@ -157,7 +156,7 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 		 */
 		SLOW;
 	}
-	
+
 	/**
 	 * A mapping of monster names to their respective {@link EntityType}. This object maps the
 	 * string name of the monster (retivable via the getName() method of the {@link Monster} class
@@ -167,7 +166,7 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 * {@link RBDatabase}).
 	 */
 	public Map<String, Class<? extends AI>>	MONSTERS	= new HashMap<String, Class<? extends AI>>();
-	
+
 	/**
 	 * Indicates to the relevant commands to add the specified items to whatever {@link Collection}
 	 * it handles.
@@ -178,7 +177,7 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 * it handles.
 	 */
 	public int	                            REMOVE	 = 1;
-	
+
 	/**
 	 * <p>
 	 * Returns an integer representing the current amount of some status held by this
@@ -193,7 +192,7 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 * @return An int specifying the amount of the Stat this living entity contains.
 	 */
 	public Integer getStat(Stat stat);
-	
+
 	/**
 	 * <p>
 	 * Unreservedly changes the value of some Stat to the int provided. Returns the new value of the
@@ -212,14 +211,14 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 *         passed in).
 	 */
 	public Integer setStat(Stat stat, int amount);
-	
+
 	/**
 	 * Returns an effect for use in damage calculation or turn calculation. Effects should be used,
 	 * rather than overriding the value of some stat that is provided by the class.
 	 * @return A List&ltEffect&gt that this RBLivingEntity currently has.
 	 */
 	public List<Effect> getEffects();
-	
+
 	/**
 	 * Modifies the effects of this {@link RBLivingEntity} according to the action specified. Can be
 	 * one of two things: ADD or REMOVE. Using ADD also implies to replace/update.
@@ -231,14 +230,14 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 * @return The current {@link List}&lt{@link Effect}&gt that his {@link RBLivingEntity} possess.
 	 */
 	public List<Effect> setEffect(int action, Effect... effect);
-	
+
 	/**
 	 * Returns the {@link List}&lt{@link RBSkill}&gt of this entity.
 	 * @return A {@link List}&lt{@link RBSkill}&gt of the skills this LivingEntity knows. Returns an
 	 *         empty list in the case the entity knows none.
 	 */
 	public List<RBSkill> getSkills();
-	
+
 	/**
 	 * Modifies the {@link List}&lt{@link RBSkill}&gt that this entity knows. This method either
 	 * adds or removes from the list.
@@ -249,14 +248,14 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 * @return The current {@link List}&lt{@link RBSkill}&gt that results from this modification.
 	 */
 	public List<RBSkill> setSkills(int action, RBSkill... skills);
-	
+
 	/**
 	 * Returns the List&ltRBMagic&gt of this entity.
 	 * @return A List&ltRBMagic&gt of the magicks this LivingEntity knows. Returns an empty list in
 	 *         the case the entity knows none.
 	 */
 	public List<RBMagic> getMagicks();
-	
+
 	/**
 	 * Modifies the magicks of this {@link RBLivingEntity} according to the action specified. Can be
 	 * one of two things: ADD or REMOVE. Using ADD also implies to replace/update.
@@ -269,27 +268,24 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 *         possess.
 	 */
 	public List<RBMagic> setMagicks(int action, RBMagic... magicks);
-	
+
 	/**
 	 * Returns the List&ltRBElem&gt of this entity.
 	 * @return A List&ltRBElem&gt of the elements this LivingEntity is weak to. Returns an empty
 	 *         list in the case it is weak to nothing.
 	 */
 	public List<RBElem> getWeak();
-	
+
 	/**
 	 * Modifies the weaknesses of this {@link RBLivingEntity} according to the action specified. Can
 	 * be one of two things: ADD or REMOVE. Using ADD also implies to replace/update.
-	 * @param action
-	 *            The course of action to take with the specified effects: whether to add them or to
-	 *            remove them.
 	 * @param elems
 	 *            The {@link RBElem}'s this {@link RBLivingEntity} is weak to. to modify on this
 	 *            {@link RBLivingEntity}.
 	 * @return The current {@link List}&lt{@link RBElem}&gt that his {@link RBLivingEntity} possess.
 	 */
 	public List<RBElem> setWeak(RBElem... elems);
-	
+
 	/**
 	 * Asks this LivingEntity to decide on a next move based on its current status.
 	 * @param lock
@@ -298,13 +294,13 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 * @return A RBMove containing the target entity(ies) and the RBAttack to execute.
 	 */
 	public RBMove getMove(ReentrantLock lock);
-	
+
 	/**
 	 * Returns the LivingEntity that this class encapsulates.
 	 * @return A LivingEntity which is affected by the actions of this class.
 	 */
 	public LivingEntity getEntity();
-	
+
 	/**
 	 * A {@link Map}&lt{@link Stat}, {@link Integer}&gt of the current stats of the entity to the
 	 * values of those stats. The mapping would make the most sense as an {@link EnumMap}.
@@ -313,7 +309,7 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 *         {@link RBLivingEntity}.
 	 */
 	public Map<Stat, Integer> getStats();
-	
+
 	/**
 	 * <p>
 	 * A {@link Map}&lt{@link Stat}, {@link Integer}&gt of the original stats of the entity to the
@@ -328,7 +324,7 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 *         permanent changes, see {@link RBDatabase}.
 	 */
 	public Map<Stat, Integer> getOriginalStats();
-	
+
 	/**
 	 * <p>
 	 * This tests for equality between two different {@link RBLivingEntity}. Another {@link Object}
@@ -346,7 +342,7 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 */
 	@Override
 	public boolean equals(Object obj);
-	
+
 	/**
 	 * <p>
 	 * This method extends the equals method to allow comparisons between similar
@@ -363,7 +359,7 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 */
 	@Override
 	public int compareTo(RBLivingEntity other);
-	
+
 	/**
 	 * This method returns the fully qualified name of the class, the name of the
 	 * {@link LivingEntity}, and the current stats of this {@link RBLivingEntity}.
@@ -371,7 +367,7 @@ public interface RBLivingEntity extends Comparable<RBLivingEntity>
 	 */
 	@Override
 	public String toString();
-	
+
 	/**
 	 * This method should returns a hash code determined by the hash code of the enclosed
 	 * {@link LivingEntity} as well as some factor to differentiate between different instances of

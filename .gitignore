@@ -3,6 +3,7 @@
 
 #Eclipse compile directory
 *bin/
+out/
 
 #Eclipse settings directory
 .metadata/
@@ -12,6 +13,7 @@
 
 #Settings
 *.epf
+META-INF/
 
 #Hidden files
 .classpath
@@ -30,7 +32,7 @@ TestServer/white-list.txt
 TestServer/guiconfig.json
 TestServer/server.properties
 TestServer/gui.log
-TestServer/server.log
+TestServer/server.log*
 
 #Exclude plugin and world directories
 TestServer/plugins/*/
@@ -38,3 +40,4 @@ TestServer/world*/
 
 #Misc
 *.iml
+.idea

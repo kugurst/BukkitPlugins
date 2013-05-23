@@ -69,7 +69,7 @@ public final class RBDatabase
 	private static Map<String, Object[]>	playerStats;
 	private static ReentrantLock	     cachedPlayersLock;
 	private static Map<String, RBPlayer>	cachedPlayers;
-	
+
 	/**
 	 * <p>
 	 * Loads the values of <code>stat.db</code> and verifies its contents. That is to say, it
@@ -260,12 +260,12 @@ public final class RBDatabase
 			queryFailed(e, true);
 		}
 		// ///////////////////////////////////////////////////End verification of the table contents
-		
+
 		// Cache the contents of the monster and player table.
 		monsterStats = loadMonsterStats(statement, RBLivingEntity.MONSTERS, activeMobs);
 		playerBaseAttributes = Collections.synchronizedMap(new HashMap<String, Object[]>());
 		playerStats = loadPlayerStats(statement);
-		
+
 		// Close the connections and call it a day folks!
 		try {
 			statement.close();
@@ -288,7 +288,7 @@ public final class RBDatabase
 		cachedPlayersLock = new ReentrantLock(true);
 		playerStatsLock = new ReentrantLock(true);
 	}
-	
+
 	public static AI getMonsterAI(LivingEntity monster)
 	{
 		// First check to see if this monster was specified in the config
@@ -335,7 +335,7 @@ public final class RBDatabase
 			}
 		}
 	}
-	
+
 	/**
 	 * <p>
 	 * Saves the current status of an {@link RBPlayer}. Specifically, it saves all the player's
@@ -391,7 +391,7 @@ public final class RBDatabase
 		}
 		return savedSuccessfully;
 	}
-	
+
 	/**
 	 * <p>
 	 * For conserving memory usage, this program removes a player from the mapping of cached
@@ -416,7 +416,7 @@ public final class RBDatabase
 		cachedPlayersLock.unlock();
 		return player;
 	}
-	
+
 	/**
 	 * <p>
 	 * Returns an {@link RBPlayer} specified by the given name. This method first looks to see if
@@ -491,7 +491,7 @@ public final class RBDatabase
 		}
 		return rbPlayer;
 	}
-	
+
 	private static String formatRBList(List<?> list)
 	{
 		String result = "";
@@ -510,7 +510,7 @@ public final class RBDatabase
 		}
 		return result;
 	}
-	
+
 	/**
 	 * <p>
 	 * Loads the contents (all of them) of the players table into memory for quick access. The
@@ -568,7 +568,7 @@ public final class RBDatabase
 							        || statName.equalsIgnoreCase("exp") || statName.equalsIgnoreCase("level"))
 								continue;
 							// If there's a stat mismatch, update the database
-							if (playerBaseStats.get(statName) != stats.get(stat)) {
+							if (!playerBaseStats.get(statName).equals(stats.get(stat))) {
 								stats.put(stat, playerBaseStats.get(statName));
 								statement.executeUpdate("UPDATE players SET " + statName + "="
 								        + playerBaseStats.get(statName) + " WHERE name='" + playerName + "'");
@@ -625,7 +625,7 @@ public final class RBDatabase
 			}
 		return playerMap;
 	}
-	
+
 	/**
 	 * <p>
 	 * Loads the contents (all of them) of the monster table into memory for quick access. The
@@ -741,7 +741,7 @@ public final class RBDatabase
 		}
 		return result;
 	}
-	
+
 	/**
 	 * <p>
 	 * Performs a routine set of actions when a query fails.
@@ -764,7 +764,7 @@ public final class RBDatabase
 			plugin.getPluginLoader().disablePlugin(plugin);
 		}
 	}
-	
+
 	/**
 	 * <p>
 	 * Creates a table in the SQLite database referenced by the given statement of a specified type.
@@ -847,7 +847,7 @@ public final class RBDatabase
 		}
 		return result;
 	}
-	
+
 	/**
 	 * <p>
 	 * Creates monster entries in the database for all recognized monsters. Some level factor should
@@ -1017,7 +1017,7 @@ public final class RBDatabase
 		//@formatter:on
 		return statement.executeBatch();
 	}
-	
+
 	/**
 	 * <p>
 	 * Performs the provided query. Used for more complex operations than what the other methods of
@@ -1044,7 +1044,7 @@ public final class RBDatabase
 		}
 		return rowSet;
 	}
-	
+
 	/**
 	 * <p>
 	 * A short helper method to shorten line length as well as to reduce programmer error. Returns a
@@ -1059,7 +1059,7 @@ public final class RBDatabase
 	{
 		return DriverManager.getConnection("jdbc:sqlite:" + new File(plugin.getDataFolder(), "stats.db").getPath());
 	}
-	
+
 	// It's a utility class, so it need not be instantiated
 	private RBDatabase() throws AssertionError
 	{

@@ -1,0 +1,24 @@
+<project name="RandomBattle" default="jar">
+    <property name="srcdir" location="./src/me/merdril/randombattle"/>
+    <property name="plgdir" location="../TestServer/plugins"/>
+    <property name="blddir" location="../out"/>
+    <property name="cp" value="./dep/bukkit/bukkit-1.5.2-R0.1.jar:./dep/craftbukkit/craftbukkit-1.5.2-R0.1.jar:./dep/spout-api/SpoutPlugin.jar:./dep/sql/sqlite-jdbc-3.7.2.jar:./src"/>
+
+    <property name="rb" value="RandomBattle.jar"/>
+
+    <target name="clean">
+        <delete file="${plgdir}/${rb}"/>
+        <delete dir="${blddir}"/>
+        <mkdir dir="${blddir}"/>
+    </target>
+
+    <target name="compile">
+        <javac classpath="${cp}" srcdir="${srcdir}" destdir="${blddir}"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <copy file="config.yml" todir="${blddir}"/>
+        <copy file="plugin.yml" todir="${blddir}"/>
+        <jar destfile="${plgdir}/${rb}" basedir="${blddir}"/>
+    </target>
+</project>

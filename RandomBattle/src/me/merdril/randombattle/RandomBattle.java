@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 
 package me.merdril.randombattle;
@@ -44,7 +44,7 @@ public class RandomBattle extends JavaPlugin
 	public static int	        stageHeight, stageWidth, stageLength, randomChance;
 	private int	                trigDelNum	= 5;
 	private RBCommandExecutor	cExec;
-	
+
 	// Initializes all the listeners and registers all the commands. Tells the server when it is
 	// done.
 	@Override
@@ -64,10 +64,10 @@ public class RandomBattle extends JavaPlugin
 		// Initialize the object serializing class.
 		RBOS.initialize(this);
 		BattleSetter.initialize();
-		
+
 		// Get the PluginManager to minimize line length (and stack calls)
 		PluginManager pm = this.getServer().getPluginManager();
-		
+
 		// Initialize the command executer
 		cExec = new RBCommandExecutor(this);
 		getCommand("regbattle").setExecutor(cExec);
@@ -78,7 +78,7 @@ public class RandomBattle extends JavaPlugin
 		getCommand("showspoutplayers").setExecutor(cExec);
 		getCommand("removeblocks").setExecutor(cExec);
 		getCommand("spawnmobs").setExecutor(cExec);
-		
+
 		// Initialize some of the listeners: The AttackListener to initiate attacks, the
 		// AttackCleaner to clear the data structures that keep track of monster-player
 		// interactions, and the ScreenListener for something in the future, I guess. I don't know
@@ -86,11 +86,11 @@ public class RandomBattle extends JavaPlugin
 		pm.registerEvents(new RBAttackListener(this), this);
 		pm.registerEvents(new RBAttackCleanerListener(this, trigDelNum), this);
 		pm.registerEvents(new RBLoginListener(this), this);
-		
+
 		// That's all folks
 		log.info(prefi + "Random Battle v" + getDescription().getVersion() + " has started!");
 	}
-	
+
 	// Removes all the blocks that this program has placed. The monsters will fall to their deaths
 	// (and so will the players if they were left there)
 	// Acutally, this method doesn't do that, because calling the removeEditedBlocks method after
