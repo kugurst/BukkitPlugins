@@ -41,3 +41,5 @@ TestServer/world*/
 #Misc
 *.iml
 .idea
+*scratch.java
+*Scratch.java
